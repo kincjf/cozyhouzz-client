@@ -2,9 +2,11 @@
  * Angular 2 decorators and services
  */
 import { Component, ViewEncapsulation } from '@angular/core';
+import {Router} from '@angular/router';
+import {Http} from '@angular/http';
+import { contentHeaders } from './common/headers';
 
-import { AppState } from './app.service';
-
+const template = require('./app.component.html');
 /*
  * App Component
  * Top Level Component
@@ -12,64 +14,46 @@ import { AppState } from './app.service';
 @Component({
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    './app.component.css'
-  ],
-  template: `
-    <nav>
-      <span>
-        <a [routerLink]=" ['./'] ">
-          Index
-        </a>
-      </span>
-      |
-      <span>
-        <a [routerLink]=" ['./home'] ">
-          Home
-        </a>
-      </span>
-      |
-      <span>
-        <a [routerLink]=" ['./detail'] ">
-          Detail
-        </a>
-      </span>
-      |
-      <span>
-        <a [routerLink]=" ['./about'] ">
-          About
-        </a>
-      </span>
-    </nav>
-
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-
-    <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
-
-    <footer>
-      <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
-      <div>
-        <a [href]="url">
-          <img [src]="angularclassLogo" width="25%">
-        </a>
-      </div>
-    </footer>
-  `
+  template: template
 })
 export class AppComponent {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
 
-  constructor(
-    public appState: AppState) {
+  constructor(public router: Router, public http: Http) {
 
   }
 
   ngOnInit() {
-    console.log('Initial App State', this.appState.state);
+  }
+
+  ngAfterContentInit() {    // 로딩때 한번만 뜨는데, life cycle을
+    this.setHeaderUserMenu();
+  }
+
+  jwt: any;
+  logined: boolean = false;
+
+  logout() {
+    //html받은 값들을 json형식으로 저장
+    localStorage.removeItem('id_token');
+    contentHeaders.delete('Authorization');
+
+    alert("로그아웃 되었습니다.");
+
+    this.router.navigate(['/']);
+    this.setHeaderUserMenu();
+  }
+
+  setHeaderUserMenu() {
+    this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
+
+    if (this.jwt) {
+      this.logined = true;
+    } else {
+      this.logined = false;
+    }
   }
 
 }

@@ -1,0 +1,89 @@
+<!--컨설팅 정보 상세보기-->
+<div class="page-content">
+    <div class="container-fluid">
+        <!--startui가 아닌 부트스트랩을 사용-->
+        <div class="form-group row">
+            <div class="col-xs-offset-1">
+                <h3>컨설팅 정보 상세보기</h3>
+            </div>
+        </div>
+        <section class="box-typical" >
+
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>이름</th>
+                        <th>상세정보</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td>제목</td>
+                      <td>{{title}}</td>
+                  </tr>
+
+                  <tr>
+                      <td>작성자</td>
+                      <td>{{userName}}</td>
+                  </tr>
+                  <tr>
+                      <td>연락처</td>
+                      <td>{{telephone}}</td>
+                  </tr>
+                  <tr>
+                      <td>이메일</td>
+                      <td>{{email}}</td>
+                  </tr>
+                  <tr>
+                      <td>작성일</td>
+                      <td>{{initWriteDate}}</td>
+                  </tr>
+                  <tr>
+                      <td>접수현황</td>
+                      <td>접수중</td>
+                  </tr>
+                  <tr>
+                      <td>공사구분</td>
+                      <td>{{buildType}}</td>
+                  </tr>
+                  <tr>
+                      <td>주소</td>
+                      <td>{{buildPlace}}</td>
+                  </tr>
+                  <tr>
+                      <td>거주유무</td>
+                      <td>{{convertedLived}}</td>
+                  </tr>
+                  <tr>
+                      <td>공사면적</td>
+                      <td>{{expectBuildTotalArea}}</td>
+                  </tr>
+                  <tr>
+                      <td>공사예산</td>
+                      <td>{{expectBuildPrice}}</td>
+                  </tr>
+                  <tr>
+                      <td>공사예정일</td>
+                      <td>{{expectBuildStartDate}}</td>
+                  </tr>
+                  <tr>
+                    <td>상담희망일</td>
+                    <td>{{expectConsultDate}}</td>
+                  </tr>
+                  <tr>
+                      <td>공사요청사항</td>
+                      <td>{{reqContents}}</td>
+                  </tr>
+                </tbody>
+            </table>
+        </section><!--.box-typical-->
+
+        <div class="form-group col-sm-offset-6 col-xs-offset-6">
+            <button class="btn btn-rounded btn-inline" (click)="goConsultingList()">목록</button>
+            <button class="btn btn-rounded btn-inline" (click)="modifyConsulting()">수정</button>
+            <button class="btn btn-rounded btn-inline" (click)="onDelConsulting()">삭제</button>
+        </div>
+
+    </div><!--.container-fluid-->
+</div><!--.page-content-->

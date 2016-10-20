@@ -1,0 +1,51 @@
+
+    <!--업체목록 상세보기-->
+    <div class="page-content">
+        <div class="page-center-in">
+            <div class="container-fluid" style="max-width: 900px">
+                <header class="section-header">
+                    <div class="tbl">
+                        <div class="tbl-row">
+                            <div class="tbl-cell">
+                                <h3>업체목록 상세보기</h3>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <section class="card" style="max-width: 900px">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <img class="gallery-picture" src="./src/assets/img/test.jpg" style="width: 100%;">
+                            </div>
+                            <div class="col-sm-8" style="margin-top: 30px">
+                                <h2 class="with-border m-t-0">{{companyName}}</h2>
+                                <p>{{aboutCompany}}</p>
+                            </div>
+                        </div><!--.row-->
+
+                        <div class="row" style="margin-top: 45px">
+                            <div class="col-sm-3"  style="font-weight:bold">
+                                <p>주요시공분야</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p>{{mainWorkField}}</p>
+                            </div>
+                        </div><!--.row-->
+
+
+                        <div class="row" style="margin-top: 45px">
+                            <div class="col-sm-3" style="font-weight:bold">
+                                <p>시공지역</p>
+                            </div>
+
+                            <div class="col-sm-9">
+                                <p>{{mainWorkArea}}</p>
+                            </div>
+                        </div><!--.row-->
+                    </div>
+                </section>
+            </div><!--.container-fluid-->
+        </div>
+    </div><!--.page-content-->
