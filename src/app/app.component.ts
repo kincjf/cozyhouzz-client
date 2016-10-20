@@ -17,9 +17,6 @@ const template = require('./app.component.html');
   template: template
 })
 export class AppComponent {
-  angularclassLogo = 'assets/img/angularclass-avatar.png';
-  name = 'Angular 2 Webpack Starter';
-  url = 'https://twitter.com/AngularClass';
 
   constructor(public router: Router, public http: Http) {
 
