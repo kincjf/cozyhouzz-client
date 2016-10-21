@@ -2,9 +2,8 @@
  * Angular 2 decorators and services
  */
 import { Component, ViewEncapsulation } from '@angular/core';
-import {Router} from '@angular/router';
-import {Http} from '@angular/http';
 import { contentHeaders } from './common/headers';
+import { Router } from '@angular/router';
 
 const template = require('./app.component.html');
 /*
@@ -17,9 +16,7 @@ const template = require('./app.component.html');
   template: template
 })
 export class AppComponent {
-
-  constructor(public router: Router, public http: Http) {
-
+  constructor(public router: Router) {
   }
 
   ngOnInit() {

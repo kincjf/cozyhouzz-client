@@ -17,7 +17,7 @@ const template = require('./login.html');
  * App.ts의 Child로 넣어야 한다. 그래야 로그인/비로그인 상태시에 대한 UI 조작이 유기적으로 가능함.
  */
 export class Login {
-  constructor(public router: Router, public http: Http, public app: App) {
+  constructor(public router: Router, public http: Http, public app: AppComponent) {
   }
 
   login(event, email, password) {

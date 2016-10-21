@@ -3,15 +3,43 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
 /*
  * Platform and Environment providers/directives/pipes
 wsgrggnee */
+import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
 import { AppComponent } from './app.component';
+import { Home } from './home';
+import { Login } from './login';
+
+import { Signup } from './member/signup';
+import { Change } from './member/change';
+
+import { NormalSignup } from './member/normalSignup';
+import { NormalSignupChange } from './member/normalSignupchange';
+import { BusinessSignup } from './member/businessSignup';
+import { BusinessSignupChange } from './member/businessSignupchange';
+
+import { BizList } from './businessList/bizList/bizList';
+import { BizListDetail } from './businessList/bizListDetail/bizListDetail';
+
+import { AuthGuard } from './common/auth.guard';
+import { MainPage} from './common/mainPage/mainPage';
+
+import { BuildCaseInput} from './buildCase/buildCaseInput';
+import { BuildCaseUpdate} from './buildCase/buildCaseUpdate/buildCaseUpdate';
+import { BuildCaseLately } from './buildCase/buildCaseLately/buildCaseLately';
+import { BuildCaseList } from './buildCase/buildCaseList/buildCaseList';
+import { BuildCaseDetail } from './buildCase/detail/detail';
+
+import { ConsultingCounsel } from './consulting/consultingCounsel/consultingCounsel';
+import { ConsultingDetail } from './consulting/consultingDetail/consultingDetail';
+import { ConsultingListInfo } from './consulting/consultingListInfo/consultingListInfo';
+import { ConsultingMyListInfo } from './consulting/consultingMyListInfo/consultingMyListInfo';
+import { ConsultingChange} from './consulting/consultingchange/consultingchange';
+
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -19,7 +47,14 @@ import { AppComponent } from './app.component';
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
-    AppComponent
+    AppComponent,
+    Home,
+    Login, Signup, Change,
+    NormalSignup, NormalSignupChange, BusinessSignup, BusinessSignupChange,
+    BizList, BizListDetail,
+    MainPage,
+    BuildCaseInput, BuildCaseUpdate, BuildCaseLately, BuildCaseList, BuildCaseDetail,
+    ConsultingCounsel, ConsultingDetail, ConsultingListInfo, ConsultingMyListInfo, ConsultingChange
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -28,6 +63,8 @@ import { AppComponent } from './app.component';
     RouterModule.forRoot(ROUTES, { useHash: true })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
+    ENV_PROVIDERS,
+    AuthGuard
   ]
 })
 export class AppModule {
