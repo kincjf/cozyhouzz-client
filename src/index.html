@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1">
+  <base href="/">
 
   <title><%= htmlWebpackPlugin.options.title %></title>
 
@@ -17,24 +19,41 @@
   <!-- base url -->
   <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
 
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+  <!-- Stylesheets -canvas younghyeon
+   ============================================= -->
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Roboto:300,400,500,700" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/swiper.css" type="text/css" />
 
+  <!-- Construction Demo Specific Stylesheet canvas younghyeon -->
+  <link rel="stylesheet" href="assets/construction/construction.css" type="text/css" />
+  <!-- / -->
+  <link rel="stylesheet" href="assets/css/dark.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/font-icons.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/magnific-popup.css" type="text/css" />
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/lib/font-awesome/font-awesome.min.css">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/construction/css/fonts.css" type="text/css" />
+
+  <link rel="stylesheet" href="assets/css/responsive.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!--[if lt IE 9]>
+  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet" href="assets/construction/css/colors.css" type="text/css" />
+
 
   <!-- include summernote css-->
   <link rel="stylesheet" href="assets/css/lib/summernote.css">
   <link rel="stylesheet" href="assets/css/lib/summernote_modalsolution.css">
 
-  <!-- MainPage -->
-  <link rel="stylesheet" href="assets/css/custom.css">
-
   <!-- Util -->
   <script type="text/javascript" src="assets/js/lib/jwt-decode/build/jwt-decode.js"></script>
   <script src="assets/js/lib/moment/moment.js"></script>
-  <script src="app/app.routes.ts"></script>
+
   <style>
     /* Smartphones (portrait and landscape) ----------- */
     @media (min-device-width : 320px)
@@ -87,11 +106,10 @@
   <% } %>
 
 
-  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-  <script src="assets/js/lib/tether/tether.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <script src="assets/js/plugins.js"></script>
-  <script src="assets/js/app.js"></script>
+  <!-- External JavaScripts
+     ============================================= -->
+  <script type="text/javascript" src="assets/js-canvas/jquery.js"></script>
+  <script type="text/javascript" src="assets/js-canvas/plugins.js"></script>
   <!-- summernote -->
   <script src="assets/js/lib/summernote.js"></script>
 
@@ -104,6 +122,21 @@
   <!-- daum 우편 API -->
   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
   <script src="assets/js/daum.postcode.v2.js"></script>
+  <!-- MainPage : 이건 뭐하는거지? -->
+  <!--<script src="js/main.js"></script>-->
+
+  <!-- Go To Top- canvas younghyeon
+    ============================================= -->
+  <div id="gotoTop" class="icon-angle-up"></div>
+
+  <!-- External JavaScripts- canvas younghyeon
+    ============================================= -->
+  <script type="text/javascript" src="assets/js-canvas/jquery.js"></script>
+  <script type="text/javascript" src="assets/js-canvas/plugins.js"></script>
+
+  <!-- Footer Scripts- canvas younghyeon
+    ============================================= -->
+  <script type="text/javascript" src="assets/js-canvas/functions.js"></script>
 
 </body>
 </html>
