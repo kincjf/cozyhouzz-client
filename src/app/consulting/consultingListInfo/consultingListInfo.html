@@ -1,41 +1,60 @@
-<!D<!--내 컨설팅 정보조회-->
-<div class="page-content">
-  <div class="container-fluid">
-    <!--startui가 아닌 부트스트랩을 사용-->
-    <div class="form-group row">
-      <div class="col-xs-offset-1">
-        <h3>컨설팅 정보조회</h3>
+<!--내 컨설팅 정보조회-->
+<!-- Page Title
+		============================================= -->
+<section id="page-title">
+
+  <div class="container clearfix">
+    <h1>컨설팅 정보조회</h1>
+    <span>여러 컨설팅 정보들을 한눈에 확인할수 있습니다.</span>
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li class="active">Data Tables</li>
+    </ol>
+  </div>
+
+</section><!-- #page-title end -->
+
+<!-- Content
+    ============================================= -->
+<section id="content">
+
+  <div class="content-wrap">
+
+    <div class="container clearfix">
+
+      <div class="table-responsive">
+
+        <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+          <!--table분류-->
+          <thead>
+          <tr>
+            <th class="col-xs-1">번호</th>
+            <th class="col-xs-4">제목</th>
+            <th class="col-xs-1">작성일</th>
+            <th class="col-xs-1">작성자</th>
+            <th class="col-xs-1">시공종류</th>
+            <th class="col-xs-1">접수현황</th>
+          </tr>
+          </thead>
+
+          <!--table내용-->
+          <tbody>
+          <tr *ngFor="let consultInfo of returnedDatas">
+            <td class="col-xs-1">{{consultInfo.idx}}</td>
+            <td class="col-xs-4"><a routerLink="/consultingDetail/{{consultInfo.idx}}" >{{consultInfo.title}}</a></td>
+            <td class="col-xs-1">{{consultInfo.initWriteDate}}</td>
+            <td class="col-xs-1">{{consultInfo.userName}}</td>
+            <td class="col-xs-1">{{consultInfo.buildType}}</td>
+            <td class="col-xs-1">접수중</td>
+          </tr>
+          </tbody>
+        </table>
+
       </div>
+
     </div>
-    <section class="box-typical">
-      <table class="table table-bordered">
-        <!--table분류-->
-        <thead>
-        <tr>
-          <th class="col-md-1 col-xs-1">번호</th>
-          <th class="col-md-4 col-xs-4">제목</th>
-          <th class="col-md-1 col-xs-1">작성일</th>
-          <th class="col-md-1 col-xs-1">작성자</th>
-          <th class="col-md-1 col-xs-1">시공종류</th>
-          <th class="col-md-1 col-xs-1">접수현황</th>
-        </tr>
-        </thead>
 
+  </div>
 
-        <!--table내용-->
-        <tbody>
-        <tr *ngFor="let consultInfo of returnedDatas">
-          <td class="col-xs-1">{{consultInfo.idx}}</td>
-          <td class="col-xs-4"><a routerLink="/consultingDetail/{{consultInfo.idx}}" >{{consultInfo.title}}</a></td>
-          <td class="col-xs-1">{{consultInfo.initWriteDate}}</td>
-          <td class="col-xs-1">{{consultInfo.userName}}</td>
-          <td class="col-xs-1">{{consultInfo.buildType}}</td>
-        <td class="col-xs-1">접수중</td>
-        </tr>
-        </tbody>
-      </table>
-    </section><!--.box-typical-->
-
-  </div><!--.container-fluid-->
-</div><!--.page-content-->
-
+</section><!-- #content end -->

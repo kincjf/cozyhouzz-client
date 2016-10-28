@@ -20,14 +20,16 @@ export class AppComponent {
   }
 
   ngOnInit() {
+
   }
 
   ngAfterContentInit() {    // 로딩때 한번만 뜨는데, life cycle을
     this.setHeaderUserMenu();
+    this.loadScript();
   }
 
   jwt: any;
-  logined: boolean = false;
+  logined: boolean;
 
   logout() {
     //html받은 값들을 json형식으로 저장
@@ -42,7 +44,6 @@ export class AppComponent {
 
   setHeaderUserMenu() {
     this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
-
     if (this.jwt) {
       this.logined = true;
     } else {
@@ -50,6 +51,17 @@ export class AppComponent {
     }
   }
 
+  public loadScript() {
+    const url = "assets/js-canvas/functions.js";
+
+    console.log('preparing to load...')
+    let node = document.createElement('script');
+    node.src = url;
+    node.type = 'text/javascript';
+    node.async = true;
+    node.charset = 'utf-8';
+    document.getElementsByTagName('head')[0].appendChild(node);
+  }
 }
 
 /*

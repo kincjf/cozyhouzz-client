@@ -24,7 +24,7 @@ export class MainPage {
 
   constructor(public router: Router, public http: Http) {
 
-    this.pageSize = 6;
+    this.pageSize = 8;
     this.pageStartIndex=0;
     let URL = [config.serverHost, config.path.buildCase + "?pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
@@ -38,6 +38,7 @@ export class MainPage {
           for (var buildCaseInfo of response.buildCaseInfo) {
             this.returnedDatas.push(buildCaseInfo);
           }
+          console.log(this.returnedDatas);
         },
         error => {
           alert(error.text());

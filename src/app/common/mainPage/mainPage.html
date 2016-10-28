@@ -213,107 +213,15 @@
 
     <div id="portfolio" class="portfolio grid-container portfolio-full clearfix">
 
-      <article class="portfolio-item pf-media pf-icons">
+      <article class="portfolio-item pf-media pf-icons" *ngFor="let buildCaseInfo of returnedDatas">
         <div class="portfolio-image">
-          <img src="../../../assets/construction/images/projects/1.jpg" alt="The Atmosphere">
+          <img src="{{serverHost}}/{{buildCaseInfo.mainPreviewImage}}" alt>
           <div class="portfolio-overlay">
             <a href="#" class="center-icon"><i class="icon-line-ellipsis"></i></a>
           </div>
         </div>
         <div class="portfolio-desc">
-          <h3><a href="#">The Atmosphere</a></h3>
-          <span>Chicago, USA</span>
-        </div>
-      </article>
-
-      <article class="portfolio-item pf-illustrations">
-        <div class="portfolio-image">
-          <img src="../../../assets/construction/images/projects/2.jpg" alt="Wavelength Structure">
-          <div class="portfolio-overlay">
-            <a href="#" class="center-icon"><i class="icon-line-ellipsis"></i></a>
-          </div>
-        </div>
-        <div class="portfolio-desc">
-          <h3>Wavelength Structure</h3>
-          <span>Madrid, Spain</span>
-        </div>
-      </article>
-
-      <article class="portfolio-item pf-graphics pf-uielements">
-        <div class="portfolio-image">
-          <img src="../../../assets/construction/images/projects/3.jpg" alt="Greenhouse Garden">
-          <div class="portfolio-overlay">
-            <a href="#" class="center-icon"><i class="icon-line-ellipsis"></i></a>
-          </div>
-        </div>
-        <div class="portfolio-desc">
-          <h3>Greenhouse Garden</h3>
-          <span>Bali, Indonesia</span>
-        </div>
-      </article>
-
-      <article class="portfolio-item pf-icons pf-illustrations">
-        <div class="portfolio-image">
-          <img src="../../../assets/construction/images/projects/4.jpg" alt="Industrial Hub">
-          <div class="portfolio-overlay">
-            <a href="#" class="center-icon"><i class="icon-line-ellipsis"></i></a>
-          </div>
-        </div>
-        <div class="portfolio-desc">
-          <h3>Industrial Hub</h3>
-          <span>Beijing, China</span>
-        </div>
-      </article>
-
-      <article class="portfolio-item pf-uielements pf-media">
-        <div class="portfolio-image">
-          <img src="../../../assets/construction/images/projects/5.jpg" alt="Corporate Headquarters">
-          <div class="portfolio-overlay">
-            <a href="#" class="center-icon"><i class="icon-line-ellipsis"></i></a>
-          </div>
-        </div>
-        <div class="portfolio-desc">
-          <h3>Corporate Headquarters</h3>
-          <span>California, USA</span>
-        </div>
-      </article>
-
-      <article class="portfolio-item pf-graphics pf-illustrations">
-        <div class="portfolio-image">
-          <img src="../../../assets/construction/images/projects/6.jpg" alt="Space Station">
-          <div class="portfolio-overlay" data-lightbox="gallery">
-            <a href="#" class="center-icon"><i class="icon-line-ellipsis"></i></a>
-          </div>
-        </div>
-        <div class="portfolio-desc">
-          <h3>Space Station</h3>
-          <span>Moscow, Russia</span>
-        </div>
-      </article>
-
-      <article class="portfolio-item pf-uielements pf-icons">
-        <div class="portfolio-image">
-          <img src="../../../assets/construction/images/projects/7.jpg" alt="Bent Architecture">
-          <div class="portfolio-overlay">
-            <a href="#" class="center-icon"><i class="icon-line-ellipsis"></i></a>
-          </div>
-        </div>
-        <div class="portfolio-desc">
-          <h3>Bent Architecture</h3>
-          <span>Melbourne, Australia</span>
-        </div>
-      </article>
-
-      <article class="portfolio-item pf-graphics">
-        <div class="portfolio-image">
-          <img src="../../../assets/construction/images/projects/8.jpg" alt="Lakeview Center">
-          <div class="portfolio-overlay">
-            <a href="#" class="center-icon"><i class="icon-line-ellipsis"></i></a>
-          </div>
-        </div>
-        <div class="portfolio-desc">
-          <h3>Lakeview Center</h3>
-          <span>Auckland, New Zealand</span>
+          <h3><a routerLink="/buildcasedetail/{{buildCaseInfo.idx}}">{{buildCaseInfo.title}}</a></h3>
         </div>
       </article>
 
