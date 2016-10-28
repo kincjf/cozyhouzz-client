@@ -38,7 +38,6 @@ export class MainPage {
           for (var buildCaseInfo of response.buildCaseInfo) {
             this.returnedDatas.push(buildCaseInfo);
           }
-          console.log(this.returnedDatas);
         },
         error => {
           alert(error.text());

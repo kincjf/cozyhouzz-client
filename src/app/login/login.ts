@@ -18,7 +18,7 @@ const template = require('./login.html');
  */
 export class Login {
   constructor(public router: Router, public http: Http, public app: AppComponent) {
-  }
+}
 
   login(event, email, password) {
     //html에서의 value값

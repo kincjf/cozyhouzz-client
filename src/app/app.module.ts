@@ -17,9 +17,7 @@ import { Login } from './login';
 import { Signup } from './member/signup';
 import { Change } from './member/change';
 
-import { NormalSignup } from './member/normalSignup';
 import { NormalSignupChange } from './member/normalSignupchange';
-import { BusinessSignup } from './member/businessSignup';
 import { BusinessSignupChange } from './member/businessSignupchange';
 
 import { BizList } from './businessList/bizList/bizList';
@@ -50,7 +48,7 @@ import { ConsultingChange} from './consulting/consultingchange/consultingchange'
     AppComponent,
     Home,
     Login, Signup, Change,
-    NormalSignup, NormalSignupChange, BusinessSignup, BusinessSignupChange,
+    NormalSignupChange, BusinessSignupChange,
     BizList, BizListDetail,
     MainPage,
     BuildCaseInput, BuildCaseUpdate, BuildCaseLately, BuildCaseList, BuildCaseDetail,
