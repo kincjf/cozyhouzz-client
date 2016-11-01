@@ -9,6 +9,9 @@ declare var jQuery: JQueryStatic;
 const template = require('./signup.html');
 const jwt_decode = require('jwt-decode');
 
+/**
+ * 로그인 상태에서 회원가입 가능함
+ */
 @Component({
   selector: 'signup',
   directives: [ CORE_DIRECTIVES, FORM_DIRECTIVES, ROUTER_DIRECTIVES ],

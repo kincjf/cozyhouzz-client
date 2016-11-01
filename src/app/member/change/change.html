@@ -1,17 +1,199 @@
-<div class="page-center">
-  <div class="page-center-in">
-    <div class="container-fluid">
-      <form class="sign-box">
-        <header class="sign-title">회원가입</header>
-        <div class="form-group">
-          <!-- routerLink를 쓰면 jwt값이 남아있지 않음 -->
-          <button type="button" class="btn btn-inline" style="min-width:150px"><a style="color:white" [routerLink]="['/normalsignupchange']">일반회원변경</a></button>
-          <button type="button" class="btn btn-inline" style="min-width:150px"><a style="color:white" [routerLink]="['/businesssignupchange']">사업주회원변경</a></button>
+<section id="content">
+
+  <div class="content-wrap">
+
+    <div class="container clearfix">
+
+      <!-- Postcontent
+      ============================================= -->
+      <div class="postcontent nobottommargin">
+
+        <h3>회원 정보 수정</h3>
+
+        <div class="contact-widget" data-alert-type="inline">
+
+          <div class="contact-form-result"></div>
+
+          <form class="nobottommargin" role="form" (submit)="signupchange($event, email.value, password.value, password_ok.value, telephone.value ,memberType.value)" (cancel)="backs($event)">
+
+            <div class="form-process"></div>
+
+            <div class="col_one_third">
+              <label for="member-change-email">Email Address <small>*</small></label>
+              <input type="text" #email id="member-change-email" name="member-change-email" value="{{email}}" class="email sm-form-control required" />
+            </div>
+
+            <div class="col_one_third">
+              <label for="member-change-password">Choose Password <small>*</small></label>
+              <input type="password" id="member-change-password" name="member-change-password" value="" class="required sm-form-control" />
+            </div>
+
+            <div class="col_one_third col_last">
+              <label for="member-change-password-ok">Re-enter Password <small>*</small></label>
+              <input type="password" id="member-change-password-ok" name="member-change-password-ok" value="" class="required sm-form-control" />
+            </div>
+
+            <div class="clear"></div>
+
+            <div class="col_two_third">
+              <label for="member-change-subject">Telephone</label>
+              <input type="text" id="member-change-subject" name="member-change-subject" value="{{telephones}}" class="sm-form-control" placeholder="012-3456-7890" />
+            </div>
+
+            <div class="col_one_third col_last">
+              <label for="member-change-service">Services</label>
+              <select id="member-change-service" name="member-change-service" class="sm-form-control">
+                <option value="">-- Select One --</option>
+                <option value="Wordpress">Wordpress</option>
+                <option value="PHP / MySQL">PHP / MySQL</option>
+                <option value="HTML5 / CSS3">HTML5 / CSS3</option>
+                <option value="Graphic Design">Graphic Design</option>
+              </select>
+            </div>
+
+            <section *ngIf="memberType == 1" class="hidden">
+              <input type="hidden" #companyName value="" />
+              <input type="hidden" #ownerName value="" />
+              <input type="hidden" #bizRegNo value="" />
+              <input type="hidden" #contact value="" />
+              <input type="hidden" #workPlace value="" />
+              <input type="hidden" #mainWorkField value="" />
+              <input type="hidden" #mailWorkArea value="" />
+            </section>
+
+            <section *ngIf="memberType == 2">
+            
+              <h4>사업주 정보</h4>
+
+              <div class="clear"></div>
+
+              <div class="col_one_third">
+                <label for="member-change-company">업체명</label>
+                <input type="text" #companyName id="member-change-company" name="member-change-company" value="{{companyNames}}" class="sm-form-control" />
+              </div>
+              
+              <div class="col_one_third">
+                <label for="member-change-owner">대표명</label>
+                <input type="text" #ownerName id="member-change-owner" name="member-change-owner" value="{{ownerNames}}" class="sm-form-control" />
+              </div>
+                 
+              <div class="col_one_third col_last">
+                <label for="member-change-bizno">사업자등록번호</label>
+                <input type="text" #bizRegNo id="member-change-bizno" name="member-change-bizno" value="{{bizRegNos}}" class="sm-form-control" />
+              </div>
+
+              <div class="clear"></div>
+
+              <div class="col_one_third">
+                <label for="member-change-contact">사업용 연락처</label>
+                <input type="text" #contact id="member-change-contact" name="member-change-contact" value="{{contacts}}" class="sm-form-control" />
+              </div>
+              
+              <div class="col_one_third">
+                <label for="member-change-place">사업장위치</label>
+                <input type="text" #workPlace id="member-change-place" name="member-change-place" value="{{workPlaces}}" class="sm-form-control" />
+              </div>
+
+              <div class="col_one_third col_last">
+                <label for="member-change-field">주요시공분야</label>
+                <input type="text" #mainWorkField id="member-change-field" name="member-change-field" value="{{mainWorkFields}}" class="sm-form-control" />
+              </div>
+              
+              <div class="clear"></div>
+
+              <div class="col_one_third">
+                <label for="member-change-area">시공지역</label>
+                <input type="text" #mailWorkArea id="member-change-area" name="member-change-area" value="{{mailWorkAreas}}" class="sm-form-control" />
+              </div>
+              
+              <div class="col_two_third col_last">
+                <label for="member-change-short">요약글</label>
+                <input type="text" id="member-change-short" name="member-change-short" class="sm-form-control" />
+              </div>
+
+              <div class="clear"></div>
+              
+              <div class="col_full col_last">
+                <label for="member-change-full">상세글</label>
+                <input type="text" id="member-change-full" name="member-change-full" class="sm-form-control" />
+              </div>
+
+            </section>
+
+            <div class="col_full">
+              <button class="button button-3d nomargin" type="cancel" id="member-change-submit" name="member-change-submit" value="submit">취소</button>
+              <button class="button button-3d nomargin" type="submit" id="member-change-submit" name="member-change-submit" value="submit">정보수정</button>
+            </div>
+
+          </form>
         </div>
-        <!--<button type="button" class="close">
-            <span aria-hidden="true">&times;</span>
-        </button>-->
-      </form>
+
+      </div><!-- .postcontent end -->
+
+      <!-- Sidebar
+      ============================================= -->
+      <div class="sidebar col_last nobottommargin">
+
+        <address>
+          <strong>Headquarters:</strong><br>
+          795 Folsom Ave, Suite 600<br>
+          San Francisco, CA 94107<br>
+        </address>
+        <abbr title="Phone Number"><strong>Phone:</strong></abbr> (91) 8547 632521<br>
+        <abbr title="Fax"><strong>Fax:</strong></abbr> (91) 11 4752 1433<br>
+        <abbr title="Email Address"><strong>Email:</strong></abbr> info@canvas.com
+
+        <div class="widget noborder notoppadding">
+
+          <div class="fslider customjs testimonial twitter-scroll twitter-feed" data-username="envato" data-count="3" data-animation="slide" data-arrows="false">
+            <i class="i-plain i-small color icon-twitter nobottommargin" style="margin-right: 15px;"></i>
+            <div class="flexslider" style="width: auto;">
+              <div class="slider-wrap">
+                <div class="slide"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="widget noborder notoppadding">
+
+          <a href="#" class="social-icon si-small si-dark si-facebook">
+            <i class="icon-facebook"></i>
+            <i class="icon-facebook"></i>
+          </a>
+
+          <a href="#" class="social-icon si-small si-dark si-twitter">
+            <i class="icon-twitter"></i>
+            <i class="icon-twitter"></i>
+          </a>
+
+          <a href="#" class="social-icon si-small si-dark si-dribbble">
+            <i class="icon-dribbble"></i>
+            <i class="icon-dribbble"></i>
+          </a>
+
+          <a href="#" class="social-icon si-small si-dark si-forrst">
+            <i class="icon-forrst"></i>
+            <i class="icon-forrst"></i>
+          </a>
+
+          <a href="#" class="social-icon si-small si-dark si-pinterest">
+            <i class="icon-pinterest"></i>
+            <i class="icon-pinterest"></i>
+          </a>
+
+          <a href="#" class="social-icon si-small si-dark si-gplus">
+            <i class="icon-gplus"></i>
+            <i class="icon-gplus"></i>
+          </a>
+
+        </div>
+
+      </div><!-- .sidebar end -->
+
     </div>
+
   </div>
-</div><!--.page-center-->
+
+</section><!-- #content end -->

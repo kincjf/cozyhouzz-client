@@ -37,6 +37,8 @@ export class ConsultingCounsel{
     contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
 
     this.havePrefBizMember = false;
+
+    this.loadPostcodeScript();
   }
 
 
@@ -66,5 +68,17 @@ export class ConsultingCounsel{
           console.log(error.text());
         }
       )
+  }
+
+  public loadPostcodeScript() {
+    const url = "../../../assets/js/postcode2.js";
+
+    console.log('preparing to load...')
+    let node = document.createElement('script');
+    node.src = url;
+    node.type = 'text/javascript';
+    node.async = true;
+    node.charset = 'utf-8';
+    document.getElementsByTagName('head')[0].appendChild(node);
   }
 }
