@@ -30,6 +30,15 @@ export class Change {
 
   ngOnInit() {
     this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
+    if (!this.jwt) {
+      alert('로그인이 필요합니다.');
+          
+      this.router.navigate(["/"]);
+      // 가이드 페이지를 알려주지 않고 홈으로 
+      
+      return;
+    }
+
     this.decodedJwt = this.jwt && jwt_decode(this.jwt); //jwt값 decoding
     if (!contentHeaders.get('Authorization')) contentHeaders.append('Authorization',this.jwt); //Header에 jwt값 추가하기
 
@@ -39,6 +48,7 @@ export class Change {
       .map(res => res.json())//받아온 값을 json형식으로 변경
       .subscribe(
         response => {
+            alert(1);
           this.data = response //해당값이 제대로 넘어오는지 확인후 프론트단에 내용 추가
           this.email = this.data.user.email;
           this.telephones = this.data.user.telephone;
@@ -73,6 +83,7 @@ export class Change {
       this.http.put(URL, body, {headers: contentHeaders})
         .subscribe(
           response => {
+            alert(1);
             localStorage.setItem('id_token', response.json().id_token);
             this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
             if (contentHeaders.get('Authorization')) {
