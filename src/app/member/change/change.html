@@ -14,30 +14,28 @@
 
           <div class="contact-form-result"></div>
 
-          <form class="nobottommargin" role="form" (submit)="signupchange($event, email.value, password.value, password_ok.value, telephone.value ,memberType.value)" (cancel)="backs($event)">
-
-            <div class="form-process"></div>
+          <form class="nobottommargin" role="form" (submit)="signupchange($event, username.value, password.value, password_ok.value, telephone.value, companyName.value, ownerName.value, bizRegNo.value, contact.value, workPlace.value, mainWorkField.value, mailWorkArea.value)">
 
             <div class="col_one_third">
               <label for="member-change-email">Email Address <small>*</small></label>
-              <input type="text" #email id="member-change-email" name="member-change-email" value="{{email}}" class="email sm-form-control required" />
+              <input type="text" required #username id="member-change-email" name="member-change-email" value="{{email}}" class="email sm-form-control required" />
             </div>
 
             <div class="col_one_third">
               <label for="member-change-password">Choose Password <small>*</small></label>
-              <input type="password" id="member-change-password" name="member-change-password" value="" class="required sm-form-control" />
+              <input type="password" required #password id="member-change-password" name="member-change-password" value="" class="required sm-form-control" />
             </div>
 
             <div class="col_one_third col_last">
               <label for="member-change-password-ok">Re-enter Password <small>*</small></label>
-              <input type="password" id="member-change-password-ok" name="member-change-password-ok" value="" class="required sm-form-control" />
+              <input type="password" required #password_ok id="member-change-password-ok" name="member-change-password-ok" value="" class="required sm-form-control" />
             </div>
 
             <div class="clear"></div>
 
             <div class="col_two_third">
               <label for="member-change-subject">Telephone</label>
-              <input type="text" id="member-change-subject" name="member-change-subject" value="{{telephones}}" class="sm-form-control" placeholder="012-3456-7890" />
+              <input type="text" #telephone id="member-change-subject" name="member-change-subject" value="{{telephones}}" class="sm-form-control" placeholder="012-3456-7890" />
             </div>
 
             <div class="col_one_third col_last">
@@ -121,7 +119,7 @@
             </section>
 
             <div class="col_full">
-              <button class="button button-3d nomargin" type="cancel" id="member-change-submit" name="member-change-submit" value="submit">취소</button>
+              <!--<button class="button button-3d nomargin" type="cancel" id="member-change-submit" name="member-change-submit" value="submit">취소</button>-->
               <button class="button button-3d nomargin" type="submit" id="member-change-submit" name="member-change-submit" value="submit">정보수정</button>
             </div>
 
