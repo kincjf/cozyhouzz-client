@@ -63,8 +63,9 @@ export class Change {
     }
   }
 
-  signupchange(event, email, password, password_ok, telephone, companyName, ownerName, bizRegNo, contact, workPlace, mainWorkField, mailWorkArea) {
+  signupchange(event, email, password, password_ok, telephone) {
     // 필수 입력 체크 
+    
     var require = {email, password, password_ok}; // 이메일, 패스워드, 패스워드 확인을 필수로 입력해야 함.
 
     for (var e in require) {
@@ -132,6 +133,7 @@ export class Change {
           }
         );
       
+      /*
       // 사업주 정보 수정
       if (memberType == 2) {
         console.log(contentHeaders);
@@ -157,6 +159,7 @@ export class Change {
               //서버로부터 응답 실패시 경고창
             }
           );
+        */
       }
     }
   }

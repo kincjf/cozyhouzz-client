@@ -14,7 +14,7 @@
 
           <div class="contact-form-result"></div>
 
-          <form class="nobottommargin" role="form" (submit)="signupchange($event, username.value, password.value, password_ok.value, telephone.value, companyName.value, ownerName.value, bizRegNo.value, contact.value, workPlace.value, mainWorkField.value, mailWorkArea.value)">
+          <form class="nobottommargin" #f="ngForm" (ngSubmit)="signupchange($event, username.value, password.value, password_ok.value, telephone.value)">
 
             <div class="col_one_third">
               <label for="member-change-email">Email Address <small>*</small></label>
