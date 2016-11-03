@@ -65,6 +65,7 @@ export class Change {
 
   signupchange(event, email, password, password_ok, telephone, companyName, ownerName, bizRegNo, contact, workPlace, mainWorkField, mailWorkArea) {
     // 필수 입력 체크 
+    
     var require = {email, password, password_ok}; // 이메일, 패스워드, 패스워드 확인을 필수로 입력해야 함.
 
     for (var e in require) {
