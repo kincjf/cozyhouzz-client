@@ -7,6 +7,7 @@ import { Http } from '@angular/http';
 import { contentHeaders } from '../../common/headers';
 //import * as _ from 'lodash';
 import { config } from '../../common/config';
+import * as moment from 'moment';
 
 const template = require('./consultingchange.html');
 
@@ -33,8 +34,8 @@ export class ConsultingChange implements AfterViewInit {
   currentLived: number;
   currentExpectBuildTotalArea: number;
   currentExpectBuildPrice: number;
-  currentExpectConsultDate: Date;
-  currentExpectBuildStartDate: Date;
+  currentExpectConsultDate: string;
+  currentExpectBuildStartDate: string;
   currentReqContents: string;
 
   /*
@@ -80,8 +81,8 @@ export class ConsultingChange implements AfterViewInit {
           this.currentLived = this.data.consult.lived;
           this.currentExpectBuildTotalArea = this.data.consult.expectBuildTotalArea;
           this.currentExpectBuildPrice = this.data.consult.expectBuildPrice;
-          this.currentExpectConsultDate = this.data.consult.expectConsultDate;
-          this.currentExpectBuildStartDate = this.data.consult.expectBuildStartDate;
+          this.currentExpectConsultDate = moment(this.data.consult.expectConsultDate).format('YYYY-MM-DD');
+          this.currentExpectBuildStartDate = moment(this.data.consult.expectBuildStartDate).format('YYYY-MM-DD');
           this.currentReqContents = this.data.consult.reqContents;
         },
         error => {
