@@ -14,7 +14,7 @@
 
           <div class="contact-form-result"></div>
 
-          <form class="nobottommargin" #f="ngForm" (ngSubmit)="signupchange($event, username.value, password.value, password_ok.value, telephone.value)">
+          <form class="nobottommargin" #f="ngForm" (ngSubmit)="signupchange($event, username.value, password.value, password_ok.value, telephone.value, companyName.value, ownerName.value, bizRegNo.value, contact.value, workPlace.value, mainWorkField.value, mailWorkArea.value)">
 
             <div class="col_one_third">
               <label for="member-change-email">Email Address <small>*</small></label>
@@ -49,17 +49,7 @@
               </select>
             </div>
 
-            <section *ngIf="memberType == 1" class="hidden">
-              <input type="hidden" #companyName value="" />
-              <input type="hidden" #ownerName value="" />
-              <input type="hidden" #bizRegNo value="" />
-              <input type="hidden" #contact value="" />
-              <input type="hidden" #workPlace value="" />
-              <input type="hidden" #mainWorkField value="" />
-              <input type="hidden" #mailWorkArea value="" />
-            </section>
-
-            <section *ngIf="memberType == 2">
+            <section [ngClass]="{'hidden': memberType == 1}">
             
               <h4>사업주 정보</h4>
 
