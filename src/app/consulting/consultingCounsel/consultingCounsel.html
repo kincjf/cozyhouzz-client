@@ -107,18 +107,23 @@
             <label for="sample3_postcode">공사지주소</label>
             <div>
               <div class="col_one_fourth">
-                <input type="text" #buildPostCode class="sm-form-control" id="postcode" placeholder="우편번호" readonly>
+                <input type="text" #buildPostCode class="sm-form-control postcodify_postcode5" id="postcode" placeholder="우편번호" readonly>
               </div>
-              <!-- 검색 기능을 표시할 <div>를 생성한다 -->
-              <div class="col_one_fourth" id="postcodify"></div>
+
+              <div class="col_one_fourth">
+                <button class="button button-border button-rounded button-amber" type="button" name="search" id="postcodify_search_button" value="검색">검색</button><br />
+              </div>
 
               <div class="clear"></div>
 
               <div class="col_half">
-                <input class="sm-form-control" type="text" #buildPlace id="address" placeholder="주소" readonly>
+                <input class="sm-form-control postcodify_address" type="text" #buildPlace id="address" placeholder="주소" readonly>
               </div>
               <div class="col_half col_last">
-                <input class="sm-form-control" type="text" #buildPlaceDetail id="details" placeholder="상세주소">
+                <input class="sm-form-control postcodify_details" type="text" #buildPlaceDetail id="details" placeholder="상세주소">
+              </div>
+              <div class="col_half col_last">
+                <input class="sm-form-control postcodify_extra_info" type="text" #buildPlaceDetail id="extranfo" placeholder="참고항목">
               </div>
             </div>
           </div>

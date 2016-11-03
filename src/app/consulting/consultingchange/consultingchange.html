@@ -79,9 +79,9 @@
           <div class="col_half col_last">
             <label for="template-contactform-service">공사구분</label>
             <select #buildType id="template-contactform-service" name="template-contactform-service" class="sm-form-control">
-              <option value="주거공간">주거공간</option>
-              <option value="상업공간">상업공간</option>
-              <option value="기타">기타</option>
+              <option value="주거공간" [selected]="currentBuildType=='주거공간'">주거공간</option>
+              <option value="상업공간" [selected]="currentBuildType=='상업공간'">상업공간</option>
+              <option value="기타" [selected]="currentBuildType=='기타'">기타</option>
             </select>
           </div>
 
@@ -106,25 +106,23 @@
             <label for="sample3_postcode">공사지주소</label>
             <div>
               <div class="col_one_fourth">
-                <input type="text" #buildPostCode class="sm-form-control" id="sample3_postcode" placeholder="우편번호" readonly>
+                <input type="text" #buildPostCode class="sm-form-control postcodify_postcode5" id="postcode" placeholder="우편번호" readonly>
               </div>
+
               <div class="col_one_fourth">
-                <a class="button button-border button-rounded button-amber" onclick="sample3_execDaumPostcode()">우편번호 찾기</a>
+                <button class="button button-border button-rounded button-amber" type="button" name="search" id="postcodify_search_button" value="검색">검색</button><br />
               </div>
 
               <div class="clear"></div>
 
-              <div id="wrap" style="display:none;border:1px solid;width:100%;height:300px;margin:5px 0;position:relative">
-                <img src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
-              </div>
-
-
-
               <div class="col_half">
-                <input class="sm-form-control" type="text" #buildPlace id="sample3_address" placeholder="주소" readonly>
+                <input class="sm-form-control postcodify_address" type="text" #buildPlace id="address" placeholder="주소" readonly>
               </div>
               <div class="col_half col_last">
-                <input class="sm-form-control" type="text" #buildPlaceDetail id="sample4_address" value="{{currentBuildPlace}}" placeholder="상세주소">
+                <input class="sm-form-control postcodify_details" type="text" #buildPlaceDetail id="details" value="{{currentBuildPlace}}" placeholder="상세주소">
+              </div>
+              <div class="col_half col_last">
+                <input class="sm-form-control postcodify_extra_info" type="text" #buildPlaceDetail id="extranfo" placeholder="참고항목">
               </div>
             </div>
           </div>
@@ -137,13 +135,13 @@
             <form>
               <div class="col_one_fourth">
                 <div class="radio">
-                  <input type="radio" name="optionsRadios"  id="radio-1" value="0">
+                  <input type="radio" name="optionsRadios"  id="radio-1" value="0" [checked]="currentLived==0">
                   <label for="radio-1">거주 </label>
                 </div>
               </div>
               <div class="col_one_fourth">
                 <div class="radio">
-                  <input type="radio" name="optionsRadios"  id="radio-2" value="1">
+                  <input type="radio" name="optionsRadios"  id="radio-2" value="1" [checked]="currentLived==1">
                   <label for="radio-2"> 비거주 </label>
                 </div>
               </div>
@@ -178,18 +176,18 @@
           </div>
 
           <div class="col_full hidden">
-            <input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="sm-form-control" />
-          </div>
+  <input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="sm-form-control" />
+</div>
 
-          <!--확인버튼-->
-          <div class="col_full">
-            <button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit" data-style="expand-right" data-size="1">확인</button>
-          </div>
+  <!--확인버튼-->
+  <div class="col_full">
+    <button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit" data-style="expand-right" data-size="1">확인</button>
+  </div>
 
-        </form>
-      </div>
+  </form>
+  </div>
 
-    </div><!-- Contact Form Overlay End -->
+  </div><!-- Contact Form Overlay End -->
 
   </div>
 
