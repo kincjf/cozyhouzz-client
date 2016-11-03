@@ -42,14 +42,14 @@ export class BuildCaseList {
           this.serverHost = config.serverHost;
 
           //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
-          for (var buildCaseData of response.buildCaseInfo) {
-            //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
-            this.returnedDatas.push({
-              selectedBuildCaseIdx: buildCaseData.idx,
-              title: buildCaseData.title,
-              mainPreviewImage: buildCaseData.mainPreviewImage,
-              HTMLText: buildCaseData.HTMLText,
-              buildPlace: JSON.parse(buildCaseData.buildPlace)
+            for (var buildCaseData of response.buildCaseInfo) {
+              //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
+              this.returnedDatas.push({
+                selectedBuildCaseIdx: buildCaseData.idx,
+                title: buildCaseData.title,
+                mainPreviewImage: buildCaseData.mainPreviewImage,
+                HTMLText: buildCaseData.HTMLText,
+                buildPlace: JSON.parse(buildCaseData.buildPlace)
             });
           }
         },
