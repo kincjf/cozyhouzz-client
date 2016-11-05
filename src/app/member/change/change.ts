@@ -21,9 +21,18 @@ export class Change {
   jwt:string;
   decodedJwt: any;
   public data;
+  // 일반 정보
   email: string;
   telephones: string;
   memberType: number;
+  // 사업주 정보
+  contacts:string;
+  companyNames:string;
+  ownerNames:string;
+  bizRegNos:string;
+  workPlaces:string;
+  mainWorkFields:string;
+  mailWorkAreas:string;
 
   constructor(private router: Router, public http: Http, private el: ElementRef) {
   }
@@ -50,6 +59,36 @@ export class Change {
             this.email = this.data.user.email;
             this.telephones = this.data.user.telephone;
             this.memberType = this.data.user.memberType;
+            
+            // 사업주 정보 받기
+            if (this.memberType == 2) {
+              let URL = [config.serverHost, config.path.changeBizSignup, this.decodedJwt.idx].join('/');
+
+              this.http.get(URL, {headers:contentHeaders}) //서버로부터 필요한 값 받아오기
+                .map(res => res.json()) //받아온 값을 json형식으로 변경
+                .subscribe(
+                  response => {
+                    this.data = response; //해당값이 제대로 넘어오는지 확인후 프론트단에 내용 추가
+                    //console.log(this.data);
+                    this.contacts = this.data.bizUserInfo.contact;
+                    this.companyNames = this.data.bizUserInfo.companyName;
+                    this.ownerNames = this.data.bizUserInfo.ownerName;
+                    this.bizRegNos = this.data.bizUserInfo.bizRegNo;
+                    this.workPlaces = this.data.bizUserInfo.workPlace;
+                    this.mainWorkFields = this.data.bizUserInfo.mainWorkField;
+                    this.mailWorkAreas = this.data.bizUserInfo.mailWorkArea;
+
+                  },
+                  error => {
+                    alert(error.text());
+                    console.log(error.text());
+                    //서버로부터 응답 실패시 경고창
+                    
+                    // 권한이 없으므로 홈으로 이동
+                    this.router.navigate(['/']);
+                  }
+                );
+            }
           },
           error => {
             alert(error.text());
@@ -127,9 +166,6 @@ export class Change {
             alert(error.text());
             console.log(error.text());
             //서버로부터 응답 실패시 경고창
-
-            // 권한이 없으므로 홈으로 이동
-            this.router.navigate(['/']);
           }
         );
       
