@@ -26,6 +26,7 @@ export class ConsultingDetail implements AfterViewInit {
   havePrefBizMember: boolean;
 
   idx: number;
+  memberIdx: number;
   title: string;
   prefBizMemberIdx: number;
   userName: string;
@@ -87,6 +88,7 @@ export class ConsultingDetail implements AfterViewInit {
             this.data = response; // 해당값이 제대로 넘어오는지 확인후 프론트단에 내용추가
             //자세한 정보를 보여주기위해 data에서 consulting정보를 가져옴
             this.idx = this.data.consult.idx;
+            this.memberIdx  = this.data.consult.memberIdx;
             this.title = this.data.consult.title;
             this.prefBizMemberIdx = this.data.consult.prefBizMemberIdx;
             this.userName = this.data.consult.userName;
@@ -142,7 +144,7 @@ export class ConsultingDetail implements AfterViewInit {
   // 삭제버튼을 누르면 삭제페이지로 이동
   // 서버에서 삭제 기능을 구현해야 함
   onDelConsulting() {
-    if(this.loginMemberIdx == this.selectedId) {
+    if(this.loginMemberIdx == this.memberIdx) {//this.loginMemberIdx == this.selectedId
       if (confirm("삭제 하시겠습니까?")) {
         let URL = [config.serverHost, config.path.consulting, this.selectedId].join('/');
 
