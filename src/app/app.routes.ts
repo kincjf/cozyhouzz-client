@@ -21,6 +21,12 @@ import { BuildCaseLately } from './buildCase/buildCaseLately/buildCaseLately';
 import { BuildCaseList } from './buildCase/buildCaseList/buildCaseList';
 import { BuildCaseDetail } from './buildCase/detail/detail';
 
+import { RoomInfoInput } from './roomInfo/input';
+import { RoomInfoUpdate } from './roomInfo/update';
+import { RoomInfoList } from './roomInfo/list';
+import { RoomInfoDetail } from './roomInfo/detail';
+import { RoomInfoLately } from './roomInfo/lately';
+
 import { ConsultingCounsel } from './consulting/consultingCounsel/consultingCounsel';
 import { ConsultingDetail } from './consulting/consultingDetail/consultingDetail';
 import { ConsultingListInfo } from './consulting/consultingListInfo/consultingListInfo';
@@ -48,6 +54,12 @@ export const ROUTES: Routes = [
   { path: 'buildcaselately', component: BuildCaseLately },  // URL/buildcaselately : 최근 본 시공사례 조회
   { path: 'buildcaselist', component: BuildCaseList },  // URL/buildcaselist : 시공사례 조회
   { path: 'buildcasedetail/:buildCaseIdx', component: BuildCaseDetail },  // URL/buildcasedetail : 시공사례 상세보기
+
+  { path: 'create/room', component: RoomInfoInput },  // 방 정보 입력
+  { path: 'update/room/:roomListIdx', component: RoomInfoUpdate },     // 방 정보 수정
+  { path: 'lately/room', component: RoomInfoLately },  // 최근 본 방 정보
+  { path: 'list/room', component: RoomInfoList },  // 방 정보 목록 조회
+  { path: 'detail/room/:roomListIdx', component: RoomInfoDetail },  // 방 정보 상세보기
 
   { path: 'home',   component: Home, canActivate: [AuthGuard] },  //URL/home : 로그인 결과 테스트
 
