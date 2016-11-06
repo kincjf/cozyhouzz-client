@@ -73,7 +73,6 @@ export class ConsultingCounsel{
   public loadPostcodeScript() {
     const url = "../../../assets/js/postcode2.js";
 
-    console.log('preparing to load...')
     let node = document.createElement('script');
     node.src = url;
     node.type = 'text/javascript';
