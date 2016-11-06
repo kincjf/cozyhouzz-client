@@ -15,6 +15,7 @@
           <li><a routerLink="/buildcaselately" *ngIf="logined">최근 본 사례 조회</a></li>
           <li><a routerLink="/buildcaseselected" *ngIf="logined">찜한 사례 조회</a></li>
           <li><a routerLink="/consultingMyListInfo" *ngIf="logined">내 컨설팅 정보</a></li>
+          <li><a routerLink="/consultingMyListInfo" *ngIf="logined">방 정보 목록 조회</a></li>
           <li><a (click)="logout()" *ngIf="logined">로그아웃</a></li>
         </ul>
       </div><!-- .top-links end -->
@@ -52,23 +53,23 @@
     <!-- Logo
             ============================================= -->
     <div id="logo">
-      <a routerLink="/" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="../assets/images/logo.png" alt="Canvas Logo"></a>
-      <a routerLink="/" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="../assets/images/logo@2x.png" alt="Canvas Logo"></a>
-    </div><!-- #logo end -->
+      <a href="index.html" class="standard-logo"><img src="../assets/construction/images/logo_cozyhouzz2.png" alt="Canvas Logo"></a>
+      <a href="index.html" class="retina-logo"><img src="../assets/construction/images/logo_cozyhouzz@2x.png" alt="Canvas Logo"></a>
+    </div>
 
     <ul class="header-extras">
       <li>
         <i class="i-plain icon-email3 nomargin"></i>
         <div class="he-text">
-          Drop an Email
-          <span>info@canvas.com</span>
+          EMAIL
+          <span>kcmin08@naver.com</span>
         </div>
       </li>
       <li>
         <i class="i-plain icon-call nomargin"></i>
         <div class="he-text">
-          Get in Touch
-          <span>1800-1144-551</span>
+          Phone number
+          <span>010-6310-2751</span>
         </div>
       </li>
     </ul>
@@ -265,20 +266,19 @@
       <div class="col_one_third">
 
         <div class="widget clearfix">
-
-          <img src="../assets/images/footer-widget-logo.png" alt="" class="footer-logo">
-
-          <p>We believe in <strong>Simple</strong>, <strong>Creative</strong> &amp; <strong>Flexible</strong> Design Standards with a Retina &amp; Responsive Approach. Browse the amazing Features this template offers.</p>
+          <br><strong>VR,3D,건축</strong></br>
+          <br><strong>인테리어도면</strong></br>
+          <br><strong>3D&VR Interior</strong></br>
 
           <div style="background: url('../assets/images/world-map.png') no-repeat center center; background-size: 100%;">
             <address>
-              <strong>Headquarters:</strong><br>
-              795 Folsom Ave, Suite 600<br>
-              San Francisco, CA 94107<br>
+              <strong>주소</strong><br>
+              전라북도 전주시 전북대학교<br>
+              아늑한집(cozyhouzz)<br>
             </address>
-            <abbr title="Phone Number"><strong>Phone:</strong></abbr> (91) 8547 632521<br>
-            <abbr title="Fax"><strong>Fax:</strong></abbr> (91) 11 4752 1433<br>
-            <abbr title="Email Address"><strong>Email:</strong></abbr> info@canvas.com
+            <abbr title="Phone Number"><strong>Phone:</strong></abbr> (010) 6310 2751 <br>
+            <abbr title="Fax"><strong>Fax:</strong></abbr> (0303) 3441 2109 <br>
+            <abbr title="Email Address"><strong>Email:</strong></abbr> kcmin@naver.com
           </div>
 
         </div>
@@ -288,7 +288,7 @@
       <div class="col_one_third">
 
         <div class="widget clearfix">
-          <h4>Client Testimonials</h4>
+          <h4>"아늑한 집"을 쓰면 뭐가 좋아요?</h4>
 
           <div class="fslider testimonial no-image nobg noborder noshadow nopadding" data-animation="slide" data-arrows="false">
             <div class="flexslider">
@@ -298,10 +298,10 @@
                     <a href="#"><img src="../assets/images/testimonials/3.jpg" alt="Customer Testimonails"></a>
                   </div>
                   <div class="testi-content">
-                    <p>Similique fugit repellendus expedita excepturi iure perferendis provident quia eaque. Repellendus, vero numquam?</p>
+                    <p>처음부터 끝까지 "아늑한 집"의 고객만족 서비스로 내집, 내 가게를 믿고 맡기세요!</p>
                     <div class="testi-meta">
-                      Steve Jobs
-                      <span>Apple Inc.</span>
+                      cozyhouzz
+                      <span>시공의뢰 고객</span>
                     </div>
                   </div>
                 </div>
@@ -310,10 +310,10 @@
                     <a href="#"><img src="../assets/images/testimonials/2.jpg" alt="Customer Testimonails"></a>
                   </div>
                   <div class="testi-content">
-                    <p>Natus voluptatum enim quod necessitatibus quis expedita harum provident eos obcaecati id culpa corporis molestias.</p>
+                    <p>저희 "아늑한 집"이 함께 매출과 고객 만족도를 동시에 올려드립니다!</p>
                     <div class="testi-meta">
-                      Collis Ta'eed
-                      <span>Envato Inc.</span>
+                      cozyhouzz
+                      <span>시공업체</span>
                     </div>
                   </div>
                 </div>
@@ -322,10 +322,10 @@
                     <a href="#"><img src="../assets/images/testimonials/1.jpg" alt="Customer Testimonails"></a>
                   </div>
                   <div class="testi-content">
-                    <p>Incidunt deleniti blanditiis quas aperiam recusandae consequatur ullam quibusdam cum libero illo rerum!</p>
+                    <p>내방, 우리집찾으러 돌아다니기 지치셨나요? 360VR 미리보기로 쉽고 빠르게 내방, 우리집을 찾으러 오세요!</p>
                     <div class="testi-meta">
-                      John Doe
-                      <span>XYZ Inc.</span>
+                      cozyhouzz
+                      <span>세입자</span>
                     </div>
                   </div>
                 </div>
@@ -422,13 +422,13 @@
     <div class="container clearfix">
 
       <div class="col_half">
-        Copyrights &copy; 2014 All Rights Reserved by Canvas Inc.
+        <strong>아늑한 집(cozyhouzz)</strong>
       </div>
 
       <div class="col_half col_last tright">
         <div class="fright clearfix">
           <div class="copyrights-menu copyright-links nobottommargin">
-            <a href="#">Home</a>/<a href="#">About</a>/<a href="#">Features</a>/<a href="#">Portfolio</a>/<a href="#">FAQs</a>/<a href="#">Contact</a>
+            <a href="#">Homepage</a>/<a href="#">Blog</a>/<a href="#">FAQs</a>/<a href="#">Contents</a>
           </div>
         </div>
       </div>
