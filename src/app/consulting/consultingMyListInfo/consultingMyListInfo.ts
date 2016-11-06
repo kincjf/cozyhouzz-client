@@ -18,6 +18,7 @@ export class ConsultingMyListInfo {
   jwt:string;
   decodedJwt: any;
   public data;
+  currentPageNumber: number;
   pageSize: number;
   pageStartIndex: number;
   private loginMemberIdx: number;
@@ -40,7 +41,8 @@ export class ConsultingMyListInfo {
     this.loginMemberIdx = this.decodedJwt.idx;
 
     //컨설팅 정보의 개수와, 시작 index
-    this.pageSize =10;
+    this.currentPageNumber=1;
+    this.pageSize=10;
     this.pageStartIndex=0;
 
     let URL = [config.serverHost, config.path.consulting + "?pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
@@ -91,6 +93,7 @@ export class ConsultingMyListInfo {
                 }
                 else {
                   this.returnedDatas = []; //데이터를 초기화
+                  this.currentPageNumber = index/this.pageSize+1;
                   //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
                   for (var consulting of response.Consult) {
                     //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.

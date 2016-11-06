@@ -21,6 +21,7 @@ export class BizList {
   jwt: string;
   public data;
 
+  currentPageNumber: number ;
   pageSize: number;
   pageStartIndex: number;
   selectedmemberIdx: number;
@@ -36,8 +37,9 @@ export class BizList {
    */
 
   constructor(public router: Router, public http: Http) {
+    this.currentPageNumber = 1;
     this.pageSize = 4;
-    this.pageStartIndex=0;
+    this.pageStartIndex = 0;
 
     let URL = [config.serverHost, config.path.bizStore + "?pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
@@ -81,7 +83,7 @@ export class BizList {
               }
               else {
                 this.returnedDatas = []; //데이터를 초기화
-                //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
+                this.currentPageNumber = index/this.pageSize + 1;
                 //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
                 for(var bizUser of response.bizUserInfo) {
                   //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.

@@ -59,16 +59,16 @@
         <div id="pagination">
           <ul class="pagination nobottommargin">
             <li (click)="beforePageButton()"><a>&laquo;</a></li>
-            <li (click)="pageNumberButton(1)" value="1"><a>1</a></li>
-            <li (click)="pageNumberButton(2)" value="2"><a>2</a></li>
-            <li (click)="pageNumberButton(3)" value="3"><a>3</a></li>
-            <li (click)="pageNumberButton(4)" value="4"><a>4</a></li>
-            <li (click)="pageNumberButton(5)" value="5"><a>5</a></li>
-            <li (click)="pageNumberButton(6)" value="6"><a>6</a></li>
-            <li (click)="pageNumberButton(7)" value="7"><a>7</a></li>
-            <li (click)="pageNumberButton(8)" value="8"><a>8</a></li>
-            <li (click)="pageNumberButton(9)" value="9"><a>9</a></li>
-            <li (click)="pageNumberButton(10)" value="10"><a>10</a></li>
+            <li (click)="pageNumberButton(1)" [ngClass]="{'active': currentPageNumber == 1}"><a>1</a></li>
+            <li (click)="pageNumberButton(2)" [ngClass]="{'active': currentPageNumber == 2}"><a>2</a></li>
+            <li (click)="pageNumberButton(3)" [ngClass]="{'active': currentPageNumber == 3}"><a>3</a></li>
+            <li (click)="pageNumberButton(4)" [ngClass]="{'active': currentPageNumber == 4}"><a>4</a></li>
+            <li (click)="pageNumberButton(5)" [ngClass]="{'active': currentPageNumber == 5}"><a>5</a></li>
+            <li (click)="pageNumberButton(6)" [ngClass]="{'active': currentPageNumber == 6}"><a>6</a></li>
+            <li (click)="pageNumberButton(7)" [ngClass]="{'active': currentPageNumber == 7}"><a>7</a></li>
+            <li (click)="pageNumberButton(8)" [ngClass]="{'active': currentPageNumber == 8}"><a>8</a></li>
+            <li (click)="pageNumberButton(9)" [ngClass]="{'active': currentPageNumber == 9}"><a>9</a></li>
+            <li (click)="pageNumberButton(10)" [ngClass]="{'active': currentPageNumber == 10}"><a>10</a></li>
             <li (click)="nextPageButton()"><a>&raquo;</a></li>
           </ul>
         </div>
