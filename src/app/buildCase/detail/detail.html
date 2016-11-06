@@ -1,4 +1,5 @@
 <!-- 상세보기 -->
+<script src="src/assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.js"></script>
 <section id="content">
 
     <div class="content-wrap" style="padding-bottom: 0px;">
@@ -13,7 +14,7 @@
 
                     <!-- Single Post
                                   ============================================= -->
-                    <div class="entry clearfix">
+                    <div class="entry clearfix" style="padding-bottom: 0px; margin-bottom: 0px;">
 
                         <!-- Entry Title
                                         ============================================= -->
@@ -34,253 +35,130 @@
                         <!-- Entry Image
                                         ============================================= -->
                         <div class="entry-image">
-                            <a href="#"><img src="images/blog/full/1.jpg" alt="Blog Single"></a>
+                            <a href="#">
+                                <img src="{{serverHost}}/{{companyIntroImage}}" style="width: 100%;">
+                            </a>
                         </div><!-- .entry-image end -->
 
-                        <!-- Entry Content
-                                        ============================================= -->
                         <div class="entry-content notopmargin">
 
-                            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
 
-                            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. <a href="#">Curabitur blandit tempus porttitor</a>. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.</p>
+                            <div role="tabpanel" class="tab-pane fade in active" style="word-break: break-all" [innerHTML]="HTMLText">
+                            </div><!--.tab-pane-->
 
-                            <blockquote><p>Vestibulum id ligula porta felis euismod semper. Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.</p></blockquote>
 
                             <div class="clear"></div>
 
                         </div>
+
+
+                        <!-- Entry Content
+                                        ============================================= -->
+
+
                     </div><!-- .entry end -->
 
+
+
+
+                    <div style="text-align: center">
+                        <button class="btn btn-rounded btn-inline" (click)="onListBuildCase()">목록</button>
+                        <button class="btn btn-rounded btn-inline" *ngIf="loginMemberIdx != null && loginMemberIdx == memberIdx" (click)="onDelBuildCase()">삭제</button>
+                        <button hidden class="btn btn-rounded btn-inline" *ngIf="loginMemberIdx != null && loginMemberIdx == memberIdx" (click)="onUpdateBuildCase()">수정</button>
+                    </div>
 
                 </div>
 
             </div><!-- .postcontent end -->
 
 
+            <div class="sidebar nobottommargin col_last clearfix">
+                <div class="sidebar-widgets-wrap">
+
+                    <div class="widget widget-twitter-feed clearfix">
+                        <table>
+                            <tbody>
+                                <div class="form-group row">
+                                    <label class="col-xs-5 form-control-label">공사명</label>
+                                    <td class="col-xs-8">
+                                        <p>{{title}}</p>
+                                    </td>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-5 form-control-label">공사구분</label>
+                                    <td class="col-xs-8">
+                                        <p>{{buildType}}</p>
+                                    </td>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-5 form-control-label">공사면적</label>
+                                    <td class="col-xs-8">
+                                        <p>{{buildTotalArea}} 평</p>
+                                    </td>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-5 form-control-label">공사지역</label>
+                                    <td class="col-xs-8">
+                                        <p>{{buildPlace}}</p>
+                                    </td>
+                                </div>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="widget clearfix">
+
+                        <h4>Tag Cloud</h4>
+                        <div class="tagcloud">
+                            <a href="#">general</a>
+                            <a href="#">videos</a>
+                            <a href="#">music</a>
+                            <a href="#">media</a>
+                            <a href="#">photography</a>
+                            <a href="#">parallax</a>
+                            <a href="#">ecommerce</a>
+                            <a href="#">terms</a>
+                            <a href="#">coupons</a>
+                            <a href="#">modern</a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div><!-- .sidebar end -->
         </div>
 
     </div>
 
 </section><!-- #content end -->
 
-<!--입력폼-->
-<section id="map-overlay">
-
-    <div class="container clearfix">
-
-        <!-- Contact Form Overlay
-                ============================================= -->
-
-
-        <!-- style : width 그리드 걸려있는듯.  responsive.CSS 파일에 max-width 걸려있슴돠//  -->
-        <div id="contact-form-overlay-mini" class="clearfix" style="margin-left: 0px; margin-right: 0px; width: 860px; float: left;">
-
-            <div class="fancy-title title-dotted-border">
-                <h3>Send us an Email</h3>
-            </div>
-
-            <div class="contact-widget">
-
-                <div class="contact-form-result"></div>
-
-                <!-- Contact Form
-                            ============================================= -->
-                <form class="nobottommargin" id="template-contactform" name="template-contactform" action="include/sendemail.php" method="post" enctype="multipart/form-data">
-
-                    <div class="col_full">
-                        <label for="template-contactform-name">Name <small>*</small></label>
-                        <input type="text" id="template-contactform-name" name="template-contactform-name" value="" class="sm-form-control required" />
-                    </div>
-
-                    <div class="col_full">
-                        <label for="template-contactform-email">Email <small>*</small></label>
-                        <input type="email" id="template-contactform-email" name="template-contactform-email" value="" class="required email sm-form-control" />
-                    </div>
-
-                    <div class="clear"></div>
-
-                    <div class="col_full">
-                        <label for="template-contactform-phone">Phone</label>
-                        <input type="text" id="template-contactform-phone" name="template-contactform-phone" value="" class="sm-form-control" />
-                    </div>
-
-                    <div class="col_full">
-                        <label for="template-contactform-service">Services</label>
-                        <select id="template-contactform-service" name="template-contactform-service" class="sm-form-control">
-                            <option value="">-- Select One --</option>
-                            <option value="Wordpress">Wordpress</option>
-                            <option value="PHP / MySQL">PHP / MySQL</option>
-                            <option value="HTML5 / CSS3">HTML5 / CSS3</option>
-                            <option value="Graphic Design">Graphic Design</option>
-                        </select>
-                    </div>
-
-                    <div class="clear"></div>
-
-                    <div class="col_full">
-                        <label for="template-contactform-subject">Subject <small>*</small></label>
-                        <input type="text" id="template-contactform-subject" name="template-contactform-subject" value="" class="required sm-form-control" />
-                    </div>
-
-                    <div class="col_full">
-                        <label for="template-contactform-message">Upload CV <small>*</small></label>
-                        <input type="file" id="template-contactform-file" name="template-contactform-file" value="" class="required sm-form-control" />
-                    </div>
-
-                    <div class="col_full">
-                        <label for="template-contactform-message">Message <small>*</small></label>
-                        <textarea class="required sm-form-control" id="template-contactform-message" name="template-contactform-message" rows="6" cols="30"></textarea>
-                    </div>
-
-                    <div class="col_full hidden">
-                        <input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="sm-form-control" />
-                    </div>
-
-                    <div class="col_full">
-                        <button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit">Send Message</button>
-                    </div>
-
-                </form>
-
-            </div>
-
-
-        </div><!-- Contact Form Overlay End -->
-
-    </div>
-
-
-
-
-
-    <!--&lt;!&ndash; krpano viewer &ndash;&gt;-->
-    <!--<script src="src/assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.js"></script>-->
-
-    <!--<div class="page-content">-->
-    <!--<div class="container-fluid">-->
-    <!--<header class="section-header">-->
-    <!--<div class="tbl">-->
-    <!--<div class="tbl-row">-->
-    <!--<div class="tbl-cell">-->
-    <!--<h2>시공사례 상세보기</h2>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</header>-->
-
-    <!--<section class="tabs-section">-->
-    <!--<div class="tabs-section-nav tabs-section-nav-inline">-->
-    <!--&lt;!&ndash; KRPano를 이용하여 VR 사진 View &ndash;&gt;-->
-
-    <!--<div id="pano">-->
-    <!--<noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;text-align:center;"><td>ERROR:<br><br>Javascript not activated<br><br></td></tr></table></noscript>-->
-    <!--</div>-->
-    <!--&lt;!&ndash;<iframe width="100%" height="300px" allowfullscreen frameborder="0" src="//storage.googleapis.com/vrview/index.html?image=//storage.googleapis.com/vrview/examples/coral.jpg&is_stereo=true"></iframe>&ndash;&gt;-->
-
-    <!--&lt;!&ndash; VR 사진 end &ndash;&gt;-->
-    <!--<ul class="nav" role="tablist">-->
-    <!--<li class="nav-item col-sm-3" >-->
-    <!--<a class="nav-link" href="#tabs-4-tab-1" role="tab" data-toggle="tab">-->
-    <!--인테리어 소개-->
-    <!--</a>-->
-    <!--</li>-->
-    <!--<li class="nav-item col-sm-3" >-->
-    <!--<a class="nav-link" href="#tabs-4-tab-2" role="tab" data-toggle="tab">-->
-    <!--인테리어 상세정보-->
-    <!--</a>-->
-    <!--</li>-->
-    <!--<li class="nav-item col-sm-3" >-->
-    <!--<a class="nav-link" href="#tabs-4-tab-3" role="tab" data-toggle="tab" (click)="onBizUserInfo()">-->
-    <!--시공업체 정보-->
-    <!--</a>-->
-    <!--</li>-->
-    <!--</ul>-->
-    <!--</div>&lt;!&ndash;.tabs-section-nav&ndash;&gt;-->
-
-    <!--<div class="tab-content">-->
-    <!--<div role="tabpanel" class="tab-pane fade in active" id="tabs-4-tab-1" style="word-break: break-all" [innerHTML]="HTMLText">-->
-    <!--&lt;!&ndash; summernote에 저장된 내용을 보여줌 [innerHTML]을 사용하면 String값에 있는 HTML tag들이 브라우저에 적용되게 하는기능 &ndash;&gt;-->
-    <!--</div>&lt;!&ndash;.tab-pane&ndash;&gt;-->
-    <!--<div role="tabpanel" class="tab-pane fade" id="tabs-4-tab-2">-->
-    <!--<header class="section-header">-->
-    <!--<div class="tbl">-->
-    <!--<div class="tbl-row">-->
-    <!--<h5 class="m-t-lg with-border">인테리어 상세정보</h5>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</header>-->
-    <!--<div>-->
-    <!--<form>-->
-    <!--<div class="form-group row">-->
-    <!--<label class="col-sm-2 form-control-label">공사명</label>-->
-    <!--<div class="col-sm-10">-->
-    <!--<p class="form-control-static">{{title}}</p>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-    <!--<label class="col-sm-2 form-control-label">공사구분</label>-->
-    <!--<div class="col-sm-10">-->
-    <!--<p class="form-control-static">{{buildType}}</p>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-    <!--<label class="col-sm-2 form-control-label">공사면적</label>-->
-    <!--<div class="col-sm-10">-->
-    <!--<p class="form-control-static">{{buildTotalArea}} 평</p>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-    <!--<label class="col-sm-2 form-control-label">공사지역</label>-->
-    <!--<div class="col-sm-10">-->
-    <!--<p class="form-control-static">{{buildPlace}}</p>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="form-group row">-->
-    <!--<label class="col-sm-2 form-control-label">시공비용</label>-->
-    <!--<div class="col-sm-10">-->
-    <!--<p class="form-control-static">{{buildTotalPrice}} 만원</p>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</form>-->
-    <!--</div>-->
-    <!--</div>&lt;!&ndash;.tab-pane&ndash;&gt;-->
-    <!--<div role="tabpanel" class="tab-pane fade" id="tabs-4-tab-3">-->
+<!--<div role="tabpanel" class="tab-pane fade" id="tabs-4-tab-3">-->
     <!--<section class="card" style="max-width: 900px">-->
-    <!--<div class="card-block">-->
-    <!--<div class="row">-->
-    <!--<div class="col-sm-4">-->
-    <!--<img class="gallery-picture" src={{conmpanyIntroImage}} style="width: 100%;">-->
-    <!--</div>-->
-    <!--<div class="col-sm-8" style="margin-top: 45px">-->
-    <!--<h2>{{companyName}}</h2>-->
-    <!--<p>{{aboutCompany}}</p>-->
-    <!--</div>-->
-    <!--</div>&lt;!&ndash;.row&ndash;&gt;-->
+        <!--<div class="card-block">-->
+            <!--<div class="row">-->
+                <!--<div class="col-sm-4">-->
+                    <!--<img class="gallery-picture" src={{companyIntroImage}} style="width: 100%;">-->
+                <!--</div>-->
+                <!--<div class="col-sm-8" style="margin-top: 45px">-->
+                    <!--<h2>{{companyName}}</h2>-->
+                    <!--<p>{{aboutCompany}}</p>-->
+                <!--</div>-->
+            <!--</div>&lt;!&ndash;.row&ndash;&gt;-->
 
-    <!--<div class="row" style="margin-top: 45px">-->
-    <!--<div class="col-sm-2">-->
-    <!--<h4>주요시공분야</h4>-->
-    <!--</div>-->
-    <!--<div class="col-sm-4">-->
-    <!--<p>{{mainWorkField}}</p>-->
-    <!--</div>-->
-    <!--<div class="col-sm-2" >-->
-    <!--<h4>시공지역</h4>-->
-    <!--</div>-->
-    <!--<div class="col-sm-4">-->
-    <!--<p>{{mainWorkArea}}</p>-->
-    <!--</div>-->
-    <!--</div>&lt;!&ndash;.row&ndash;&gt;-->
-    <!--</div>-->
+            <!--<div class="row" style="margin-top: 45px">-->
+                <!--<div class="col-sm-2">-->
+                    <!--<h4>주요시공분야</h4>-->
+                <!--</div>-->
+                <!--<div class="col-sm-4">-->
+                    <!--<p>{{mainWorkField}}</p>-->
+                <!--</div>-->
+                <!--<div class="col-sm-2" >-->
+                    <!--<h4>시공지역</h4>-->
+                <!--</div>-->
+                <!--<div class="col-sm-4">-->
+                    <!--<p>{{mainWorkArea}}</p>-->
+                <!--</div>-->
+            <!--</div>&lt;!&ndash;.row&ndash;&gt;-->
+        <!--</div>-->
     <!--</section>-->
-    <!--</div>&lt;!&ndash;.tab-pane&ndash;&gt;-->
-    <!--</div>&lt;!&ndash;.tab-content&ndash;&gt;-->
-    <!--</section>&lt;!&ndash;.tabs-section&ndash;&gt;-->
-    <!--<div style="text-align: center">-->
-    <!--<button class="btn btn-rounded btn-inline" (click)="onListBuildCase()">목록</button>-->
-    <!--<button hidden class="btn btn-rounded btn-inline" *ngIf="loginMemberIdx != null && loginMemberIdx == memberIdx" (click)="onUpdateBuildCase()">수정</button>-->
-    <!--<button class="btn btn-rounded btn-inline" *ngIf="loginMemberIdx != null && loginMemberIdx == memberIdx" (click)="onDelBuildCase()">삭제</button>-->
-    <!--</div>-->
-    <!--</div>&lt;!&ndash;.container-fluid&ndash;&gt;-->
-    <!--</div>&lt;!&ndash;.page-content&ndash;&gt;-->
+<!--</div>&lt;!&ndash;.tab-pane&ndash;&gt;-->
