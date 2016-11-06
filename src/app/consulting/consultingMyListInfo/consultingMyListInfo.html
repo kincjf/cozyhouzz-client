@@ -39,7 +39,7 @@
           </thead>
 
           <!--table내용-->
-          <tbody>
+          <tbody id="datalist">
           <tr *ngFor="let consultInfo of returnedDatas">
             <td class="col-xs-2" *ngIf="consultInfo.memberIdx == loginMemberIdx"><a routerLink="/consultingDetail/{{consultInfo.idx}}" >{{consultInfo.title}}</a></td>
             <td class="col-xs-2" *ngIf="consultInfo.memberIdx == loginMemberIdx">{{consultInfo.initWriteDate}}</td>
@@ -51,8 +51,27 @@
           </tbody>
         </table>
 
-      </div>
 
+      </div>
+      <div>
+        <!-- Pagination
+                        ============================================= -->
+        <!--페이지 1~10 까지 확인 가능 disable이나 현재 들어와 있는 페이지 active같은 기능을 추가해주어야함-->
+        <ul class="pagination nobottommargin">
+          <li (click)="beforePageButton()"><a>&laquo;</a></li>
+          <li (click)="pageNumberButton(1)" value="1"><a>1</a></li>
+          <li (click)="pageNumberButton(2)" value="2"><a>2</a></li>
+          <li (click)="pageNumberButton(3)" value="3"><a>3</a></li>
+          <li (click)="pageNumberButton(4)" value="4"><a>4</a></li>
+          <li (click)="pageNumberButton(5)" value="5"><a>5</a></li>
+          <li (click)="pageNumberButton(6)" value="6"><a>6</a></li>
+          <li (click)="pageNumberButton(7)" value="7"><a>7</a></li>
+          <li (click)="pageNumberButton(8)" value="8"><a>8</a></li>
+          <li (click)="pageNumberButton(9)" value="9"><a>9</a></li>
+          <li (click)="pageNumberButton(10)" value="10"><a>10</a></li>
+          <li (click)="nextPageButton()"><a>&raquo;</a></li>
+        </ul>
+      </div>
     </div>
 
   </div>
