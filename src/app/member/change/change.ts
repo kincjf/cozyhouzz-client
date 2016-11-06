@@ -21,9 +21,18 @@ export class Change {
   jwt:string;
   decodedJwt: any;
   public data;
+  // 일반 정보
   email: string;
   telephones: string;
   memberType: number;
+  // 사업주 정보
+  contacts:string;
+  companyNames:string;
+  ownerNames:string;
+  bizRegNos:string;
+  workPlaces:string;
+  mainWorkFields:string;
+  mainWorkAreas:string;
 
   constructor(private router: Router, public http: Http, private el: ElementRef) {
   }
@@ -50,6 +59,35 @@ export class Change {
             this.email = this.data.user.email;
             this.telephones = this.data.user.telephone;
             this.memberType = this.data.user.memberType;
+            
+            // 사업주 정보 받기
+            if (this.memberType == 2) {
+              let URL = [config.serverHost, config.path.changeBizSignup, this.decodedJwt.idx].join('/');
+
+              this.http.get(URL, {headers:contentHeaders}) //서버로부터 필요한 값 받아오기
+                .map(res => res.json()) //받아온 값을 json형식으로 변경
+                .subscribe(
+                  response => {
+                    this.data = response; //해당값이 제대로 넘어오는지 확인후 프론트단에 내용 추가
+                    //console.log(this.data);
+                    this.contacts = this.data.bizUserInfo.contact;
+                    this.companyNames = this.data.bizUserInfo.companyName;
+                    this.ownerNames = this.data.bizUserInfo.ownerName;
+                    this.bizRegNos = this.data.bizUserInfo.bizRegNo;
+                    this.workPlaces = this.data.bizUserInfo.workPlace;
+                    this.mainWorkFields = this.data.bizUserInfo.mainWorkField;
+                    this.mainWorkAreas = this.data.bizUserInfo.mainWorkArea;
+                  },
+                  error => {
+                    alert(error.text());
+                    console.log(error.text());
+                    //서버로부터 응답 실패시 경고창
+                    
+                    // 권한이 없으므로 홈으로 이동
+                    this.router.navigate(['/']);
+                  }
+                );
+            }
           },
           error => {
             alert(error.text());
@@ -63,8 +101,9 @@ export class Change {
     }
   }
 
-  signupchange(event, email, password, password_ok, telephone, companyName, ownerName, bizRegNo, contact, workPlace, mainWorkField, mailWorkArea) {
+  signupchange(event, email, password, password_ok, telephone, companyName, ownerName, bizRegNo, contact, workPlace, mainWorkField, mainWorkArea) {
     // 필수 입력 체크 
+    
     var require = {email, password, password_ok}; // 이메일, 패스워드, 패스워드 확인을 필수로 입력해야 함.
 
     for (var e in require) {
@@ -126,16 +165,13 @@ export class Change {
             alert(error.text());
             console.log(error.text());
             //서버로부터 응답 실패시 경고창
-
-            // 권한이 없으므로 홈으로 이동
-            this.router.navigate(['/']);
           }
         );
       
       // 사업주 정보 수정
       if (memberType == 2) {
         console.log(contentHeaders);
-        let body = JSON.stringify({ contact, companyName, ownerName, bizRegNo, workPlace, mainWorkField, mailWorkArea, memberType });
+        let body = JSON.stringify({ contact, companyName, ownerName, bizRegNo, workPlace, mainWorkField, mainWorkArea, memberType });
         //html받은 값들을 json형식으로 저장
 
         let URL = [config.serverHost, config.path.changeBizSignup, this.decodedJwt.idx].join('/');
