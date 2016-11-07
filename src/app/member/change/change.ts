@@ -32,7 +32,7 @@ export class Change {
   bizRegNos:string;
   workPlaces:string;
   mainWorkFields:string;
-  mailWorkAreas:string;
+  mainWorkAreas:string;
 
   constructor(private router: Router, public http: Http, private el: ElementRef) {
   }
@@ -76,8 +76,7 @@ export class Change {
                     this.bizRegNos = this.data.bizUserInfo.bizRegNo;
                     this.workPlaces = this.data.bizUserInfo.workPlace;
                     this.mainWorkFields = this.data.bizUserInfo.mainWorkField;
-                    this.mailWorkAreas = this.data.bizUserInfo.mailWorkArea;
-
+                    this.mainWorkAreas = this.data.bizUserInfo.mainWorkArea;
                   },
                   error => {
                     alert(error.text());
@@ -102,7 +101,7 @@ export class Change {
     }
   }
 
-  signupchange(event, email, password, password_ok, telephone, companyName, ownerName, bizRegNo, contact, workPlace, mainWorkField, mailWorkArea) {
+  signupchange(event, email, password, password_ok, telephone, companyName, ownerName, bizRegNo, contact, workPlace, mainWorkField, mainWorkArea) {
     // 필수 입력 체크 
     
     var require = {email, password, password_ok}; // 이메일, 패스워드, 패스워드 확인을 필수로 입력해야 함.
@@ -172,7 +171,7 @@ export class Change {
       // 사업주 정보 수정
       if (memberType == 2) {
         console.log(contentHeaders);
-        let body = JSON.stringify({ contact, companyName, ownerName, bizRegNo, workPlace, mainWorkField, mailWorkArea, memberType });
+        let body = JSON.stringify({ contact, companyName, ownerName, bizRegNo, workPlace, mainWorkField, mainWorkArea, memberType });
         //html받은 값들을 json형식으로 저장
 
         let URL = [config.serverHost, config.path.changeBizSignup, this.decodedJwt.idx].join('/');

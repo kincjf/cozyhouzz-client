@@ -40,9 +40,13 @@ export class BuildCaseDetail {
   aboutCompany: string;
   mainWorkField: string;
   mainWorkArea: string;
-  conmpanyIntroImage: string;
+  companyIntroImage: string;
+  serverHost: string = config.serverHost;
+
 
   constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el: ElementRef) {
+
+
   }
 
   /*
@@ -59,12 +63,11 @@ export class BuildCaseDetail {
         response => {
           this.data = response; // 해당값이 제대로 넘어오는지 확인후 프론트단에 내용추가
 
-
           this.companyName = this.data.bizUserInfo.companyName;
           this.aboutCompany = this.data.bizUserInfo.aboutCompany;
           this.mainWorkField = this.data.bizUserInfo.mainWorkField;
           this.mainWorkArea = this.data.bizUserInfo.mainWorkArea;
-          this.conmpanyIntroImage = this.data.bizUserInfo.conmpanyIntroImage;
+          this.companyIntroImage = this.data.bizUserInfo.companyIntroImage;     // conmpanyIntroImage
         },
         error => {
           alert(error.text());
@@ -148,7 +151,10 @@ export class BuildCaseDetail {
           this.VRImages = JSON.parse(response.buildCaseInfo.VRImages);
           this.memberIdx = response.buildCaseInfo.memberIdx;
 
-          // 비동기라서 통신이 완료 된 후에 해야지 member변수 값에 할당이 됨.
+            this.onBizUserInfo();
+
+
+            // 비동기라서 통신이 완료 된 후에 해야지 member변수 값에 할당이 됨.
           // 일단 index.html에 짱박아놓음. 나중에 module로 빼자
           // proxy 이용
           embedpano({swf:"src/assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.swf",
@@ -170,7 +176,5 @@ export class BuildCaseDetail {
       this.loginMemberIdx = null; //로그인 하지 않는 상태일때는 null값
     }
     contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
-
-    this.onBizUserInfo();
   }
 }

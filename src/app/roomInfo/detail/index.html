@@ -1,0 +1,131 @@
+<section id="content">
+
+    <div class="content-wrap" style="padding-bottom: 0px;">
+
+        <div class="container clearfix">
+
+            <!-- Post Content
+                      ============================================= -->
+            <div class="postcontent nobottommargin clearfix">
+
+                <div class="single-post nobottommargin">
+
+                    <!-- Single Post
+                                  ============================================= -->
+                    <div class="entry clearfix" style="padding-bottom: 0px; margin-bottom: 0px;">
+
+                        <!-- Entry Title
+                                        ============================================= -->
+                        <div class="entry-title">
+                            <h2>This is a Standard post with a Preview Image</h2>
+                        </div><!-- .entry-title end -->
+
+                        <!-- Entry Meta
+                                        ============================================= -->
+                        <ul class="entry-meta clearfix">
+                            <li><i class="icon-calendar3"></i> 10th July 2014</li>
+                            <li><a href="#"><i class="icon-user"></i> admin</a></li>
+                            <li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>
+                            <li><a href="#"><i class="icon-comments"></i> 43 Comments</a></li>
+                            <li><a href="#"><i class="icon-camera-retro"></i></a></li>
+                        </ul><!-- .entry-meta end -->
+
+                        <!-- Entry Image
+                                        ============================================= -->
+                        <div class="entry-image">
+                            <a href="#">
+                                <img src="{{serverHost}}/{{companyIntroImage}}" style="width: 100%;">
+                            </a>
+                        </div><!-- .entry-image end -->
+
+                        <div class="entry-content notopmargin">
+
+
+                            <div role="tabpanel" class="tab-pane fade in active" style="word-break: break-all" [innerHTML]="HTMLText">
+                            </div><!--.tab-pane-->
+
+
+                            <div class="clear"></div>
+
+                        </div>
+
+
+                        <!-- Entry Content
+                                        ============================================= -->
+
+
+                    </div><!-- .entry end -->
+
+
+
+
+                    <div style="text-align: center">
+                        <button class="btn btn-rounded btn-inline" (click)="onListBuildCase()">목록</button>
+                        <button class="btn btn-rounded btn-inline" *ngIf="loginMemberIdx != null && loginMemberIdx == memberIdx" (click)="onDelBuildCase()">삭제</button>
+                        <button hidden class="btn btn-rounded btn-inline" *ngIf="loginMemberIdx != null && loginMemberIdx == memberIdx" (click)="onUpdateBuildCase()">수정</button>
+                    </div>
+
+                </div>
+
+            </div><!-- .postcontent end -->
+
+
+            <div class="sidebar nobottommargin col_last clearfix">
+                <div class="sidebar-widgets-wrap">
+
+                    <div class="widget widget-twitter-feed clearfix">
+                        <table>
+                            <tbody>
+                            <div class="form-group row">
+                                <label class="col-xs-5 form-control-label">공사명</label>
+                                <td class="col-xs-8">
+                                    <p>{{title}}</p>
+                                </td>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xs-5 form-control-label">공사구분</label>
+                                <td class="col-xs-8">
+                                    <p>{{buildType}}</p>
+                                </td>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xs-5 form-control-label">공사면적</label>
+                                <td class="col-xs-8">
+                                    <p>{{buildTotalArea}} 평</p>
+                                </td>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xs-5 form-control-label">공사지역</label>
+                                <td class="col-xs-8">
+                                    <p>{{buildPlace}}</p>
+                                </td>
+                            </div>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="widget clearfix">
+
+                        <h4>Tag Cloud</h4>
+                        <div class="tagcloud">
+                            <a href="#">general</a>
+                            <a href="#">videos</a>
+                            <a href="#">music</a>
+                            <a href="#">media</a>
+                            <a href="#">photography</a>
+                            <a href="#">parallax</a>
+                            <a href="#">ecommerce</a>
+                            <a href="#">terms</a>
+                            <a href="#">coupons</a>
+                            <a href="#">modern</a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div><!-- .sidebar end -->
+        </div>
+
+    </div>
+
+</section><!-- #content end -->

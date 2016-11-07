@@ -70,21 +70,9 @@ export class ConsultingCounsel{
       )
   }
 
-  buttonClick(){
-    if ($_POST['template-contactform-submit'] == "submit") {
-
-    }
-    else if($_POST['search'] == "검색"){
-
-    }
-    else
-      alert("등록되지 않은 버튼입니다.");
-  }
-
   public loadPostcodeScript() {
     const url = "../../../assets/js/postcode2.js";
 
-    console.log('preparing to load...')
     let node = document.createElement('script');
     node.src = url;
     node.type = 'text/javascript';

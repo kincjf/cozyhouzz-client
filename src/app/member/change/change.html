@@ -14,7 +14,7 @@
 
           <div class="contact-form-result"></div>
 
-          <form class="nobottommargin" #f="ngForm" (ngSubmit)="signupchange($event, username.value, password.value, password_ok.value, telephone.value, companyName.value, ownerName.value, bizRegNo.value, contact.value, workPlace.value, mainWorkField.value, mailWorkArea.value)">
+          <form class="nobottommargin" #f="ngForm" (ngSubmit)="signupchange($event, username.value, password.value, password_ok.value, telephone.value, companyName.value, ownerName.value, bizRegNo.value, contact.value, workPlace.value, mainWorkField.value, mainWorkArea.value)">
 
             <div class="col_one_third">
               <label for="member-change-email">Email Address <small>*</small></label>
@@ -91,7 +91,7 @@
 
               <div class="col_one_third">
                 <label for="member-change-area">시공지역</label>
-                <input type="text" #mailWorkArea id="member-change-area" name="member-change-area" value="{{mailWorkAreas}}" class="sm-form-control" />
+                <input type="text" #mainWorkArea id="member-change-area" name="member-change-area" value="{{mainWorkAreas}}" class="sm-form-control" />
               </div>
               
               <div class="col_two_third col_last">
