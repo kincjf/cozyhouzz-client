@@ -1,5 +1,5 @@
 <!-- Top Bar
-		============================================= -->
+      ============================================= -->
 <div id="top-bar">
 
   <div class="container clearfix">
@@ -15,6 +15,7 @@
           <li><a routerLink="/buildcaselately" *ngIf="logined">최근 본 사례 조회</a></li>
           <li><a routerLink="/buildcaseselected" *ngIf="logined">찜한 사례 조회</a></li>
           <li><a routerLink="/consultingMyListInfo" *ngIf="logined">내 컨설팅 정보</a></li>
+          <li><a routerLink="/consultingMyListInfo" *ngIf="logined">방 정보 목록 조회</a></li>
           <li><a (click)="logout()" *ngIf="logined">로그아웃</a></li>
         </ul>
       </div><!-- .top-links end -->
@@ -34,7 +35,7 @@
           <li><a href="#" class="si-pinterest"><span class="ts-icon"><i class="icon-pinterest"></i></span><span class="ts-text">Pinterest</span></a></li>
           <li><a href="#" class="si-instagram"><span class="ts-icon"><i class="icon-instagram2"></i></span><span class="ts-text">Instagram</span></a></li>
           <li><a href="tel:+91.11.85412542" class="si-call"><span class="ts-icon"><i class="icon-call"></i></span><span class="ts-text">+91.11.85412542</span></a></li>
-          <li><a href="mailto:info@canvas.com" class="si-email3"><span class="ts-icon"><i class="icon-email3"></i></span><span class="ts-text">info@canvas.com</span></a></li>
+          <li><a href="mailto:info@canvas.com" class="si-email3"><span class="ts-icon"><i class="icon-email3"></i></span><span class="ts-text">kcmin@naver.com</span></a></li>
         </ul>
       </div><!-- #top-social end -->
 
@@ -44,7 +45,7 @@
 
 </div><!-- #top-bar end -->
 <!-- Header
-		============================================= -->
+      ============================================= -->
 <header id="header" class="sticky-style-2">
 
   <div class="container clearfix">
@@ -52,23 +53,23 @@
     <!-- Logo
             ============================================= -->
     <div id="logo">
-      <a routerLink="/" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="../assets/images/logo.png" alt="Canvas Logo"></a>
-      <a routerLink="/" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="../assets/images/logo@2x.png" alt="Canvas Logo"></a>
-    </div><!-- #logo end -->
+      <a href="index.html" class="standard-logo"><img src="../assets/construction/images/logo_cozyhouzz2.png" alt="Canvas Logo"></a>
+      <a href="index.html" class="retina-logo"><img src="../assets/construction/images/logo_cozyhouzz@2x.png" alt="Canvas Logo"></a>
+    </div>
 
     <ul class="header-extras">
       <li>
         <i class="i-plain icon-email3 nomargin"></i>
         <div class="he-text">
-          Drop an Email
-          <span>info@canvas.com</span>
+          EMAIL
+          <span>kcmin08@naver.com</span>
         </div>
       </li>
       <li>
         <i class="i-plain icon-call nomargin"></i>
         <div class="he-text">
-          Get in Touch
-          <span>1800-1144-551</span>
+          Phone number
+          <span>010-6310-2751</span>
         </div>
       </li>
     </ul>
@@ -100,8 +101,13 @@
             </ul>
           </li>
           <li><a routerLink="/bizList"><div>등록업체정보</div></a>
+          <ul>
+            <li><a routerLink="/bizList"><div><i class="icon-stack"></i>업체 목록</div></a></li>
+          </ul>
+        </li>
+          <li><a routerLink="/roomInfo"><div>방 정보 홍보 보기</div></a>
             <ul>
-              <li><a routerLink="/bizList"><div><i class="icon-stack"></i>업체 목록</div></a></li>
+              <li><a routerLink="/roomInfo"><div><i class="icon-stack"></i>방 정보 목록조회</div></a></li>
             </ul>
           </li>
         </ul>
@@ -160,100 +166,10 @@
 
 </header><!-- #header end -->
 
-<!--<header class="site-header" >&lt;!&ndash; [hidden]="router.url==='/login'" &ndash;&gt;
-  <div class="container-fluid">
-    <a class="site-logo" routerLink="/">
-      <img alt="" class="hidden-md-down" src="src/assets/img/logo-ankroom.png">
-      <img alt="" class="hidden-lg-up" src="src/assets/img/logo-ankroom-mob.png">
-    </a>
-    <button class="hamburger hamburger&#45;&#45;htla">
-      <span>toggle menu</span>
-    </button>
-    <div class="site-header-content">
-      <div class="site-header-content-in">
-        <div class="site-header-shown">
-
-          <div class="site-header-search-container">
-            <form class="site-header-search closed">
-              <input type="text" placeholder="Search">
-              <button type="submit">
-                <span class="font-icon-search"></span>
-              </button>
-              <div class="overlay"></div>
-            </form>
-          </div>
-
-          &lt;!&ndash;user profile부분&ndash;&gt;
-
-          <a routerLink="/login" [hidden]="logined">로그인/회원가입</a>
-
-          <div class="dropdown user-menu" [hidden]="!logined">
-            <button class="dropdown-toggle" id="dd-user-menu" type="button" data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-              <img src="src/assets/img/avatar-2-64.png" alt="">
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd-user-menu">
-              <a class="dropdown-item" routerLink="/change"><span class="font-icon glyphicon glyphicon-user"></span>내 정보수정</a>
-              <a class="dropdown-item" routerLink="/buildcaselately"><span
-                class="font-icon glyphicon glyphicon-book"></span>최근
-                본 사례 조회</a>
-              <a class="dropdown-item" routerLink="/buildcaseselected"><span
-                class="font-icon glyphicon glyphicon-check"></span>찜한 사례 조회</a>
-              <a class="dropdown-item" routerLink="/consultingMyListInfo"><span
-                class="font-icon glyphicon glyphicon-check"></span>내 컨설팅 정보</a>
-              <a class="dropdown-item" routerLink="/"><span class="font-icon glyphicon glyphicon-question-sign"></span>고객상담(Q&A)</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" (click)="logout()"><span class="font-icon glyphicon glyphicon-log-out"></span>Logout</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="mobile-menu-right-overlay"></div>
-        <div class="site-header-collapsed">
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-&lt;!&ndash; 해더 수정본 &ndash;&gt;
-
-
-<div class="mobile-menu-left-overlay" ></div> &lt;!&ndash; [hidden]="router.url==='/login'" &ndash;&gt;
-<ul class="main-nav nav nav-inline"> &lt;!&ndash;  [hidden]="router.url==='/login'" &ndash;&gt;
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
-  </li>
-
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">시공사례</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" routerLink="/buildcaseinput">시공사례입력</a>
-      <a class="dropdown-item" routerLink="/buildcaselist">시공사례조회</a>
-    </div>
-  </li>
-
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">컨설팅</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" routerLink="/consultingCounsel">상담 받기</a>
-      <a class="dropdown-item" routerLink="/consultingListInfo">컨설팅 정보 조회</a>
-    </div>
-  </li>
-
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">등록업체정보</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" routerLink="/bizList">업체 목록</a>
-    </div>
-  </li>
-</ul>
-&lt;!&ndash; 사이드 바  &ndash;&gt;-->
-
 <router-outlet></router-outlet>
 
 <!-- Footer
-		============================================= -->
+      ============================================= -->
 <footer id="footer" class="dark">
 
   <div class="container">
@@ -265,20 +181,19 @@
       <div class="col_one_third">
 
         <div class="widget clearfix">
-
-          <img src="../assets/images/footer-widget-logo.png" alt="" class="footer-logo">
-
-          <p>We believe in <strong>Simple</strong>, <strong>Creative</strong> &amp; <strong>Flexible</strong> Design Standards with a Retina &amp; Responsive Approach. Browse the amazing Features this template offers.</p>
+          <strong>VR,3D,건축</strong><br>
+          <strong>인테리어도면</strong><br>
+          <strong>3D&VR Interior</strong><br>
 
           <div style="background: url('../assets/images/world-map.png') no-repeat center center; background-size: 100%;">
             <address>
-              <strong>Headquarters:</strong><br>
-              795 Folsom Ave, Suite 600<br>
-              San Francisco, CA 94107<br>
+              <strong>주소</strong><br>
+              전라북도 전주시 전북대학교<br>
+              아늑한집(cozyhouzz)<br>
             </address>
-            <abbr title="Phone Number"><strong>Phone:</strong></abbr> (91) 8547 632521<br>
-            <abbr title="Fax"><strong>Fax:</strong></abbr> (91) 11 4752 1433<br>
-            <abbr title="Email Address"><strong>Email:</strong></abbr> info@canvas.com
+            <abbr title="Phone Number"><strong>Phone:</strong></abbr> (010) 6310 2751 <br>
+            <abbr title="Fax"><strong>Fax:</strong></abbr> (0303) 3441 2109 <br>
+            <abbr title="Email Address"><strong>Email:</strong></abbr> kcmin@naver.com
           </div>
 
         </div>
@@ -288,7 +203,7 @@
       <div class="col_one_third">
 
         <div class="widget clearfix">
-          <h4>Client Testimonials</h4>
+          <h4>"아늑한 집"을 쓰면 뭐가 좋아요?</h4>
 
           <div class="fslider testimonial no-image nobg noborder noshadow nopadding" data-animation="slide" data-arrows="false">
             <div class="flexslider">
@@ -298,10 +213,9 @@
                     <a href="#"><img src="../assets/images/testimonials/3.jpg" alt="Customer Testimonails"></a>
                   </div>
                   <div class="testi-content">
-                    <p>Similique fugit repellendus expedita excepturi iure perferendis provident quia eaque. Repellendus, vero numquam?</p>
+                    <p>처음부터 끝까지 "아늑한 집"의 고객만족 서비스로 내집, 내 가게를 믿고 맡기세요!</p>
                     <div class="testi-meta">
-                      Steve Jobs
-                      <span>Apple Inc.</span>
+                      시공의뢰조회
                     </div>
                   </div>
                 </div>
@@ -310,10 +224,9 @@
                     <a href="#"><img src="../assets/images/testimonials/2.jpg" alt="Customer Testimonails"></a>
                   </div>
                   <div class="testi-content">
-                    <p>Natus voluptatum enim quod necessitatibus quis expedita harum provident eos obcaecati id culpa corporis molestias.</p>
+                    <p>저희 "아늑한 집"이 함께 매출과 고객 만족도를 동시에 올려드립니다!</p>
                     <div class="testi-meta">
-                      Collis Ta'eed
-                      <span>Envato Inc.</span>
+                      시공업체
                     </div>
                   </div>
                 </div>
@@ -322,10 +235,9 @@
                     <a href="#"><img src="../assets/images/testimonials/1.jpg" alt="Customer Testimonails"></a>
                   </div>
                   <div class="testi-content">
-                    <p>Incidunt deleniti blanditiis quas aperiam recusandae consequatur ullam quibusdam cum libero illo rerum!</p>
+                    <p>내방, 우리집찾으러 돌아다니기 지치셨나요? 360VR 미리보기로 쉽고 빠르게 내방, 우리집을 찾으러 오세요!</p>
                     <div class="testi-meta">
-                      John Doe
-                      <span>XYZ Inc.</span>
+                     세입자
                     </div>
                   </div>
                 </div>
@@ -422,13 +334,13 @@
     <div class="container clearfix">
 
       <div class="col_half">
-        Copyrights &copy; 2014 All Rights Reserved by Canvas Inc.
+        <strong>아늑한 집(cozyhouzz)</strong>
       </div>
 
       <div class="col_half col_last tright">
         <div class="fright clearfix">
           <div class="copyrights-menu copyright-links nobottommargin">
-            <a href="#">Home</a>/<a href="#">About</a>/<a href="#">Features</a>/<a href="#">Portfolio</a>/<a href="#">FAQs</a>/<a href="#">Contact</a>
+            <a href="#">Homepage</a>/<a href="#">Blog</a>/<a href="#">FAQs</a>/<a href="#">Contents</a>
           </div>
         </div>
       </div>

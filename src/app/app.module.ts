@@ -32,18 +32,17 @@ import { BuildCaseLately } from './buildCase/buildCaseLately/buildCaseLately';
 import { BuildCaseList } from './buildCase/buildCaseList/buildCaseList';
 import { BuildCaseDetail } from './buildCase/detail/detail';
 
-import { RoomInfoInput } from './roomInfo/input';
-import { RoomInfoUpdate } from './roomInfo/update';
-import { RoomInfoList } from './roomInfo/list/list';
-import { RoomInfoDetail } from './roomInfo/detail';
-import { RoomInfoLately } from './roomInfo/lately';
-
 import { ConsultingCounsel } from './consulting/consultingCounsel/consultingCounsel';
 import { ConsultingDetail } from './consulting/consultingDetail/consultingDetail';
 import { ConsultingListInfo } from './consulting/consultingListInfo/consultingListInfo';
 import { ConsultingMyListInfo } from './consulting/consultingMyListInfo/consultingMyListInfo';
 import { ConsultingChange} from './consulting/consultingchange/consultingchange';
 
+import { RoomInfoInput } from './roomInfo/input';
+import { RoomInfoUpdate } from './roomInfo/update';
+import { RoomInfoList } from './roomInfo/list';
+import { RoomInfoDetail } from './roomInfo/detail';
+import { RoomInfoLately } from './roomInfo/lately';
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -58,8 +57,8 @@ import { ConsultingChange} from './consulting/consultingchange/consultingchange'
     BizList, BizListDetail,
     MainPage,
     BuildCaseInput, BuildCaseUpdate, BuildCaseLately, BuildCaseList, BuildCaseDetail,
-    RoomInfoList,
-    ConsultingCounsel, ConsultingDetail, ConsultingListInfo, ConsultingMyListInfo, ConsultingChange
+    ConsultingCounsel, ConsultingDetail, ConsultingListInfo, ConsultingMyListInfo, ConsultingChange,
+    RoomInfoInput, RoomInfoUpdate, RoomInfoList, RoomInfoDetail, RoomInfoLately
   ],
   imports: [ // import Angular's modules
     BrowserModule,
