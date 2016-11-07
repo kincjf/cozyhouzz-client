@@ -23,7 +23,7 @@ import { BuildCaseDetail } from './buildCase/detail/detail';
 
 import { RoomInfoInput } from './roomInfo/input';
 import { RoomInfoUpdate } from './roomInfo/update';
-import { RoomInfoList } from './roomInfo/list/list';
+import { RoomInfoList } from './roomInfo/list';
 import { RoomInfoDetail } from './roomInfo/detail';
 import { RoomInfoLately } from './roomInfo/lately';
 

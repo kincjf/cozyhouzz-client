@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http'
 import { contentHeaders } from '../../common/headers';
+import {MultipartItem} from "../../common/multipart-upload/multipart-item";
+import {MultipartUploader} from "../../common/multipart-upload/multipart-uploader";
 import { config } from '../../common/config';
 
 const template = require('./list.html');
@@ -41,8 +43,8 @@ export class RoomInfoList {
         this.pageSize = 4;
         this.pageStartIndex = 0;
 
-        let URL = [config.serverHost, config.path.room + "?pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
-
+        let URL = [config.serverHost, config.path.roomInfo + "?pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+        console.log(URL);
         this.http.get(URL, {headers:contentHeaders}) //서버로부터 필요한 값 받아오기
             .map(res => res.json())//받아온 값을 json형식으로 변경
             .subscribe(
@@ -52,9 +54,13 @@ export class RoomInfoList {
                     for(var roomData of response.RoomInfo) {
                         //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
                         this.returnedDatas.push({
+                            idx: roomData.idx,
                             memberIdx: roomData.memberIdx,
-                            companyName: roomData.companyName,
-                            aboutCompanyShort: roomData.aboutCompanyShort
+                            title: roomData.title,
+                            address: roomData.address,
+                            deposit: roomData.deposit,
+                            monthlyRentFee: roomData.monthlyRentFee,
+                            floor: roomData.floor
                         });
                     }
 
