@@ -17,6 +17,7 @@ export const config = {
       changeBizSignup: "api/user/biz",
       consulting: "api/consult",
       buildCase: "api/build-case",
+      roomInfo: "api/room",
       bizStore: "api/biz-store"
     }
   },
@@ -30,6 +31,7 @@ export const config = {
       changeBizSignup: "api/user/biz",
       consulting: "api/consult",
       buildCase: "api/build-case",
+      roomInfo: "api/room",
       bizStore: "api/biz-store"
     }
   }
