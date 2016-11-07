@@ -31,7 +31,7 @@ export class RoomInfoInput {
     jwt: string;
     public decodedJwt: any;
     public data: any;
-    memberType: string;
+    memberType: number;
     confirmMemberType: number = 3;      //"임대업자가 접속 했는지 확인 하기위한 값, 3:임대업자
 
     private uploader: MultipartUploader;

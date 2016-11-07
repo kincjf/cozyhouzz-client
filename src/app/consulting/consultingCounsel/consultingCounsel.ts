@@ -1,7 +1,7 @@
 /**
  * Created by insu on 2016-08-29.
  */
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { contentHeaders} from '../../common/headers';
@@ -31,7 +31,7 @@ export class ConsultingCounsel{
   havePrefBizMember: boolean;
 
 
-  constructor(public router: Router, public http: Http) {
+  constructor(public router: Router, public http: Http, private el: ElementRef) {
     this.jwt = localStorage.getItem('id_token');//login시 저장된 jwt값 가져오기
     this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);//jwt값 decoding
     contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
@@ -47,7 +47,8 @@ export class ConsultingCounsel{
   consultingRegister(event, title, buildType, userName, telephone, email, expectBuildPrice, buildPlace, buildPostCode, buildPlaceDetail, expectBuildTotalArea, expectBuildStartDate, expectConsultDate, reqContents){
     event.preventDefault();
     //lived에 들어갈 radio버튼에서 체크된 값 가져오기
-    var lived 		= $(':radio[name="optionsRadios"]:checked').val();
+    // var lived 		= $(':radio[name="optionsRadios"]:checked').val();
+    var lived = jQuery(this.el.nativeElement).find(':radio[name="optionsRadios"]:checked').val();
     //우편번호, 주소, 상세주소를 JSON string로 변환하여 저장
     buildPlace = JSON.stringify([buildPostCode, buildPlace, buildPlaceDetail]);
     //html받은 값들을 json형식으로 저장

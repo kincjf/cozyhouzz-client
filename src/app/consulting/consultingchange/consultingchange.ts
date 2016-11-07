@@ -1,7 +1,7 @@
 /**
  * Created by InSuJeong on 2016-09-13.
  */
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http } from '@angular/http';
 import { contentHeaders } from '../../common/headers';
@@ -47,7 +47,7 @@ export class ConsultingChange implements AfterViewInit {
    - UI개선
    */
 
-  constructor(public router: Router, public http: Http,  private route: ActivatedRoute ) {
+  constructor(public router: Router, public http: Http,  private route: ActivatedRoute, private el: ElementRef ) {
     this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
     this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);//jwt값 decoding
     contentHeaders.set('Authorization',this.jwt);//Header에 jwt값 추가하기
@@ -97,8 +97,9 @@ export class ConsultingChange implements AfterViewInit {
   consultingchanging(event, title, buildType, userName, telephone, email, expectBuildPrice, buildPlace, buildPostCode, buildPlaceDetail, expectBuildTotalArea, expectBuildStartDate, expectConsultDate, reqContents){
     event.preventDefault();
     //lived에 들어갈 radio버튼에서 체크된 값 가져오기
-    var lived 		= $(':radio[name="optionsRadios"]:checked').val();
-    //우편번호, 주소, 상세주소를 JSON string로 묶음
+    // var lived 		= $(':radio[name="optionsRadios"]:checked').val();
+    var lived = jQuery(this.el.nativeElement).find(':radio[name="optionsRadios"]:checked').val();
+      //우편번호, 주소, 상세주소를 JSON string로 묶음
     buildPlace = JSON.stringify([buildPostCode, buildPlace, buildPlaceDetail]);
     //html받은 값들을 json형식으로 저장
     let body= JSON.stringify({title, buildType, userName, telephone, email, expectBuildPrice, buildPlace, lived, expectBuildTotalArea, expectBuildStartDate, expectConsultDate, reqContents});

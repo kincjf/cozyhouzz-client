@@ -5,8 +5,8 @@ import {Component, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Http} from '@angular/http';
 import {contentHeaders} from '../../common/headers';
-import {MultipartItem} from "../../common/multipart-upload/multipart-item";
-import {MultipartUploader} from "../../common/multipart-upload/multipart-uploader";
+// import {MultipartItem} from "../../common/multipart-upload/multipart-item";
+// import {MultipartUploader} from "../../common/multipart-upload/multipart-uploader";
 import {config} from '../../common/config';
 
 const template = require('./index.html');
@@ -114,7 +114,7 @@ export class RoomInfoDetail {
      차후 개선방안 : 없음
      */
     onUpdateBuildCase() {
-        this.router.navigate(['update/room/:roomListIdx'+this.selectedId]); //수정 버튼을 누르면 수정 컴포턴트로 이동
+        this.router.navigate(['update/room/'+this.selectedId]); //수정 버튼을 누르면 수정 컴포턴트로 이동
     }
 
     /*
@@ -133,22 +133,23 @@ export class RoomInfoDetail {
             this.selectedId = buildCaseIdx;
         });
 
-        let URL = [config.serverHost, config.path.buildCase, this.selectedId].join('/');
+        let URL = [config.serverHost, config.path.roomInfo, this.selectedId].join('/');
 
         //시공사례조회에서 클릭한 시공사례글에 대한 정보를 가져와서 각 항목별 변수에 저장함
         this.http.get(URL, {headers:contentHeaders}) //서버로부터 필요한 값 받아오기
             .map(res => res.json())//받아온 값을 json형식으로 변경
             .subscribe(
                 response => {
-                    this.title = response.buildCaseInfo.title;
-                    this.buildType = response.buildCaseInfo.buildType;
-                    this.buildPlace = JSON.parse(response.buildCaseInfo.buildPlace);
-                    this.buildTotalArea = response.buildCaseInfo.buildTotalArea;
-                    this.mainPreviewImage = response.buildCaseInfo.mainPreviewImage;
-                    this.buildTotalPrice = response.buildCaseInfo.buildTotalPrice;
-                    this.HTMLText = response.buildCaseInfo.HTMLText;
-                    this.VRImages = JSON.parse(response.buildCaseInfo.VRImages);
-                    this.memberIdx = response.buildCaseInfo.memberIdx;
+                    // console.log(response);
+                    this.title = response.roomInfo.title;
+                    this.buildType = response.roomInfo.buildType;
+                    this.buildPlace = JSON.parse(response.roomInfo.buildPlace);
+                    this.buildTotalArea = response.roomInfo.buildTotalArea;
+                    this.mainPreviewImage = response.roomInfo.mainPreviewImage;
+                    this.buildTotalPrice = response.roomInfo.buildTotalPrice;
+                    this.HTMLText = response.roomInfo.HTMLText;
+                    this.VRImages = JSON.parse(response.roomInfo.VRImages);
+                    this.memberIdx = response.roomInfo.memberIdx;
 
                     this.onBizUserInfo();
 
