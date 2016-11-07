@@ -1,0 +1,52 @@
+<!-- Page Title
+		============================================= -->
+<section id="page-title">
+
+    <div class="container clearfix">
+        <h1>방정보 조회</h1>
+        <span>여러가지 방정보를 한눈에 확인할수 있습니다.</span>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active">방정보 조회</li>
+        </ol>
+    </div>
+
+</section><!-- #page-title end -->
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <!-- Posts
+            ============================================= -->
+            <div id="posts" class="post-grid grid-container post-masonry grid-2 clearfix">
+
+                <div class="entry clearfix" *ngFor="let roomInfo of returnedDatas">
+                    <div class="entry-image">
+                        <a routerLink="/detail/room/{{roomInfo.idx}}"><img class="image_fade" src="./src/assets/images/blog/grid/12.jpg" alt="Standard Post with Image"></a>
+                    </div>
+                    <div class="entry-title">
+                        <h2><a routerLink="/detail/room/{{roomInfo.idx}}>{{roomInfo.title}}"></a></h2>
+                    </div>
+                    <div class="entry-content">
+                        <p><strong>주소 :</strong>{{roomInfo.address}}</p>
+                        <div class="tagcloud clearfix bottommargin">
+                            <a href="#">보증금 {{roomInfo.deposit}}만원</a>
+                            <a href="#">월세 {{roomInfo.monthlyRentFee}}만원</a>
+                            <a href="#">방 {{roomInfo.floor}}개</a>
+                        </div>
+                        <a routerLink="/detail/room/{{roomInfo.idx}}" class="more-link">Read More</a>
+                    </div>
+                </div>
+
+            </div><!-- #posts end -->
+
+        </div>
+
+    </div>
+
+</section><!-- #content end -->
