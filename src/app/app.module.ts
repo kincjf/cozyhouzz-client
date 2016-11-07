@@ -32,6 +32,12 @@ import { BuildCaseLately } from './buildCase/buildCaseLately/buildCaseLately';
 import { BuildCaseList } from './buildCase/buildCaseList/buildCaseList';
 import { BuildCaseDetail } from './buildCase/detail/detail';
 
+import { RoomInfoInput } from './roomInfo/input';
+import { RoomInfoUpdate } from './roomInfo/update';
+import { RoomInfoList } from './roomInfo/list/list';
+import { RoomInfoDetail } from './roomInfo/detail';
+import { RoomInfoLately } from './roomInfo/lately';
+
 import { ConsultingCounsel } from './consulting/consultingCounsel/consultingCounsel';
 import { ConsultingDetail } from './consulting/consultingDetail/consultingDetail';
 import { ConsultingListInfo } from './consulting/consultingListInfo/consultingListInfo';
@@ -52,6 +58,7 @@ import { ConsultingChange} from './consulting/consultingchange/consultingchange'
     BizList, BizListDetail,
     MainPage,
     BuildCaseInput, BuildCaseUpdate, BuildCaseLately, BuildCaseList, BuildCaseDetail,
+    RoomInfoList,
     ConsultingCounsel, ConsultingDetail, ConsultingListInfo, ConsultingMyListInfo, ConsultingChange
   ],
   imports: [ // import Angular's modules
