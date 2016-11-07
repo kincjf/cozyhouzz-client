@@ -30,7 +30,7 @@
                         <a routerLink="/detail/room/{{roomInfo.idx}}"><img class="image_fade" src="./src/assets/images/blog/grid/12.jpg" alt="Standard Post with Image"></a>
                     </div>
                     <div class="entry-title">
-                        <h2><a routerLink="/detail/room/{{roomInfo.idx}}>{{roomInfo.title}}"></a></h2>
+                        <h2><a routerLink="/detail/room/{{roomInfo.idx}}">{{roomInfo.title}}</a></h2>
                     </div>
                     <div class="entry-content">
                         <p><strong>주소 :</strong>{{roomInfo.address}}</p>
@@ -44,8 +44,28 @@
                 </div>
 
             </div><!-- #posts end -->
-
+            <!-- Pagination
+                           ============================================= -->
+            <!--페이지 1~10 까지 확인 가능 disable이나 현재 들어와 있는 페이지 active같은 기능을 추가해주어야함-->
+            <div id="pagination" class="center">
+                <ul class="pagination nobottommargin">
+                    <li (click)="beforePageButton()"><a>&laquo;</a></li>
+                    <li (click)="pageNumberButton(1)" [ngClass]="{'active': currentPageNumber == 1}"><a>1</a></li>
+                    <li (click)="pageNumberButton(2)" [ngClass]="{'active': currentPageNumber == 2}"><a>2</a></li>
+                    <li (click)="pageNumberButton(3)" [ngClass]="{'active': currentPageNumber == 3}"><a>3</a></li>
+                    <li (click)="pageNumberButton(4)" [ngClass]="{'active': currentPageNumber == 4}"><a>4</a></li>
+                    <li (click)="pageNumberButton(5)" [ngClass]="{'active': currentPageNumber == 5}"><a>5</a></li>
+                    <li (click)="pageNumberButton(6)" [ngClass]="{'active': currentPageNumber == 6}"><a>6</a></li>
+                    <li (click)="pageNumberButton(7)" [ngClass]="{'active': currentPageNumber == 7}"><a>7</a></li>
+                    <li (click)="pageNumberButton(8)" [ngClass]="{'active': currentPageNumber == 8}"><a>8</a></li>
+                    <li (click)="pageNumberButton(9)" [ngClass]="{'active': currentPageNumber == 9}"><a>9</a></li>
+                    <li (click)="pageNumberButton(10)" [ngClass]="{'active': currentPageNumber == 10}"><a>10</a></li>
+                    <li (click)="nextPageButton()"><a>&raquo;</a></li>
+                </ul>
+            </div>
         </div>
+
+
 
     </div>
 
