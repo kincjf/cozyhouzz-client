@@ -57,13 +57,25 @@
                     </div><!-- .entry end -->
 
 
-
-
                     <div style="text-align: center">
                         <button class="btn btn-rounded btn-inline" (click)="onListBuildCase()">목록</button>
                         <button class="btn btn-rounded btn-inline" *ngIf="loginMemberIdx != null && loginMemberIdx == memberIdx" (click)="onDelBuildCase()">삭제</button>
                         <button hidden class="btn btn-rounded btn-inline" *ngIf="loginMemberIdx != null && loginMemberIdx == memberIdx" (click)="onUpdateBuildCase()">수정</button>
                     </div>
+
+                    <!-- Comments
+                              ============================================= -->
+                    <div id="comments" class="clearfix">
+
+                        <h3 id="comments-title"><span><fb:comments-count href="http://themes.semicolonweb.com/html/coworker/blog-single-split.php"></fb:comments-count></span> Comments</h3>
+
+                        <!-- Facebook Comments
+                        ============================================= -->
+                        <div class="fb-comments" data-width="100%" data-href="http://themes.semicolonweb.com/html/coworker/blog-single-split.php" data-numposts="5" data-colorscheme="light"></div>
+                        <!-- Facebook Comments end -->
+
+                    </div><!-- #comments end -->
+
 
                 </div>
 
@@ -77,25 +89,25 @@
                         <table>
                             <tbody>
                             <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">공사명</label>
+                                <label class="col-xs-5 form-control-label">방이름</label>
                                 <td class="col-xs-8">
                                     <p>{{title}}</p>
                                 </td>
                             </div>
                             <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">공사구분</label>
+                                <label class="col-xs-5 form-control-label">방정보</label>
                                 <td class="col-xs-8">
                                     <p>{{buildType}}</p>
                                 </td>
                             </div>
                             <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">공사면적</label>
+                                <label class="col-xs-5 form-control-label">방크기</label>
                                 <td class="col-xs-8">
                                     <p>{{buildTotalArea}} 평</p>
                                 </td>
                             </div>
                             <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">공사지역</label>
+                                <label class="col-xs-5 form-control-label">위치</label>
                                 <td class="col-xs-8">
                                     <p>{{buildPlace}}</p>
                                 </td>
