@@ -7,7 +7,7 @@
         <div id="contact-form-overlay" class="clearfix">
 
             <div class="fancy-title title-dotted-border">
-                <h3>Send us an Email</h3>
+                <h3>방정보 입력</h3>
             </div>
 
             <div class="contact-widiget">
@@ -16,42 +16,179 @@
 
                 <!-- Contact Form
                 ============================================= -->
-                <form class="nobottommargin" id="template-contactform" name="template-contactform" action="include/sendemail.php" method="post">
+                <form (submit)="roomRegister($event, title.value, deposit.value, roomType.value, monthlyRentFee.value, floor.value, manageExpense.value, manageService.value, areaSize.value, actualSize.value, parking.value, elevator.value,
+                supplyOption.value, HTMLText.value, addressPostCode.value ,address.value, addressDetail.value, extraInfo.value, locationInfo.value, VRImages.value, mainPreviewImage.value, regionCategory.value)"
+                      class="nobottommargin" id="template-contactform" name="template-contactform" method="post">
 
-                    <div class="col_half">
-                        <label for="template-contactform-name">이름 <small>*</small></label>
-                        <input type="text" id="template-contactform-name" name="template-contactform-name" value="" class="sm-form-control required" />
-                    </div>
+                    <!--제목-->
 
-                    <div class="col_half col_last">
-                        <label for="template-contactform-email">대표이미지 <small>*</small></label>
-                        <input type="email" id="template-contactform-email" name="template-contactform-email" value="" class="required email sm-form-control" />
+                    <div class="col_full">
+                        <label for="template-contactform-title">제목<small>*</small></label>
+                        <input type="text" id="template-contactform-title" name="template-contactform-title" value="" class="sm-form-control required" />
                     </div>
 
                     <div class="clear"></div>
 
-                    <div class="col_half">
-                        <label for="template-contactform-phone">방구조</label>
-                        <input type="text" id="template-contactform-phone" name="template-contactform-phone" value="" class="sm-form-control" />
-                    </div>
+                    <!--방 주소-->
 
-                    <div class="col_half col_last">
-                        <label for="template-contactform">이미지 업로드 <small>*</small></label>
-                        <input type="file" id="template-contactform-file" name="template-contactform-file" value="" class="required sm-form-control" />
+                    <div>
+                        <label for="postcode">주소<small>*</small></label>
+                        <div>
+                            <div class="col_one_fourth">
+                                <input type="text" #addressPostCode class="sm-form-control postcodify_postcode5" id="postcode" placeholder="우편번호" readonly>
+                            </div>
+
+                            <div class="col_one_fourth">
+                                <button class="button button-border button-rounded button-amber" type="button" name="search" id="postcodify_search_button" value="검색">검색</button><br />
+                            </div>
+
+                            <div class="clear"></div>
+
+                            <div class="col_half">
+                                <input class="sm-form-control postcodify_address" type="text" #address id="address" placeholder="주소" readonly>
+                            </div>
+                            <div class="col_half col_last">
+                                <input class="sm-form-control postcodify_details" type="text" #address id="details" placeholder="상세주소">
+                            </div>
+                            <div class="col_half col_last">
+                                <input class="sm-form-control postcodify_extra_info" type="text" #addressExtraInfo id="extraInfo" placeholder="참고항목">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="clear"></div>
 
-                    <div class="col_full">
-                        <label for="template-contactform-subject">등록번호 <small>*</small></label>
-                        <input type="text" id="template-contactform-subject" name="template-contactform-subject" value="" class="required sm-form-control" />
+                    <!--방구조-->
+
+                    <div class="col_half">
+                        <label for="template-contactform-roomType">방구조<small>*</small></label>
+                        <input type="text" id="template-contactform-roomType" name="template-contactform-roomType" value="" class="required sm-form-control" />
                     </div>
 
+                    <div class="clear"></div>
+
+                    <!--건물정보-->
+
+                    <div class="col_half">
+                        <label for="template-contactform-locationInfo">건물정보<small>*</small></label>
+                        <input type="text" id="template-contactform-locationInfo" name="template-contactform-locationInfo" value="" class="required sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--대표 미리보기 이미지-->
+
+                    <div class="col_half">
+                        <label for="template-contactform-mainPreviewImage">대표 미리보기 이미지<small>*</small></label>
+                        <input type="file" id="template-contactform-mainPreviewImage" name="template-contactform-mainPreviewImage" value="" class="required sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--VR 이미지 / 대표 이미지-->
+
                     <div class="col_full">
-                        <label for="template-contactform">Message <small>*</small></label>
+                        <label for="template-contactform">사진 <small>*</small></label>
+                        <div>VR 이미지</div>
+                        <input type="file" id="template-contactform-VRImages" name="template-contactform-VRImages" value="" class="required sm-form-control" />
+                        <div>대표 이미지</div>
+                        <input type="file" id="template-contactform-mainPreviewImage" name="template-contactform-mainPreviewImage" value="" class="required sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--보증금-->
+
+                    <div class="col_half">
+                        <label for="template-contactform-deposit">보증금</label>
+                        <input type="number" id="template-contactform-deposit" name="template-contactform-deposit" value="" placeholder="만원" class="sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--월세-->
+
+                    <div class="col_half">
+                        <label for="template-contactform-monthlyRentFee">월세</label>
+                        <input type="number" id="template-contactform-monthlyRentFee" name="template-contactform-monthlyRentFee" value="" placeholder="만원" class="sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--관리비-->
+
+                    <div class="col_half">
+                        <label for="template-contactform-manageExpense">관리비</label>
+                        <input type="text" id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--관리비 포함항목-->
+
+                    <div class="col_full">
+                        <label for="template-contactform-manageService">관리비 포함항목</label>
+                        <input type="text" id="template-contactform-manageService" name="template-contactform-manageService" value="" class="sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--크기-->
+
+                    <div class="col_half">
+                        <label for="template-contactform-areaSize">크기</label>
+                        <input type="number" id="template-contactform-areaSize" name="template-contactform-areaSize" value="" class="sm-form-control" />
+                    </div>
+
+                    <!--실재 크기-->
+
+                    <div class="col_half col_last">
+                        <label for="template-contactform-actualSize">실재 크기</label>
+                        <input type="number" id="template-contactform-actualSize" name="template-contactform-actualSize" value="" class="sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--주차-->
+
+                    <div class="col_half">
+                        <label for="template-contactform-parking">주차</label>
+                        <input type="number" id="template-contactform-parking" name="template-contactform-parking" value="" class="sm-form-control" />
+                    </div>
+
+                    <!--엘레베이터-->
+
+                    <div class="col_half col_last">
+                        <label for="template-contactform-elevator">엘레베이터</label>
+                        <input type="number" id="template-contactform-elevator" name="template-contactform-elevator" value="" class="sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--옵션-->
+
+                    <div class="col_full">
+                        <label for="template-contactform-supplyOption">옵션</label>
+                        <input type="text" id="template-contactform-supplyOption" name="template-contactform-supplyOption" value="" class="sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--입주 가능일-->
+
+                    <div class="col_half">
+                        <label for="template-contactform-availableDate">입주 가능일</label>
+                        <input type="date" id="template-contactform-availableDate" name="template-contactform-availableDate" value="" class="sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--상세설명-->
+
+                    <div class="col_full">
                         <!-- summernote -->
                         <div class="col_full">
-                            <label for="template-contactform">시공내용 <small>*</small></label>
+                            <label for="template-contactform">상세설명 <small>*</small></label>
                             <div class="summernote-theme-1" rows="6" cols="30">
                                 <div #HTMLText class="summernote"></div>
                             </div>
@@ -72,7 +209,7 @@
                     </div>
 
                     <div class="col_full">
-                        <button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit">Send Message</button>
+                        <button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit">제출</button>
                     </div>
 
                 </form>
@@ -101,3 +238,5 @@
         </div><!-- Contact Form Overlay End -->
 
     </div>
+
+</section>
