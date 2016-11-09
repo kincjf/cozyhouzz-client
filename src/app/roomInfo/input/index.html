@@ -16,15 +16,17 @@
 
                 <!-- Contact Form
                 ============================================= -->
-                <form (submit)="roomRegister($event, title.value, deposit.value, roomType.value, monthlyRentFee.value, floor.value, manageExpense.value, manageService.value, areaSize.value, actualSize.value, parking.value, elevator.value,
-                supplyOption.value, HTMLText.value, addressPostCode.value ,address.value, addressDetail.value, extraInfo.value, locationInfo.value, VRImages.value, mainPreviewImage.value, regionCategory.value)"
-                      class="nobottommargin" id="template-contactform" name="template-contactform" method="post">
+                <form (submit)="addRoomInfo($event, title.value, roomType.value, mainPreviewImage.value,
+                deposit.value, monthlyRentFee.value, floor.value, manageExpense.value, manageService.value, areaSize.value, actualSize.value, parking.value, elevator.value,
+                supplyOption.value, availableDate.value, HTMLText.value, locationInfo.value, VRImages.value, regionCategory.value, 
+                addressPostCode.value, address.value, addressDetail.value, addressExtraInfo.value)"
+                      class="nobottommargin" id="roominfo-inputform" name="roominfo-inputform" method="post" enctype="multipart/form-data">
 
                     <!--제목-->
 
                     <div class="col_full">
-                        <label for="template-contactform-title">제목<small>*</small></label>
-                        <input type="text" id="template-contactform-title" name="template-contactform-title" value="" class="sm-form-control required" />
+                        <label for="roominfo-title">제목<small>*</small></label>
+                        <input type="text" #title id="roominfo-title" name="roominfo-title" value="" class="sm-form-control required" />
                     </div>
 
                     <div class="clear"></div>
@@ -48,7 +50,7 @@
                                 <input class="sm-form-control postcodify_address" type="text" #address id="address" placeholder="주소" readonly>
                             </div>
                             <div class="col_half col_last">
-                                <input class="sm-form-control postcodify_details" type="text" #address id="details" placeholder="상세주소">
+                                <input class="sm-form-control postcodify_details" type="text" #addressDetail id="details" placeholder="상세주소">
                             </div>
                             <div class="col_half col_last">
                                 <input class="sm-form-control postcodify_extra_info" type="text" #addressExtraInfo id="extraInfo" placeholder="참고항목">
@@ -202,10 +204,7 @@
                     </div>
 
                     <div class="col_full">
-
-                        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                        <div class="g-recaptcha" data-sitekey="6LfijgUTAAAAACPt-XfRbQszAKAJY0yZDjjhMUQT"></div>
-
+                        <recaptcha (resolved)="resolved($event)" siteKey="6LcLPwsUAAAAAOqysXiEPmdSpjwTDUUCmL6LiJez"></recaptcha>
                     </div>
 
                     <div class="col_full">

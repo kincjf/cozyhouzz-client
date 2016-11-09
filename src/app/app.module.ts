@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { RecaptchaModule } from 'ng2-recaptcha';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -64,7 +65,8 @@ import { RoomInfoLately } from './roomInfo/lately';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true })
+    RouterModule.forRoot(ROUTES, { useHash: true }),
+    RecaptchaModule.forRoot(),
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

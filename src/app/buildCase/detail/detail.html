@@ -1,5 +1,4 @@
 <!-- 상세보기 -->
-<!--<script src="src/assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.js"></script>-->
 <section id="content">
 
     <div class="content-wrap" style="padding-bottom: 0px;">
@@ -19,25 +18,25 @@
                         <!-- Entry Title
                                         ============================================= -->
                         <div class="entry-title">
-                            <h2>This is a Standard post with a Preview Image</h2>
+                            <h2>{{title}}</h2>
                         </div><!-- .entry-title end -->
 
                         <!-- Entry Meta
                                         ============================================= -->
                         <ul class="entry-meta clearfix">
-                            <li><i class="icon-calendar3"></i> 10th July 2014</li>
-                            <li><a href="#"><i class="icon-user"></i> admin</a></li>
-                            <li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>
+                            <li><i class="icon-calendar3"></i>{{initWriteDate}}</li>
+                            <li><a href="#"><i class="icon-user"></i>{{buildTotalArea}}</a></li>
+                            <li><i class="icon-folder-open"></i><a href="#">{{buildType}}</a></li>
+                            <li><i class="icon-folder-open"></i><a href="#">{{buildTotalPrice}}</a></li>
                             <li><a href="#"><i class="icon-comments"></i> 43 Comments</a></li>
                             <li><a href="#"><i class="icon-camera-retro"></i></a></li>
                         </ul><!-- .entry-meta end -->
 
                         <!-- Entry Image
                                         ============================================= -->
-                        <div class="entry-image">
-                            <a href="#">
-                                <img src="{{serverHost}}/{{companyIntroImage}}" style="width: 100%;">
-                            </a>
+                        <div id="pano" class="entry-image">
+                            <noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;text-align:center;"><td>ERROR:<br><br>Javascript not activated<br><br></td></tr></table></noscript>
+                            <!--<img src="{{serverHost}}/{{companyIntroImage}}" style="width: 100%;">-->
                         </div><!-- .entry-image end -->
 
                         <div class="entry-content notopmargin">
@@ -63,8 +62,10 @@
 
                     <div style="text-align: center">
                         <button class="btn btn-rounded btn-inline" (click)="onListBuildCase()">목록</button>
-                        <button class="btn btn-rounded btn-inline" *ngIf="loginMemberIdx != null && loginMemberIdx == memberIdx" (click)="onDelBuildCase()">삭제</button>
-                        <button hidden class="btn btn-rounded btn-inline" *ngIf="loginMemberIdx != null && loginMemberIdx == memberIdx" (click)="onUpdateBuildCase()">수정</button>
+                        <div style="display: inline;" *ngIf="loginMemberIdx != null && loginMemberIdx == memberIdx">
+                            <button class="btn btn-rounded btn-inline" (click)="onDelBuildCase()">삭제</button>
+                            <button hidden class="btn btn-rounded btn-inline" (click)="onUpdateBuildCase()">수정</button>
+                        </div>
                     </div>
 
                 </div>
@@ -82,6 +83,12 @@
                                     <label class="col-xs-5 form-control-label">공사명</label>
                                     <td class="col-xs-8">
                                         <p>{{title}}</p>
+                                    </td>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-5 form-control-label">시공업체명</label>
+                                    <td class="col-xs-8">
+                                        <p>{{companyName}}</p>
                                     </td>
                                 </div>
                                 <div class="form-group row">
@@ -131,34 +138,3 @@
     </div>
 
 </section><!-- #content end -->
-
-<!--<div role="tabpanel" class="tab-pane fade" id="tabs-4-tab-3">-->
-    <!--<section class="card" style="max-width: 900px">-->
-        <!--<div class="card-block">-->
-            <!--<div class="row">-->
-                <!--<div class="col-sm-4">-->
-                    <!--<img class="gallery-picture" src={{companyIntroImage}} style="width: 100%;">-->
-                <!--</div>-->
-                <!--<div class="col-sm-8" style="margin-top: 45px">-->
-                    <!--<h2>{{companyName}}</h2>-->
-                    <!--<p>{{aboutCompany}}</p>-->
-                <!--</div>-->
-            <!--</div>&lt;!&ndash;.row&ndash;&gt;-->
-
-            <!--<div class="row" style="margin-top: 45px">-->
-                <!--<div class="col-sm-2">-->
-                    <!--<h4>주요시공분야</h4>-->
-                <!--</div>-->
-                <!--<div class="col-sm-4">-->
-                    <!--<p>{{mainWorkField}}</p>-->
-                <!--</div>-->
-                <!--<div class="col-sm-2" >-->
-                    <!--<h4>시공지역</h4>-->
-                <!--</div>-->
-                <!--<div class="col-sm-4">-->
-                    <!--<p>{{mainWorkArea}}</p>-->
-                <!--</div>-->
-            <!--</div>&lt;!&ndash;.row&ndash;&gt;-->
-        <!--</div>-->
-    <!--</section>-->
-<!--</div>&lt;!&ndash;.tab-pane&ndash;&gt;-->
