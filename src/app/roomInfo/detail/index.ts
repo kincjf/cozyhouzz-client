@@ -58,6 +58,7 @@ export class RoomInfoDetail {
     private mainWorkField : string;
     private mainWorkArea : string;
     private companyIntroImage : string;
+    private contact: string;
 
 
 
@@ -84,6 +85,7 @@ export class RoomInfoDetail {
                     this.aboutCompany = this.data.bizUserInfo.aboutCompany;
                     this.mainWorkField = this.data.bizUserInfo.mainWorkField;
                     this.mainWorkArea = this.data.bizUserInfo.mainWorkArea;
+                    this.contact = this.data.bizUserInfo.contact;
                     this.companyIntroImage = this.data.bizUserInfo.companyIntroImage;     // conmpanyIntroImage
                 },
                 error => {
