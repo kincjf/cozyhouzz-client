@@ -1,5 +1,6 @@
 <section id="slider" class="slider-parallax swiper_wrapper clearfix" style="height: 550px;" data-loop="true">
-
+  <!-- banner
+        ============================================= -->
   <div class="swiper-container swiper-parent">
     <div class="swiper-wrapper">
       <div class="swiper-slide" style="background-image: url('../../../assets/construction/images/slider/1.jpg'); background-position: center bottom;">
@@ -43,6 +44,9 @@
       ============================================= -->
 <section id="content">
 
+
+
+
   <div class="content-wrap">
 
     <div class="promo promo-light promo-full uppercase bottommargin-lg header-stick">
@@ -54,42 +58,8 @@
       </div>
     </div>
 
-    <div class="container clearfix">
 
-      <div class="col_one_third nobottommargin">
-        <div class="feature-box media-box">
-          <div class="fbox-media">
-            <img style="border-radius: 2px;" src="../../../assets/images/dream1.jpg" alt="Why choose Us?">
-          </div>
-          <div class="fbox-desc">
-            <h3>Design 1<span class="subtitle">industrial style type</span></h3>
-          </div>
-        </div>
-      </div>
 
-      <div class="col_one_third nobottommargin">
-        <div class="feature-box media-box">
-          <div class="fbox-media">
-            <img style="border-radius: 2px;" src="../../../assets/images/dream4.jpg" alt="Effective Planning">
-          </div>
-          <div class="fbox-desc">
-            <h3>Design 2<span class="subtitle">cozy style type</span></h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="col_one_third nobottommargin col_last">
-        <div class="feature-box media-box">
-          <div class="fbox-media">
-            <img style="border-radius: 2px;" src="../../../assets/images/dream3.jpg" alt="Why choose Us?">
-          </div>
-          <div class="fbox-desc">
-            <h3>Design 3<span class="subtitle">modern style type</span></h3>
-          </div>
-        </div>
-      </div>
-
-    </div>
 
     <div class="section parallax dark" style="background-image: url('../../../assets/construction/images/slider/1.jpg'); padding: 120px 0;" data-stellar-background-ratio="0.4">
 
@@ -141,6 +111,48 @@
       </div>
 
     </div>
+
+
+
+
+
+    <div class="section nobottommargin">
+      <h2 class="center nobottommargin ls1">이달의 best 시공사례 </h2>
+    </div>
+
+    <div id="portfolio" class="portfolio grid-container portfolio-full clearfix">
+
+      <article class="portfolio-item pf-media pf-icons" *ngFor="let buildCaseInfo of returnedDatas">
+        <div class="portfolio-image">
+         <a routerLink="/buildcasedetail{{buildCaseInfo.idx}}"><img src="{{serverHost}}/{{buildCaseInfo.mainPreviewImage}}" alt></a>
+        </div>
+        <div class="portfolio-desc">
+          <h3><a style="color: #9d270b" routerLink="/buildcasedetail/{{buildCaseInfo.idx}}">{{buildCaseInfo.title}}</a></h3>
+          <div class="entry-content">
+            <ul class="entry-meta clearfix">
+              <li><span class="label label-warning">정보</span></li>
+              <li><a href="#"><i class="icon-time"></i> 시간 </a></li>
+              <li><a href="#"><i class="icon-map-marker2"></i> 장소 </a></li>
+           </ul>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+
+
+
+
+    <a href="portfolio.html" class="button button-3d nobottomborder button-full center tright bottommargin-lg t300 font-primary" style="font-size: 26px;">
+      <div class="container clearfix">
+        저희 아늑한집과 함께 후외 없는 선택을 하시기 바랍니다!<strong>무료 견적 신청</strong> <i class="icon-angle-right" style="top:3px;"></i>
+      </div>
+    </a>
+
+
+
+
 
     <div class="container clearfix">
 
@@ -204,33 +216,10 @@
       </div>
 
     </div>
-
-    <div class="section nobottommargin">
-      <h2 class="center nobottommargin ls1">이달의 best 시공사례 </h2>
-    </div>
-
-    <div id="portfolio" class="portfolio grid-container portfolio-full clearfix">
-
-      <article class="portfolio-item pf-media pf-icons" *ngFor="let buildCaseInfo of returnedDatas">
-        <div class="portfolio-image">
-          <img src="{{serverHost}}/{{buildCaseInfo.mainPreviewImage}}" alt>
-          <div class="portfolio-overlay">
-            <a href="#" class="center-icon"><i class="icon-line-ellipsis"></i></a>
-          </div>
-        </div>
-        <div class="portfolio-desc">
-          <h3><a routerLink="/buildcasedetail/{{buildCaseInfo.idx}}">{{buildCaseInfo.title}}</a></h3>
-        </div>
-      </article>
-
-    </div>
+    <div class="clear"></div><div class="line notopmargin"></div>
 
 
-    <a href="portfolio.html" class="button button-3d nobottomborder button-full center tright bottommargin-lg t300 font-primary" style="font-size: 26px;">
-      <div class="container clearfix">
-        저희 아늑한집과 함께 후외 없는 선택을 하시기 바랍니다!<strong>무료 견적 신청</strong> <i class="icon-angle-right" style="top:3px;"></i>
-      </div>
-    </a>
+
 
     <div class="container topmargin-lg cleafix">
 
@@ -300,14 +289,15 @@
                   </div>
                 </div>
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
+
+
+
+
+
 
       <div class="col_one_fourth col_last">
 
@@ -322,10 +312,13 @@
             <input type="text" class="hidden" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />
             <button type="submit" id="quick-contact-form-submit" name="quick-contact-form-submit" class="button button-small button-3d nomargin" value="submit">Send Email</button>
           </form>
-
         </div>
-
       </div>
+
+
+
+
+
 
       <div class="clear"></div><div class="line notopmargin"></div>
 
@@ -346,7 +339,6 @@
 
       <div class="col_three_fifth col_last">
         <h4>최근 이슈</h4>
-
         <div id="oc-posts" class="owl-carousel posts-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="true" data-items-xxs="1" data-items-lg="2">
 
           <div class="oc-item">
@@ -410,12 +402,14 @@
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
+
+
+
+
+
 
     <div class="line topmargin-sm"></div>
 
