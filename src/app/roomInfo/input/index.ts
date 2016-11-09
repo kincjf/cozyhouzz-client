@@ -47,10 +47,11 @@ export class RoomInfoInput {
      작업상황 : 없음
      차후 개선방안 : 없음
      */
-    addBuildCase(event, title, inputBuildType, buildPlace, buildPostCode, buildPlaceDetail, buildTotalArea, buildTotalPrice) {
+    addRoomCase(event, title, deposit, roomType, monthlyRentFee, floor, manageExpense,manageService, areaSize, actualSize, parking, elevator,
+                supplyOption, HTMLText, addressPostCode, address, addressDetail, extraInfo, locationInfo, VRImages, mainPreviewImage, regionCategory) {
         var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
-        var arrBuildPlace = [buildPostCode, buildPlace, buildPlaceDetail]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
+        var arrRoomPlace = [addressPostCode, address, addressDetail, extraInfo]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
 
         if (HTMLTextLen < 100) { //시공사례 내용이 100자 이상 인지 확인
             alert("방정보 내용을 100자 이상 작성 해야 합니다.");
@@ -66,13 +67,31 @@ export class RoomInfoInput {
             if (this.multipartItem.formData == null)
                 this.multipartItem.formData = new FormData();
 
-            this.multipartItem.formData.append("title", title);
-            this.multipartItem.formData.append("buildType", inputBuildType);
-            this.multipartItem.formData.append("buildPlace", JSON.stringify(arrBuildPlace));
-            this.multipartItem.formData.append("buildTotalArea", buildTotalArea);
-            this.multipartItem.formData.append("buildTotalPrice", buildTotalPrice);
-            this.multipartItem.formData.append("HTMLText", HTMLText);
-            this.multipartItem.formData.append("previewImage", this.previewImage);
+            this.multipartItem.formData.append("title", title);//제목
+            this.multipartItem.formData.append("deposit", deposit);//보증금
+            this.multipartItem.formData.append("roomType", roomType);//방구조
+            this.multipartItem.formData.append("monthlyRentFee", monthlyRentFee);//월세
+            this.multipartItem.formData.append("floor", floor);//층/건물층수
+            this.multipartItem.formData.append("manageExpense", manageExpense);//관리비
+            this.multipartItem.formData.append("manageService", manageService);//관리비 포함목록
+            this.multipartItem.formData.append("areaSize", areaSize);//크기
+            this.multipartItem.formData.append("actualSize", actualSize);//실재크기
+            this.multipartItem.formData.append("parking", parking);//주차공간
+            this.multipartItem.formData.append("elevator", elevator);//엘레베이터
+            this.multipartItem.formData.append("supplyOption", supplyOption);//엘레베이터
+            this.multipartItem.formData.append("HTMLText", HTMLText);//상세설명
+            this.multipartItem.formData.append("address", JSON.stringify(arrRoomPlace));//주소
+            this.multipartItem.formData.append("locationInfo", locationInfo);//건물정보
+            this.multipartItem.formData.append("VRImages", VRImages);//VR이미지
+            this.multipartItem.formData.append("mainPreviewImage", mainPreviewImage);//대표 미리보기 이미지
+            this.multipartItem.formData.append("regionCategory", regionCategory);//지역 카테고리 ??????
+
+            // this.multipartItem.formData.append("buildType", inputBuildType);
+            // this.multipartItem.formData.append("buildPlace", JSON.stringify(arrBuildPlace));
+            // this.multipartItem.formData.append("buildTotalArea", buildTotalArea);
+            // this.multipartItem.formData.append("buildTotalPrice", buildTotalPrice);
+            // this.multipartItem.formData.append("HTMLText", HTMLText);
+            // this.multipartItem.formData.append("previewImage", this.previewImage);
 
             this.multipartItem.upload();
 
@@ -91,6 +110,35 @@ export class RoomInfoInput {
             }
         }
     }
+
+    // roomRegister(event, title, deposit, roomType, monthlyRentFee, floor, manageExpense,manageService, areaSize, actualSize, parking, elevator,
+    //              supplyOption, HTMLText, addressPostCode, address, addressDetail, extraInfo, locationInfo, VRImages, mainPreviewImage, regionCategory) {
+    //     event.preventDefault();
+    //
+    //     var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
+    //     //var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
+    //     //우편번호, 주소, 상세주소를 JSON string로 변환하여 저장
+    //     address = JSON.stringify([addressPostCode, address, addressDetail, extraInfo]);
+    //     //html받은 값들을 json형식으로 저장
+    //     let body= JSON.stringify({title, deposit, roomType, monthlyRentFee, floor, manageExpense,manageService, areaSize, actualSize, parking, elevator,
+    //         supplyOption, HTMLText, address, locationInfo, VRImages, mainPreviewImage, regionCategory});
+    //
+    //     let URL = [config.serverHost, config.path.roomInfo].join('/');
+    //
+    //     this.http.post(URL, body, {headers: contentHeaders})
+    //         .subscribe(
+    //             response=>{
+    //                 //서버로부터 응답을 받은 후 내 컨설팅정보 조회로 이동
+    //                 alert("상담 등록 완료");
+    //                 this.router.navigate(['/list/room']);
+    //             },
+    //             error => {
+    //                 //서버로부터 응답 실패시 경고창
+    //                 alert(error.text());
+    //                 console.log(error.text());
+    //             }
+    //         )
+    // }
 
     /*
      Method 역할 : VR 이미지를 input 하면 이미지 전송 formData에 추가
@@ -130,6 +178,7 @@ export class RoomInfoInput {
 
     ngAfterViewInit() {
         this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
+        let thatJwt = this.jwt;
 
         if (!this.jwt) { //로그인을 했는지 점검
             alert("로그인이 필요합니다.");
@@ -146,9 +195,13 @@ export class RoomInfoInput {
             return;
         } else {
             let URL = [config.serverHost, config.path.roomInfo].join('/');
+
             this.uploader = new MultipartUploader({url: URL});
             this.multipartItem = new MultipartItem(this.uploader);
             this.multipartItem.formData = new FormData();
+
+            // 우편번호 팝업창 띄우기
+            jQuery(this.el.nativeElement).find("#postcodify_search_button").postcodifyPopUp();
 
             // viewChild is set after the view has been initialized
             jQuery(this.el.nativeElement).find('.summernote').summernote({
@@ -159,8 +212,7 @@ export class RoomInfoInput {
                 placeholder: '내용을 100자 이상 입력 해주세요.',
                 callbacks: {
                     onImageUpload: function (files, editor) {
-                        EditorImageUploader.getInstance().upload(files, editor);
-                    }
+                        EditorImageUploader.getInstance().upload(files, editor, {authToken: thatJwt});                    }
                 }
             });
         }

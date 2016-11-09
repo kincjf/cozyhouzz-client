@@ -16,7 +16,7 @@ export class EditorImageUploader {
   private multipartItem:MultipartItem;
   private editor:any;
 
-  public upload : (files:File[], editor:any) => void;
+  public upload : (files:File[], editor:any, options: any) => void;
 
   constructor() {
     if(EditorImageUploader._instance){
@@ -30,8 +30,11 @@ export class EditorImageUploader {
     this.multipartItem.headers = contentHeaders;
     this.multipartItem.withCredentials = false;
 
-    this.upload = (files:File[], editor:any) => {
+    this.upload = (files:File[], editor:any, options: any) => {
       console.debug("EditorImageUploader.ts & upload() ==>");
+
+      this.uploader.authToken = options.authToken;
+
       if (null == files){
         console.error("EditorImageUploader.ts & upload() form invalid.");
         return;

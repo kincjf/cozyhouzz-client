@@ -31,7 +31,7 @@ export class BuildCaseInput {
     public data: any;
     memberType: string;
     confirmMemberType: string;
-    inputBuildTypes = [
+    buildTypes = [
         {name: '주거공간'},
         {name: '상업공간'},
         {name: '기타'}
@@ -50,7 +50,7 @@ export class BuildCaseInput {
      작업상황 : 없음
      차후 개선방안 : 없음
      */
-    addBuildCase(event, title, inputBuildType, buildPlace, buildPostCode, buildPlaceDetail, buildTotalArea, buildTotalPrice) {
+    addBuildCase(event, title, buildType, buildPlace, buildPostCode, buildPlaceDetail, buildTotalArea, buildTotalPrice) {
         var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
         var arrBuildPlace = [buildPostCode, buildPlace, buildPlaceDetail]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
@@ -70,7 +70,7 @@ export class BuildCaseInput {
                 this.multipartItem.formData = new FormData();
 
             this.multipartItem.formData.append("title", title);
-            this.multipartItem.formData.append("buildType", inputBuildType);
+            this.multipartItem.formData.append("buildType", buildType);
             this.multipartItem.formData.append("buildPlace", JSON.stringify(arrBuildPlace));
             this.multipartItem.formData.append("buildTotalArea", buildTotalArea);
             this.multipartItem.formData.append("buildTotalPrice", buildTotalPrice);
@@ -132,6 +132,7 @@ export class BuildCaseInput {
 
     ngAfterViewInit() {
         this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
+        let thatJwt = this.jwt;
 
         if (!this.jwt) { //로그인을 했는지 점검
             alert("로그인이 필요합니다.");
@@ -149,9 +150,13 @@ export class BuildCaseInput {
             return;
         } else {
             let URL = [config.serverHost, config.path.buildCase].join('/');
+
             this.uploader = new MultipartUploader({url: URL});
             this.multipartItem = new MultipartItem(this.uploader);
             this.multipartItem.formData = new FormData();
+
+            // 우편번호 팝업창 띄우기
+            jQuery(this.el.nativeElement).find("#postcodify_search_button").postcodifyPopUp();
 
             // viewChild is set after the view has been initialized
             jQuery(this.el.nativeElement).find('.summernote').summernote({
@@ -162,7 +167,7 @@ export class BuildCaseInput {
                 placeholder: '내용을 100자 이상 입력 해주세요.',
                 callbacks: {
                     onImageUpload: function (files, editor) {
-                        EditorImageUploader.getInstance().upload(files, editor);
+                        EditorImageUploader.getInstance().upload(files, editor, {authToken: thatJwt});
                     }
                 }
             });
