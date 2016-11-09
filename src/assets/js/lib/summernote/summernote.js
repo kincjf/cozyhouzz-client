@@ -4132,7 +4132,7 @@
 
       // If onImageUpload options setted
       if (callbacks.onImageUpload) {
-        context.triggerEvent('image.upload', files);
+        context.triggerEvent('image.upload', files, this);
       // else insert Image as dataURL
       } else {
         this.insertImages(files);
