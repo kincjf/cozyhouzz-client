@@ -25,22 +25,40 @@ export class RoomInfoDetail {
     public selectedId:number;
 
     public data: any;
-    title:string;
-    buildType:string;
-    buildPlace: any;
-    buildTotalArea:number;
-    mainPreviewImage:string;
-    buildTotalPrice:number;
-    HTMLText:any;
-    VRImages: any;
 
     memberIdx: number;
-    companyName: string;
-    aboutCompany: string;
-    mainWorkField: string;
-    mainWorkArea: string;
-    companyIntroImage: string;
     serverHost: string = config.serverHost;
+
+    private deposit: number;
+    private title: string;
+    private monthlyRentFee: number;
+    private floor: number;
+    private manageExpense: number;
+    private manageService: string;
+    private areaSize:number;
+    private actualSize:number;
+    private parking:number;
+    private elevator:number;
+    private supplyOption:string;
+    private parking:number;
+    private availableDate:string;
+    private address:string;
+    private locationInfo:string;
+    private VRImages:string;
+    private mainPreviewImage:string;
+    private coordinate:string;
+    private regionCategory:string;
+    private initWriteDate:string;
+    private createdAt:string;
+    // private updatedAt:string;
+    private HTMLText;
+
+    private companyName: string;
+    private aboutCompany: string;
+    private mainWorkField : string;
+    private mainWorkArea : string;
+    private companyIntroImage : string;
+
 
 
     constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el: ElementRef) {
@@ -84,7 +102,7 @@ export class RoomInfoDetail {
     onDelBuildCase() {
         if(this.loginMemberIdx == this.memberIdx) {
             if (confirm("삭제 하시겠습니까?")) {
-                let URL = [config.serverHost, config.path.buildCase, this.selectedId].join('/');
+                let URL = [config.serverHost, config.path.roomInfo, this.selectedId].join('/');
 
                 this.http.delete(URL, {headers:contentHeaders}) //서버에 삭제할 builcase idx 값 전달
                     .map(res => res.json())//받아온 값을 json형식으로 변경
@@ -114,7 +132,7 @@ export class RoomInfoDetail {
      차후 개선방안 : 없음
      */
     onUpdateBuildCase() {
-        this.router.navigate(['update/room/'+this.selectedId]); //수정 버튼을 누르면 수정 컴포턴트로 이동
+        this.router.navigate(['/update/room/'+this.selectedId]); //수정 버튼을 누르면 수정 컴포턴트로 이동
     }
 
     /*
@@ -129,8 +147,8 @@ export class RoomInfoDetail {
     ngAfterViewInit() {
         // URL 주소 뒤에 오는 param 값을 저장
         this.route.params.forEach((params: Params) => {
-            let buildCaseIdx = +params['buildCaseIdx'];
-            this.selectedId = buildCaseIdx;
+            let roomListIdx = +params['roomListIdx'];
+            this.selectedId = roomListIdx;
         });
 
         let URL = [config.serverHost, config.path.roomInfo, this.selectedId].join('/');
@@ -140,15 +158,32 @@ export class RoomInfoDetail {
             .map(res => res.json())//받아온 값을 json형식으로 변경
             .subscribe(
                 response => {
-                    // console.log(response);
+                    console.log(response);
                     this.title = response.roomInfo.title;
-                    this.buildType = response.roomInfo.buildType;
-                    this.buildPlace = JSON.parse(response.roomInfo.buildPlace);
-                    this.buildTotalArea = response.roomInfo.buildTotalArea;
-                    this.mainPreviewImage = response.roomInfo.mainPreviewImage;
-                    this.buildTotalPrice = response.roomInfo.buildTotalPrice;
-                    this.HTMLText = response.roomInfo.HTMLText;
-                    this.VRImages = JSON.parse(response.roomInfo.VRImages);
+                    this.deposit = response.roomInfo.deposit;
+                    // this.buildPlace = JSON.parse(response.buildCaseInfo.buildPlace);
+                    this.monthlyRentFee = response.roomInfo.monthlyRentFee;
+                    this.floor = response.roomInfo.floor;
+                    this.manageExpense = response.roomInfo.manageExpense;
+                    this.manageService = response.roomInfo.manageService ;
+                    // this.areaSize = JSON.parse(response.buildCaseInfo.VRImages);
+                    this.areaSize= response.roomInfo.areaSize ;
+                    this.actualSize= response.roomInfo.actualSize ;
+                    this.parking= response.roomInfo.parking;
+                    this.elevator= response.roomInfo.elevator;
+                    this.supplyOption= response.roomInfo.supplyOption;
+                    this.availableDate= response.roomInfo.availableDate;
+                    this.HTMLText= response.roomInfo.HTMLText;
+                    this.address= response.roomInfo.address;
+                    this.locationInfo= response.roomInfo.locationInfo;
+                    this.VRImages= response.roomInfo.VRImages;
+                    this.mainPreviewImage= response.roomInfo.mainPreviewImage;
+                    this.coordinate= response.roomInfo.coordinate;
+                    this.regionCategory= response.roomInfo.regionCategory;
+                    this.initWriteDate= response.roomInfo.initWriteDate;
+                    this.createdAt= response.roomInfo.createdAt;
+                    // this.updateAt= response.roomInfo.updateAt;
+
                     this.memberIdx = response.roomInfo.memberIdx;
 
                     this.onBizUserInfo();

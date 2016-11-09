@@ -40,9 +40,32 @@
 
                         <div class="entry-content notopmargin">
 
+                            <table class="table table-bordered">
+                                <!--<thead>-->
+                                <!--<tr>-->
+                                    <!--<th>#</th>-->
+                                    <!--<th>First Name</th>-->
+                                    <!--<th>Last Name</th>-->
+                                    <!--<th>Username</th>-->
+                                <!--</tr>-->
+                                <!--</thead>-->
+                                <tbody>
+                                <tr>
+                                    <td rowspan="2"></td>
+                                    <td>title</td>
+                                    <td>{{title}}</td>
+                                    <td>deposit</td>
+                                    <td>{{deposit}}</td>
+                                </tr>
+                                <tr>
+                                    <td>monthlyRentFee</td>
+                                    <td>{{monthlyRentFee}}</td>
+                                    <td>floor</td>
+                                    <td>{{floor}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
 
-                            <div role="tabpanel" class="tab-pane fade in active" style="word-break: break-all" [innerHTML]="HTMLText">
-                            </div><!--.tab-pane-->
 
 
                             <div class="clear"></div>
@@ -90,29 +113,40 @@
 
                     <div class="widget widget-twitter-feed clearfix">
                         <table>
-                            <tbody>
-                            <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">방이름</label>
+                            <tbody><div class="form-group row">
+                                <label class="col-xs-5 form-control-label">Idx</label>
                                 <td class="col-xs-8">
-                                    <p>{{title}}</p>
+                                    <p>{{memberIdx}}</p>
                                 </td>
                             </div>
                             <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">방정보</label>
+                                <label class="col-xs-5 form-control-label">CompanyName</label>
                                 <td class="col-xs-8">
-                                    <p>{{buildType}}</p>
+                                    <p>{{companyName}}</p>
                                 </td>
                             </div>
                             <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">방크기</label>
+                                <label class="col-xs-5 form-control-label">aboutCompany</label>
                                 <td class="col-xs-8">
-                                    <p>{{buildTotalArea}} 평</p>
+                                    <p>{{aboutCompany}}</p>`
                                 </td>
                             </div>
                             <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">위치</label>
+                                <label class="col-xs-5 form-control-label">mainWorkField</label>
                                 <td class="col-xs-8">
-                                    <p>{{buildPlace}}</p>
+                                    <p>{{mainWorkField}} 평</p>
+                                </td>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xs-5 form-control-label">mainWorkArea</label>
+                                <td class="col-xs-8">
+                                    <p>{{mainWorkArea}}</p>
+                                </td>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xs-5 form-control-label">companyIntroImage</label>
+                                <td class="col-xs-8">
+                                    <p>{{companyIntroImage}}</p>
                                 </td>
                             </div>
                             </tbody>

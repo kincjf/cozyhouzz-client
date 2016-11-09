@@ -51,7 +51,7 @@ export class RoomInfoList {
                 response => {
                     this.data = response; // 해당값이 제대로 넘어오는지 확인후 프론트단에 내용추가
                     //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
-                    for(var roomData of response.RoomInfo) {
+                    for(var roomData of response.roomInfo) {
                         //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
                         this.returnedDatas.push({
                             idx: roomData.idx,
