@@ -17,7 +17,8 @@
                         <!-- Entry Title
                                         ============================================= -->
                         <div class="entry-title">
-                            <h2>This is a Standard post with a Preview Image</h2>
+                            <h2>{{title}}</h2>
+                            <!--<h2>This is a Standard post with a Preview Image</h2>-->
                         </div><!-- .entry-title end -->
 
                         <!-- Entry Meta
@@ -40,9 +41,32 @@
 
                         <div class="entry-content notopmargin">
 
+                            <table class="table table-bordered">
+                                <!--<thead>-->
+                                <!--<tr>-->
+                                    <!--<th>#</th>-->
+                                    <!--<th>First Name</th>-->
+                                    <!--<th>Last Name</th>-->
+                                    <!--<th>Username</th>-->
+                                <!--</tr>-->
+                                <!--</thead>-->
+                                <tbody>
+                                <tr>
+                                    <td rowspan="2"></td>
+                                    <td>보증금</td>
+                                    <td>{{deposit}}</td>
+                                    <td>월세</td>
+                                    <td>{{monthlyRentFee}}</td>
+                                </tr>
+                                <tr>
+                                    <td>관리비</td>
+                                    <td>{{manageExpense}}</td>
+                                    <td>계단</td>
+                                    <td>{{floor}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
 
-                            <div role="tabpanel" class="tab-pane fade in active" style="word-break: break-all" [innerHTML]="HTMLText">
-                            </div><!--.tab-pane-->
 
 
                             <div class="clear"></div>
@@ -91,28 +115,40 @@
                     <div class="widget widget-twitter-feed clearfix">
                         <table>
                             <tbody>
+                            <!--<div class="form-group row">-->
+                                <!--<label class="col-xs-5 form-control-label">Idx</label>-->
+                                <!--<td class="col-xs-8">-->
+                                    <!--<p>{{memberIdx}}</p>-->
+                                <!--</td>-->
+                            <!--</div>-->
                             <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">방이름</label>
+                                <label class="col-xs-5 form-control-label">업체명</label>
                                 <td class="col-xs-8">
-                                    <p>{{title}}</p>
+                                    <p>{{companyName}}</p>
                                 </td>
                             </div>
                             <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">방정보</label>
+                                <label class="col-xs-5 form-control-label">업체정보</label>
                                 <td class="col-xs-8">
-                                    <p>{{buildType}}</p>
+                                    <p>{{aboutCompany}}</p>`
+                                </td>
+                            </div>
+                            <!--<div class="form-group row">-->
+                                <!--<label class="col-xs-5 form-control-label">사업장 위치</label>-->
+                                <!--<td class="col-xs-8">-->
+                                    <!--<p>{{mainWorkField}} 평</p>-->
+                                <!--</td>-->
+                            <!--</div>-->
+                            <div class="form-group row">
+                                <label class="col-xs-5 form-control-label">사업장 위치</label>
+                                <td class="col-xs-8">
+                                    <p>{{mainWorkArea}}</p>
                                 </td>
                             </div>
                             <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">방크기</label>
+                                <label class="col-xs-5 form-control-label">연락처</label>
                                 <td class="col-xs-8">
-                                    <p>{{buildTotalArea}} 평</p>
-                                </td>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">위치</label>
-                                <td class="col-xs-8">
-                                    <p>{{buildPlace}}</p>
+                                    <p>{{contact}}</p>
                                 </td>
                             </div>
                             </tbody>
