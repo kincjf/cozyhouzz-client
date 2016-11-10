@@ -124,7 +124,7 @@
 
       <article class="portfolio-item pf-media pf-icons" *ngFor="let buildCaseInfo of returnedDatas">
         <div class="portfolio-image">
-         <a routerLink="/buildcasedetail{{buildCaseInfo.idx}}"><img src="{{serverHost}}/{{buildCaseInfo.mainPreviewImage}}" alt></a>
+          <a routerLink="/buildcasedetail{{buildCaseInfo.idx}}"><img src="{{serverHost}}/{{buildCaseInfo.mainPreviewImage}}" alt></a>
         </div>
         <div class="portfolio-desc">
           <h3><a style="color: #9d270b" routerLink="/buildcasedetail/{{buildCaseInfo.idx}}">{{buildCaseInfo.title}}</a></h3>
@@ -133,7 +133,7 @@
               <li><span class="label label-warning">정보</span></li>
               <li><a href="#"><i class="icon-time"></i> 시간 </a></li>
               <li><a href="#"><i class="icon-map-marker2"></i> 장소 </a></li>
-           </ul>
+            </ul>
           </div>
         </div>
       </article>
