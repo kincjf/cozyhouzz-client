@@ -71,6 +71,7 @@
     "@angularclass/conventions-loader": "^1.0.2",
     "@angularclass/hmr": "~1.2.0",
     "@angularclass/hmr-loader": "~3.0.2",
+    "@types/grecaptcha": "^2.0.30",
     "@types/jquery": "^2.0.33",
     "angular2-jwt": "^0.1.24",
     "assets-webpack-plugin": "^3.4.0",
@@ -86,7 +87,6 @@
     "zone.js": "~0.6.17"
   },
   "devDependencies": {
-    "@types/grecaptcha": "^2.0.30",
     "@types/hammerjs": "^2.0.33",
     "@types/jasmine": "^2.2.34",
     "@types/node": "^6.0.38",

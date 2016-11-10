@@ -178,7 +178,7 @@ export class RoomInfoDetail {
 
                     this.HTMLText = response.roomInfo.HTMLText;
                     this.locationInfo = response.roomInfo.locationInfo;
-                    this.VRImages = response.roomInfo.VRImages;
+                    this.VRImages = JSON.parse(response.roomInfo.VRImages);
                     this.coordinate = JSON.parse(response.roomInfo.coordinate);     // object
                     this.regionCategory = response.roomInfo.regionCategory;
                     this.initWriteDate = response.roomInfo.initWriteDate;       // Timestamp
