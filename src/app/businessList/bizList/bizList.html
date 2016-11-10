@@ -30,9 +30,9 @@
                 ============================================= -->
                 <div id="posts" class="post-grid grid-container clearfix" data-layout="fitRows">
 
-                    <div class="entry clearfix" *ngFor="let bizUserInfo of returnedDatas" (click)="onSelectBizList(bizUserInfo)">
-                        <div class="entry-image">
-                            <a href="#" data-lightbox="image"><img class="image_fade" src="./src/assets/images/blog/grid/12.jpg" alt="Standard Post with Image"></a>
+                    <div class="entry clearfix" *ngFor="let bizUserInfo of returnedDatas">
+                        <div class="portfolio-image">
+                            <a routerLink="/bizListDetail/{{bizUserInfo.memberIdx}}"><img src="{{serverHost}}/{{bizUserInfo.companyIntroImage}}" alt="Open Imagination"></a>
                         </div>
                         <div class="entry-title">
                             <h2><a routerLink="/bizListDetail/{{bizUserInfo.memberIdx}}">{{bizUserInfo.companyName}}</a></h2>

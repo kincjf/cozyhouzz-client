@@ -26,6 +26,8 @@ export class BizList {
   pageStartIndex: number;
   selectedmemberIdx: number;
 
+  serverHost = config.serverHost;
+
   returnedDatas = [];
 
   /*
@@ -54,6 +56,7 @@ export class BizList {
                   this.returnedDatas.push({
                     memberIdx: bizUser.memberIdx,
                     companyName: bizUser.companyName,
+                    companyIntroImage: bizUser.companyIntroImage,
                     aboutCompanyShort: bizUser.aboutCompanyShort
                   });
                 }
