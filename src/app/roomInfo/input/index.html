@@ -16,17 +16,15 @@
 
                 <!-- Contact Form
                 ============================================= -->
-                <form (submit)="addRoomInfo($event, title.value, roomType.value, mainPreviewImage.value,
-                deposit.value, monthlyRentFee.value, floor.value, manageExpense.value, manageService.value, areaSize.value, actualSize.value, parking.value, elevator.value,
-                supplyOption.value, availableDate.value, HTMLText.value, locationInfo.value, VRImages.value, regionCategory.value, 
-                addressPostCode.value, address.value, addressDetail.value, addressExtraInfo.value)"
+                <form (submit)="addRoomInfo($event, title.value, deposit.value, roomType.value, monthlyRentFee.value, floor.value, manageExpense.value, manageService.value, areaSize.value, actualSize.value, parking.value, elevator.value,
+                      supplyOption.value, HTMLText.value, addressPostCode.value, address.value, addressDetail.value, addressExtraInfo.value, locationInfo.value, regionCategory.value)"
                       class="nobottommargin" id="roominfo-inputform" name="roominfo-inputform" method="post" enctype="multipart/form-data">
 
                     <!--제목-->
 
                     <div class="col_full">
                         <label for="roominfo-title">제목<small>*</small></label>
-                        <input type="text" #title id="roominfo-title" name="roominfo-title" value="" class="sm-form-control required" />
+                        <input type="text" #title id="roominfo-title" name="roominfo-title" value="" class="sm-form-control" required />
                     </div>
 
                     <div class="clear"></div>
@@ -64,7 +62,7 @@
 
                     <div class="col_half">
                         <label for="template-contactform-roomType">방구조<small>*</small></label>
-                        <input type="text" id="template-contactform-roomType" name="template-contactform-roomType" value="" class="required sm-form-control" />
+                        <input type="text" #roomType id="template-contactform-roomType" name="template-contactform-roomType" value="" class="required sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
@@ -73,16 +71,7 @@
 
                     <div class="col_half">
                         <label for="template-contactform-locationInfo">건물정보<small>*</small></label>
-                        <input type="text" id="template-contactform-locationInfo" name="template-contactform-locationInfo" value="" class="required sm-form-control" />
-                    </div>
-
-                    <div class="clear"></div>
-
-                    <!--대표 미리보기 이미지-->
-
-                    <div class="col_half">
-                        <label for="template-contactform-mainPreviewImage">대표 미리보기 이미지<small>*</small></label>
-                        <input type="file" id="template-contactform-mainPreviewImage" name="template-contactform-mainPreviewImage" value="" class="required sm-form-control" />
+                        <input type="text" #locationInfo id="template-contactform-locationInfo" name="template-contactform-locationInfo" value="" class="required sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
@@ -92,9 +81,9 @@
                     <div class="col_full">
                         <label for="template-contactform">사진 <small>*</small></label>
                         <div>VR 이미지</div>
-                        <input type="file" id="template-contactform-VRImages" name="template-contactform-VRImages" value="" class="required sm-form-control" />
+                        <input type="file" id="template-contactform-VRImages" name="template-contactform-VRImages" value="" class="required sm-form-control" (change)="selectPreviewImage($event)" required/>
                         <div>대표 이미지</div>
-                        <input type="file" id="template-contactform-mainPreviewImage" name="template-contactform-mainPreviewImage" value="" class="required sm-form-control" />
+                        <input type="file" id="template-contactform-mainPreviewImage" name="template-contactform-mainPreviewImage" value="" class="required sm-form-control" (change)="selectVRImage($event)"  multiple required/>
                     </div>
 
                     <div class="clear"></div>
@@ -103,7 +92,7 @@
 
                     <div class="col_half">
                         <label for="template-contactform-deposit">보증금</label>
-                        <input type="number" id="template-contactform-deposit" name="template-contactform-deposit" value="" placeholder="만원" class="sm-form-control" />
+                        <input type="number" #deposit id="template-contactform-deposit" name="template-contactform-deposit" value="" placeholder="만원" class="sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
@@ -112,7 +101,7 @@
 
                     <div class="col_half">
                         <label for="template-contactform-monthlyRentFee">월세</label>
-                        <input type="number" id="template-contactform-monthlyRentFee" name="template-contactform-monthlyRentFee" value="" placeholder="만원" class="sm-form-control" />
+                        <input type="number" #monthlyRentFee id="template-contactform-monthlyRentFee" name="template-contactform-monthlyRentFee" value="" placeholder="만원" class="sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
@@ -121,7 +110,7 @@
 
                     <div class="col_half">
                         <label for="template-contactform-manageExpense">관리비</label>
-                        <input type="text" id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />
+                        <input type="text" #manageExpense id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
@@ -130,7 +119,7 @@
 
                     <div class="col_full">
                         <label for="template-contactform-manageService">관리비 포함항목</label>
-                        <input type="text" id="template-contactform-manageService" name="template-contactform-manageService" value="" class="sm-form-control" />
+                        <input type="text" #manageService id="template-contactform-manageService" name="template-contactform-manageService" value="" class="sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
@@ -139,14 +128,14 @@
 
                     <div class="col_half">
                         <label for="template-contactform-areaSize">크기</label>
-                        <input type="number" id="template-contactform-areaSize" name="template-contactform-areaSize" value="" class="sm-form-control" />
+                        <input type="number" #areaSize id="template-contactform-areaSize" name="template-contactform-areaSize" value="" class="sm-form-control" />
                     </div>
 
                     <!--실재 크기-->
 
                     <div class="col_half col_last">
                         <label for="template-contactform-actualSize">실재 크기</label>
-                        <input type="number" id="template-contactform-actualSize" name="template-contactform-actualSize" value="" class="sm-form-control" />
+                        <input type="number" #actualSize id="template-contactform-actualSize" name="template-contactform-actualSize" value="" class="sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
@@ -155,14 +144,29 @@
 
                     <div class="col_half">
                         <label for="template-contactform-parking">주차</label>
-                        <input type="number" id="template-contactform-parking" name="template-contactform-parking" value="" class="sm-form-control" />
+                        <input type="number" #parking id="template-contactform-parking" name="template-contactform-parking" value="" class="sm-form-control" />
                     </div>
 
                     <!--엘레베이터-->
 
                     <div class="col_half col_last">
                         <label for="template-contactform-elevator">엘레베이터</label>
-                        <input type="number" id="template-contactform-elevator" name="template-contactform-elevator" value="" class="sm-form-control" />
+                        <input type="number" #elevator id="template-contactform-elevator" name="template-contactform-elevator" value="" class="sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--층수-->
+
+                    <div class="col_half">
+                        <label for="template-contactform-floor">층수</label>
+                        <input type="number" #floor id="template-contactform-floor" name="template-contactform-floor" value="{{currentFloor}}" class="sm-form-control" />
+                    </div>
+
+                    <!--지역 태그-->
+                    <div class="col_half col_last">
+                        <label for="template-contactform-floor">지역 태그</label>
+                        <input type="number" #regionCategory id="template-contactform-floor" name="template-contactform-floor" value="{{currentFloor}}" class="sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
@@ -171,7 +175,7 @@
 
                     <div class="col_full">
                         <label for="template-contactform-supplyOption">옵션</label>
-                        <input type="text" id="template-contactform-supplyOption" name="template-contactform-supplyOption" value="" class="sm-form-control" />
+                        <input type="text" #supplyOption id="template-contactform-supplyOption" name="template-contactform-supplyOption" value="" class="sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
@@ -180,7 +184,7 @@
 
                     <div class="col_half">
                         <label for="template-contactform-availableDate">입주 가능일</label>
-                        <input type="date" id="template-contactform-availableDate" name="template-contactform-availableDate" value="" class="sm-form-control" />
+                        <input type="date" #availableDate id="template-contactform-availableDate" name="template-contactform-availableDate" value="" class="sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
