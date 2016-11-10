@@ -139,14 +139,13 @@
 
                     <div class="widget clearfix">
 
-                        <h4> 업체 로고 </h4>
+                        <h4> 업체 정보 </h4>
                         <div id="oc-portfolio-sidebar" class="owl-carousel carousel-widget" data-items="1" data-margin="10" data-loop="true" data-nav="false" data-autoplay="5000">
                             <div class="oc-item">
                                 <div class="iportfolio">
                                     <div class="portfolio-image">
-                                        <a href="portfolio-single.html">
-                                            <!--여기여기-->
-                                            <img src="images/portfolio/4/1.jpg" alt="Open Imagination">
+                                        <a routerLink="/bizListDetail/{{memberIdx}}">
+                                            <img src="{{serverHost}}/{{companyIntroImage}}" alt="Open Imagination">
                                         </a>
 
                                     </div>

@@ -179,9 +179,9 @@ export class RoomInfoDetail {
                     this.supplyOption= response.roomInfo.supplyOption;
                     this.availableDate= response.roomInfo.availableDate;
                     this.HTMLText= response.roomInfo.HTMLText;
-                    this.address= response.roomInfo.address;
+                    this.address= JSON.parse(response.roomInfo.address);
                     this.locationInfo= response.roomInfo.locationInfo;
-                    this.VRImages= response.roomInfo.VRImages;
+                    this.VRImages = JSON.parse(response.roomInfo.VRImages);
                     this.mainPreviewImage= response.roomInfo.mainPreviewImage;
                     this.coordinate= response.roomInfo.coordinate;
                     this.regionCategory= response.roomInfo.regionCategory;
