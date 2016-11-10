@@ -156,7 +156,15 @@ module.exports = function (options) {
         aggregateTimeout: 300,
         poll: 1000
       },
-      outputPath: helpers.root('dist')
+      outputPath: helpers.root('dist'),
+      proxy: {    // proxy 추가
+        '/images/**': {
+          target: 'http://localhost:3001',
+          // target: 'http://api.cozyhouzz.co.kr',
+          // pathRewrite: {'^/api' : ''},
+          secure: false
+        }
+      }
     },
 
     /*

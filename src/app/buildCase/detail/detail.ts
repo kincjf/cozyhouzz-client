@@ -6,6 +6,7 @@ import { config } from '../../common/config';
 
 declare var jQuery: JQueryStatic;
 const template = require('./detail.html');
+const jwt_decode = require('jwt-decode');
 
 @Component({
     selector: 'buildCaseDetail',
@@ -34,6 +35,9 @@ export class BuildCaseDetail {
   buildTotalPrice:number;
   HTMLText:any;
   VRImages: any;
+  coordinate: any;
+  regionCategory: any;
+  initWriteDate: any;
 
   memberIdx: number;
   companyName: string;
@@ -150,14 +154,18 @@ export class BuildCaseDetail {
           this.HTMLText = response.buildCaseInfo.HTMLText;
           this.VRImages = JSON.parse(response.buildCaseInfo.VRImages);
           this.memberIdx = response.buildCaseInfo.memberIdx;
+          this.coordinate = response.buildCaseInfo.coordinate;    // 나중에 좌표를 받아서 Daum Map에 뿌려준다
+          // this.coordinate = JSON.parse(response.buildCaseInfo.coordinate);
+          this.regionCategory = response.buildCaseInfo.regionCategory;
+          this.initWriteDate = response.buildCaseInfo.initWriteDate;
 
-            this.onBizUserInfo();
+          this.onBizUserInfo();
 
 
             // 비동기라서 통신이 완료 된 후에 해야지 member변수 값에 할당이 됨.
           // 일단 index.html에 짱박아놓음. 나중에 module로 빼자
           // proxy 이용
-          embedpano({swf:"src/assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.swf",
+          embedpano({swf:"assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.swf",
               xml: ['/' + this.VRImages.baseDir, this.VRImages.vtourDir, this.VRImages.xmlName].join('/'),
               target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
         },
@@ -170,7 +178,7 @@ export class BuildCaseDetail {
     // 삭제, 수정을 위한 Auth 값 할당
     this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
     if(this.jwt){ //jwt 값이 null 인지 즉, 로그인을 하지 않는 상태인지 확인
-      this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);//jwt값 decoding
+      this.decodedJwt = this.jwt && jwt_decode(this.jwt);//jwt값 decoding
       this.loginMemberIdx = this.decodedJwt.idx; //현재 로그인한 memberIdx 저장
     }else{
       this.loginMemberIdx = null; //로그인 하지 않는 상태일때는 null값
