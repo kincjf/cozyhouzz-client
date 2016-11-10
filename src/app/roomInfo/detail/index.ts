@@ -10,6 +10,8 @@ import {contentHeaders} from '../../common/headers';
 import {config} from '../../common/config';
 
 const template = require('./index.html');
+// const moment = require('moment');
+
 // const jwt_decode = require('jwt-decode');
 
 @Component({
@@ -59,6 +61,7 @@ export class RoomInfoDetail {
     private mainWorkArea : string;
     private companyIntroImage : string;
     private contact: string;
+    private roomType: number;
 
 
 
@@ -185,7 +188,7 @@ export class RoomInfoDetail {
                     this.initWriteDate= response.roomInfo.initWriteDate;
                     this.createdAt= response.roomInfo.createdAt;
                     // this.updateAt= response.roomInfo.updateAt;
-
+                    this.roomType = response.roomInfo.roomType;
                     this.memberIdx = response.roomInfo.memberIdx;
 
                     this.onBizUserInfo();
@@ -194,7 +197,7 @@ export class RoomInfoDetail {
                     // 비동기라서 통신이 완료 된 후에 해야지 member변수 값에 할당이 됨.
                     // 일단 index.html에 짱박아놓음. 나중에 module로 빼자
                     // proxy 이용
-                    embedpano({swf:"src/assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.swf",
+                    embedpano({swf:"assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.swf",
                         xml: ['/' + this.VRImages.baseDir, this.VRImages.vtourDir, this.VRImages.xmlName].join('/'),
                         target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
                 },
