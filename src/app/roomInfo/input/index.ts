@@ -60,6 +60,7 @@ export class RoomInfoInput {
             //파일 업로더를 위한 설정 값들 선언
             this.multipartItem.headers = contentHeaders;
             this.multipartItem.withCredentials = false;
+            this.uploader.url = [config.serverHost, config.path.roomInfo].join('/');
             this.uploader.authToken = this.jwt;
 
             if (this.multipartItem == null) {
@@ -110,35 +111,6 @@ export class RoomInfoInput {
                 }
             }
         }
-    }
-
-    roomRegister(event, title, deposit, roomType, monthlyRentFee, floor, manageExpense,manageService, areaSize, actualSize, parking, elevator,
-                 supplyOption, HTMLText, addressPostCode, address, addressDetail, extraInfo, locationInfo, VRImages, mainPreviewImage, regionCategory) {
-        event.preventDefault();
-    
-        var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
-        //var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
-        //우편번호, 주소, 상세주소를 JSON string로 변환하여 저장
-        address = JSON.stringify([addressPostCode, address, addressDetail, extraInfo]);
-        //html받은 값들을 json형식으로 저장
-        let body= JSON.stringify({title, deposit, roomType, monthlyRentFee, floor, manageExpense,manageService, areaSize, actualSize, parking, elevator,
-            supplyOption, HTMLText, address, locationInfo, VRImages, mainPreviewImage, regionCategory});
-    
-        let URL = [config.serverHost, config.path.roomInfo].join('/');
-    
-        this.http.post(URL, body, {headers: contentHeaders})
-            .subscribe(
-                response=>{
-                    //서버로부터 응답을 받은 후 내 컨설팅정보 조회로 이동
-                    alert("상담 등록 완료");
-                    this.router.navigate(['/list/room']);
-                },
-                error => {
-                    //서버로부터 응답 실패시 경고창
-                    alert(error.text());
-                    console.log(error.text());
-                }
-            )
     }
 
     /*
