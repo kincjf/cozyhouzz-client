@@ -96,9 +96,9 @@
                     <div class="col_full">
                         <label for="template-contactform">사진 <small>*</small></label>
                         <div>VR 이미지</div>
-                        <input type="file" id="template-contactform-VRImages" name="template-contactform-VRImages" value="" class="required sm-form-control" (change)="selectPreviewImage($event)" required/>
+                        <input type="file" (change)="selectVRImage($event)" id="template-contactform-VRImages" name="template-contactform-VRImages" value="" class="required sm-form-control" (change)="selectPreviewImage($event)" required/>
                         <div>대표 이미지</div>
-                        <input type="file" id="template-contactform-mainPreviewImage" name="template-contactform-mainPreviewImage" value="" class="required sm-form-control" (change)="selectVRImage($event)"  multiple required/>
+                        <input type="file" (change)="selectPreviewImage($event)" id="template-contactform-mainPreviewImage" name="template-contactform-mainPreviewImage" value="" class="required sm-form-control" (change)="selectVRImage($event)"  multiple required/>
                     </div>
 
                     <div class="clear"></div>
@@ -223,7 +223,7 @@
                     </div>
 
                     <div class="col_full">
-                        <recaptcha (resolved)="resolved($event)" siteKey="6LcLPwsUAAAAAOqysXiEPmdSpjwTDUUCmL6LiJez"></recaptcha>
+                        <recaptcha (resolved)="resolvedCaptcha($event)" siteKey="6LcLPwsUAAAAAOqysXiEPmdSpjwTDUUCmL6LiJez"></recaptcha>
                     </div>
 
                     <div class="col_full">
