@@ -80,7 +80,7 @@
     "jquery": "^3.1.1",
     "jwt-decode": "^2.1.0",
     "lodash": "^4.16.4",
-    "moment": "^2.15.1",
+    "moment": "^2.16.0",
     "ng2-recaptcha": "^1.4.0",
     "rxjs": "^5.0.0-rc.1",
     "zone.js": "~0.6.17"

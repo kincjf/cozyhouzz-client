@@ -1,4 +1,23 @@
+
 <section id="content">
+
+
+    <!-- Page Title
+    ============================================= -->
+    <section id="page-title">
+
+        <div class="container clearfix">
+            <h1>방 정보 상세보기</h1>
+            <span>방 정보를 상세히 보실 수 있습니다</span>
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">방 정보 상세보기</li>
+            </ol>
+        </div>
+
+    </section><!-- #page-title end -->
+
+
 
     <div class="content-wrap" style="padding-bottom: 0px;">
 
@@ -24,46 +43,71 @@
                         <!-- Entry Meta
                                         ============================================= -->
                         <ul class="entry-meta clearfix">
-                            <li><i class="icon-calendar3"></i> 10th July 2014</li>
-                            <li><a href="#"><i class="icon-user"></i> admin</a></li>
-                            <li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>
+                            <li><i class="icon-calendar3"></i> {{initWriteDate}}  </li>
+                            <li><a href="#"><!--<i class="icon-user"></i>--> 방구조 {{roomType}}</a></li>
+                            <!--<li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>-->
                             <li><a href="#"><i class="icon-comments"></i> 43 Comments</a></li>
-                            <li><a href="#"><i class="icon-camera-retro"></i></a></li>
+                            <!--<li><a href="#"><i class="icon-camera-retro"></i></a></li>-->
                         </ul><!-- .entry-meta end -->
 
                         <!-- Entry Image
                                         ============================================= -->
-                        <div class="entry-image">
-                            <a href="#">
-                                <img src="{{serverHost}}/{{companyIntroImage}}" style="width: 100%;">
-                            </a>
+                        <div id="pano" class="entry-image">
+                            <noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;text-align:center;"><td>ERROR:<br><br>Javascript not activated<br><br></td></tr></table></noscript>
+                            <!--<img src="{{serverHost}}/{{companyIntroImage}}" style="width: 100%;">-->
                         </div><!-- .entry-image end -->
 
+                        <!-- Entry Content ============================================= -->
                         <div class="entry-content notopmargin">
 
-                            <table class="table table-bordered">
+                            <table class="table table-striped">
                                 <!--<thead>-->
                                 <!--<tr>-->
-                                    <!--<th>#</th>-->
-                                    <!--<th>First Name</th>-->
-                                    <!--<th>Last Name</th>-->
-                                    <!--<th>Username</th>-->
+                                    <!--<th></th>-->
+                                    <!--<th></th>-->
+                                    <!--<th></th>-->
+                                    <!--<th></th>-->
+                                    <!--<th></th>-->
                                 <!--</tr>-->
                                 <!--</thead>-->
                                 <tbody>
                                 <tr>
-                                    <td rowspan="2"></td>
                                     <td>보증금</td>
                                     <td>{{deposit}}</td>
-                                    <td>월세</td>
-                                    <td>{{monthlyRentFee}}</td>
+                                    <td>관리<br/>항목</td>
+                                    <td>{{manageService}}</td>
                                 </tr>
                                 <tr>
+                                    <td>월세</td>
+                                    <td>{{monthlyRentFee}}</td>
                                     <td>관리비</td>
                                     <td>{{manageExpense}}</td>
-                                    <td>계단</td>
-                                    <td>{{floor}}</td>
                                 </tr>
+                                <tr>
+                                    <td>면적</td>
+                                    <td>{{areaSize}}</td>
+                                    <td>크기</td>
+                                    <td>{{actualSize}}</td>
+                                </tr>
+                                <tr>
+                                    <td>주차대수</td>
+                                    <td>{{parking}}</td>
+                                    <td>엘리베이터</td>
+                                    <td>{{elevator}}</td>
+                                </tr>
+                                <tr>
+                                    <td>옵션</td>
+                                    <td>{{supplyOption}}</td>
+                                    <td>입주 <br/>가능일</td>
+                                    <td>{{availableDate}}</td>
+                                </tr>
+                                <tr>
+                                    <td>주소</td>
+                                    <td>{{address}}</td>
+                                    <td>도로명주소</td>
+                                    <td>{{locationInfo}}</td>
+                                </tr>
+
                                 </tbody>
                             </table>
 
@@ -73,10 +117,17 @@
 
                         </div>
 
+                        <!-- Entry Content ============================================= -->
+                        <div class="entry-content notopmargin">
 
-                        <!-- Entry Content
-                                        ============================================= -->
 
+                            <div role="tabpanel" class="tab-pane fade in active" style="word-break: break-all" [innerHTML]="HTMLText">
+                            </div><!--.tab-pane-->
+
+
+                            <div class="clear"></div>
+
+                        </div>
 
                     </div><!-- .entry end -->
 
@@ -111,6 +162,27 @@
 
             <div class="sidebar nobottommargin col_last clearfix">
                 <div class="sidebar-widgets-wrap">
+
+                    <div class="widget clearfix">
+
+                        <h4> 업체 정보 </h4>
+                        <div id="oc-portfolio-sidebar" class="owl-carousel carousel-widget" data-items="1" data-margin="10" data-loop="true" data-nav="false" data-autoplay="5000">
+                            <div class="oc-item">
+                                <div class="iportfolio">
+                                    <div class="portfolio-image">
+                                        <a routerLink="/bizListDetail/{{memberIdx}}">
+                                            <img src="{{serverHost}}/{{companyIntroImage}}" alt="Open Imagination">
+                                        </a>
+
+                                    </div>
+                                    <!--<div class="portfolio-desc center nobottompadding">-->
+                                        <!--<h3><a href="portfolio-single.html">Open Imagination</a></h3>-->
+                                        <!--<span><a href="#">Media</a>, <a href="#">Icons</a></span>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="widget widget-twitter-feed clearfix">
                         <table>

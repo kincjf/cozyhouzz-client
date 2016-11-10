@@ -9,6 +9,7 @@ import {config} from '../../common/config';
 
 const template = require('./index.html');
 const jwt_decode = require('jwt-decode');
+// const moment = require('moment');
 
 @Component({
     selector: 'roomInfoDetail',
@@ -56,6 +57,7 @@ export class RoomInfoDetail {
     private companyLogo : string;
     private companyIntroImage : string;
     private contact: string;
+    private roomType: number;
 
     constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el: ElementRef) {
     }

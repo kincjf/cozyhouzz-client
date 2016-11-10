@@ -10,6 +10,7 @@ import { EditorImageUploader } from "../../common/editor-image-uploader";
 
 declare var jQuery: JQueryStatic;
 const template = require('./buildCaseUpdate.html');
+const jwt_decode = require('jwt-decode');
 
 @Component({
   selector: 'buildCaseUpdate',
@@ -53,7 +54,7 @@ export class BuildCaseUpdate {
 
   constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el:ElementRef) {
     this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
-    this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);//jwt값 decoding
+    this.decodedJwt = this.jwt && jwt_decode(this.jwt);//jwt값 decoding
     this.memberType = this.decodedJwt.memberType;
 //    contentHeaders.append('Authorization', this.jwt);//Header에 jwt값 추가하기
   }
@@ -89,16 +90,16 @@ export class BuildCaseUpdate {
       this.multipartItem.formData.append("buildTotalArea", inputBuildTotalArea );
       this.multipartItem.formData.append("buildTotalPrice", inputBuildTotalPrice );
       this.multipartItem.formData.append("HTMLText", HTMLText );
-      this.multipartItem.formData.append("previewImage", this.previewImage );
+      this.multipartItem.formData.append("previewImage", this.previewImage);
 
       this.multipartItem.callback = (data) => {
-        console.debug("home.ts & uploadCallback() ==>");
+        console.debug("buildCaseUpdate uploadCallback() ==>");
         this.vrImage = null;
         this.previewImage = null;
         if (data){
-          console.debug("home.ts & uploadCallback() upload file success.");
+          console.debug("buildCaseUpdate upload file success.");
         }else{
-          console.error("home.ts & uploadCallback() upload file false.");
+          console.error("buildCaseUpdate upload file false.");
         }
       }
 
@@ -133,31 +134,18 @@ export class BuildCaseUpdate {
   }
 
   ngAfterViewInit() {
-    let URL = [config.serverHost, config.path.buildCase, this.selectedId].join('/');
-
-    this.uploader = new MultipartUploader({url: URL});
-    this.multipartItem = new MultipartItem(this.uploader);
-    this.multipartItem.formData = new FormData();
-
-    // viewChild is set after the view has been initialized
-    jQuery(this.el.nativeElement).find('.summernote').summernote({
-      height: 300,                 // set editor height
-      minHeight: null,             // set minimum height of editor
-      maxHeight: null,             // set maximum height of editor
-      focus: true,
-      callbacks: {
-        onImageUpload: function (files, editor) {
-          EditorImageUploader.getInstance().upload(files, editor);
-        }
-      }
-    });
-
+    let that = this;
 
     // URL 주소 뒤에 오는 param 값을 저장
     this.route.params.forEach((params: Params) => {
       let buildCaseIdx = +params['buildCaseIdx'];
       this.selectedId = buildCaseIdx;
     });
+    let URL = [config.serverHost, config.path.buildCase, this.selectedId].join('/');
+
+    this.uploader = new MultipartUploader({url: URL});
+    this.multipartItem = new MultipartItem(this.uploader);
+    this.multipartItem.formData = new FormData();
 
     //수정할 시공사례글에 대한 정보를 가져와서 각 항목별 변수에 저장함
     this.http.get(URL, {headers:contentHeaders}) //서버로부터 필요한 값 받아오기
@@ -173,8 +161,7 @@ export class BuildCaseUpdate {
           this.mainPreviewImage = this.data.buildCaseInfo.mainPreviewImage;
           this.buildTotalPrice = this.data.buildCaseInfo.buildTotalPrice;
           this.HTMLText = this.data.buildCaseInfo.HTMLText;
-          //DB에 저장된 summernote 내용 중에 tag로 된 값들을 보여지게함 - 수정할 것, 글이 지워지는데?
-          jQuery(this.el.nativeElement).find('.summernote').summernote('editor.pasteHTML', this.HTMLText);
+          // jQuery(this.el.nativeElement).find('.summernote').summernote('editor.pasteHTML', this.HTMLText);
           this.VRImages = JSON.parse(this.data.buildCaseInfo.VRImages);
           this.memberIdx = this.data.buildCaseInfo.memberIdx;
 
@@ -184,6 +171,22 @@ export class BuildCaseUpdate {
           //서버로 부터 응답 실패시 경고창
         }
       );
+
+    // viewChild is set after the view has been initialized
+    jQuery(this.el.nativeElement).find('.summernote').summernote({
+      height: 300,                 // set editor height
+      minHeight: null,             // set minimum height of editor
+      maxHeight: null,             // set maximum height of editor
+      focus: true,
+      callbacks: {
+        onImageUpload: function (files, editor) {
+          EditorImageUploader.getInstance().upload(files, editor, {authToken: that.jwt});
+        },
+        onInit: function(instance) {
+          instance.editor.summernote('code', that.HTMLText);
+        }
+      }
+    });
 
   }
 }

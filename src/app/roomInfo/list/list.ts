@@ -28,7 +28,6 @@ export class RoomInfoList {
     pageStartIndex: number;
     serverHost: string;
 
-
     returnedDatas = [];
 
     /*
@@ -53,18 +52,21 @@ export class RoomInfoList {
                     this.serverHost = config.serverHost;
                     //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
                     for(var roomData of response.roomInfo) {
+                        let addressArr= JSON.parse(roomData.address);
+                        //let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
                         //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
                         this.returnedDatas.push({
                             idx: roomData.idx,
                             memberIdx: roomData.memberIdx,
                             title: roomData.title,
                             mainPreviewImage: roomData.mainPreviewImage,
-                            address: roomData.address,
+                            addressPostcode: addressArr[0],
+                            addressAddress: addressArr[1],
+                            addressDetail: addressArr[2],
                             deposit: roomData.deposit,
                             monthlyRentFee: roomData.monthlyRentFee,
                             floor: roomData.floor
                         });
-                    }
 
                 },
                 error => {
