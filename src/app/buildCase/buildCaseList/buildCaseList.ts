@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http,Headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { contentHeaders } from '../../common/headers';
 import { config } from '../../common/config';
 
@@ -72,7 +72,7 @@ export class BuildCaseList {
         .subscribe(
             response => {
               this.data = response;
-              console.log(this.data);
+
               if(this.data.buildCaseInfo.length == 0){ //데이터가 비어있을 때 막아주기
                 this.pageStartIndex = oldIndex;
                 alert("더이상 페이지를 넘길수 없습니다.");
