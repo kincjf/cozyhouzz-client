@@ -10,7 +10,7 @@ import {EditorImageUploader} from "../../common/editor-image-uploader";
 
 declare var jQuery: JQueryStatic;
 const template = require('./buildCaseInput.html');
-// const jwt_decode = require('jwt-decode');
+const jwt_decode = require('jwt-decode');
 
 @Component({
     selector: 'buildCaseInput',
@@ -50,10 +50,10 @@ export class BuildCaseInput {
      작업상황 : 없음
      차후 개선방안 : 없음
      */
-    addBuildCase(event, title, buildType, buildPlace, buildPostCode, buildPlaceDetail, buildTotalArea, buildTotalPrice) {
+    addBuildCase(event, title, buildType, buildPlace, buildPostCode, buildPlaceDetail, buildPlaceExtra, buildTotalArea, buildTotalPrice) {
         var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
-        var arrBuildPlace = [buildPostCode, buildPlace, buildPlaceDetail]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
+        var arrBuildPlace = [buildPostCode, buildPlace, buildPlaceDetail, buildPlaceExtra]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
 
         if (HTMLTextLen < 100) { //시공사례 내용이 100자 이상 인지 확인
             alert("시공사례 내용을 100이상 작성 해야 합니다.");
@@ -140,7 +140,7 @@ export class BuildCaseInput {
             return;
         }
 
-        this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);//jwt값 decoding
+        this.decodedJwt = this.jwt && jwt_decode(this.jwt);//jwt값 decoding
         this.memberType = this.decodedJwt.memberType;
         this.confirmMemberType = "2"; //사업주가 접속 했는지 확인 하기위한 값, 2:사업주
 

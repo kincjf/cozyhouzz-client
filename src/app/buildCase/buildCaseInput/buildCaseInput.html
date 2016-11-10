@@ -18,7 +18,7 @@
         <!-- Contact Form
                     ============================================= -->
         <form class="nobottommargin" id="template-contactform" name="template-contactform" method="post" enctype="multipart/form-data"
-              (submit)="addBuildCase($event, title.value, buildType.value, buildPlace.value, buildPostCode.value, buildPlaceDetail.value, buildTotalArea.value, buildTotalPrice.value)">
+              (submit)="addBuildCase($event, title.value, buildType.value, buildPlace.value, buildPostCode.value, buildPlaceDetail.value, buildPlaceExtra.value, buildTotalArea.value, buildTotalPrice.value)">
 
           <!-- 공사명 -->
           <div class="col_full">
@@ -65,7 +65,7 @@
                 <input class="sm-form-control postcodify_details" type="text" #buildPlaceDetail id="details" placeholder="상세주소">
               </div>
               <div class="col_half col_last">
-                <input class="sm-form-control postcodify_extra_info" type="text" #buildPlaceDetail id="extraInfo" placeholder="참고항목">
+                <input class="sm-form-control postcodify_extra_info" type="text" #buildPlaceExtra id="extraInfo" placeholder="참고항목">
               </div>
             </div>
           </div>
@@ -89,9 +89,9 @@
           <div class="col_full">
             <label for="buildcase-image">사진<small>*</small></label>
             <div>대표 이미지 </div>
-            <input type="file" id="buildcase-image" name="buildcase-previewImage" class="required sm-form-control" />
+            <input type="file" id="buildcase-image" name="buildcase-previewImage" class="required sm-form-control" name="previewImage" (change)="selectPreviewImage($event)" required/><br/>
             <div>VR 이미지 </div>
-            <input type="file" id="buildcase-vrimage" name="buildcase-vrImage" class="required sm-form-control" required/>
+            <input type="file" id="buildcase-vrimage" class="required sm-form-control" name="buildcase-vrImage" name="vrImage" (change)="selectVRImage($event)"  multiple required/><br/>
           </div>
 
           <div class="col_full hidden">
