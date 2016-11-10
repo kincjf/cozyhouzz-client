@@ -16,16 +16,15 @@
 
                 <!-- Contact Form
                 ============================================= -->
-                <form class="nobottommargin" id="template-contactform" name="template-contactform" method="post"
-                      (submit)="roomInfoChange($event, title.value, deposit.value, roomType.value, monthlyRentFee.value, floor.value, manageExpense.value, manageService.value, areaSize.value, actualSize.value, parking.value, elevator.value,
-                supplyOption.value, HTMLText.value, addressPostCode.value ,address.value, addressDetail.value, extraInfo.value, locationInfo.value, VRImages.value, mainPreviewImage.value, regionCategory.value, availableDate.value)">
+                <form (submit)="roomInfoChange($event, title.value, deposit.value, roomType.value, monthlyRentFee.value, floor.value, manageExpense.value, manageService.value, areaSize.value, actualSize.value, parking.value, elevator.value,
+                      supplyOption.value, HTMLText.value, addressPostCode.value, address.value, addressDetail.value, addressExtraInfo.value, locationInfo.value, regionCategory.value)"
+                      class="nobottommargin" id="roominfo-inputform" name="roominfo-inputform" method="post" enctype="multipart/form-data">
 
-                    <!--제목-->
+                <!--제목-->
 
                     <div class="col_full">
                         <label for="title">제목<small>*</small></label>
                         <input type="text" #title id="title" name="title" value="{{currentTitle}}" class="sm-form-control required" />
-                        <p>{{currentTitle}}</p>
                     </div>
 
                     <div class="clear"></div>
@@ -36,7 +35,7 @@
                         <label for="postcode">주소<small>*</small></label>
                         <div>
                             <div class="col_one_fourth">
-                                <input type="text" #addressPostCode class="sm-form-control postcodify_postcode5" value="{{addressArray[0]}}" id="postcode" placeholder="우편번호" readonly>
+                                <input type="text" #addressPostCode class="sm-form-control postcodify_postcode5" value="{{currentAddressPostCode}}" id="postcode" placeholder="우편번호" readonly>
                             </div>
 
                             <div class="col_one_fourth">
@@ -46,10 +45,10 @@
                             <div class="clear"></div>
 
                             <div class="col_half">
-                                <input class="sm-form-control postcodify_address" type="text" #address id="address" value="{{addressArray[1]}}" placeholder="주소" readonly>
+                                <input class="sm-form-control postcodify_address" type="text" #address id="address" value="{{currentAddressAddress}}" placeholder="주소" readonly>
                             </div>
                             <div class="col_half col_last">
-                                <input class="sm-form-control postcodify_details" type="text" #address id="details" value="{{addressArray[2]}}" placeholder="상세주소">
+                                <input class="sm-form-control postcodify_details" type="text" #addressDetail id="details" value="{{currentAddressDetail}}" placeholder="상세주소">
                             </div>
                             <div class="col_half col_last">
                                 <input class="sm-form-control postcodify_extra_info" type="text" #addressExtraInfo id="extraInfo" placeholder="참고항목">
@@ -77,23 +76,15 @@
 
                     <div class="clear"></div>
 
-                    <!--대표 미리보기 이미지-->
-
-                    <div class="col_half">
-                        <label for="template-contactform-mainPreviewImage">대표 미리보기 이미지<small>*</small></label>
-                        <input type="file" #mainPreviewImage id="template-contactform-mainPreviewImage" name="template-contactform-mainPreviewImage" class="required sm-form-control" />
-                    </div>
-
-                    <div class="clear"></div>
-
                     <!--VR 이미지 / 대표 이미지-->
 
                     <div class="col_full">
                         <label for="template-contactform">사진 <small>*</small></label>
-                        <div>VR 이미지</div>
-                        <input type="file" #VRImages id="template-contactform-VRImages" name="template-contactform-VRImages" value="" class="required sm-form-control" />
-                        <div>대표 이미지</div>
-                        <input type="file" #mainPreviewImage id="template-contactform-mainPreviewImage" name="template-contactform-mainPreviewImage" value="" class="required sm-form-control" />
+                        <!--현재 구현상으로는 VR 이미지는 수정이 불가함-->
+                        <div>대표 미리보기 이미지</div>
+                        <input type="file" id="template-contactform-mainPreviewImage" name="template-contactform-mainPreviewImage" value="{{mainPreviewImage}}" class="required sm-form-control" (change)="selectPreviewImage($event)" required/>
+                        <!--<div>VR 이미지</div>-->
+                        <!--<input type="file" id="template-contactform-VRImages" name="template-contactform-VRImages" value="" class="required sm-form-control" (change)="selectVRImage($event)" required multiple/>-->
                     </div>
 
                     <div class="clear"></div>
@@ -144,7 +135,7 @@
                     <!--실재 크기-->
 
                     <div class="col_half col_last">
-                        <label for="template-contactform-actualSize">실재 크기</label>
+                        <label for="template-contactform-actualSize">실제 크기</label>
                         <input type="number" #actualSize id="template-contactform-actualSize" name="template-contactform-actualSize" value="{{currentActualSize}}" class="sm-form-control" />
                     </div>
 
@@ -166,10 +157,20 @@
 
                     <div class="clear"></div>
 
+                    <!--층수-->
+
                     <div class="col_half">
                         <label for="template-contactform-floor">층수</label>
                         <input type="number" #floor id="template-contactform-floor" name="template-contactform-floor" value="{{currentFloor}}" class="sm-form-control" />
                     </div>
+
+                    <!--지역 태그-->
+                    <div class="col_half col_last">
+                        <label for="template-contactform-floor">지역 태그</label>
+                        <input type="number" #regionCategory id="template-contactform-floor" name="template-contactform-floor" value="{{currentFloor}}" class="sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
 
 
                     <!--옵션-->
@@ -216,7 +217,8 @@
                     </div>
 
                     <div class="col_full">
-                        <button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit">제출</button>
+                        <button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit">수정</button>
+                        <button type="reset" class="button button-3d nomargin">취소</button>
                     </div>
 
                 </form>
@@ -224,21 +226,6 @@
 
 
             <div class="line"></div>
-
-            <!-- Contact Info
-            ============================================= -->
-            <div class="col_one_third nobottommargin">
-
-                <address>
-                    <strong>Headquarters:</strong><br>
-                    JBCU<br>
-
-                </address>
-                <abbr title="Phone Number"><strong>Phone:</strong></abbr> (10) 3880 - 2109 <br>
-                <abbr title="Fax"><strong>Fax:</strong></abbr> 0303 - 3441 - 2109<br>
-                <abbr title="Email Address"><strong>Email:</strong></abbr> moblab@kr
-
-            </div><!-- Contact Info End -->
 
             <!-- Testimonails
             ============================================= -->
