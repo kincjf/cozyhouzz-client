@@ -5,7 +5,7 @@ import { contentHeaders } from '../../common/headers';
 import { config } from '../../common/config';
 
 const template = require('./businessSignupchange.html');
-// const jwt_decode = require('jwt-decode');
+const jwt_decode = require('jwt-decode');
 
 @Component({
   selector: 'businessSignupchange',

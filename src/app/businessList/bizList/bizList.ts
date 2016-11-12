@@ -91,7 +91,7 @@ export class BizList {
                         for(var bizUser of response.bizUserInfo) {
                             //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
                             this.returnedDatas.push({
-                                companyIntroImage: bizUser.companyIntroImage
+                                companyIntroImage: bizUser.companyIntroImage,
                                 memberIdx: bizUser.memberIdx,
                                 companyName: bizUser.companyName,
                                 aboutCompanyShort: bizUser.aboutCompanyShort

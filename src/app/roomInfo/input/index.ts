@@ -49,7 +49,7 @@ export class RoomInfoInput {
      차후 개선방안 : 없음
      */
     addRoomInfo($event, title, deposit, roomType, monthlyRentFee, floor, manageExpense, manageService, areaSize, actualSize, parking, elevator,
-    supplyOption, HTMLText, addressPostCode, address, addressDetail, addressExtraInfo, locationInfo, regionCategory) {
+        supplyOption, HTMLText, addressPostCode, address, addressDetail, addressExtraInfo, locationInfo, regionCategory) {
         var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
         var arrRoomPlace = [addressPostCode, address, addressDetail, addressExtraInfo]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함

@@ -17,19 +17,20 @@ const jwt_decode = require('jwt-decode');
 })
 
 export class BizListDetail {
-    decodedJwt:string;
+    decodedJwt: any;
     jwt:string;
     public data;
     public selectedId:number;
 
-    serverhost:string;
+    serverHost:string;
+    companyIntroImage: string;
     mainPreviewImage:string;
     companyName:string;
     aboutCompany:string;
     mainWorkField:string;
     mainWorkArea:string;
     email:string;
-    member:string;
+    memberIdx: number;
 
     /*
      Component 역할 : 업체 정보 상세보기 페이지serverHost: string = config.serverHost;
@@ -75,16 +76,12 @@ export class BizListDetail {
 
         // 삭제, 수정을 위한 Auth 값 할당
         this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
-        if(this.jwt){ //jwt 값이 null 인지 즉, 로그인을 하지 않는 상태인지 확인
+        if(this.jwt) { //jwt 값이 null 인지 즉, 로그인을 하지 않는 상태인지 확인
             this.decodedJwt = this.jwt && jwt_decode(this.jwt);//jwt값 decoding
-            this.loginMemberIdx = this.decodedJwt.idx; //현재 로그인한 memberIdx 저장
-        }else{
-            this.loginMemberIdx = null; //로그인 하지 않는 상태일때는 null값
+            this.memberIdx = this.decodedJwt.idx; //현재 로그인한 memberIdx 저장
+        } else {
+            this.memberIdx = null; //로그인 하지 않는 상태일때는 null값
         }
         contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
     }
-
-    }
-
-
 }

@@ -7,6 +7,8 @@ import { config } from '../../common/config';
 declare var jQuery: JQueryStatic;
 const template = require('./detail.html');
 const jwt_decode = require('jwt-decode');
+const krpano = require('../../../assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.js');
+
 
 @Component({
     selector: 'buildCaseDetail',
@@ -165,7 +167,7 @@ export class BuildCaseDetail {
             // 비동기라서 통신이 완료 된 후에 해야지 member변수 값에 할당이 됨.
           // 일단 index.html에 짱박아놓음. 나중에 module로 빼자
           // proxy 이용
-          embedpano({swf:"assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.swf",
+            krpano.embedpano({swf:"assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.swf",
               xml: ['/' + this.VRImages.baseDir, this.VRImages.vtourDir, this.VRImages.xmlName].join('/'),
               target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
         },

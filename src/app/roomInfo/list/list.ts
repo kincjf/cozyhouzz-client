@@ -31,20 +31,19 @@ export class RoomInfoList {
     returnedDatas = [];
 
     /*
-     Component 역할 :
-     작업상황 :
-     -
-     차후 개선방안 :
+     * Component 역할 :
+     * 작업상황 :
+     *
+     * 차후 개선방안 :
      - UI개선
      */
-
     constructor(public router: Router, public http: Http) {
         this.currentPageNumber = 1;
         this.pageSize = 5;
         this.pageStartIndex = 0;
 
         let URL = [config.serverHost, config.path.roomInfo + "?pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
-        console.log(URL);
+
         this.http.get(URL, {headers:contentHeaders}) //서버로부터 필요한 값 받아오기
             .map(res => res.json())//받아온 값을 json형식으로 변경
             .subscribe(
@@ -52,7 +51,7 @@ export class RoomInfoList {
                     this.serverHost = config.serverHost;
                     //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
                     for(var roomData of response.roomInfo) {
-                        let addressArr= JSON.parse(roomData.address);
+                        let addressArr = JSON.parse(roomData.address);
                         //let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
                         //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
                         this.returnedDatas.push({
@@ -67,15 +66,13 @@ export class RoomInfoList {
                             monthlyRentFee: roomData.monthlyRentFee,
                             floor: roomData.floor
                         });
-
+                    }
                 },
                 error => {
                     alert(error.text());
                     console.log(error.text());
                     //서버로 부터 응답 실패시 경고창
-                }
-            )
-
+                });
     }
 
     jumpPage(index, oldIndex) {
@@ -108,7 +105,6 @@ export class RoomInfoList {
                             });
                         }
                     }
-
                 },
                 error=> {
                     alert(error.text());
@@ -116,8 +112,6 @@ export class RoomInfoList {
                     //서버로부터 응답 실패시 경고창
                 }
             )
-
-
     }
 
     beforePageButton() {//바로 전의 페이지로 이동하는 함수

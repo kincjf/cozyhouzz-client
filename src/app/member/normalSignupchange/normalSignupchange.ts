@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { contentHeaders } from '../../common/headers';
 import { config } from '../../common/config';
+import {OnInit} from "@angular/core";
 
 const template = require('./normalSignupchange.html');
-// const jwt_decode = require('jwt-decode');
+const jwt_decode = require('jwt-decode');
 
 @Component({
   selector: 'normalSignupchange',
@@ -16,7 +17,7 @@ const template = require('./normalSignupchange.html');
  * 일반 회원 정보 변경
  * 문제 -> 취소 버튼 클릭시 submit이 실행됨
  */
-export class NormalSignupChange {
+export class NormalSignupChange implements OnInit {
   jwt:string;
   decodedJwt: any;
   public data;
