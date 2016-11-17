@@ -1,3 +1,4 @@
+
 <!-- Page Title
               ============================================= -->
 <section id="page-title">
@@ -22,7 +23,7 @@
         <div id="contact-form-overlay" class="clearfix">
 
             <div class="fancy-title title-dotted-border">
-                <h3>방정보 입력</h3>
+                <h3>방정보 입력</h3> <small> *는 필수입력 입니다.</small>
             </div>
 
             <div class="contact-widiget">
@@ -47,7 +48,7 @@
                     <!--방 주소-->
 
                     <div>
-                        <label for="postcode">주소<small>*</small></label>
+                        <label for="postcode"><small>*</small>주소</label>
                         <div>
                             <div class="col_one_fourth">
                                 <input type="text" #addressPostCode class="sm-form-control postcodify_postcode5" id="postcode" placeholder="우편번호" readonly>
@@ -74,10 +75,11 @@
                     <div class="clear"></div>
 
                     <!--방구조-->
-
-                    <div class="col_half">
-                        <label for="template-contactform-roomType">방구조<small>*</small></label>
-                        <input type="text" #roomType id="template-contactform-roomType" name="template-contactform-roomType" value="" class="required sm-form-control" />
+                    <div class="col_half col_last">
+                        <label for="template-contactform-service"><small>*</small>방구조</label>
+                        <select #roomType id="template-contactform-service" name="roomType" class="sm-form-control">
+                            <option *ngFor="let roomTypeValue of roomTypes" [ngValue]="roomTypeValue">{{roomTypeValue.name}}</option>
+                        </select>
                     </div>
 
                     <div class="clear"></div>
@@ -89,14 +91,16 @@
                         <input type="text" #locationInfo id="template-contactform-locationInfo" name="template-contactform-locationInfo" value="" class="required sm-form-control" />
                     </div>
 
-                    <div class="clear"></div>
+                    <!--<div class="clear"></div>-->
 
                     <!--VR 이미지 / 대표 이미지-->
 
                     <div class="col_full">
-                        <label for="template-contactform">사진 <small>*</small></label>
+                        <label for="template-contactform">사진 </label>
+
                         <div>VR 이미지</div>
                         <input type="file" (change)="selectVRImage($event)" id="template-contactform-VRImages" name="template-contactform-VRImages" value="" class="required sm-form-control" (change)="selectPreviewImage($event)" required/>
+
                         <div>대표 이미지</div>
                         <input type="file" (change)="selectPreviewImage($event)" id="template-contactform-mainPreviewImage" name="template-contactform-mainPreviewImage" value="" class="required sm-form-control" (change)="selectVRImage($event)"  multiple required/>
                     </div>
@@ -105,28 +109,53 @@
 
                     <!--보증금-->
 
-                    <div class="col_half">
+                    <div class="col_one_fifth">
                         <label for="template-contactform-deposit">보증금</label>
                         <input type="number" #deposit id="template-contactform-deposit" name="template-contactform-deposit" value="" placeholder="만원" class="sm-form-control" />
+                    </div>
+                    <div class=".col_four_fifth .col_last">
+                        <label for="template-contactform-deposit"></label>
+                        <h6>만원</h6>
                     </div>
 
                     <div class="clear"></div>
 
                     <!--월세-->
 
-                    <div class="col_half">
+                    <!--<div class="col_half">-->
+                        <!--<label for="template-contactform-monthlyRentFee">월세</label>-->
+                        <!--<input type="number" id="template-contactform-monthlyRentFee" name="template-contactform-monthlyRentFee" value="" placeholder="만원" class="sm-form-control" />-->
+                    <!--</div>-->
+
+                    <div class="col_one_fifth">
                         <label for="template-contactform-monthlyRentFee">월세</label>
                         <input type="number" #monthlyRentFee id="template-contactform-monthlyRentFee" name="template-contactform-monthlyRentFee" value="" placeholder="만원" class="sm-form-control" />
                     </div>
+                    <div class=".col_four_fifth .col_last">
+                        <label for="template-contactform-monthlyRentFee"></label>
+                        <h6>만원</h6>
+                    </div>
+
 
                     <div class="clear"></div>
 
                     <!--관리비-->
 
-                    <div class="col_half">
+                    <!--<div class="col_half">-->
+                        <!--<label for="template-contactform-manageExpense">관리비</label>-->
+                        <!--<input type="text" id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />-->
+                    <!--</div>-->
+
+                    <div class="col_one_fifth">
                         <label for="template-contactform-manageExpense">관리비</label>
-                        <input type="text" #manageExpense id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />
+                        <input type="number" #manageExpense id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />
                     </div>
+                    <div class=".col_four_fifth .col_last">
+                        <label for="template-contactform-manageExpense"></label>
+                        <label></label>
+                        <h6>만원</h6>
+                    </div>
+
 
                     <div class="clear"></div>
 
@@ -146,10 +175,10 @@
                         <input type="number" #areaSize id="template-contactform-areaSize" name="template-contactform-areaSize" value="" class="sm-form-control" />
                     </div>
 
-                    <!--실재 크기-->
+                    <!--실제 크기-->
 
                     <div class="col_half col_last">
-                        <label for="template-contactform-actualSize">실재 크기</label>
+                        <label for="template-contactform-actualSize">실제 크기</label>
                         <input type="number" #actualSize id="template-contactform-actualSize" name="template-contactform-actualSize" value="" class="sm-form-control" />
                     </div>
 
@@ -158,15 +187,19 @@
                     <!--주차-->
 
                     <div class="col_half">
-                        <label for="template-contactform-parking">주차</label>
-                        <input type="number" #parking id="template-contactform-parking" name="template-contactform-parking" value="" class="sm-form-control" />
+                        <label for="template-contactform-service">주차</label>
+                        <select #parking id="template-contactform-service" name="buildType" class="sm-form-control">
+                            <option *ngFor="let roomTypeCheck of checkType" [ngValue]="roomTypeCheck">{{roomTypeCheck.use}}</option>
+                        </select>
                     </div>
 
                     <!--엘레베이터-->
 
                     <div class="col_half col_last">
-                        <label for="template-contactform-elevator">엘레베이터</label>
-                        <input type="number" #elevator id="template-contactform-elevator" name="template-contactform-elevator" value="" class="sm-form-control" />
+                        <label for="template-contactform-service">엘리베이터</label>
+                        <select #elevator id="template-contactform-service" name="buildType" class="sm-form-control">
+                            <option *ngFor="let roomTypeCheck of checkType" [ngValue]="roomTypeCheck">{{roomTypeCheck.use}}</option>
+                        </select>
                     </div>
 
                     <div class="clear"></div>
@@ -180,8 +213,8 @@
 
                     <!--지역 태그-->
                     <div class="col_half col_last">
-                        <label for="template-contactform-floor">지역 태그</label>
-                        <input type="number" #regionCategory id="template-contactform-floor" name="template-contactform-floor" value="{{currentFloor}}" class="sm-form-control" />
+                        <label for="template-contactform-tag">지역 태그</label>
+                        <input type="text" #regionCategory id="template-contactform-tag" name="template-contactform-tag" class="sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
@@ -190,7 +223,7 @@
 
                     <div class="col_full">
                         <label for="template-contactform-supplyOption">옵션</label>
-                        <input type="text" #supplyOption id="template-contactform-supplyOption" name="template-contactform-supplyOption" value="" class="sm-form-control" />
+                        <input type="text" #supplyOption id="template-contactform-supplyOption" name="template-contactform-supplyOption" placeholder="ex. 에어컨, 침대" value="" class="sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
@@ -209,7 +242,7 @@
                     <div class="col_full">
                         <!-- summernote -->
                         <div class="col_full">
-                            <label for="template-contactform">상세설명 <small>*</small></label>
+                            <label for="template-contactform">상세설명 </label>
                             <div class="summernote-theme-1" rows="6" cols="30">
                                 <div #HTMLText class="summernote"></div>
                             </div>
@@ -242,7 +275,7 @@
 
                 <address>
                     <strong>Headquarters:</strong><br>
-                    JBCU<br>
+                    MobilityLabs<br>
 
                 </address>
                 <abbr title="Phone Number"><strong>Phone:</strong></abbr> (10) 3880 - 2109 <br>
