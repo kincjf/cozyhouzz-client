@@ -1,6 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { Home } from './home';
 import { Login } from './login';
 
 import { Signup } from './member/signup';
@@ -60,8 +59,6 @@ export const ROUTES: Routes = [
   { path: 'lately/room', component: RoomInfoLately },  // 최근 본 방 정보
   { path: 'list/room', component: RoomInfoList },  // 방 정보 목록 조회
   { path: 'detail/room/:roomListIdx', component: RoomInfoDetail },  // 방 정보 상세보기
-
-  { path: 'home',   component: Home, canActivate: [AuthGuard] },  //URL/home : 로그인 결과 테스트
 
   { path: 'bizList',   component: BizList },  // URL/bizList : 업체목록조회하기
   { path: 'bizListDetail/:bizUserIdx',   component: BizListDetail },  // URL/bizListDetail : 업체목록 상세보기

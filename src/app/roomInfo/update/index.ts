@@ -14,7 +14,7 @@ import * as moment from 'moment';
 
 declare var jQuery: JQueryStatic;
 const template = require('./index.html');
-// const jwt_decode = require('jwt-decode');
+const jwt_decode = require('jwt-decode');
 
 @Component({
     selector: 'roomInfoUpdate',
@@ -43,12 +43,12 @@ export class RoomInfoUpdate {
     private previewImage: File;
 
     //현재 방정보 변수
-    currentTitle: string;//제목
-    currentDeposit: number;//보증금
-    currentRoomType: number;//방구조
-    currentMonthlyRentFee: number;//월세
-    currentFloor: number;//층/건물층수
-    currentManageExpense: number;//관리비
+    private currentTitle: string;//제목
+    private currentDeposit: number;//보증금
+    private currentRoomType: number;//방구조
+    private currentMonthlyRentFee: number;//월세
+    private currentFloor: number;//층/건물층수
+    private currentManageExpense: number;//관리비
     currentManageService: string;//관리비 포함목록
     currentAreaSize: number;//크기
     currentActualSize: number;//실재크기
@@ -57,14 +57,72 @@ export class RoomInfoUpdate {
     currentSupplyOption: string;//제공하는 옵션
     currentHTMLText: string;//상세설명
     currentAddress: string;//주소
-    //addressArray: Array;
+    addressArray: any;
     currentLocationInfo: string;//건물정보
-    // currentVRImages: string;//VR이미지
-    // currentMainPreviewImage: string;//대표 미리보기 이미지
+    currentVRImages: string;//VR이미지
+    currentMainPreviewImage: string;//대표 미리보기 이미지
     currentRegionCategory: string;//지역 태그
     currentAvailableDate: string;//입주가능 날짜
 
+    currentAddressPostCode: string;
+    currentAddressAddress: string;
+    currentAddressDetail: string;
+// //////////////////////////////////////////////////////////////////
+//     memberIdx: number;
+//     serverHost: string = config.serverHost;
+//
+//     private deposit: number;
+//     title1: string;
+//     private monthlyRentFee: number;
+//     private floor: number;
+//     private manageExpense: number;
+//     private manageService: string;
+//     private areaSize:number;
+//     private actualSize:number;
+//     private parking:number;
+//     private elevator:number;
+//     private supplyOption:string;
+//     private parking:number;
+//     private availableDate:string;
+//     private address: any;
+//     private locationInfo:string;
+//     private VRImages:string;
+//     private mainPreviewImage:string;
+//     private coordinate:string;
+//     private regionCategory:string;
+//     private initWriteDate:string;
+//     private createdAt:string;
+//     // private updatedAt:string;
+//     private HTMLText;
+//
+//     private companyName: string;
+//     private aboutCompany: string;
+//     private mainWorkField : string;
+//     private mainWorkArea : string;
+//     private companyIntroImage : string;
+//     private contact: string;
+//     private roomType: number;
+//     ////////////////////////////////////////////////////////
+
     constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el: ElementRef) {
+    }
+
+    ngOnInit() {
+        this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
+
+        this.route.params.forEach((params:Params) => {
+            let roomListIdx = +params['roomListIdx'];
+            this.selectedId = roomListIdx;
+        });
+
+        if (!this.jwt) { //로그인을 했는지 점검
+            alert("로그인이 필요합니다.");
+            this.router.navigate(['/login']);
+            return;
+        }
+
+        this.decodedJwt = this.jwt && jwt_decode(this.jwt);//jwt값 decoding
+        this.memberType = this.decodedJwt.memberType;
     }
 
     /*
@@ -73,7 +131,7 @@ export class RoomInfoUpdate {
      차후 개선방안 : 없음
      */
     roomInfoChange(event, title, deposit, roomType, monthlyRentFee, floor, manageExpense,manageService, areaSize, actualSize, parking, elevator,
-                supplyOption, HTMLText, addressPostCode, address, addressDetail, extraInfo, locationInfo, VRImages, mainPreviewImage, regionCategory, availableDate) {
+                   supplyOption, HTMLText, addressPostCode, address, addressDetail, extraInfo, locationInfo, VRImages, mainPreviewImage, regionCategory, availableDate) {
         var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
         var arrRoomPlace = [addressPostCode, address, addressDetail, extraInfo]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
@@ -107,15 +165,11 @@ export class RoomInfoUpdate {
             this.multipartItem.formData.append("HTMLText", HTMLText);//상세설명
             this.multipartItem.formData.append("address", JSON.stringify(arrRoomPlace));//주소
             this.multipartItem.formData.append("locationInfo", locationInfo);//건물정보
-            this.multipartItem.formData.append("VRImages", VRImages);//VR이미지
-            this.multipartItem.formData.append("mainPreviewImage", mainPreviewImage);//대표 미리보기 이미지
             this.multipartItem.formData.append("regionCategory", regionCategory);//지역 태그
             this.multipartItem.formData.append("availableDate", availableDate);//입주가능 날짜
 
-
             this.multipartItem.upload();
 
-            alert("post가 실행되고 있습니다.");
 
             this.multipartItem.callback = (data) => {
                 console.debug("home.ts & uploadCallback() ==>");
@@ -170,24 +224,8 @@ export class RoomInfoUpdate {
     }
 
     ngAfterViewInit() {
-        this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
+        let that = this;
         let thatJwt = this.jwt;
-
-        this.route.params.forEach((params:Params) => {
-            let roomListIdx = +params['roomListIdx'];
-            this.selectedId = roomListIdx;
-        })
-
-        if (!this.jwt) { //로그인을 했는지 점검
-            alert("로그인이 필요합니다.");
-            this.router.navigate(['/login']);
-            return;
-        }
-
-        this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);//jwt값 decoding
-        this.memberType = this.decodedJwt.memberType;
-
-
 
         if (this.memberType != this.confirmMemberType) { //임대업자(3) 인지 점검
             alert("방정보 입력은 임대업자만 가능합니다");
@@ -200,23 +238,7 @@ export class RoomInfoUpdate {
             this.multipartItem = new MultipartItem(this.uploader);
             this.multipartItem.formData = new FormData();
 
-            // 우편번호 팝업창 띄우기
-            jQuery(this.el.nativeElement).find("#postcodify_search_button").postcodifyPopUp();
-
-            // viewChild is set after the view has been initialized
-            jQuery(this.el.nativeElement).find('.summernote').summernote({
-                height: 600,                 // set editor height
-                minHeight: null,             // set minimum height of editor
-                maxHeight: null,             // set maximum height of editor
-                focus: true,
-                placeholder: '내용을 100자 이상 입력 해주세요.',
-                callbacks: {
-                    onImageUpload: function (files, editor) {
-                        EditorImageUploader.getInstance().upload(files, editor, {authToken: thatJwt});                    }
-                }
-            });
-
-            this.http.get(URL, {headers:contentHeaders}) //서버로부터 필요한 값 받아오기
+            this.http.get(URL, {headers: contentHeaders}) //서버로부터 필요한 값 받아오기
                 .map(res => res.json())//받아온 값을 json형식으로 변경
                 .subscribe(
                     response => {
@@ -226,7 +248,6 @@ export class RoomInfoUpdate {
 
                         //현재 수정할 정보를 불러오기
                         this.currentTitle = this.data.roomInfo.title;
-                        alert(this.currentTitle);
                         this.currentDeposit = this.data.roomInfo.deposit;
                         this.currentRoomType = this.data.roomInfo.roomType;
                         this.currentMonthlyRentFee = this.data.roomInfo.monthlyRentFee;
@@ -239,15 +260,37 @@ export class RoomInfoUpdate {
                         this.currentElevator = this.data.roomInfo.elevator;
                         this.currentSupplyOption = this.data.roomInfo.supplyOption;
                         this.currentHTMLText = this.data.roomInfo.HTMLText;
-                        this.currentAddress = this.data.roomInfo.address;
+                        this.currentAddress = JSON.parse(this.data.roomInfo.address);
 
-                        //this.addressArray = this.currentAddress.split(',');
+                        this.currentAddressPostCode = this.currentAddress[0];
+                        this.currentAddressAddress = this.currentAddress[1];
+                        this.currentAddressDetail = this.currentAddress[2];
 
                         this.currentLocationInfo = this.data.roomInfo.locationInfo;
-                        //this.currentVRImages = this.data.roomInfo.VRImages;
-                        //this.currentMainPreviewImage = this.data.roomInfo.mainPreviewImage;
+                        this.currentVRImages = this.data.roomInfo.VRImages;
+                        this.currentMainPreviewImage = this.data.roomInfo.mainPreviewImage;
                         this.currentRegionCategory = this.data.roomInfo.regionCategory;
                         this.currentAvailableDate = moment(this.data.roomInfo.availableDate).format('YYYY-MM-DD');
+
+                        // 우편번호 팝업창 띄우기
+                        jQuery(this.el.nativeElement).find("#postcodify_search_button").postcodifyPopUp();
+
+                        // viewChild is set after the view has been initialized
+                        jQuery(this.el.nativeElement).find('.summernote').summernote({
+                            height: 600,                 // set editor height
+                            minHeight: null,             // set minimum height of editor
+                            maxHeight: null,             // set maximum height of editor
+                            focus: true,
+                            placeholder: '내용을 100자 이상 입력 해주세요.',
+                            callbacks: {
+                                onImageUpload: function (files, editor) {
+                                    EditorImageUploader.getInstance().upload(files, editor, {authToken: thatJwt});
+                                },
+                                onInit: function(instance) {
+                                    instance.editor.summernote('code', that.currentHTMLText);
+                                }
+                            }
+                        });
                     },
                     error => {
                         alert(error.text());
@@ -256,8 +299,6 @@ export class RoomInfoUpdate {
                     }
                 );
         }
-
-
     }
 }
 

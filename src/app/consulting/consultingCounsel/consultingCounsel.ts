@@ -7,7 +7,7 @@ import { Http } from '@angular/http';
 import { contentHeaders} from '../../common/headers';
 import { config } from '../../common/config';
 
-
+const jwt_decode = require('jwt-decode');
 const template = require('./consultingCounsel.html');
 
 @Component({
@@ -33,12 +33,10 @@ export class ConsultingCounsel{
 
   constructor(public router: Router, public http: Http, private el: ElementRef) {
     this.jwt = localStorage.getItem('id_token');//login시 저장된 jwt값 가져오기
-    this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);//jwt값 decoding
+    this.decodedJwt = this.jwt && jwt_decode(this.jwt);//jwt값 decoding
     contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
 
     this.havePrefBizMember = false;
-
-    this.loadPostcodeScript();
   }
 
 
@@ -71,14 +69,7 @@ export class ConsultingCounsel{
       )
   }
 
-  public loadPostcodeScript() {
-    const url = "../../../assets/js/postcode2.js";
-
-    let node = document.createElement('script');
-    node.src = url;
-    node.type = 'text/javascript';
-    node.async = true;
-    node.charset = 'utf-8';
-    document.getElementsByTagName('head')[0].appendChild(node);
+  ngAfterViewInit() {
+    jQuery(this.el.nativeElement).find("#postcodify_search_button").postcodifyPopUp();
   }
 }

@@ -1,6 +1,24 @@
 
 <section id="content">
 
+
+    <!-- Page Title
+    ============================================= -->
+    <section id="page-title">
+
+        <div class="container clearfix">
+            <h1>방 정보 상세보기</h1>
+            <span>방 정보를 상세히 보실 수 있습니다</span>
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">방 정보 상세보기</li>
+            </ol>
+        </div>
+
+    </section><!-- #page-title end -->
+
+
+
     <div class="content-wrap" style="padding-bottom: 0px;">
 
         <div class="container clearfix">
@@ -39,6 +57,7 @@
                             <!--<img src="{{serverHost}}/{{companyIntroImage}}" style="width: 100%;">-->
                         </div><!-- .entry-image end -->
 
+                        <!-- Entry Content ============================================= -->
                         <div class="entry-content notopmargin">
 
                             <table class="table table-striped">
@@ -98,10 +117,17 @@
 
                         </div>
 
+                        <!-- Entry Content ============================================= -->
+                        <div class="entry-content notopmargin">
 
-                        <!-- Entry Content
-                                        ============================================= -->
 
+                            <div role="tabpanel" class="tab-pane fade in active" style="word-break: break-all" [innerHTML]="HTMLText">
+                            </div><!--.tab-pane-->
+
+
+                            <div class="clear"></div>
+
+                        </div>
 
                     </div><!-- .entry end -->
 

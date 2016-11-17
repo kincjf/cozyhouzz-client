@@ -11,6 +11,7 @@ import { contentHeaders } from '../../common/headers';
 import { config } from '../../common/config';
 import * as moment from 'moment';
 
+const jwt_decode = require('jwt-decode');
 const template = require('./consultingListInfo.html');
 
 @Component({
@@ -38,7 +39,7 @@ export class ConsultingListInfo {
 
   constructor(public router: Router, public http: Http) {
     this.jwt = localStorage.getItem('id_token');//login시 저장된 jwt값 가져오기
-    this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);//jwt값 decoding
+    this.decodedJwt = this.jwt && jwt_decode(this.jwt);//jwt값 decoding
     contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
 
 

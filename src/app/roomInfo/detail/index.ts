@@ -5,34 +5,35 @@ import {Component, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Http} from '@angular/http';
 import {contentHeaders} from '../../common/headers';
-// import {MultipartItem} from "../../common/multipart-upload/multipart-item";
-// import {MultipartUploader} from "../../common/multipart-upload/multipart-uploader";
 import {config} from '../../common/config';
 
 const template = require('./index.html');
-// const moment = require('moment');
+const jwt_decode = require('jwt-decode');
+const embedpano = require('assets/js/lib/krpano-1.19-pr6-viewer/embedpano.js');
 
-// const jwt_decode = require('jwt-decode');
+// const moment = require('moment');
 
 @Component({
     selector: 'roomInfoDetail',
     template: template
 })
-
 export class RoomInfoDetail {
 
     jwt:string;
     private decodedJwt:any;
     private loginMemberIdx: number;
     public selectedId:number;
+    serverHost: string = config.serverHost;
 
     public data: any;
 
-    memberIdx: number;
-    serverHost: string = config.serverHost;
+    private memberIdx: number;
+    private title: string;
+    private roomType: number;
+    private address:any;
+    private mainPreviewImage:string;
 
     private deposit: number;
-    private title: string;
     private monthlyRentFee: number;
     private floor: number;
     private manageExpense: number;
@@ -42,32 +43,24 @@ export class RoomInfoDetail {
     private parking:number;
     private elevator:number;
     private supplyOption:string;
-    private parking:number;
     private availableDate:string;
-    private address:string;
+    private HTMLText;
     private locationInfo:string;
-    private VRImages:string;
-    private mainPreviewImage:string;
-    private coordinate:string;
+    private VRImages: any;
+    private coordinate:any;
     private regionCategory:string;
     private initWriteDate:string;
-    private createdAt:string;
-    // private updatedAt:string;
-    private HTMLText;
 
+    // 사업자 회원 정보
     private companyName: string;
-    private aboutCompany: string;
+    private aboutCompanyShort: string;
     private mainWorkField : string;
     private mainWorkArea : string;
+    private companyLogo : string;
     private companyIntroImage : string;
     private contact: string;
-    private roomType: number;
-
-
 
     constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el: ElementRef) {
-
-
     }
 
     /*
@@ -85,10 +78,11 @@ export class RoomInfoDetail {
                     this.data = response; // 해당값이 제대로 넘어오는지 확인후 프론트단에 내용추가
 
                     this.companyName = this.data.bizUserInfo.companyName;
-                    this.aboutCompany = this.data.bizUserInfo.aboutCompany;
+                    this.aboutCompanyShort = this.data.bizUserInfo.aboutCompanyShort;
                     this.mainWorkField = this.data.bizUserInfo.mainWorkField;
                     this.mainWorkArea = this.data.bizUserInfo.mainWorkArea;
                     this.contact = this.data.bizUserInfo.contact;
+                    this.companyLogo = this.data.bizUserInfo.companyLogo;     // conmpanyIntroImage
                     this.companyIntroImage = this.data.bizUserInfo.companyIntroImage;     // conmpanyIntroImage
                 },
                 error => {
@@ -137,7 +131,7 @@ export class RoomInfoDetail {
      차후 개선방안 : 없음
      */
     onUpdateBuildCase() {
-        this.router.navigate(['/update/room/'+this.selectedId]); //수정 버튼을 누르면 수정 컴포턴트로 이동
+        this.router.navigate(['update/room/'+this.selectedId]); //수정 버튼을 누르면 수정 컴포턴트로 이동
     }
 
     /*
@@ -164,35 +158,33 @@ export class RoomInfoDetail {
             .subscribe(
                 response => {
                     console.log(response);
+                    this.memberIdx = response.roomInfo.memberIdx;
+
                     this.title = response.roomInfo.title;
+                    this.roomType = response.roomInfo.roomType;
+                    this.address = JSON.parse(response.roomInfo.address);        // [우편번호, 일반주소, 상세주소, 참고사항]
+                    this.mainPreviewImage = response.roomInfo.mainPreviewImage;
+
                     this.deposit = response.roomInfo.deposit;
-                    // this.buildPlace = JSON.parse(response.buildCaseInfo.buildPlace);
                     this.monthlyRentFee = response.roomInfo.monthlyRentFee;
                     this.floor = response.roomInfo.floor;
                     this.manageExpense = response.roomInfo.manageExpense;
-                    this.manageService = response.roomInfo.manageService ;
-                    // this.areaSize = JSON.parse(response.buildCaseInfo.VRImages);
-                    this.areaSize= response.roomInfo.areaSize ;
-                    this.actualSize= response.roomInfo.actualSize ;
-                    this.parking= response.roomInfo.parking;
-                    this.elevator= response.roomInfo.elevator;
-                    this.supplyOption= response.roomInfo.supplyOption;
-                    this.availableDate= response.roomInfo.availableDate;
-                    this.HTMLText= response.roomInfo.HTMLText;
-                    this.address= JSON.parse(response.roomInfo.address);
-                    this.locationInfo= response.roomInfo.locationInfo;
+                    this.manageService = response.roomInfo.manageService;
+                    this.areaSize = response.roomInfo.areaSize;
+                    this.actualSize = response.roomInfo.actualSize;
+                    this.parking = response.roomInfo.parking;
+                    this.elevator = response.roomInfo.elevator;
+                    this.supplyOption = response.roomInfo.supplyOption;
+                    this.availableDate = response.roomInfo.availableDate;       // Date
+
+                    this.HTMLText = response.roomInfo.HTMLText;
+                    this.locationInfo = response.roomInfo.locationInfo;
                     this.VRImages = JSON.parse(response.roomInfo.VRImages);
-                    this.mainPreviewImage= response.roomInfo.mainPreviewImage;
-                    this.coordinate= response.roomInfo.coordinate;
-                    this.regionCategory= response.roomInfo.regionCategory;
-                    this.initWriteDate= response.roomInfo.initWriteDate;
-                    this.createdAt= response.roomInfo.createdAt;
-                    // this.updateAt= response.roomInfo.updateAt;
-                    this.roomType = response.roomInfo.roomType;
-                    this.memberIdx = response.roomInfo.memberIdx;
+                    this.coordinate = JSON.parse(response.roomInfo.coordinate);     // object
+                    this.regionCategory = response.roomInfo.regionCategory;
+                    this.initWriteDate = response.roomInfo.initWriteDate;       // Timestamp
 
                     this.onBizUserInfo();
-
 
                     // 비동기라서 통신이 완료 된 후에 해야지 member변수 값에 할당이 됨.
                     // 일단 index.html에 짱박아놓음. 나중에 module로 빼자
@@ -210,9 +202,9 @@ export class RoomInfoDetail {
         // 삭제, 수정을 위한 Auth 값 할당
         this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
         if(this.jwt){ //jwt 값이 null 인지 즉, 로그인을 하지 않는 상태인지 확인
-            this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);//jwt값 decoding
+            this.decodedJwt = this.jwt && jwt_decode(this.jwt);//jwt값 decoding
             this.loginMemberIdx = this.decodedJwt.idx; //현재 로그인한 memberIdx 저장
-        }else{
+        } else {
             this.loginMemberIdx = null; //로그인 하지 않는 상태일때는 null값
         }
         contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기

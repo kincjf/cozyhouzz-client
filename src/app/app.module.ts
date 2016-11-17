@@ -12,7 +12,6 @@ import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
 import { AppComponent } from './app.component';
-import { Home } from './home';
 import { Login } from './login';
 
 import { Signup } from './member/signup';
@@ -52,7 +51,6 @@ import { RoomInfoLately } from './roomInfo/lately';
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    Home,
     Login, Signup, Change,
     NormalSignupChange, BusinessSignupChange,
     BizList, BizListDetail,

@@ -10,6 +10,7 @@ import toNumber = require("lodash/toNumber");
 import { config } from '../../common/config';
 import * as moment from 'moment';
 
+const jwt_decode = require('jwt-decode');
 const template = require('./consultingDetail.html');
 
 @Component({
@@ -62,7 +63,7 @@ export class ConsultingDetail implements AfterViewInit {
       // 삭제, 수정을 위한 Auth 값 할당
       this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
       if(this.jwt){ //jwt 값이 null 인지 즉, 로그인을 하지 않는 상태인지 확인
-        this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);//jwt값 decoding
+        this.decodedJwt = this.jwt && jwt_decode(this.jwt);//jwt값 decoding
         this.loginMemberIdx = this.decodedJwt.idx; //현재 로그인한 memberIdx 저장
       }else{
         this.loginMemberIdx = null; //로그인 하지 않는 상태일때는 null값

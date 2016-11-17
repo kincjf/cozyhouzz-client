@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http,Headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { contentHeaders } from '../../common/headers';
 import { config } from '../../common/config';
 
@@ -46,12 +46,16 @@ export class BuildCaseList {
           //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
             for (var buildCaseData of response.buildCaseInfo) {
               //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
+
+              let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
+
               this.returnedDatas.push({
                 selectedBuildCaseIdx: buildCaseData.idx,
                 title: buildCaseData.title,
                 mainPreviewImage: buildCaseData.mainPreviewImage,
                 HTMLText: buildCaseData.HTMLText,
-                buildPlace: JSON.parse(buildCaseData.buildPlace)
+                buildPlace: buildPlaceArr[1],
+                buildPlaceDetail: buildPlaceArr[2],
             });
           }
         },
@@ -71,24 +75,27 @@ export class BuildCaseList {
         .map(res => res.json())//받아온값을 json형식으로 변경
         .subscribe(
             response => {
-              this.data = response;
-              console.log(this.data);
-              if(this.data.buildCaseInfo.length == 0){ //데이터가 비어있을 때 막아주기
+
+              if(response.buildCaseInfo.length == 0){ //데이터가 비어있을 때 막아주기
                 this.pageStartIndex = oldIndex;
                 alert("더이상 페이지를 넘길수 없습니다.");
               }
               else {
                 this.returnedDatas = []; //데이터를 초기화
                 this.currentPageNumber = index/this.pageSize+1;
+
                 //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
                 for (var buildCaseData of response.buildCaseInfo) {
                   //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
+                  let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
+
                   this.returnedDatas.push({
                     selectedBuildCaseIdx: buildCaseData.idx,
                     title: buildCaseData.title,
                     mainPreviewImage: buildCaseData.mainPreviewImage,
                     HTMLText: buildCaseData.HTMLText,
-                    buildPlace: JSON.parse(buildCaseData.buildPlace)
+                    buildPlace: buildPlaceArr[1],
+                    buildPlaceDetail: buildPlaceArr[2],
                   });
                 }
               }
