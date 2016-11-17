@@ -14,7 +14,7 @@ import {EditorImageUploader} from "../../common/editor-image-uploader";
 
 declare var jQuery: JQueryStatic;
 const template = require('./index.html');
-// const jwt_decode = require('jwt-decode');
+const jwt_decode = require('jwt-decode');
 
 @Component({
     selector: 'roomInfoInput',
@@ -64,8 +64,8 @@ export class RoomInfoInput {
      작업상황 : 없음
      차후 개선방안 : 없음
      */
-    addRoomInfo(event, title, deposit, roomType, monthlyRentFee, floor, manageExpense,manageService, areaSize, actualSize, parking, elevator,
-                supplyOption, HTMLText, addressPostCode, address, addressDetail, addressExtraInfo, locationInfo, VRImages, mainPreviewImage, regionCategory) {
+    addRoomInfo($event, title, deposit, roomType, monthlyRentFee, floor, manageExpense, manageService, areaSize, actualSize, parking, elevator,
+        supplyOption, HTMLText, addressPostCode, address, addressDetail, addressExtraInfo, locationInfo, regionCategory) {
         var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
         var arrRoomPlace = [addressPostCode, address, addressDetail, addressExtraInfo]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
@@ -76,12 +76,12 @@ export class RoomInfoInput {
             //파일 업로더를 위한 설정 값들 선언
             this.multipartItem.headers = contentHeaders;
             this.multipartItem.withCredentials = false;
-            this.uploader.url = [config.serverHost, config.path.roomInfo].join('/');
             this.uploader.authToken = this.jwt;
 
             if (this.multipartItem == null) {
                 this.multipartItem = new MultipartItem(this.uploader);
             }
+
             if (this.multipartItem.formData == null)
                 this.multipartItem.formData = new FormData();
 
@@ -100,8 +100,10 @@ export class RoomInfoInput {
             this.multipartItem.formData.append("HTMLText", HTMLText);//상세설명
             this.multipartItem.formData.append("address", JSON.stringify(arrRoomPlace));//주소
             this.multipartItem.formData.append("locationInfo", locationInfo);//건물정보
-            this.multipartItem.formData.append("VRImages", VRImages);//VR이미지
-            this.multipartItem.formData.append("mainPreviewImage", mainPreviewImage);//대표 미리보기 이미지
+            // this.multipartItem.formData.append("VRImages", VRImages);//VR이미지
+            // this.multipartItem.formData.append("mainPreviewImage", mainPreviewImage);//대표 미리보기 이미지
+
+            this.multipartItem.formData.append("previewImage", this.previewImage);
             this.multipartItem.formData.append("regionCategory", regionCategory);//지역 카테고리 ??????
 
             // this.multipartItem.formData.append("buildType", inputBuildType);
@@ -175,7 +177,7 @@ export class RoomInfoInput {
             return;
         }
 
-        this.decodedJwt = this.jwt && window.jwt_decode(this.jwt);//jwt값 decoding
+        this.decodedJwt = this.jwt && jwt_decode(this.jwt);//jwt값 decoding
         this.memberType = this.decodedJwt.memberType;
 
         if (this.memberType != this.confirmMemberType) { //임대업자(3) 인지 점검
@@ -205,6 +207,10 @@ export class RoomInfoInput {
                 }
             });
         }
+    }
+
+    resolvedCaptcha(captchaResponse: string) {
+        console.log(`Resolved captcha with response ${captchaResponse}:`);
     }
 }
 
