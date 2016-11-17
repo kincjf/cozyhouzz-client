@@ -55,43 +55,40 @@ export class BuildCaseInput {
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
         var arrBuildPlace = [buildPostCode, buildPlace, buildPlaceDetail, buildPlaceExtra]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
 
-        if (HTMLTextLen < 100) { //시공사례 내용이 100자 이상 인지 확인
-            alert("시공사례 내용을 100이상 작성 해야 합니다.");
-        } else {
-            //파일 업로더를 위한 설정 값들 선언
-            this.multipartItem.headers = contentHeaders;
-            this.multipartItem.withCredentials = false;
-            this.uploader.authToken = this.jwt;
+        //파일 업로더를 위한 설정 값들 선언
+        this.multipartItem.headers = contentHeaders;
+        this.multipartItem.withCredentials = false;
+        this.uploader.authToken = this.jwt;
 
-            if (this.multipartItem == null) {
-                this.multipartItem = new MultipartItem(this.uploader);
-            }
-            if (this.multipartItem.formData == null)
-                this.multipartItem.formData = new FormData();
+        if (this.multipartItem == null) {
+            this.multipartItem = new MultipartItem(this.uploader);
+        }
+        if (this.multipartItem.formData == null)
+            this.multipartItem.formData = new FormData();
 
-            this.multipartItem.formData.append("title", title);
-            this.multipartItem.formData.append("buildType", buildType);
-            this.multipartItem.formData.append("buildPlace", JSON.stringify(arrBuildPlace));
-            this.multipartItem.formData.append("buildTotalArea", buildTotalArea);
-            this.multipartItem.formData.append("buildTotalPrice", buildTotalPrice);
-            this.multipartItem.formData.append("HTMLText", HTMLText);
-            this.multipartItem.formData.append("previewImage", this.previewImage);
+        this.multipartItem.formData.append("title", title);
+        this.multipartItem.formData.append("buildType", buildType);
+        this.multipartItem.formData.append("buildPlace", JSON.stringify(arrBuildPlace));
+        this.multipartItem.formData.append("buildTotalArea", buildTotalArea);
+        this.multipartItem.formData.append("buildTotalPrice", buildTotalPrice);
+        this.multipartItem.formData.append("HTMLText", HTMLText);
+        this.multipartItem.formData.append("previewImage", this.previewImage);
 
-            this.multipartItem.upload();
+        this.multipartItem.upload();
 
-            this.multipartItem.callback = (data) => {
-                console.debug("home.ts & uploadCallback() ==>");
-                this.vrImage = null;
-                this.previewImage = null;
-                if (data) {
-                    console.debug("home.ts & uploadCallback() upload file success.")
-                    alert("시공사례가 입력 되었습니다.");
-                    this.router.navigate(['/buildcaselist']); //서버에서 삭제가 성공적으로 완료 되면 시공사례 조회로 이동
-                } else {
-                    console.error("home.ts & uploadCallback() upload file false.");
-                }
+        this.multipartItem.callback = (data) => {
+            console.debug("home.ts & uploadCallback() ==>");
+            this.vrImage = null;
+            this.previewImage = null;
+            if (data) {
+                console.debug("home.ts & uploadCallback() upload file success.")
+                alert("시공사례가 입력 되었습니다.");
+                this.router.navigate(['/buildcaselist']); //서버에서 삭제가 성공적으로 완료 되면 시공사례 조회로 이동
+            } else {
+                console.error("home.ts & uploadCallback() upload file false.");
             }
         }
+
     }
 
     /*

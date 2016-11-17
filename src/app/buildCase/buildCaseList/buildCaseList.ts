@@ -54,6 +54,9 @@ export class BuildCaseList {
                 title: buildCaseData.title,
                 mainPreviewImage: buildCaseData.mainPreviewImage,
                 HTMLText: buildCaseData.HTMLText,
+                buildTotalArea: buildCaseData.buildTotalArea,
+                buildType: buildCaseData.buildType,
+                buildTotalPrice: buildCaseData.buildTotalPrice,
                 buildPlace: buildPlaceArr[1],
                 buildPlaceDetail: buildPlaceArr[2],
             });
