@@ -55,8 +55,8 @@ export class BuildCaseInput {
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
         var arrBuildPlace = [buildPostCode, buildPlace, buildPlaceDetail, buildPlaceExtra]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
 
-        if (HTMLTextLen < 100) { //시공사례 내용이 100자 이상 인지 확인
-            alert("시공사례 내용을 100이상 작성 해야 합니다.");
+        if (HTMLTextLen < 10) { //시공사례 내용이 100자 이상 인지 확인
+            alert("시공사례 내용을 10이상 작성 해야 합니다.");
         } else {
             //파일 업로더를 위한 설정 값들 선언
             this.multipartItem.headers = contentHeaders;

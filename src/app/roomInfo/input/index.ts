@@ -35,6 +35,22 @@ export class RoomInfoInput {
     memberType: number;
     confirmMemberType: number = 3;      //"임대업자가 접속 했는지 확인 하기위한 값, 3:임대업자
 
+    roomTypes = [
+        {name: '아파트'},
+        {name: '빌라'},
+        {name: '주택'},
+        {name: '원/투룸'},
+        {use: '이용가능'},
+        {use: '불가능'}
+    ];
+
+    // 나중에 불린값으로 변경?? ㄱㄱ
+    checkType = [
+        {use: '이용가능'},
+        {use: '불가능'},
+    ];
+
+
     private uploader: MultipartUploader;
     multipartItem: MultipartItem;
     private vrImage: File;
@@ -54,8 +70,8 @@ export class RoomInfoInput {
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
         var arrRoomPlace = [addressPostCode, address, addressDetail, addressExtraInfo]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
 
-        if (HTMLTextLen < 100) { //시공사례 내용이 100자 이상 인지 확인
-            alert("방정보 내용을 100자 이상 작성 해야 합니다.");
+        if (HTMLTextLen < 10) { //시공사례 내용이 100자 이상 인지 확인
+            alert("방정보 내용을 10자 이상 작성 해야 합니다.");
         } else {
             //파일 업로더를 위한 설정 값들 선언
             this.multipartItem.headers = contentHeaders;

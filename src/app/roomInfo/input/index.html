@@ -1,3 +1,6 @@
+<!-- w3-quarter stylesheet-->
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
 <section id="map-overlay">
 
     <div class="contaner clearfix">
@@ -62,9 +65,11 @@
 
                     <!--방구조-->
 
-                    <div class="col_half">
-                        <label for="template-contactform-roomType">방구조<small>*</small></label>
-                        <input type="text" id="template-contactform-roomType" name="template-contactform-roomType" value="" class="required sm-form-control" />
+                    <div class="col_half col_last">
+                        <label for="template-contactform-service">방구조</label>
+                        <select #buildType id="template-contactform-service" name="buildType" class="sm-form-control">
+                            <option *ngFor="let roomTypeValue of roomTypes" [ngValue]="roomTypeValue">{{roomTypeValue.name}}</option>
+                        </select>
                     </div>
 
                     <div class="clear"></div>
@@ -101,28 +106,62 @@
 
                     <!--보증금-->
 
-                    <div class="col_half">
-                        <label for="template-contactform-deposit">보증금</label>
-                        <input type="number" id="template-contactform-deposit" name="template-contactform-deposit" value="" placeholder="만원" class="sm-form-control" />
-                    </div>
+                    <!--<div class="col_half">-->
+                        <!--<label for="template-contactform-deposit">보증금</label>-->
+                        <!--<input type="number" id="template-contactform-deposit" name="template-contactform-deposit" value="" placeholder="만원" class="sm-form-control" />-->
+                    <!--</div>-->
 
+                    <!--1/4 쿼터 + 3/4쿼터 더함. 순정 클래스로는 정렬이 깨져서 스타일을 직접 줘야하는 단점이 있음...ㅜ -->
+                    <div class="w3-row">
+                        <div class="w3-container w3-quarter" style="padding-left:0px; margin-bottom:25px;">
+                            <label for="template-contactform-deposit">보증금</label>
+                            <input type="number" id="template-contactform-deposit" name="template-contactform-deposit" value="" placeholder="만원" class="sm-form-control" />
+                        </div>
+                        <div class="w3-container w3-threequarter">
+                            <label for="template-contactform-deposit"></label>
+                            <h6>만원</h6>
+                        </div>
+                    </div>
                     <div class="clear"></div>
 
                     <!--월세-->
 
-                    <div class="col_half">
-                        <label for="template-contactform-monthlyRentFee">월세</label>
-                        <input type="number" id="template-contactform-monthlyRentFee" name="template-contactform-monthlyRentFee" value="" placeholder="만원" class="sm-form-control" />
+                    <!--<div class="col_half">-->
+                        <!--<label for="template-contactform-monthlyRentFee">월세</label>-->
+                        <!--<input type="number" id="template-contactform-monthlyRentFee" name="template-contactform-monthlyRentFee" value="" placeholder="만원" class="sm-form-control" />-->
+                    <!--</div>-->
+
+                    <div class="w3-row">
+                        <div class="w3-container w3-quarter" style="padding-left:0px; margin-bottom:25px;">
+                            <label for="template-contactform-monthlyRentFee">월세</label>
+                            <input type="number" id="template-contactform-monthlyRentFee" name="template-contactform-deposit" value="" placeholder="만원" class="sm-form-control" />
+                        </div>
+                        <div class="w3-container w3-threequarter">
+                            <label for="template-contactform-monthlyRentFee"></label>
+                            <h6>만원</h6>
+                        </div>
                     </div>
 
                     <div class="clear"></div>
 
                     <!--관리비-->
 
-                    <div class="col_half">
-                        <label for="template-contactform-manageExpense">관리비</label>
-                        <input type="text" id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />
+                    <!--<div class="col_half">-->
+                        <!--<label for="template-contactform-manageExpense">관리비</label>-->
+                        <!--<input type="text" id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />-->
+                    <!--</div>-->
+                    <div class="w3-row">
+                        <div class="w3-container w3-quarter" style="padding-left:0px; margin-bottom:25px;">
+                            <label for="template-contactform-manageExpense">관리비</label>
+                            <input type="number" id="template-contactform-manageExpense" name="template-contactform-deposit" value="" placeholder="만원" class="sm-form-control" />
+                        </div>
+                        <div class="w3-container w3-threequarter">
+                            <label for="template-contactform-manageExpense"></label>
+                            <h6>만원</h6>
+                        </div>
                     </div>
+
+
 
                     <div class="clear"></div>
 
@@ -142,10 +181,10 @@
                         <input type="number" id="template-contactform-areaSize" name="template-contactform-areaSize" value="" class="sm-form-control" />
                     </div>
 
-                    <!--실재 크기-->
+                    <!--실제 크기-->
 
                     <div class="col_half col_last">
-                        <label for="template-contactform-actualSize">실재 크기</label>
+                        <label for="template-contactform-actualSize">실제 크기</label>
                         <input type="number" id="template-contactform-actualSize" name="template-contactform-actualSize" value="" class="sm-form-control" />
                     </div>
 
@@ -154,15 +193,19 @@
                     <!--주차-->
 
                     <div class="col_half">
-                        <label for="template-contactform-parking">주차</label>
-                        <input type="number" id="template-contactform-parking" name="template-contactform-parking" value="" class="sm-form-control" />
+                        <label for="template-contactform-service">주차</label>
+                        <select #buildType id="template-contactform-service" name="buildType" class="sm-form-control">
+                            <option *ngFor="let roomTypeCheck of checkType" [ngValue]="roomTypeCheck">{{roomTypeCheck.use}}</option>
+                        </select>
                     </div>
 
                     <!--엘레베이터-->
 
                     <div class="col_half col_last">
-                        <label for="template-contactform-elevator">엘레베이터</label>
-                        <input type="number" id="template-contactform-elevator" name="template-contactform-elevator" value="" class="sm-form-control" />
+                        <label for="template-contactform-service">엘리베이터</label>
+                        <select #buildType id="template-contactform-service" name="buildType" class="sm-form-control">
+                            <option *ngFor="let roomTypeCheck of checkType" [ngValue]="roomTypeCheck">{{roomTypeCheck.use}}</option>
+                        </select>
                     </div>
 
                     <div class="clear"></div>
@@ -171,7 +214,7 @@
 
                     <div class="col_full">
                         <label for="template-contactform-supplyOption">옵션</label>
-                        <input type="text" id="template-contactform-supplyOption" name="template-contactform-supplyOption" value="" class="sm-form-control" />
+                        <input type="text" id="template-contactform-supplyOption" name="template-contactform-supplyOption" placeholder="ex. 에어컨, 침대" value="" class="sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
@@ -223,7 +266,7 @@
 
                 <address>
                     <strong>Headquarters:</strong><br>
-                    JBCU<br>
+                    MobilityLabs<br>
 
                 </address>
                 <abbr title="Phone Number"><strong>Phone:</strong></abbr> (10) 3880 - 2109 <br>
