@@ -72,39 +72,39 @@
                                 <!--</thead>-->
                                 <tbody>
                                 <tr>
-                                    <td>보증금</td>
+                                    <td><strong>보증금</strong></td>
                                     <td>{{deposit}}</td>
-                                    <td>관리<br/>항목</td>
+                                    <td><strong>관리</strong><br/><strong>항목</strong></td>
                                     <td>{{manageService}}</td>
                                 </tr>
                                 <tr>
-                                    <td>월세</td>
+                                    <td><strong>월세</strong></td>
                                     <td>{{monthlyRentFee}}</td>
-                                    <td>관리비</td>
+                                    <td><strong>관리비</strong></td>
                                     <td>{{manageExpense}}</td>
                                 </tr>
                                 <tr>
-                                    <td>면적</td>
+                                    <td><strong>면적</strong></td>
                                     <td>{{areaSize}}</td>
-                                    <td>크기</td>
+                                    <td><strong>크기</strong></td>
                                     <td>{{actualSize}}</td>
                                 </tr>
                                 <tr>
-                                    <td>주차대수</td>
+                                    <td><strong>주차</strong><br/><strong>대수</strong></td>
                                     <td>{{parking}}</td>
-                                    <td>엘리베이터</td>
+                                    <td><strong>엘리베이터</strong></td>
                                     <td>{{elevator}}</td>
                                 </tr>
                                 <tr>
-                                    <td>옵션</td>
+                                    <td><strong>옵션</strong></td>
                                     <td>{{supplyOption}}</td>
-                                    <td>입주 <br/>가능일</td>
+                                    <td><strong>입주가능일</strong></td>
                                     <td>{{availableDate}}</td>
                                 </tr>
                                 <tr>
-                                    <td>주소</td>
+                                    <td><strong>주소</strong></td>
                                     <td>{{address}}</td>
-                                    <td>도로명주소</td>
+                                    <td><strong>도로명 주소</strong></td>
                                     <td>{{locationInfo}}</td>
                                 </tr>
 
@@ -212,7 +212,7 @@
                                 <!--</td>-->
                             <!--</div>-->
                             <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">사업장 위치</label>
+                                <label class="col-xs-5 form-control-label">사업장<br/>위치</label>
                                 <td class="col-xs-8">
                                     <p>{{mainWorkArea}}</p>
                                 </td>
@@ -226,6 +226,18 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!--공유, 찜하기, 견적신청-->
+                    <div class="widget clearfix">
+                        <div class="tagcloud">
+                            <div style="text-align: center">
+                                <button class="btn btn-rounded btn-inline" (click)="onListBuildCase()">공유</button>
+                                <button class="btn btn-rounded btn-inline" *ngIf="loginMemberIdx != null && loginMemberIdx == memberIdx" (click)="onDelBuildCase()">찜하기</button>
+                            </div>
+                        </div>
+
+                    </div>
+
 
                     <div class="widget clearfix">
 
