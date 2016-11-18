@@ -17,7 +17,11 @@ export class MultipartItem {
   public index:number = null;
   public callback:Function = null;
 
-  constructor(private uploader:MultipartUploader) {
+  constructor(private uploader:MultipartUploader, options?: any) {
+    if (options) {
+      this.method = (options.method && (options.method == "POST" || options.method == "PUT"))
+          ? options.method : "POST";
+    }
   }
 
   public upload() {

@@ -34,12 +34,6 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
     memberType: string;
     confirmMemberType: string;
 
-    // buildTypes = [
-    //     {name: '주거공간'},
-    //     {name: '상업공간'},
-    //     {name: '기타'}
-    // ];
-
     buildTypes = STATIC_VALUE.PLACE_TYPE;
 
     private uploader: MultipartUploader;
@@ -57,7 +51,8 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
      작업상황 : 없음
      차후 개선방안 : 없음
      */
-    addBuildCase(event, title, buildType, buildPlace, buildPostCode, buildPlaceDetail, buildPlaceExtra, buildTotalArea, buildTotalPrice) {
+    addBuildCase(event, title, buildType, buildPlace, buildPostCode, buildPlaceDetail, buildPlaceExtra,
+                 buildTotalArea, buildTotalPrice, previewImage, VRImage) {
         var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
         var arrBuildPlace = [buildPostCode, buildPlace, buildPlaceDetail, buildPlaceExtra]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
@@ -88,12 +83,14 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
             this.multipartItem.formData.append("buildTotalPrice", buildTotalPrice);
             this.multipartItem.formData.append("HTMLText", HTMLText);
 
+            this.insertFile(previewImage, "previewImage");
+            this.insertFile(VRImage, "vrImage");
+
             this.multipartItem.callback = (data) => {
-                console.debug("home.ts & uploadCallback() ==>");
-                this.vrImage = null;
-                this.previewImage = null;
+                console.debug("buildCaseInput.ts & uploadCallback() ==>");
+
                 if (data) {
-                    console.debug("home.ts & uploadCallback() upload file success.");
+                    console.debug("buildCaseInput.ts & uploadCallback() upload file success.");
                     alert("시공사례가 입력 되었습니다.");
 
                     this.quit = true;
@@ -112,34 +109,18 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
      작업상황 : 없음
      차후 개선방안 : 없음
      */
-    selectVRImage($event): void {
-        var inputValue = $event.target;
-        if (null == inputValue || null == inputValue.files[0]) {
-            console.debug("Input file error.");
-            return;
+    insertFile($event, fieldName): boolean {
+        var files = $event.files;
+        if (null == files || null == files[0]) {
+            console.debug("insertFile error - no file");
+            return false;
         } else {
-
-            for (var i = 0; i < inputValue.files.length; i++) {
-                this.multipartItem.formData.append("vrImage", inputValue.files[i]);
-                console.debug("Input File name: " + inputValue.files[i].name + " type:" + inputValue.files[i].size + " size:" + inputValue.files[i].size);
+            for (var i = 0; i < files.length; i++) {
+                this.multipartItem.formData.append(fieldName, files[i]);
+                console.debug("Input File name: " + files[i].name + " type:" + files[i].type + " size:" + files[i].size);
             }
 
-        }
-    }
-
-    /*
-     Method 역할 : 대표 이미지를 input 하면 이미지 전송 formData에 추가
-     작업상황 : 없음
-     차후 개선방안 : 없음
-     */
-    selectPreviewImage($event): void {
-        var inputValue = $event.target;
-        if (null == inputValue || null == inputValue.files[0]) {
-            console.debug("Input file error.");
-            return;
-        } else {
-            this.previewImage = inputValue.files[0];
-            console.debug("Input File name: " + this.previewImage.name + " type:" + this.previewImage.size + " size:" + this.previewImage.size);
+            return true;
         }
     }
 
@@ -149,8 +130,6 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
 
         if (!this.jwt) { //로그인을 했는지 점검
             alert("로그인이 필요합니다.");
-
-            this.quit = true;
             this.router.navigate(['/login']);
             return;
         }

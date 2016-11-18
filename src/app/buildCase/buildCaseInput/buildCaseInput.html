@@ -18,7 +18,9 @@
         <!-- Contact Form
                     ============================================= -->
         <form class="nobottommargin" id="template-contactform" name="template-contactform" method="post" enctype="multipart/form-data"
-              (submit)="addBuildCase($event, title.value, buildType.value, buildPlace.value, buildPostCode.value, buildPlaceDetail.value, buildPlaceExtra.value, buildTotalArea.value, buildTotalPrice.value)">
+              (submit)="addBuildCase($event, title.value, buildType.value,
+               buildPlace.value, buildPostCode.value, buildPlaceDetail.value, buildPlaceExtra.value,
+                buildTotalArea.value, buildTotalPrice.value, previewImage, VRImage)">
 
           <!-- 공사명 -->
           <div class="col_full">
@@ -96,10 +98,10 @@
 
           <div class="col_full">
             <label for="buildcase-previewImage">대표 이미지<small>*</small></label>
-            <input type="file" id="buildcase-image" id="buildcase-previewImage" class="required sm-form-control" name="previewImage" (change)="selectPreviewImage($event)" required/><br/>
+            <input type="file" #previewImage id="buildcase-previewImage" class="required sm-form-control" name="previewImage" required/><br/>
 
             <label for="buildcase-vrimage">VR 이미지<small>*</small></label>
-            <input type="file" id="buildcase-vrimage" class="required sm-form-control" id="buildcase-vrImage" name="vrImage" (change)="selectVRImage($event)"  multiple required/><br/>
+            <input type="file" #VRImage id="buildcase-vrimage" class="required sm-form-control" name="vrImage" multiple required/><br/>
           </div>
 
           <div class="col_full">

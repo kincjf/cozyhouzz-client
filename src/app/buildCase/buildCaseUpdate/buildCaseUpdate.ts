@@ -83,8 +83,11 @@ export class BuildCaseUpdate implements CanDeactivate<BuildCaseUpdate> {
       this.router.navigate(['/buildcaselist']);
     } else {
       if (this.multipartItem == null){
-        this.multipartItem = new MultipartItem(this.uploader);
+        this.multipartItem = new MultipartItem(this.uploader, {
+          method: "PUT"
+        });
       }
+
       if (this.multipartItem.formData == null)
         this.multipartItem.formData = new FormData();
 
