@@ -47,6 +47,7 @@ import {EnumKeysPipe} from "./common/EnumKeysPipe";
 import {KeysPipe} from "./common/KeysPipe";
 import {CanDeactivateGuard} from "./common/can-deactivate-guard.service";
 import {MomentModule} from "angular2-moment";
+import {SanitizeHtml, SanitizeScript, SanitizeStyle, SanitizeUrl, SanitizeResourceUrl} from "./common/sanitizePipe";
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -63,7 +64,8 @@ import {MomentModule} from "angular2-moment";
     ConsultingCounsel, ConsultingDetail, ConsultingListInfo, ConsultingMyListInfo, ConsultingChange,
     RoomInfoInput, RoomInfoUpdate, RoomInfoList, RoomInfoDetail, RoomInfoLately,
 
-    KeysPipe, EnumKeysPipe
+    KeysPipe, EnumKeysPipe,
+    SanitizeHtml, SanitizeScript, SanitizeStyle, SanitizeUrl, SanitizeResourceUrl
   ],
   imports: [ // import Angular's modules
     BrowserModule,

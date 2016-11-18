@@ -6,6 +6,7 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Http} from '@angular/http';
 import {contentHeaders} from '../../common/headers';
 import {config} from '../../common/config';
+import {DomSanitizer} from "@angular/platform-browser";
 
 const template = require('./index.html');
 const jwt_decode = require('jwt-decode');
@@ -44,7 +45,6 @@ export class RoomInfoDetail {
     private elevator:number;
     private supplyOption:string;
     private availableDate:string;
-    private HTMLText;
     private locationInfo:string;
     private VRImages: any;
     private coordinate:any;
@@ -59,8 +59,11 @@ export class RoomInfoDetail {
     private companyLogo : string;
     private companyIntroImage : string;
     private contact: string;
+    private htmlText;
+    private companyIntroImageUrl;
 
-    constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el: ElementRef) {
+    constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el: ElementRef,
+                private _sanitizer: DomSanitizer) {
     }
 
     /*
@@ -84,6 +87,8 @@ export class RoomInfoDetail {
                     this.contact = this.data.bizUserInfo.contact;
                     this.companyLogo = this.data.bizUserInfo.companyLogo;     // conmpanyIntroImage
                     this.companyIntroImage = this.data.bizUserInfo.companyIntroImage;     // conmpanyIntroImage
+
+                    this.companyIntroImageUrl = [this.serverHost, this.companyIntroImage].join('/');
                 },
                 error => {
                     alert(error.text());
@@ -157,7 +162,6 @@ export class RoomInfoDetail {
             .map(res => res.json())//받아온 값을 json형식으로 변경
             .subscribe(
                 response => {
-                    console.log(response);
                     this.memberIdx = response.roomInfo.memberIdx;
 
                     this.title = response.roomInfo.title;
@@ -177,7 +181,7 @@ export class RoomInfoDetail {
                     this.supplyOption = response.roomInfo.supplyOption;
                     this.availableDate = response.roomInfo.availableDate;       // Date
 
-                    this.HTMLText = response.roomInfo.HTMLText;
+                    this.htmlText = response.roomInfo.HTMLText;
                     this.locationInfo = response.roomInfo.locationInfo;
                     this.VRImages = JSON.parse(response.roomInfo.VRImages);
                     this.coordinate = JSON.parse(response.roomInfo.coordinate);     // object
@@ -208,5 +212,14 @@ export class RoomInfoDetail {
             this.loginMemberIdx = null; //로그인 하지 않는 상태일때는 null값
         }
         contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
+    }
+
+    get HTMLText() {
+        return this._sanitizer.bypassSecurityTrustHtml(this.htmlText);
+    }
+
+    get routeBizMemberUrl() {
+        let routeUrl = ["/bizListDetail", this.memberIdx].join('/');
+        return routeUrl;
     }
 }

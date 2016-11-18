@@ -179,10 +179,8 @@
                             <div class="oc-item">
                                 <div class="iportfolio">
                                     <div class="portfolio-image">
-                                        <a routerLink="/bizListDetail/{{memberIdx}}">
-                                            <img src="{{serverHost}}/{{companyIntroImage}}" alt="Open Imagination">
-                                        </a>
-
+                                        <img [routerLink]="routeBizMemberUrl" [src]="companyIntroImageUrl"
+                                             alt="Open Imagination"/>
                                     </div>
                                     <!--<div class="portfolio-desc center nobottompadding">-->
                                     <!--<h3><a href="portfolio-single.html">Open Imagination</a></h3>-->
