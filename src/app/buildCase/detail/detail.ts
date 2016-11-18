@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http } from '@angular/http';
 import { contentHeaders } from '../../common/headers';
 import { config } from '../../common/config';
+import * as moment from 'moment';
 
 declare var jQuery: JQueryStatic;
 const template = require('./detail.html');
@@ -38,13 +39,15 @@ export class BuildCaseDetail {
   VRImages: any;
   coordinate: any;
   regionCategory: any;
-  initWriteDate: any;
+  initWriteDate: string;
 
   memberIdx: number;
   companyName: string;
-  aboutCompany: string;
+  ownerName: string;
   mainWorkField: string;
   mainWorkArea: string;
+  workPlace: string;
+  contact: string;
   companyIntroImage: string;
   serverHost: string = config.serverHost;
 
@@ -69,9 +72,11 @@ export class BuildCaseDetail {
           this.data = response; // 해당값이 제대로 넘어오는지 확인후 프론트단에 내용추가
 
           this.companyName = this.data.bizUserInfo.companyName;
-          this.aboutCompany = this.data.bizUserInfo.aboutCompany;
+          this.ownerName = this.data.bizUserInfo.ownerName;
           this.mainWorkField = this.data.bizUserInfo.mainWorkField;
           this.mainWorkArea = this.data.bizUserInfo.mainWorkArea;
+          this.workPlace = JSON.parse(this.data.bizUserInfo.workPlace);
+          this.contact = this.data.bizUserInfo.contact;
           this.companyIntroImage = this.data.bizUserInfo.companyIntroImage;     // conmpanyIntroImage
         },
         error => {
@@ -158,7 +163,8 @@ export class BuildCaseDetail {
           this.coordinate = response.buildCaseInfo.coordinate;    // 나중에 좌표를 받아서 Daum Map에 뿌려준다
           // this.coordinate = JSON.parse(response.buildCaseInfo.coordinate);
           this.regionCategory = response.buildCaseInfo.regionCategory;
-          this.initWriteDate = response.buildCaseInfo.initWriteDate;
+          this.initWriteDate = moment(response.buildCaseInfo.initWriteDate).format('YYYY/MM/DD');
+            console.log("this.initWriteDate = " + this.initWriteDate + ", response = " + response.buildCaseInfo.initWriteDate);
 
           this.onBizUserInfo();
 

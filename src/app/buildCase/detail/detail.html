@@ -1,19 +1,21 @@
 <!-- 상세보기 -->
+<section id="page-title">
+
+    <div class="container clearfix">
+        <h1>시공사례 상세보기</h1>
+        <span>해당 시공사례를 상세하게 보실 수 있습니다.</span>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active">시공사례 상세보기</li>
+        </ol>
+    </div>
+
+</section><!-- #page-title end -->
+
 <section id="content">
     <!-- Page Title
                   ============================================= -->
-    <section id="page-title">
 
-        <div class="container clearfix">
-            <h1>시공사례 상세보기</h1>
-            <span>해당 시공사례를 상세하게 보실 수 있습니다.</span>
-            <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li class="active">시공사례 상세보기</li>
-            </ol>
-        </div>
-
-    </section><!-- #page-title end -->
 
     <div class="content-wrap" style="padding-bottom: 0px;">
 
@@ -39,9 +41,9 @@
                                         ============================================= -->
                         <ul class="entry-meta clearfix">
                             <li><i class="icon-calendar3"></i>{{initWriteDate}}</li>
-                            <li><a href="#"><i class="icon-user"></i>{{buildTotalArea}}</a></li>
-                            <li><i class="icon-folder-open"></i><a href="#">{{buildType}}</a></li>
-                            <li><i class="icon-folder-open"></i><a href="#">{{buildTotalPrice}}</a></li>
+                            <li>공사면적 {{buildTotalArea}}</li>
+                            <li>공사구분 {{buildType}}</li>
+                            <li>시공가격 {{buildTotalPrice}}만원</li>
                             <li><a href="#"><i class="icon-comments"></i> 43 Comments</a></li>
                             <li><a href="#"><i class="icon-camera-retro"></i></a></li>
                         </ul><!-- .entry-meta end -->
@@ -53,9 +55,27 @@
                             <!--<img src="{{serverHost}}/{{companyIntroImage}}" style="width: 100%;">-->
                         </div><!-- .entry-image end -->
 
+                        <div class="divider"><i class="icon-circle"></i></div>
+
                         <div class="entry-content notopmargin">
 
+                            <h4 class="col-xs-2">공사면적</h4>
+                            <p class="col-xs-10">{{buildTotalArea}}</p>
+                            <div class="divider"><i class="icon-circle"></i></div>
 
+                            <h4 class="col-xs-2">공사구분</h4>
+                            <p class="col-xs-10">{{buildType}}</p>
+                            <div class="divider"><i class="icon-circle"></i></div>
+
+                            <h4 class="col-xs-2">시공가격</h4>
+                            <p class="col-xs-10">{{buildTotalPrice}}만원</p>
+                            <div class="divider"><i class="icon-circle"></i></div>
+
+                            <h4 class="col-xs-2">공사장소</h4>
+                            <p class="col-xs-10">{{buildPlace}}</p>
+                            <div class="divider"><i class="icon-circle"></i></div>
+
+                            <h4>시공 내용</h4>
                             <div role="tabpanel" class="tab-pane fade in active" style="word-break: break-all" [innerHTML]="HTMLText">
                             </div><!--.tab-pane-->
 
@@ -107,33 +127,27 @@
                         <table>
                             <tbody>
                                 <div class="form-group row">
-                                    <label class="col-xs-5 form-control-label">공사명</label>
-                                    <td class="col-xs-8">
-                                        <p>{{title}}</p>
-                                    </td>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-xs-5 form-control-label">시공업체명</label>
+                                    <label class="col-xs-5 form-control-label">업체명</label>
                                     <td class="col-xs-8">
                                         <p>{{companyName}}</p>
                                     </td>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xs-5 form-control-label">공사구분</label>
+                                    <label class="col-xs-5 form-control-label">대표명</label>
                                     <td class="col-xs-8">
-                                        <p>{{buildType}}</p>
+                                        <p>{{ownerName}}</p>
                                     </td>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xs-5 form-control-label">공사면적</label>
+                                    <label class="col-xs-5 form-control-label">사업장위치</label>
                                     <td class="col-xs-8">
-                                        <p>{{buildTotalArea}} 평</p>
+                                        <p>{{workPlace}}</p>
                                     </td>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xs-5 form-control-label">공사지역</label>
+                                    <label class="col-xs-5 form-control-label">연락처</label>
                                     <td class="col-xs-8">
-                                        <p>{{buildPlace}}</p>
+                                        <p>{{contact}}</p>
                                     </td>
                                 </div>
                             </tbody>
