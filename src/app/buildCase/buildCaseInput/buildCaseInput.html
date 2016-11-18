@@ -8,7 +8,7 @@
     <div id="contact-form-overlay" class="clearfix">
 
       <div class="fancy-title title-dotted-border">
-        <h3>시공사례입력</h3>
+        <h3>시공사례입력</h3> <small> *는 필수입력 입니다.</small>
       </div>
 
       <div class="contact-widget">
@@ -23,7 +23,7 @@
           <!-- 공사명 -->
           <div class="col_full">
             <label for="template-contactform-name">공사명<small>*</small></label>
-            <input type="text" #title id="template-contactform-name" placeholder="공사명" name="title" class="sm-form-control required" required/>
+            <input type="text" #title id="template-contactform-name" placeholder="공사명" name="title" value="" class="sm-form-control" required/>
           </div>
 
           <div class="clear"></div>
@@ -31,7 +31,7 @@
           <!-- 공사구분 -->
           <div class="col_half col_last">
             <label for="template-contactform-service">공사구분</label>
-            <select #buildType id="template-contactform-service" name="buildType" class="sm-form-control required" required>
+            <select #buildType id="template-contactform-service" name="buildType" value="" class="required sm-form-control" required>
               <option *ngFor="let item of buildTypes | keys" [value]="item.value.number">{{item.value.name}}</option>
             </select>
           </div>
@@ -42,7 +42,7 @@
           <div class="col_half">
             <label for="template-contactform-phone">총 공사면적</label>
             <div class="input-group">
-              <input type="number" #buildTotalArea id="template-contactform-phone" name="buildTotalArea" class="sm-form-control">
+              <input type="number" #buildTotalArea id="template-contactform-phone" name="buildTotalArea" value="" class="sm-form-control" required>
               <span class="input-group-addon">평</span>
             </div>
           </div>
@@ -79,7 +79,7 @@
           <div class="col_half">
             <label for="buildcase-price">총 시공비용<small>*</small></label>
             <div class="input-group">
-              <input type="number" #buildTotalPrice id="buildcase-price" name="buildTotalPrice" placeholder="총 시공비용" class="required sm-form-control" />
+              <input type="number" #buildTotalPrice id="buildcase-price" name="buildTotalPrice" placeholder="총 시공비용" value="" class="required sm-form-control" />
               <span class="input-group-addon">만원</span>
             </div>
           </div>
@@ -96,10 +96,10 @@
 
           <div class="col_full">
             <label for="buildcase-previewImage">대표 이미지<small>*</small></label>
-            <input type="file" id="buildcase-image" id="buildcase-previewImage" class="required sm-form-control" name="previewImage" (change)="selectPreviewImage($event)" required/><br/>
+            <input type="file" id="buildcase-image" id="buildcase-previewImage" class="required sm-form-control" value="" name="previewImage" (change)="selectPreviewImage($event)" required/><br/>
 
             <label for="buildcase-vrimage">VR 이미지<small>*</small></label>
-            <input type="file" id="buildcase-vrimage" class="required sm-form-control" id="buildcase-vrImage" name="vrImage" (change)="selectVRImage($event)"  multiple required/><br/>
+            <input type="file" id="buildcase-vrimage" class="required sm-form-control" id="buildcase-vrImage" value="" name="vrImage" (change)="selectVRImage($event)"  multiple required/><br/>
           </div>
 
           <div class="col_full">

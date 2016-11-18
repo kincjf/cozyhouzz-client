@@ -88,6 +88,7 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
             this.multipartItem.formData.append("buildTotalPrice", buildTotalPrice);
             this.multipartItem.formData.append("HTMLText", HTMLText);
 
+
             this.multipartItem.callback = (data) => {
                 console.debug("home.ts & uploadCallback() ==>");
                 this.vrImage = null;
