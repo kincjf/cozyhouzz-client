@@ -38,11 +38,6 @@ npm-debug.log
 # Coverage #
 /coverage/
 
-# Typing #
-/src/typings/tsd/
-/typings/
-/tsd_typings/
-
 # Dist #
 /dist
 /public/__build__/

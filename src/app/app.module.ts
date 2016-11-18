@@ -46,6 +46,7 @@ import { RoomInfoLately } from './roomInfo/lately';
 import {EnumKeysPipe} from "./common/EnumKeysPipe";
 import {KeysPipe} from "./common/KeysPipe";
 import {CanDeactivateGuard} from "./common/can-deactivate-guard.service";
+import {MomentModule} from "angular2-moment";
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -70,6 +71,7 @@ import {CanDeactivateGuard} from "./common/can-deactivate-guard.service";
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     RecaptchaModule.forRoot(),
+      MomentModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
