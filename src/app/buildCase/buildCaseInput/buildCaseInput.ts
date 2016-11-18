@@ -51,7 +51,7 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
      작업상황 : 없음
      차후 개선방안 : 없음
      */
-    addBuildCase(event, title, buildType, buildPlace, buildPostCode, buildPlaceDetail, buildPlaceExtra,
+    addBuildCase($event, title, buildType, buildPlace, buildPostCode, buildPlaceDetail, buildPlaceExtra,
                  buildTotalArea, buildTotalPrice, previewImage, VRImage) {
         var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
