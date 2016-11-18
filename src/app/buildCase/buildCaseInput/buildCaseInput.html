@@ -23,7 +23,7 @@
           <!-- 공사명 -->
           <div class="col_full">
             <label for="template-contactform-name">공사명<small>*</small></label>
-            <input type="text" #title id="template-contactform-name" placeholder="공사명" name="title" class="sm-form-control required" />
+            <input type="text" #title id="template-contactform-name" placeholder="공사명" name="title" class="sm-form-control required" required/>
           </div>
 
           <div class="clear"></div>
@@ -31,8 +31,8 @@
           <!-- 공사구분 -->
           <div class="col_half col_last">
             <label for="template-contactform-service">공사구분</label>
-            <select #buildType id="template-contactform-service" name="buildType" class="sm-form-control">
-              <option *ngFor="let buildTypeValue of buildTypes" [ngValue]="buildTypeValue">{{buildTypeValue.name}}</option>
+            <select #buildType id="template-contactform-service" name="buildType" class="sm-form-control required" required>
+              <option *ngFor="let item of buildTypes | keys" [value]="item.value.number">{{item.value.name}}</option>
             </select>
           </div>
 
@@ -63,7 +63,7 @@
 
               <div class="clear"></div>
               <div class="col_half">
-                <input class="sm-form-control postcodify_address" type="text" #buildPlace id="address" placeholder="주소" readonly>
+                <input class="sm-form-control postcodify_address required" type="text" #buildPlace id="address" placeholder="주소" required readonly>
               </div>
               <div class="col_half col_last">
                 <input class="sm-form-control postcodify_details" type="text" #buildPlaceDetail id="details" placeholder="상세주소">
@@ -95,15 +95,15 @@
           </div>
 
           <div class="col_full">
-            <label for="buildcase-image">사진<small>*</small></label>
-            <div>대표 이미지 </div>
-            <input type="file" id="buildcase-image" name="buildcase-previewImage" class="required sm-form-control" name="previewImage" (change)="selectPreviewImage($event)" required/><br/>
-            <div>VR 이미지 </div>
-            <input type="file" id="buildcase-vrimage" class="required sm-form-control" name="buildcase-vrImage" name="vrImage" (change)="selectVRImage($event)"  multiple required/><br/>
+            <label for="buildcase-previewImage">대표 이미지<small>*</small></label>
+            <input type="file" id="buildcase-image" id="buildcase-previewImage" class="required sm-form-control" name="previewImage" (change)="selectPreviewImage($event)" required/><br/>
+
+            <label for="buildcase-vrimage">VR 이미지<small>*</small></label>
+            <input type="file" id="buildcase-vrimage" class="required sm-form-control" id="buildcase-vrImage" name="vrImage" (change)="selectVRImage($event)"  multiple required/><br/>
           </div>
 
-          <div class="col_full hidden">
-            <input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="sm-form-control" />
+          <div class="col_full">
+            <recaptcha required (resolved)="resolvedCaptcha($event)" siteKey="6LcLPwsUAAAAAOqysXiEPmdSpjwTDUUCmL6LiJez"></recaptcha>
           </div>
 
           <div class="col_full">

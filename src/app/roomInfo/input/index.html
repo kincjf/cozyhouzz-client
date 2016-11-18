@@ -79,7 +79,7 @@
                     <!--방구조-->
                     <div class="col_half col_last">
                         <label for="template-contactform-service"><small>*</small>방구조</label>
-                        <select #roomType id="template-contactform-service" name="roomType" class="sm-form-control">
+                        <select #roomType id="template-contactform-service" name="roomType" class="sm-form-control" required>
                             <option *ngFor="let item of roomTypes | keys" [value]="item.value.number">{{item.value.name}}</option>
                         </select>
                     </div>
@@ -260,7 +260,8 @@
                     </div>
 
                     <div class="col_full">
-                        <button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit">제출</button>
+                        <button class="button button-3d nomargin" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit">확인</button>
+                        <button type="reset" class="button button-3d nomargin">취소</button>
                     </div>
 
                 </form>

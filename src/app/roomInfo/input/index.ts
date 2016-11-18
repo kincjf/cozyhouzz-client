@@ -46,7 +46,6 @@ export class RoomInfoInput implements CanDeactivate<RoomInfoInput> {
     private vrImage: File;
     private previewImage: File;
     private quit: boolean = false;
-    private formModel;
 
     constructor(public router: Router, public http: Http, private el: ElementRef) {
     }

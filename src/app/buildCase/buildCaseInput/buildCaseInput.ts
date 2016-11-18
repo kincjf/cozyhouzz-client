@@ -8,6 +8,7 @@ import {config} from '../../common/config';
 
 import {EditorImageUploader} from "../../common/editor-image-uploader";
 import {CanDeactivate} from "@angular/router";
+import {STATIC_VALUE} from "../../common/config/staticValue";
 
 declare var jQuery: JQueryStatic;
 const template = require('./buildCaseInput.html');
@@ -32,11 +33,14 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
     public data: any;
     memberType: string;
     confirmMemberType: string;
-    buildTypes = [
-        {name: '주거공간'},
-        {name: '상업공간'},
-        {name: '기타'}
-    ];
+
+    // buildTypes = [
+    //     {name: '주거공간'},
+    //     {name: '상업공간'},
+    //     {name: '기타'}
+    // ];
+
+    buildTypes = STATIC_VALUE.PLACE_TYPE;
 
     private uploader: MultipartUploader;
     multipartItem: MultipartItem;
@@ -72,13 +76,17 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
             if (this.multipartItem.formData == null)
                 this.multipartItem.formData = new FormData();
 
+            // clear formData
+            for (var key of this.multipartItem.formData.keys()) {
+                this.multipartItem.formData.delete(key)
+            }
+
             this.multipartItem.formData.append("title", title);
             this.multipartItem.formData.append("buildType", buildType);
             this.multipartItem.formData.append("buildPlace", JSON.stringify(arrBuildPlace));
             this.multipartItem.formData.append("buildTotalArea", buildTotalArea);
             this.multipartItem.formData.append("buildTotalPrice", buildTotalPrice);
             this.multipartItem.formData.append("HTMLText", HTMLText);
-            this.multipartItem.formData.append("previewImage", this.previewImage);
 
             this.multipartItem.callback = (data) => {
                 console.debug("home.ts & uploadCallback() ==>");
@@ -141,6 +149,8 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
 
         if (!this.jwt) { //로그인을 했는지 점검
             alert("로그인이 필요합니다.");
+
+            this.quit = true;
             this.router.navigate(['/login']);
             return;
         }
@@ -179,6 +189,10 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
                 }
             });
         }
+    }
+
+    resolvedCaptcha(captchaResponse: string) {
+        console.log(`Resolved captcha with response ${captchaResponse}:`);
     }
 
     canDeactivate(): Promise<boolean> | boolean {
