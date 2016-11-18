@@ -32,7 +32,9 @@
 
                 <!-- Contact Form
                 ============================================= -->
-                <form (submit)="addRoomInfo($event, title.value, deposit.value, roomType.value, monthlyRentFee.value, floor.value, manageExpense.value, manageService.value, areaSize.value, actualSize.value, parking.value, elevator.value,
+                <form (submit)="addRoomInfo($event, title.value, deposit.value, roomType.value, monthlyRentFee.value,
+                previewImage, VRImage,
+                 floor.value, manageExpense.value, manageService.value, areaSize.value, actualSize.value, parking.value, elevator.value,
                       supplyOption.value, HTMLText.value, addressPostCode.value, address.value, addressDetail.value, addressExtraInfo.value, locationInfo.value, regionCategory.value)"
                       class="nobottommargin" id="roominfo-inputform" name="roominfo-inputform" method="post" enctype="multipart/form-data">
 
@@ -51,7 +53,7 @@
                         <label for="postcode"><small>*</small>주소</label>
                         <div>
                             <div class="col_one_fourth">
-                                <input type="text" #addressPostCode class="sm-form-control postcodify_postcode5" id="postcode" placeholder="우편번호" readonly>
+                                <input type="text" #addressPostCode class="sm-form-control postcodify_postcode5" id="postcode" placeholder="우편번호" required readonly>
                             </div>
 
                             <div class="col_one_fourth">
@@ -61,7 +63,7 @@
                             <div class="clear"></div>
 
                             <div class="col_half">
-                                <input class="sm-form-control postcodify_address" type="text" #address id="address" placeholder="주소" readonly>
+                                <input class="sm-form-control postcodify_address" type="text" #address id="address" placeholder="주소" readonly required>
                             </div>
                             <div class="col_half col_last">
                                 <input class="sm-form-control postcodify_details" type="text" #addressDetail id="details" placeholder="상세주소">
@@ -78,7 +80,7 @@
                     <div class="col_half col_last">
                         <label for="template-contactform-service"><small>*</small>방구조</label>
                         <select #roomType id="template-contactform-service" name="roomType" class="sm-form-control">
-                            <option *ngFor="let roomTypeValue of roomTypes" [ngValue]="roomTypeValue">{{roomTypeValue.name}}</option>
+                            <option *ngFor="let item of roomTypes | keys" [value]="item.value.number">{{item.value.name}}</option>
                         </select>
                     </div>
 
@@ -96,13 +98,11 @@
                     <!--VR 이미지 / 대표 이미지-->
 
                     <div class="col_full">
-                        <label for="template-contactform">사진 </label>
+                        <label for="roomInfoInput-mainPreviewImage">미리보기 이미지<small>*</small></label>
+                        <input type="file" #previewImage id="roomInfoInput-mainPreviewImage" name="roomInfoInput-mainPreviewImage" value="" class="required sm-form-control" required/>
 
-                        <div>VR 이미지</div>
-                        <input type="file" (change)="selectVRImage($event)" id="template-contactform-VRImages" name="template-contactform-VRImages" value="" class="required sm-form-control" (change)="selectPreviewImage($event)" required/>
-
-                        <div>대표 이미지</div>
-                        <input type="file" (change)="selectPreviewImage($event)" id="template-contactform-mainPreviewImage" name="template-contactform-mainPreviewImage" value="" class="required sm-form-control" (change)="selectVRImage($event)"  multiple required/>
+                        <label for="roomInfoInput-VRImages">VR 이미지<small>*</small></label>
+                        <input type="file" #VRImage id="roomInfoInput-VRImages" name="roomInfoInput-VRImages" value="" class="required sm-form-control" multiple required/>
                     </div>
 
                     <div class="clear"></div>
@@ -187,18 +187,18 @@
                     <!--주차-->
 
                     <div class="col_half">
-                        <label for="template-contactform-service">주차</label>
+                        <label for="template-contactform-service">주차장 여부</label>
                         <select #parking id="template-contactform-service" name="buildType" class="sm-form-control">
-                            <option *ngFor="let roomTypeCheck of checkType" [ngValue]="roomTypeCheck">{{roomTypeCheck.use}}</option>
+                            <option *ngFor="let item of existed | enumKeys" [value]="item.key">{{item.value}}</option>
                         </select>
                     </div>
 
                     <!--엘레베이터-->
 
                     <div class="col_half col_last">
-                        <label for="template-contactform-service">엘리베이터</label>
+                        <label for="template-contactform-service">엘리베이터 여부</label>
                         <select #elevator id="template-contactform-service" name="buildType" class="sm-form-control">
-                            <option *ngFor="let roomTypeCheck of checkType" [ngValue]="roomTypeCheck">{{roomTypeCheck.use}}</option>
+                            <option *ngFor="let item of existed | enumKeys" [value]="item.key">{{item.value}}</option>
                         </select>
                     </div>
 
@@ -256,7 +256,7 @@
                     </div>
 
                     <div class="col_full">
-                        <recaptcha (resolved)="resolvedCaptcha($event)" siteKey="6LcLPwsUAAAAAOqysXiEPmdSpjwTDUUCmL6LiJez"></recaptcha>
+                        <recaptcha required (resolved)="resolvedCaptcha($event)" siteKey="6LcLPwsUAAAAAOqysXiEPmdSpjwTDUUCmL6LiJez"></recaptcha>
                     </div>
 
                     <div class="col_full">

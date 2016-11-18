@@ -11,6 +11,7 @@ import {config} from '../../common/config';
 
 import {EditorImageUploader} from "../../common/editor-image-uploader";
 import * as moment from 'moment';
+import {CanDeactivate} from "@angular/router";
 
 declare var jQuery: JQueryStatic;
 const template = require('./index.html');
@@ -28,7 +29,7 @@ const jwt_decode = require('jwt-decode');
  차후 개선방안 :
  - 입력 버튼 누르고 나서 VR 파노라마 변환 중 표시 하고 완료 되면 시공사례 목록 조회로 이동 하게 해야함
  */
-export class RoomInfoUpdate {
+export class RoomInfoUpdate implements CanDeactivate<RoomInfoUpdate> {
     jwt: string;
     public decodedJwt: any;
     public data: any;
@@ -67,6 +68,7 @@ export class RoomInfoUpdate {
     currentAddressPostCode: string;
     currentAddressAddress: string;
     currentAddressDetail: string;
+    private quit:boolean = false;
 // //////////////////////////////////////////////////////////////////
 //     memberIdx: number;
 //     serverHost: string = config.serverHost;
@@ -117,6 +119,8 @@ export class RoomInfoUpdate {
 
         if (!this.jwt) { //로그인을 했는지 점검
             alert("로그인이 필요합니다.");
+
+            this.quit = true;
             this.router.navigate(['/login']);
             return;
         }
@@ -136,8 +140,8 @@ export class RoomInfoUpdate {
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
         var arrRoomPlace = [addressPostCode, address, addressDetail, extraInfo]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
 
-        if (HTMLTextLen < 100) { //시공사례 내용이 100자 이상 인지 확인
-            alert("방정보 내용을 100자 이상 작성 해야 합니다.");
+        if (HTMLTextLen < 10) { //시공사례 내용이 100자 이상 인지 확인
+            alert("방정보 내용을 10자 이상 작성 해야 합니다.");
         } else {
             //파일 업로더를 위한 설정 값들 선언
             this.multipartItem.headers = contentHeaders;
@@ -178,7 +182,9 @@ export class RoomInfoUpdate {
                 if (data) {
                     console.debug("roominfo/input & uploadCallback() upload file success.");
                     alert("방정보가 입력 되었습니다.");
-                    this.router.navigate(['/buildcaselist']); //서버에서 삭제가 성공적으로 완료 되면 방정보 조회로 이동
+
+                    this.quit = true;
+                    this.router.navigate(["list/room"]); //서버에서 삭제가 성공적으로 완료 되면 방정보 조회로 이동
                     // this.router.navigate(['detail/room/:roomListIdx']);
                 } else {
                     console.error("roominfo/input & uploadCallback() upload file false.");
@@ -281,7 +287,7 @@ export class RoomInfoUpdate {
                             minHeight: null,             // set minimum height of editor
                             maxHeight: null,             // set maximum height of editor
                             focus: true,
-                            placeholder: '내용을 100자 이상 입력 해주세요.',
+                            placeholder: '내용을 10자 이상 입력 해주세요.',
                             callbacks: {
                                 onImageUpload: function (files, editor) {
                                     EditorImageUploader.getInstance().upload(files, editor, {authToken: thatJwt});
@@ -298,6 +304,14 @@ export class RoomInfoUpdate {
                         //서버로부터 응답 실패시 경고창
                     }
                 );
+        }
+    }
+
+    canDeactivate(): Promise<boolean> | boolean {
+        if (this.quit) {
+            return true;
+        } else {
+            return confirm("작성을 취소하시겠습니까?");
         }
     }
 }

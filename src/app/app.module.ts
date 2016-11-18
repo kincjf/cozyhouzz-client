@@ -43,6 +43,9 @@ import { RoomInfoUpdate } from './roomInfo/update';
 import { RoomInfoList } from './roomInfo/list';
 import { RoomInfoDetail } from './roomInfo/detail';
 import { RoomInfoLately } from './roomInfo/lately';
+import {EnumKeysPipe} from "./common/EnumKeysPipe";
+import {KeysPipe} from "./common/KeysPipe";
+import {CanDeactivateGuard} from "./common/can-deactivate-guard.service";
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -57,7 +60,9 @@ import { RoomInfoLately } from './roomInfo/lately';
     MainPage,
     BuildCaseInput, BuildCaseUpdate, BuildCaseLately, BuildCaseList, BuildCaseDetail,
     ConsultingCounsel, ConsultingDetail, ConsultingListInfo, ConsultingMyListInfo, ConsultingChange,
-    RoomInfoInput, RoomInfoUpdate, RoomInfoList, RoomInfoDetail, RoomInfoLately
+    RoomInfoInput, RoomInfoUpdate, RoomInfoList, RoomInfoDetail, RoomInfoLately,
+
+    KeysPipe, EnumKeysPipe
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -68,7 +73,8 @@ import { RoomInfoLately } from './roomInfo/lately';
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    AuthGuard
+    AuthGuard,
+    CanDeactivateGuard
   ]
 })
 export class AppModule {

@@ -209,5 +209,4 @@ export class RoomInfoDetail {
         }
         contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
     }
-
 }

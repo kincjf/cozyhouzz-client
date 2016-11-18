@@ -56,7 +56,7 @@ export class BizList {
                         this.returnedDatas.push({
                             memberIdx: bizUser.memberIdx,
                             companyName: bizUser.companyName,
-                            companyIntroImage: bizUser.companyIntroImage,
+                            companyLogo: bizUser.companyLogo,
                             aboutCompanyShort: bizUser.aboutCompanyShort
                         });
                     }

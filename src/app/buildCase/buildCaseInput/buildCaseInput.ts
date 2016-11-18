@@ -7,6 +7,7 @@ import {MultipartUploader} from "../../common/multipart-upload/multipart-uploade
 import {config} from '../../common/config';
 
 import {EditorImageUploader} from "../../common/editor-image-uploader";
+import {CanDeactivate} from "@angular/router";
 
 declare var jQuery: JQueryStatic;
 const template = require('./buildCaseInput.html');
@@ -24,7 +25,7 @@ const jwt_decode = require('jwt-decode');
  차후 개선방안 :
  - 입력 버튼 누르고 나서 VR 파노라마 변환 중 표시 하고 완료 되면 시공사례 목록 조회로 이동 하게 해야함
  */
-export class BuildCaseInput {
+export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
 
     jwt: string;
     public decodedJwt: any;
@@ -42,6 +43,8 @@ export class BuildCaseInput {
     private vrImage: File;
     private previewImage: File;
 
+    quit: boolean = false;
+
     constructor(public router: Router, public http: Http, private el: ElementRef) {
     }
 
@@ -56,7 +59,7 @@ export class BuildCaseInput {
         var arrBuildPlace = [buildPostCode, buildPlace, buildPlaceDetail, buildPlaceExtra]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
 
         if (HTMLTextLen < 10) { //시공사례 내용이 100자 이상 인지 확인
-            alert("시공사례 내용을 10이상 작성 해야 합니다.");
+            alert("시공사례 내용을 10자이상 작성 해야 합니다.");
         } else {
             //파일 업로더를 위한 설정 값들 선언
             this.multipartItem.headers = contentHeaders;
@@ -77,20 +80,22 @@ export class BuildCaseInput {
             this.multipartItem.formData.append("HTMLText", HTMLText);
             this.multipartItem.formData.append("previewImage", this.previewImage);
 
-            this.multipartItem.upload();
-
             this.multipartItem.callback = (data) => {
                 console.debug("home.ts & uploadCallback() ==>");
                 this.vrImage = null;
                 this.previewImage = null;
                 if (data) {
-                    console.debug("home.ts & uploadCallback() upload file success.")
+                    console.debug("home.ts & uploadCallback() upload file success.");
                     alert("시공사례가 입력 되었습니다.");
+
+                    this.quit = true;
                     this.router.navigate(['/buildcaselist']); //서버에서 삭제가 성공적으로 완료 되면 시공사례 조회로 이동
                 } else {
                     console.error("home.ts & uploadCallback() upload file false.");
                 }
             }
+
+            this.multipartItem.upload();
         }
     }
 
@@ -146,6 +151,8 @@ export class BuildCaseInput {
 
         if (this.memberType != this.confirmMemberType) { //사업주 인지 점검
             alert("시공사례 입력은 사업주만 가능합니다");
+
+            this.quit = true;
             this.router.navigate(['/buildcaselist']);
             return;
         } else {
@@ -164,13 +171,21 @@ export class BuildCaseInput {
                 minHeight: null,             // set minimum height of editor
                 maxHeight: null,             // set maximum height of editor
                 focus: true,
-                placeholder: '내용을 100자 이상 입력 해주세요.',
+                placeholder: '내용을 10자 이상 입력 해주세요.',
                 callbacks: {
                     onImageUpload: function (files, editor) {
                         EditorImageUploader.getInstance().upload(files, editor, {authToken: thatJwt});
                     }
                 }
             });
+        }
+    }
+
+    canDeactivate(): Promise<boolean> | boolean {
+        if (this.quit) {
+            return true;
+        } else {
+            return confirm("작성을 취소하시겠습니까?");
         }
     }
 }

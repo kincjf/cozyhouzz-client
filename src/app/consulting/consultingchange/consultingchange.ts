@@ -8,6 +8,7 @@ import { contentHeaders } from '../../common/headers';
 //import * as _ from 'lodash';
 import { config } from '../../common/config';
 import * as moment from 'moment';
+import {CanDeactivate} from "@angular/router";
 
 const jwt_decode = require('jwt-decode');
 const template = require('./consultingchange.html');
@@ -18,7 +19,7 @@ const template = require('./consultingchange.html');
 })
 
 
-export class ConsultingChange implements AfterViewInit {
+export class ConsultingChange implements AfterViewInit, CanDeactivate<ConsultingChange> {
   jwt:string;
   decodedJwt: any;
   public data;
@@ -38,6 +39,7 @@ export class ConsultingChange implements AfterViewInit {
   currentExpectConsultDate: string;
   currentExpectBuildStartDate: string;
   currentReqContents: string;
+    private uploaded: boolean = false;
 
   /*
    Component 역할 : 시공사례 글 입력
@@ -111,6 +113,8 @@ export class ConsultingChange implements AfterViewInit {
       .subscribe(
         response => {
           this.router.navigate(['/consultingMyListInfo']);
+
+            this.uploaded = true;
           alert("수정 완료");
           //서버로부터 응답 성공시 home으로 이동
         },
@@ -123,4 +127,11 @@ export class ConsultingChange implements AfterViewInit {
 
   }
 
+    canDeactivate(): Promise<boolean> | boolean {
+        if (this.uploaded) {
+            return true;
+        } else {
+            return confirm("작성을 취소하시겠습니까?");
+        }
+    }
 }

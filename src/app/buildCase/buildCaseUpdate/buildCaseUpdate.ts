@@ -7,6 +7,7 @@ import {MultipartUploader} from "../../common/multipart-upload/multipart-uploade
 import { config } from '../../common/config';
 
 import { EditorImageUploader } from "../../common/editor-image-uploader";
+import {CanDeactivate} from "@angular/router";
 
 declare var jQuery: JQueryStatic;
 const template = require('./buildCaseUpdate.html');
@@ -24,7 +25,7 @@ const jwt_decode = require('jwt-decode');
  차후 개선방안 :
  -
  */
-export class BuildCaseUpdate {
+export class BuildCaseUpdate implements CanDeactivate<BuildCaseUpdate> {
 
   jwt:string;
   public decodedJwt: any;
@@ -51,6 +52,7 @@ export class BuildCaseUpdate {
   multipartItem:MultipartItem;
   private vrImage: File;
   private previewImage: File;
+  private quit:boolean = false;
 
   constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el:ElementRef) {
     this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
@@ -74,10 +76,12 @@ export class BuildCaseUpdate {
     this.multipartItem.withCredentials = false;
     this.multipartItem.method = 'PUT';
 
-    if (this.memberType != confirmMemberType) {
+    if (this.memberType != confirmMemberType) {  //사업주 인지 점검
       alert("시공사례 수정은 사업주만 가능합니다");
-    }//사업주 인지 점검
-    else {
+
+      this.quit = true;
+      this.router.navigate(['/buildcaselist']);
+    } else {
       if (this.multipartItem == null){
         this.multipartItem = new MultipartItem(this.uploader);
       }
@@ -98,6 +102,10 @@ export class BuildCaseUpdate {
         this.previewImage = null;
         if (data){
           console.debug("buildCaseUpdate upload file success.");
+          alert("시공사례가 수정 되었습니다.");
+
+          this.quit = true;
+          this.router.navigate(['/buildcaselist']); //서버에서 삭제가 성공적으로 완료 되면 시공사례 조회로 이동
         }else{
           console.error("buildCaseUpdate upload file false.");
         }
@@ -188,6 +196,14 @@ export class BuildCaseUpdate {
       }
     });
 
+  }
+
+  canDeactivate(): Promise<boolean> | boolean {
+    if (this.quit) {
+      return true;
+    } else {
+      return confirm("작성을 취소하시겠습니까?");
+    }
   }
 }
 

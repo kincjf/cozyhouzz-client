@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { contentHeaders} from '../../common/headers';
 import { config } from '../../common/config';
+import {CanDeactivate} from "@angular/router";
 
 const jwt_decode = require('jwt-decode');
 const template = require('./consultingCounsel.html');
@@ -24,12 +25,12 @@ const template = require('./consultingCounsel.html');
  - UI개선
  */
 
-export class ConsultingCounsel{
+export class ConsultingCounsel implements CanDeactivate<ConsultingCounsel> {
   jwt:string;
   public decodedJwt: any;
   lived: string;
   havePrefBizMember: boolean;
-
+  private uploaded:boolean = false;
 
   constructor(public router: Router, public http: Http, private el: ElementRef) {
     this.jwt = localStorage.getItem('id_token');//login시 저장된 jwt값 가져오기
@@ -59,6 +60,8 @@ export class ConsultingCounsel{
         response=>{
           //서버로부터 응답을 받은 후 내 컨설팅정보 조회로 이동
           alert("상담 등록 완료");
+
+          this.uploaded = true;
           this.router.navigate(['/consultingMyListInfo']);
         },
         error => {
@@ -71,5 +74,14 @@ export class ConsultingCounsel{
 
   ngAfterViewInit() {
     jQuery(this.el.nativeElement).find("#postcodify_search_button").postcodifyPopUp();
+  }
+
+
+  canDeactivate(): Promise<boolean> | boolean {
+    if (this.uploaded) {
+      return true;
+    } else {
+      return confirm("작성을 취소하시겠습니까?");
+    }
   }
 }

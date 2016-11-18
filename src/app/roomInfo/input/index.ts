@@ -1,16 +1,19 @@
 /**
  * Created by Kimseongbok on 2016-11-06.
  */
-import {Component, ElementRef} from '@angular/core';
+import {Component, Pipe, ElementRef} from '@angular/core';
 import {Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {contentHeaders} from '../../common/headers';
 import {MultipartItem} from "../../common/multipart-upload/multipart-item";
 import {MultipartUploader} from "../../common/multipart-upload/multipart-uploader";
 import {config} from '../../common/config';
+import {STATIC_VALUE} from '../../common/config/staticValue';
+
 import { RecaptchaModule } from 'ng2-recaptcha';
 
 import {EditorImageUploader} from "../../common/editor-image-uploader";
+import {CanDeactivate} from "@angular/router";
 
 declare var jQuery: JQueryStatic;
 const template = require('./index.html');
@@ -28,33 +31,22 @@ const jwt_decode = require('jwt-decode');
  차후 개선방안 :
  - 입력 버튼 누르고 나서 VR 파노라마 변환 중 표시 하고 완료 되면 시공사례 목록 조회로 이동 하게 해야함
  */
-export class RoomInfoInput {
+export class RoomInfoInput implements CanDeactivate<RoomInfoInput> {
     jwt: string;
     public decodedJwt: any;
     public data: any;
     memberType: number;
-    confirmMemberType: number = 3;      //"임대업자가 접속 했는지 확인 하기위한 값, 3:임대업자
+    confirmMemberType: number = STATIC_VALUE.MEMBER_TYPE.LEASE_MEMBER;      //"임대업자가 접속 했는지 확인 하기위한 값, 3:임대업자
 
-    roomTypes = [
-        {name: '아파트'},
-        {name: '빌라'},
-        {name: '주택'},
-        {name: '원/투룸'},
-        {use: '이용가능'},
-        {use: '불가능'}
-    ];
-
-    // 나중에 불린값으로 변경?? ㄱㄱ
-    checkType = [
-        {use: '이용가능'},
-        {use: '불가능'},
-    ];
-
+    roomTypes = STATIC_VALUE.PLACE_TYPE;
+    existed = STATIC_VALUE.EXISTED;
 
     private uploader: MultipartUploader;
     multipartItem: MultipartItem;
     private vrImage: File;
     private previewImage: File;
+    private quit: boolean = false;
+    private formModel;
 
     constructor(public router: Router, public http: Http, private el: ElementRef) {
     }
@@ -64,7 +56,9 @@ export class RoomInfoInput {
      작업상황 : 없음
      차후 개선방안 : 없음
      */
-    addRoomInfo($event, title, deposit, roomType, monthlyRentFee, floor, manageExpense, manageService, areaSize, actualSize, parking, elevator,
+    addRoomInfo($event, title, deposit, roomType, monthlyRentFee,
+                previewImage, VRImage,
+                floor, manageExpense, manageService, areaSize, actualSize, parking, elevator,
         supplyOption, HTMLText, addressPostCode, address, addressDetail, addressExtraInfo, locationInfo, regionCategory) {
         var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
@@ -82,8 +76,14 @@ export class RoomInfoInput {
                 this.multipartItem = new MultipartItem(this.uploader);
             }
 
-            if (this.multipartItem.formData == null)
+            if (this.multipartItem.formData == null) {
                 this.multipartItem.formData = new FormData();
+            }
+
+            // clear formData
+            for (var key of this.multipartItem.formData.keys()) {
+                this.multipartItem.formData.delete(key)
+            }
 
             this.multipartItem.formData.append("title", title);//제목
             this.multipartItem.formData.append("deposit", deposit);//보증금
@@ -100,34 +100,25 @@ export class RoomInfoInput {
             this.multipartItem.formData.append("HTMLText", HTMLText);//상세설명
             this.multipartItem.formData.append("address", JSON.stringify(arrRoomPlace));//주소
             this.multipartItem.formData.append("locationInfo", locationInfo);//건물정보
-            // this.multipartItem.formData.append("VRImages", VRImages);//VR이미지
-            // this.multipartItem.formData.append("mainPreviewImage", mainPreviewImage);//대표 미리보기 이미지
 
-            this.multipartItem.formData.append("previewImage", this.previewImage);
+            this.insertFile(previewImage, "previewImage");
+            this.insertFile(VRImage, "vrImage");
             this.multipartItem.formData.append("regionCategory", regionCategory);//지역 카테고리 ??????
 
-            // this.multipartItem.formData.append("buildType", inputBuildType);
-            // this.multipartItem.formData.append("buildPlace", JSON.stringify(arrBuildPlace));
-            // this.multipartItem.formData.append("buildTotalArea", buildTotalArea);
-            // this.multipartItem.formData.append("buildTotalPrice", buildTotalPrice);
-            // this.multipartItem.formData.append("HTMLText", HTMLText);
-            // this.multipartItem.formData.append("previewImage", this.previewImage);
-
-            this.multipartItem.upload();
-
             this.multipartItem.callback = (data) => {
-                console.debug("home.ts & uploadCallback() ==>");
-                this.vrImage = null;
-                this.previewImage = null;
                 if (data) {
                     console.debug("roominfo/input & uploadCallback() upload file success.");
                     alert("방정보가 입력 되었습니다.");
-                    this.router.navigate(['/buildcaselist']); //서버에서 삭제가 성공적으로 완료 되면 방정보 조회로 이동
+
+                    this.quit = true;
+                    this.router.navigate(['list/room']); //서버에서 삭제가 성공적으로 완료 되면 방정보 조회로 이동
                     // this.router.navigate(['detail/room/:roomListIdx']);
                 } else {
                     console.error("roominfo/input & uploadCallback() upload file false.");
                 }
             }
+
+            this.multipartItem.upload();
         }
     }
 
@@ -136,34 +127,18 @@ export class RoomInfoInput {
      작업상황 : 없음
      차후 개선방안 : 없음
      */
-    selectVRImage($event): void {
-        var inputValue = $event.target;
-        if (null == inputValue || null == inputValue.files[0]) {
-            console.debug("Input file error.");
-            return;
+    insertFile($event, fieldName): boolean {
+        var files = $event.files;
+        if (null == files || null == files[0]) {
+            console.debug("insertFile error - no file");
+            return false;
         } else {
-
-            for (var i = 0; i < inputValue.files.length; i++) {
-                this.multipartItem.formData.append("vrImage", inputValue.files[i]);
-                console.debug("Input File name: " + inputValue.files[i].name + " type:" + inputValue.files[i].size + " size:" + inputValue.files[i].size);
+            for (var i = 0; i < files.length; i++) {
+                this.multipartItem.formData.append(fieldName, files[i]);
+                console.debug("Input File name: " + files[i].name + " type:" + files[i].type + " size:" + files[i].size);
             }
 
-        }
-    }
-
-    /*
-     Method 역할 : 대표 이미지를 input 하면 이미지 전송 formData에 추가
-     작업상황 : 없음
-     차후 개선방안 : 없음
-     */
-    selectPreviewImage($event): void {
-        var inputValue = $event.target;
-        if (null == inputValue || null == inputValue.files[0]) {
-            console.debug("Input file error.");
-            return;
-        } else {
-            this.previewImage = inputValue.files[0];
-            console.debug("Input File name: " + this.previewImage.name + " type:" + this.previewImage.size + " size:" + this.previewImage.size);
+            return true;
         }
     }
 
@@ -173,6 +148,8 @@ export class RoomInfoInput {
 
         if (!this.jwt) { //로그인을 했는지 점검
             alert("로그인이 필요합니다.");
+
+            this.quit = true;
             this.router.navigate(['/login']);
             return;
         }
@@ -182,6 +159,8 @@ export class RoomInfoInput {
 
         if (this.memberType != this.confirmMemberType) { //임대업자(3) 인지 점검
             alert("방정보 입력은 임대업자만 가능합니다");
+
+            this.quit = true;
             this.router.navigate(['list/room']);
             return;
         } else {
@@ -200,7 +179,7 @@ export class RoomInfoInput {
                 minHeight: null,             // set minimum height of editor
                 maxHeight: null,             // set maximum height of editor
                 focus: true,
-                placeholder: '내용을 100자 이상 입력 해주세요.',
+                placeholder: '내용을 10자 이상 입력 해주세요.',
                 callbacks: {
                     onImageUpload: function (files, editor) {
                         EditorImageUploader.getInstance().upload(files, editor, {authToken: thatJwt});                    }
@@ -211,6 +190,14 @@ export class RoomInfoInput {
 
     resolvedCaptcha(captchaResponse: string) {
         console.log(`Resolved captcha with response ${captchaResponse}:`);
+    }
+
+    canDeactivate(): Promise<boolean> | boolean {
+        if (this.quit) {
+            return true;
+        } else {
+            return confirm("작성을 취소하시겠습니까?");
+        }
     }
 }
 
