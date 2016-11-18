@@ -9,6 +9,7 @@
     "sourceMap": true,
     "noEmitHelpers": true,
     "strictNullChecks": false,
+    "skipLibCheck": true,   // 라이브러리 검사를 하지 않음
     "baseUrl": "./src",
     "paths": {
     },
