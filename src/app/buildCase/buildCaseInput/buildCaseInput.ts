@@ -130,6 +130,8 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
 
         if (!this.jwt) { //로그인을 했는지 점검
             alert("로그인이 필요합니다.");
+
+            this.quit = true;
             this.router.navigate(['/login']);
             return;
         }
