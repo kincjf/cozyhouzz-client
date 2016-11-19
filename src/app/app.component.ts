@@ -3,7 +3,7 @@
  */
 import { Component, ViewEncapsulation } from '@angular/core';
 import { contentHeaders } from './common/headers';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 const template = require('./app.component.html');
 /*
@@ -20,7 +20,12 @@ export class AppComponent {
   }
 
   ngOnInit() {
-
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      document.body.scrollTop = 0;
+    });
   }
 
   ngAfterContentInit() {    // 로딩때 한번만 뜨는데, life cycle을

@@ -28,6 +28,9 @@ export class BuildCaseList {
   serverHost: string;
   currentPageNumber: number;
 
+  buildTypes = STATIC_VALUE.PLACE_TYPE;
+  buildType : string;
+
   constructor(public router: Router, public http: Http) {
   }
 
@@ -144,5 +147,45 @@ export class BuildCaseList {
     // this.currentPageNumber = oldIndex/this.pageSize+1;
     //alert("this.pageStartIndex = " + this.pageStartIndex + ", value =" + value);
     this.jumpPage(index, oldIndex);
+  }
+
+  buildTypeFuntion(buildType) {
+    var type = this.buildTypes;
+    if(type.APARTMENT.number == buildType){
+      this.buildType = type.APARTMENT.name;
+    }
+    else if(type.VILLA.number == buildType){
+      this.buildType = type.VILLA.name;
+    }
+    else if(type.DETACHED_HOUSE.number == buildType){
+      this.buildType = type.DETACHED_HOUSE.name;
+    }
+    else if(type.ONE_ROOM.number == buildType){
+      this.buildType = type.ONE_ROOM.name;
+    }
+    else if(type.TWO_ROOM.number == buildType){
+      this.buildType = type.TWO_ROOM.name;
+    }
+    else if(type.THREE_ROOM.number == buildType){
+      this.buildType = type.THREE_ROOM.name;
+    }
+    else if(type.OFFICETEL.number == buildType){
+      this.buildType = type.OFFICETEL.name;
+    }
+    else if(type.OFFICE.number == buildType){
+      this.buildType = type.OFFICE.name;
+    }
+    else if(type.SHOPPING.number == buildType){
+      this.buildType = type.SHOPPING.name;
+    }
+    else if(type.CAFE_RESTAURANT.number == buildType){
+      this.buildType = type.CAFE_RESTAURANT.name;
+    }
+    else if(type.ACADEMY.number == buildType) {
+      this.buildType = type.ACADEMY.name;
+    }
+    else if(type.CAFE_RESTAURANT.number == buildType){
+      this.buildType = type.HOSPITAL.name;
+    }
   }
 }

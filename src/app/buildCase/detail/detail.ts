@@ -58,6 +58,8 @@ export class BuildCaseDetail implements OnInit {
     serverHost: string = config.serverHost;
     companyIntroImageUrl;
 
+    buildTypes = STATIC_VALUE.PLACE_TYPE;
+
     constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el: ElementRef,
                 private _sanitizer: DomSanitizer) {
     }
@@ -94,6 +96,46 @@ export class BuildCaseDetail implements OnInit {
         contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
     }
 
+    buildTypeFuntion(buildType) {
+        var type = this.buildTypes;
+        if(type.APARTMENT.number == buildType){
+            this.buildType = type.APARTMENT.name;
+        }
+        else if(type.VILLA.number == buildType){
+            this.buildType = type.VILLA.name;
+        }
+        else if(type.DETACHED_HOUSE.number == buildType){
+            this.buildType = type.DETACHED_HOUSE.name;
+        }
+        else if(type.ONE_ROOM.number == buildType){
+            this.buildType = type.ONE_ROOM.name;
+        }
+        else if(type.TWO_ROOM.number == buildType){
+            this.buildType = type.TWO_ROOM.name;
+        }
+        else if(type.THREE_ROOM.number == buildType){
+            this.buildType = type.THREE_ROOM.name;
+        }
+        else if(type.OFFICETEL.number == buildType){
+            this.buildType = type.OFFICETEL.name;
+        }
+        else if(type.OFFICE.number == buildType){
+            this.buildType = type.OFFICE.name;
+        }
+        else if(type.SHOPPING.number == buildType){
+            this.buildType = type.SHOPPING.name;
+        }
+        else if(type.CAFE_RESTAURANT.number == buildType){
+            this.buildType = type.CAFE_RESTAURANT.name;
+        }
+        else if(type.ACADEMY.number == buildType) {
+            this.buildType = type.ACADEMY.name;
+        }
+        else if(type.CAFE_RESTAURANT.number == buildType){
+            this.buildType = type.HOSPITAL.name;
+        }
+    }
+
     getBuilcCaseInfo(URL: string) {
         return this.http.get(URL, {headers: contentHeaders}) //서버로부터 필요한 값 받아오기
             .map(res => res.json())//받아온 값을 json형식으로 변경
@@ -101,9 +143,9 @@ export class BuildCaseDetail implements OnInit {
             .then(
                 response => {
                     this.memberIdx = response.buildCaseInfo.memberIdx;
-
                     this.title = response.buildCaseInfo.title;
                     this.buildType = response.buildCaseInfo.buildType;
+                    // this.buildTypeFuntion(this.buildType);
                     this.buildPlace = JSON.parse(response.buildCaseInfo.buildPlace);
                     this.buildTotalArea = response.buildCaseInfo.buildTotalArea;
                     this.mainPreviewImage = response.buildCaseInfo.mainPreviewImage;
@@ -119,6 +161,7 @@ export class BuildCaseDetail implements OnInit {
                     this.buildType = STATIC_VALUE.PLACE_TYPE[key].name;
                 }
             );
+
     }
 
     /*
@@ -221,4 +264,6 @@ export class BuildCaseDetail implements OnInit {
     get HTMLText() {
         return this._sanitizer.bypassSecurityTrustHtml(this.htmlText);
     }
+
+
 }

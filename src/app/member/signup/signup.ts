@@ -16,8 +16,21 @@ const jwt_decode = require('jwt-decode');
   template: template
 })
 export class Signup {
+  jwt: string;
+
   constructor(public router: Router, public http: Http, private el: ElementRef) {
   }
+
+  ngAfterViewInit() {
+    this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
+
+    if (this.jwt) { //로그인을 했는지 점검
+      alert("이미 로그인 하셧습니다.");
+      this.router.navigate(['/']);
+      return;
+    }
+  }
+
   signup(event, email, password, password_ok) {
     //html에서의 value값
     var passwords = password;
@@ -38,10 +51,8 @@ export class Signup {
       alert('비밀번호가 일치하지 않습니다');
     } else {
       // event.preventDefault();
-      let memberType = jQuery(this.el.nativeElement).find('#normal-form-member:checked').val();
-      // memberType == 1일 경우 일반 사용자
-      // 그렇지 않을 경우 사업주 사용자
-      if (memberType !== '1') memberType = '2';
+      // memberType을 가져옴
+      let memberType = jQuery(this.el.nativeElement).find('#member-type-select input:checked').val();
 
       let body = JSON.stringify({ email, password,  memberType });
 
@@ -61,5 +72,9 @@ export class Signup {
           }
         );
     }
+  }
+  
+  social() {
+    alert("준비중입니다");
   }
 }
