@@ -16,8 +16,21 @@ const jwt_decode = require('jwt-decode');
   template: template
 })
 export class Signup {
+  jwt: string;
+
   constructor(public router: Router, public http: Http, private el: ElementRef) {
   }
+
+  ngAfterViewInit() {
+    this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
+
+    if (this.jwt) { //로그인을 했는지 점검
+      alert("이미 로그인 하셧습니다.");
+      this.router.navigate(['/']);
+      return;
+    }
+  }
+
   signup(event, email, password, password_ok) {
     //html에서의 value값
     var passwords = password;
