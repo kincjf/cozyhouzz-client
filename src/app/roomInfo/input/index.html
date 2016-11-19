@@ -86,17 +86,8 @@
 
                     <div class="clear"></div>
 
-                    <!--건물정보-->
-
-                    <div class="col_half">
-                        <label for="template-contactform-locationInfo">건물정보<small>*</small></label>
-                        <input type="text" #locationInfo id="template-contactform-locationInfo" name="template-contactform-locationInfo" value="" class="required sm-form-control" />
-                    </div>
-
-                    <!--<div class="clear"></div>-->
 
                     <!--VR 이미지 / 대표 이미지-->
-
                     <div class="col_full">
                         <label for="roomInfoInput-mainPreviewImage">미리보기 이미지<small>*</small></label>
                         <input type="file" #previewImage id="roomInfoInput-mainPreviewImage" name="roomInfoInput-mainPreviewImage" value="" class="required sm-form-control" required/>
@@ -130,7 +121,7 @@
                     <div class="clear"></div>
 
                     <!--관리비-->
-                    <div class="col_one_fifth">
+                    <div class="col_half">
                         <label for="template-contactform-manageExpense">관리비</label>
                         <div class="input-group">
                             <input type="number" #manageExpense id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />
@@ -152,8 +143,11 @@
                     <!--크기-->
 
                     <div class="col_half">
-                        <label for="template-contactform-areaSize">크기</label>
-                        <input type="number" #areaSize id="template-contactform-areaSize" name="template-contactform-areaSize" value="" class="sm-form-control" />
+                        <label for="template-contactform-areaSize">방 크기</label>
+                        <div class="input-group">
+                            <input type="number" #areaSize id="template-contactform-areaSize" name="template-contactform-areaSize" value="" class="sm-form-control" />
+                            <span class="input-group-addon">평</span>
+                        </div>
                     </div>
 
                     <!--실제 크기-->
@@ -204,6 +198,16 @@
                     <div class="col_full">
                         <label for="template-contactform-supplyOption">옵션</label>
                         <input type="text" #supplyOption id="template-contactform-supplyOption" name="template-contactform-supplyOption" placeholder="ex. 에어컨, 침대" value="" class="sm-form-control" />
+                    </div>
+
+                    <div class="clear"></div>
+
+
+                    <!--건물정보-->
+
+                    <div class="col_full">
+                        <label for="template-contactform-locationInfo">건물정보<small>*</small></label>
+                        <input type="text" #locationInfo id="template-contactform-locationInfo" name="template-contactform-locationInfo" value="" class="required sm-form-control" />
                     </div>
 
                     <div class="clear"></div>
