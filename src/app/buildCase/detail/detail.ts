@@ -9,6 +9,8 @@ import 'rxjs/add/operator/toPromise';
 import {DomSanitizer} from "@angular/platform-browser";
 import {SafeUrl} from "@angular/platform-browser";
 import {SafeResourceUrl} from "@angular/platform-browser";
+import {STATIC_VALUE} from "../../common/config/staticValue";
+import * as _ from "lodash";
 
 declare var jQuery: JQueryStatic;
 const template = require('./detail.html');
@@ -112,6 +114,9 @@ export class BuildCaseDetail implements OnInit {
                     // this.coordinate = JSON.parse(response.buildCaseInfo.coordinate);
                     this.regionCategory = response.buildCaseInfo.regionCategory;
                     this.initWriteDate = moment(response.buildCaseInfo.initWriteDate).format('YYYY/MM/DD');
+
+                    let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", this.buildType]);
+                    this.buildType = STATIC_VALUE.PLACE_TYPE[key].name;
                 }
             );
     }

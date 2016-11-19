@@ -108,54 +108,35 @@
                     <div class="clear"></div>
 
                     <!--보증금-->
-
-                    <div class="col_one_fifth">
+                    <div class="col_half">
                         <label for="template-contactform-deposit">보증금</label>
-                        <input type="number" #deposit id="template-contactform-deposit" name="template-contactform-deposit" value="" placeholder="만원" class="sm-form-control" />
-                    </div>
-                    <div class=".col_four_fifth .col_last">
-                        <label for="template-contactform-deposit"></label>
-                        <h6>만원</h6>
+                        <div class="input-group">
+                            <input type="number" #deposit id="template-contactform-deposit" name="template-contactform-deposit" value="" placeholder="만원" class="sm-form-control" />
+                            <span class="input-group-addon">만원</span>
+                        </div>
                     </div>
 
                     <div class="clear"></div>
 
                     <!--월세-->
-
-                    <!--<div class="col_half">-->
-                        <!--<label for="template-contactform-monthlyRentFee">월세</label>-->
-                        <!--<input type="number" id="template-contactform-monthlyRentFee" name="template-contactform-monthlyRentFee" value="" placeholder="만원" class="sm-form-control" />-->
-                    <!--</div>-->
-
-                    <div class="col_one_fifth">
+                    <div class="col_half">
                         <label for="template-contactform-monthlyRentFee">월세</label>
-                        <input type="number" #monthlyRentFee id="template-contactform-monthlyRentFee" name="template-contactform-monthlyRentFee" value="" placeholder="만원" class="sm-form-control" />
+                        <div class="input-group">
+                            <input type="number" #monthlyRentFee id="template-contactform-monthlyRentFee" name="template-contactform-monthlyRentFee" value="" placeholder="만원" class="sm-form-control" />
+                            <span class="input-group-addon">만원</span>
+                        </div>
                     </div>
-                    <div class=".col_four_fifth .col_last">
-                        <label for="template-contactform-monthlyRentFee"></label>
-                        <h6>만원</h6>
-                    </div>
-
 
                     <div class="clear"></div>
 
                     <!--관리비-->
-
-                    <!--<div class="col_half">-->
-                        <!--<label for="template-contactform-manageExpense">관리비</label>-->
-                        <!--<input type="text" id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />-->
-                    <!--</div>-->
-
                     <div class="col_one_fifth">
                         <label for="template-contactform-manageExpense">관리비</label>
-                        <input type="number" #manageExpense id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />
+                        <div class="input-group">
+                            <input type="number" #manageExpense id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />
+                            <span class="input-group-addon">만원</span>
+                        </div>
                     </div>
-                    <div class=".col_four_fifth .col_last">
-                        <label for="template-contactform-manageExpense"></label>
-                        <label></label>
-                        <h6>만원</h6>
-                    </div>
-
 
                     <div class="clear"></div>
 
@@ -176,16 +157,17 @@
                     </div>
 
                     <!--실제 크기-->
-
                     <div class="col_half col_last">
                         <label for="template-contactform-actualSize">실제 크기</label>
-                        <input type="number" #actualSize id="template-contactform-actualSize" name="template-contactform-actualSize" value="" class="sm-form-control" />
+                        <div class="input-group">
+                            <input type="number" #actualSize id="template-contactform-actualSize" name="template-contactform-actualSize" value="" class="sm-form-control" />
+                            <span class="input-group-addon">평</span>
+                        </div>
                     </div>
 
                     <div class="clear"></div>
 
                     <!--주차-->
-
                     <div class="col_half">
                         <label for="template-contactform-service">주차장 여부</label>
                         <select #parking id="template-contactform-service" name="buildType" class="sm-form-control">
@@ -194,7 +176,6 @@
                     </div>
 
                     <!--엘레베이터-->
-
                     <div class="col_half col_last">
                         <label for="template-contactform-service">엘리베이터 여부</label>
                         <select #elevator id="template-contactform-service" name="buildType" class="sm-form-control">
@@ -205,7 +186,6 @@
                     <div class="clear"></div>
 
                     <!--층수-->
-
                     <div class="col_half">
                         <label for="template-contactform-floor">층수</label>
                         <input type="number" #floor id="template-contactform-floor" name="template-contactform-floor" value="{{currentFloor}}" class="sm-form-control" />
@@ -270,23 +250,6 @@
 
             <div class="line"></div>
 
-            <!-- Contact Info
-            ============================================= -->
-            <div class="col_one_third nobottommargin">
-
-                <address>
-                    <strong>Headquarters:</strong><br>
-                    MobilityLabs<br>
-
-                </address>
-                <abbr title="Phone Number"><strong>Phone:</strong></abbr> (10) 3880 - 2109 <br>
-                <abbr title="Fax"><strong>Fax:</strong></abbr> 0303 - 3441 - 2109<br>
-                <abbr title="Email Address"><strong>Email:</strong></abbr> moblab@kr
-
-            </div><!-- Contact Info End -->
-
-            <!-- Testimonails
-            ============================================= -->
         </div><!-- Contact Form Overlay End -->
 
     </div>

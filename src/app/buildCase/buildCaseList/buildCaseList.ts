@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Http, Headers } from '@angular/http';
 import { contentHeaders } from '../../common/headers';
 import { config } from '../../common/config';
+import {STATIC_VALUE} from "../../common/config/staticValue";
+import * as _ from "lodash";
 
 const template = require('./buildCaseList.html');
 
@@ -49,16 +51,19 @@ export class BuildCaseList {
 
               let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
 
+              // buildType의 번호에 해당하는 key를 찾은 후, name을 render함
+              let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", buildCaseData.buildType]);
+
               this.returnedDatas.push({
                 selectedBuildCaseIdx: buildCaseData.idx,
                 title: buildCaseData.title,
                 mainPreviewImage: buildCaseData.mainPreviewImage,
                 HTMLText: buildCaseData.HTMLText,
                 buildTotalArea: buildCaseData.buildTotalArea,
-                buildType: buildCaseData.buildType,
+                buildType: STATIC_VALUE.PLACE_TYPE[key].name,
                 buildTotalPrice: buildCaseData.buildTotalPrice,
                 buildPlace: buildPlaceArr[1],
-                buildPlaceDetail: buildPlaceArr[2],
+                buildPlaceDetail: buildPlaceArr[2]
             });
           }
         },

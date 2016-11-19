@@ -8,6 +8,8 @@ import { contentHeaders } from '../../common/headers';
 import {MultipartItem} from "../../common/multipart-upload/multipart-item";
 import {MultipartUploader} from "../../common/multipart-upload/multipart-uploader";
 import { config } from '../../common/config';
+import {STATIC_VALUE} from "../../common/config/staticValue";
+import * as _ from "lodash";
 
 const template = require('./list.html');
 
@@ -52,12 +54,14 @@ export class RoomInfoList {
                     //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
                     for(var roomData of response.roomInfo) {
                         let addressArr = JSON.parse(roomData.address);
-                        //let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
-                        //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
+                        let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", roomData.roomType]);
+
+                        //returnDatas에 bizUser의 정보를 data의 수만큼 가공해서 저장.
                         this.returnedDatas.push({
                             idx: roomData.idx,
                             memberIdx: roomData.memberIdx,
                             title: roomData.title,
+                            roomType : STATIC_VALUE.PLACE_TYPE[key].name,
                             mainPreviewImage: roomData.mainPreviewImage,
                             addressPostcode: addressArr[0],
                             addressAddress: addressArr[1],

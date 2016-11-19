@@ -7,6 +7,8 @@ import {Http} from '@angular/http';
 import {contentHeaders} from '../../common/headers';
 import {config} from '../../common/config';
 import {DomSanitizer} from "@angular/platform-browser";
+import * as _ from "lodash";
+import {STATIC_VALUE} from '../../common/config/staticValue';
 
 const template = require('./index.html');
 const jwt_decode = require('jwt-decode');
@@ -27,6 +29,7 @@ export class RoomInfoDetail {
     serverHost: string = config.serverHost;
 
     public data: any;
+    returnedDatas = [];
 
     private memberIdx: number;
     private title: string;
@@ -61,6 +64,8 @@ export class RoomInfoDetail {
     private contact: string;
     private htmlText;
     private companyIntroImageUrl;
+    private addressInfo;
+    private addressDetail;
 
     constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el: ElementRef,
                 private _sanitizer: DomSanitizer) {
@@ -167,6 +172,8 @@ export class RoomInfoDetail {
                     this.title = response.roomInfo.title;
                     this.roomType = response.roomInfo.roomType;
                     this.address = JSON.parse(response.roomInfo.address);        // [우편번호, 일반주소, 상세주소, 참고사항]
+                    this.addressInfo = this.address[1];
+                    this.addressDetail = this.address[2];
                     this.mainPreviewImage = response.roomInfo.mainPreviewImage;
 
                     this.deposit = response.roomInfo.deposit;
@@ -187,6 +194,10 @@ export class RoomInfoDetail {
                     this.coordinate = JSON.parse(response.roomInfo.coordinate);     // object
                     this.regionCategory = response.roomInfo.regionCategory;
                     this.initWriteDate = response.roomInfo.initWriteDate;       // Timestamp
+
+                    // roomType의 번호에 해당하는 key를 찾은 후, name을 render함
+                    let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", this.roomType]);
+                    this.roomType = STATIC_VALUE.PLACE_TYPE[key].name;
 
                     this.onBizUserInfo();
 
