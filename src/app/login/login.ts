@@ -17,8 +17,9 @@ const template = require('./login.html');
  * App.ts의 Child로 넣어야 한다. 그래야 로그인/비로그인 상태시에 대한 UI 조작이 유기적으로 가능함.
  */
 export class Login {
+  jwt: string;
   constructor(public router: Router, public http: Http, public app: AppComponent) {
-}
+  }
 
   login(event, email, password) {
     //html에서의 value값
@@ -44,5 +45,15 @@ export class Login {
           //서버로부터 응답 실패시 경고창
         }
       );
+  }
+  
+  ngAfterViewInit() {
+    this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
+
+    if (this.jwt) { //로그인을 했는지 점검
+      alert("이미 로그인 하셧습니다.");
+      this.router.navigate(['/']);
+      return;
+    }
   }
 }

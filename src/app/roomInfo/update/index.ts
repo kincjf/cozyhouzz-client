@@ -241,7 +241,9 @@ export class RoomInfoUpdate implements CanDeactivate<RoomInfoUpdate> {
             let URL = [config.serverHost, config.path.roomInfo, this.selectedId].join('/');
 
             this.uploader = new MultipartUploader({url: URL});
-            this.multipartItem = new MultipartItem(this.uploader);
+            this.multipartItem = new MultipartItem(this.uploader, {
+                method: "PUT"
+            });
             this.multipartItem.formData = new FormData();
 
             this.http.get(URL, {headers: contentHeaders}) //서버로부터 필요한 값 받아오기

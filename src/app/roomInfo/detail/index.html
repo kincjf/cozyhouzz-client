@@ -41,8 +41,8 @@
                         <!-- Entry Meta
                                         ============================================= -->
                         <ul class="entry-meta clearfix">
-                            <li><i class="icon-calendar3"></i> {{initWriteDate}}</li>
-                            <li><a href="#"><!--<i class="icon-user"></i>--> 방구조 {{roomType}}</a></li>
+                            <li><i class="icon-calendar3"></i> {{initWriteDate | amDateFormat:"YYYY/MM/DD"}}</li>
+                            <li><a href="#"><!--<i class="icon-user"></i>--> 방구조 : {{roomType}}</a></li>
                             <!--<li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>-->
                             <li><a href="#"><i class="icon-comments"></i> 43 Comments</a></li>
                             <!--<li><a href="#"><i class="icon-camera-retro"></i></a></li>-->
@@ -94,10 +94,10 @@
                                     <td>{{actualSize}} 평</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>주차</strong><br/><strong>대수</strong></td>
-                                    <td>{{parking}}</td>
-                                    <td><strong>엘리베이터</strong></td>
-                                    <td>{{elevator}}</td>
+                                    <td><strong>주차장</strong><br/><strong>여부</strong></td>
+                                    <td>{{parking == 1 ? "있음" : "없음"}}</td>
+                                    <td><strong>엘리베이터 여부</strong></td>
+                                    <td>{{elevator == 1? "있음" : "없음"}}</td>
                                 </tr>
                                 <tr>
                                     <td><strong>옵션</strong></td>
@@ -107,7 +107,7 @@
                                 </tr>
                                 <tr>
                                     <td><strong>주소</strong></td>
-                                    <td>{{address}}</td>
+                                    <td>{{addressInfo}}<br /> {{addressDetail}}</td>
                                     <td><strong>도로명 주소</strong></td>
                                     <td>{{locationInfo}}</td>
                                 </tr>
@@ -179,10 +179,8 @@
                             <div class="oc-item">
                                 <div class="iportfolio">
                                     <div class="portfolio-image">
-                                        <a routerLink="/bizListDetail/{{memberIdx}}">
-                                            <img src="{{serverHost}}/{{companyIntroImage}}" alt="Open Imagination">
-                                        </a>
-
+                                        <img [routerLink]="routeBizMemberUrl" [src]="companyIntroImageUrl"
+                                             alt="Open Imagination"/>
                                     </div>
                                     <!--<div class="portfolio-desc center nobottompadding">-->
                                     <!--<h3><a href="portfolio-single.html">Open Imagination</a></h3>-->
@@ -206,12 +204,6 @@
                                 <label class="col-xs-5 form-control-label">업체명</label>
                                 <td class="col-xs-8">
                                     <p>{{companyName}}</p>
-                                </td>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-xs-5 form-control-label">업체정보</label>
-                                <td class="col-xs-8">
-                                    <p>{{aboutCompany}}</p>`
                                 </td>
                             </div>
                             <!--<div class="form-group row">-->

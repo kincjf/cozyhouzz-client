@@ -5,7 +5,7 @@
         <h1>시공사례 상세보기</h1>
         <span>해당 시공사례를 상세하게 보실 수 있습니다.</span>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
+            <li><a routerLink="">Home</a></li>
             <li class="active">시공사례 상세보기</li>
         </ol>
     </div>
@@ -41,11 +41,11 @@
                                         ============================================= -->
                         <ul class="entry-meta clearfix">
                             <li><i class="icon-calendar3"></i>{{initWriteDate}}</li>
-                            <li>공사면적 {{buildTotalArea}}</li>
-                            <li>공사구분 {{buildType}}</li>
-                            <li>시공가격 {{buildTotalPrice}}만원</li>
-                            <li><a href="#"><i class="icon-comments"></i> 43 Comments</a></li>
-                            <li><a href="#"><i class="icon-camera-retro"></i></a></li>
+                            <li>공사면적 : {{buildTotalArea}}평</li>
+                            <li>공사구분 : {{buildType}}</li>
+                            <li>시공가격 : {{buildTotalPrice}}만원</li>
+                            <li><a><i class="icon-comments"></i> 43 Comments</a></li>
+                            <li><a><i class="icon-camera-retro"></i></a></li>
                         </ul><!-- .entry-meta end -->
 
                         <!-- Entry Image
@@ -109,10 +109,7 @@
                             <div class="oc-item">
                                 <div class="iportfolio">
                                     <div class="portfolio-image">
-                                        <a routerLink="/bizListDetail/{{memberIdx}}">
-                                            <img src="{{serverHost}}/{{companyIntroImage}}" alt="Open Imagination">
-                                        </a>
-
+                                        <img [routerLink]="routeBizMemberUrl" [src]="companyIntroImageUrl" alt="Open Imagination" />
                                     </div>
                                     <!--<div class="portfolio-desc center nobottompadding">-->
                                     <!--<h3><a href="portfolio-single.html">Open Imagination</a></h3>-->
@@ -158,16 +155,16 @@
 
                         <h4>Tag Cloud</h4>
                         <div class="tagcloud">
-                            <a href="#">general</a>
-                            <a href="#">videos</a>
-                            <a href="#">music</a>
-                            <a href="#">media</a>
-                            <a href="#">photography</a>
-                            <a href="#">parallax</a>
-                            <a href="#">ecommerce</a>
-                            <a href="#">terms</a>
-                            <a href="#">coupons</a>
-                            <a href="#">modern</a>
+                            <a>general</a>
+                            <a>videos</a>
+                            <a>music</a>
+                            <a>media</a>
+                            <a>photography</a>
+                            <a>parallax</a>
+                            <a>ecommerce</a>
+                            <a>terms</a>
+                            <a>coupons</a>
+                            <a>modern</a>
                         </div>
 
                     </div>

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Http, Headers } from '@angular/http';
 import { contentHeaders } from '../../common/headers';
 import { config } from '../../common/config';
+import {STATIC_VALUE} from "../../common/config/staticValue";
+import * as _ from "lodash";
 
 const template = require('./buildCaseList.html');
 
@@ -25,6 +27,9 @@ export class BuildCaseList {
   selectedBuildCaseIdx: number;
   serverHost: string;
   currentPageNumber: number;
+
+  buildTypes = STATIC_VALUE.PLACE_TYPE;
+  buildType : string;
 
   constructor(public router: Router, public http: Http) {
   }
@@ -49,16 +54,19 @@ export class BuildCaseList {
 
               let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
 
+              // buildType의 번호에 해당하는 key를 찾은 후, name을 render함
+              let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", buildCaseData.buildType]);
+
               this.returnedDatas.push({
                 selectedBuildCaseIdx: buildCaseData.idx,
                 title: buildCaseData.title,
                 mainPreviewImage: buildCaseData.mainPreviewImage,
                 HTMLText: buildCaseData.HTMLText,
                 buildTotalArea: buildCaseData.buildTotalArea,
-                buildType: buildCaseData.buildType,
+                buildType: STATIC_VALUE.PLACE_TYPE[key].name,
                 buildTotalPrice: buildCaseData.buildTotalPrice,
                 buildPlace: buildPlaceArr[1],
-                buildPlaceDetail: buildPlaceArr[2],
+                buildPlaceDetail: buildPlaceArr[2]
             });
           }
         },
@@ -139,5 +147,45 @@ export class BuildCaseList {
     // this.currentPageNumber = oldIndex/this.pageSize+1;
     //alert("this.pageStartIndex = " + this.pageStartIndex + ", value =" + value);
     this.jumpPage(index, oldIndex);
+  }
+
+  buildTypeFuntion(buildType) {
+    var type = this.buildTypes;
+    if(type.APARTMENT.number == buildType){
+      this.buildType = type.APARTMENT.name;
+    }
+    else if(type.VILLA.number == buildType){
+      this.buildType = type.VILLA.name;
+    }
+    else if(type.DETACHED_HOUSE.number == buildType){
+      this.buildType = type.DETACHED_HOUSE.name;
+    }
+    else if(type.ONE_ROOM.number == buildType){
+      this.buildType = type.ONE_ROOM.name;
+    }
+    else if(type.TWO_ROOM.number == buildType){
+      this.buildType = type.TWO_ROOM.name;
+    }
+    else if(type.THREE_ROOM.number == buildType){
+      this.buildType = type.THREE_ROOM.name;
+    }
+    else if(type.OFFICETEL.number == buildType){
+      this.buildType = type.OFFICETEL.name;
+    }
+    else if(type.OFFICE.number == buildType){
+      this.buildType = type.OFFICE.name;
+    }
+    else if(type.SHOPPING.number == buildType){
+      this.buildType = type.SHOPPING.name;
+    }
+    else if(type.CAFE_RESTAURANT.number == buildType){
+      this.buildType = type.CAFE_RESTAURANT.name;
+    }
+    else if(type.ACADEMY.number == buildType) {
+      this.buildType = type.ACADEMY.name;
+    }
+    else if(type.CAFE_RESTAURANT.number == buildType){
+      this.buildType = type.HOSPITAL.name;
+    }
   }
 }

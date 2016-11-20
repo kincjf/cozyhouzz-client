@@ -3,8 +3,8 @@
     <div class="container clearfix">
       <div class="col_full">
         <ul class="tab-nav tab-nav2 center clearfix">
-          <li class="inline-block"><a routerLink="/login">Login</a></li>
-          <li class="inline-block ui-state-active"><a href="#" onclick="return false;">Register</a></li>
+          <li class="inline-block"><a routerLink="/login">로그인</a></li>
+          <li class="inline-block ui-state-active"><a href="#" onclick="return false;">회원가입</a></li>
         </ul>
       </div>
 
@@ -12,53 +12,89 @@
 
         <div class="well well-lg nobottommargin" id="member-type-select">
 
-          <h3>Member Type</h3>
+          <h3>계정 유형</h3>
 
           <div class="col_full">
             <input type="radio" id="normal-form-member" name="type-form-member" value="1" class="hidden" checked="checked"/>
-            <label for="normal-form-member" class="button btn-default btn-block text-center">Normal User</label>
+            <label for="normal-form-member" class="button btn-default btn-block text-center">일반 회원</label>
           </div>
 
           <div class="col_full">
             <input type="radio" id="business-form-member" name="type-form-member" value="2" class="hidden" />
-            <label for="business-form-member" class="button btn-default btn-block text-center">Business User</label>
+            <label for="business-form-member" class="button btn-default btn-block text-center">시공업체</label>
+          </div>
+
+          <div class="col_full">
+            <input type="radio" id="renter-form-member" name="type-form-member" value="3" class="hidden" />
+            <label for="renter-form-member" class="button btn-default btn-block text-center">임대업체</label>
           </div>
 
         </div>
       </div>
 
-      <div class="col_two_third col_last nobottommargin">
-        <h3>Don't have an Account? Register Now.</h3>
+      <div class="col_one_third nobottommargin">
+        <h3>아직 계정이 없으신가요?</h3>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, vel odio non dicta provident sint ex autem mollitia dolorem illum repellat ipsum aliquid illo similique sapiente fugiat minus ratione.</p>
+        <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, vel odio non dicta provident sint ex autem mollitia dolorem illum repellat ipsum aliquid illo similique sapiente fugiat minus ratione.</p>-->
         <form id="register-form" name="register-form" class="nobottommargin" role="form" (submit)="signup($event, username.value, password.value,password_ok.value)">
 
-          <div class="col_half col_last">
-            <label for="register-form-name">Email Address:</label>
+          <div class="col_full col_last">
+            <label for="register-form-name">이메일:</label>
             <input #username type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
           </div>
           
           <div class="clear"></div>
 
-          <div class="col_half col_last">
-            <label for="register-form-password">Choose Password:</label>
+          <div class="col_full col_last">
+            <label for="register-form-password">비밀번호:</label>
             <input #password type="password" id="register-form-password" name="register-form-password" value="" class="form-control" />
           </div>
 
           <div class="clear"></div>
 
-          <div class="col_half col_last">
-            <label for="register-form-repassword">Re-enter Password:</label>
+          <div class="col_full col_last">
+            <label for="register-form-repassword">비밀번호 확인:</label>
             <input #password_ok type="password" id="register-form-repassword" name="register-form-repassword" value="" class="form-control" />
           </div>
 
           <div class="clear"></div>
 
           <div class="col_full nobottommargin">
-            <button class="button button-3d button-black nomargin" id="register-form-submit" name="register-form-submit" value="register">Register Now</button>
+            <button class="button button-3d button-black nomargin" id="register-form-submit" name="register-form-submit" value="register">가입하기</button>
           </div>
 
         </form>
+      </div>
+      <div class="col_one_third col_last nobottommargin" id="social_login">
+        <div class="col_full col_last"></div>
+        <div class="btn btn-primary col_half col_last" (click)="social()">
+          <span class="ts-icon">
+            <i class="xi-facebook"></i>
+          </span>
+          <strong class="ts-text">Facebook</strong>
+        </div>
+        <div class="clear"></div>
+        <div class="btn btn-danger col_half col_last" (click)="social()">
+          <span class="ts-icon">
+            <i class="xi-google"></i>
+          </span>
+          <strong class="ts-text">Google</strong>
+        </div>
+        <div class="clear"></div>
+        <div class="btn btn-success col_half col_last" (click)="social()">
+          <span class="ts-icon">
+            <i class="xi-naver"></i>
+          </span>
+          <strong class="ts-text">NAVER</strong>
+        </div>
+        <div class="clear"></div>
+        <div class="btn btn-warning col_half col_last" (click)="social()">
+          <span class="ts-icon">
+            <i class="xi-kakao"></i>
+          </span>
+          <strong class="ts-text">Kakao</strong>
+        </div>
+        <div class="clear"></div>
       </div>
     </div>
   </div>

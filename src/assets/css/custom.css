@@ -10,3 +10,11 @@
 	background-color:#FFF;
 	color:#333;
 }
+
+#member-type-select > div {
+	margin-bottom:30px !important;
+}
+
+#member-type-select:parent {
+	margin-left:3%;
+}

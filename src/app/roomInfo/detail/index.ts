@@ -6,6 +6,9 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Http} from '@angular/http';
 import {contentHeaders} from '../../common/headers';
 import {config} from '../../common/config';
+import {DomSanitizer} from "@angular/platform-browser";
+import * as _ from "lodash";
+import {STATIC_VALUE} from '../../common/config/staticValue';
 
 const template = require('./index.html');
 const jwt_decode = require('jwt-decode');
@@ -26,6 +29,7 @@ export class RoomInfoDetail {
     serverHost: string = config.serverHost;
 
     public data: any;
+    returnedDatas = [];
 
     private memberIdx: number;
     private title: string;
@@ -44,7 +48,6 @@ export class RoomInfoDetail {
     private elevator:number;
     private supplyOption:string;
     private availableDate:string;
-    private HTMLText;
     private locationInfo:string;
     private VRImages: any;
     private coordinate:any;
@@ -59,8 +62,13 @@ export class RoomInfoDetail {
     private companyLogo : string;
     private companyIntroImage : string;
     private contact: string;
+    private htmlText;
+    private companyIntroImageUrl;
+    private addressInfo;
+    private addressDetail;
 
-    constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el: ElementRef) {
+    constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el: ElementRef,
+                private _sanitizer: DomSanitizer) {
     }
 
     /*
@@ -84,6 +92,8 @@ export class RoomInfoDetail {
                     this.contact = this.data.bizUserInfo.contact;
                     this.companyLogo = this.data.bizUserInfo.companyLogo;     // conmpanyIntroImage
                     this.companyIntroImage = this.data.bizUserInfo.companyIntroImage;     // conmpanyIntroImage
+
+                    this.companyIntroImageUrl = [this.serverHost, this.companyIntroImage].join('/');
                 },
                 error => {
                     alert(error.text());
@@ -157,12 +167,13 @@ export class RoomInfoDetail {
             .map(res => res.json())//받아온 값을 json형식으로 변경
             .subscribe(
                 response => {
-                    console.log(response);
                     this.memberIdx = response.roomInfo.memberIdx;
 
                     this.title = response.roomInfo.title;
                     this.roomType = response.roomInfo.roomType;
                     this.address = JSON.parse(response.roomInfo.address);        // [우편번호, 일반주소, 상세주소, 참고사항]
+                    this.addressInfo = this.address[1];
+                    this.addressDetail = this.address[2];
                     this.mainPreviewImage = response.roomInfo.mainPreviewImage;
 
                     this.deposit = response.roomInfo.deposit;
@@ -177,12 +188,16 @@ export class RoomInfoDetail {
                     this.supplyOption = response.roomInfo.supplyOption;
                     this.availableDate = response.roomInfo.availableDate;       // Date
 
-                    this.HTMLText = response.roomInfo.HTMLText;
+                    this.htmlText = response.roomInfo.HTMLText;
                     this.locationInfo = response.roomInfo.locationInfo;
                     this.VRImages = JSON.parse(response.roomInfo.VRImages);
                     this.coordinate = JSON.parse(response.roomInfo.coordinate);     // object
                     this.regionCategory = response.roomInfo.regionCategory;
                     this.initWriteDate = response.roomInfo.initWriteDate;       // Timestamp
+
+                    // roomType의 번호에 해당하는 key를 찾은 후, name을 render함
+                    let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", this.roomType]);
+                    this.roomType = STATIC_VALUE.PLACE_TYPE[key].name;
 
                     this.onBizUserInfo();
 
@@ -208,5 +223,14 @@ export class RoomInfoDetail {
             this.loginMemberIdx = null; //로그인 하지 않는 상태일때는 null값
         }
         contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
+    }
+
+    get HTMLText() {
+        return this._sanitizer.bypassSecurityTrustHtml(this.htmlText);
+    }
+
+    get routeBizMemberUrl() {
+        let routeUrl = ["/bizListDetail", this.memberIdx].join('/');
+        return routeUrl;
     }
 }

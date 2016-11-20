@@ -1,122 +1,124 @@
 <!-- 시공사례입력 -->
 <section id="map-overlay">
 
-  <div class="container clearfix">
+    <div class="container clearfix">
 
-    <!-- Contact Form Overlay
-            ============================================= -->
-    <div id="contact-form-overlay" class="clearfix">
+        <!-- Contact Form Overlay
+                ============================================= -->
+        <div id="contact-form-overlay" class="clearfix">
 
-      <div class="fancy-title title-dotted-border">
-        <h3>시공사례입력</h3>
-      </div>
-
-      <div class="contact-widget">
-
-        <div class="contact-form-result"></div>
-
-        <!-- Contact Form
-                    ============================================= -->
-        <form class="nobottommargin" id="template-contactform" name="template-contactform" method="post" enctype="multipart/form-data"
-              (submit)="addBuildCase($event, title.value, buildType.value, buildPlace.value, buildPostCode.value, buildPlaceDetail.value, buildPlaceExtra.value, buildTotalArea.value, buildTotalPrice.value)">
-
-          <!-- 공사명 -->
-          <div class="col_full">
-            <label for="template-contactform-name">공사명<small>*</small></label>
-            <input type="text" #title id="template-contactform-name" placeholder="공사명" name="title" class="sm-form-control required" required/>
-          </div>
-
-          <div class="clear"></div>
-
-          <!-- 공사구분 -->
-          <div class="col_half col_last">
-            <label for="template-contactform-service">공사구분</label>
-            <select #buildType id="template-contactform-service" name="buildType" class="sm-form-control required" required>
-              <option *ngFor="let item of buildTypes | keys" [value]="item.value.number">{{item.value.name}}</option>
-            </select>
-          </div>
-
-          <div class="clear"></div>
-
-
-          <div class="col_half">
-            <label for="template-contactform-phone">총 공사면적</label>
-            <div class="input-group">
-              <input type="number" #buildTotalArea id="template-contactform-phone" name="buildTotalArea" class="sm-form-control">
-              <span class="input-group-addon">평</span>
+            <div class="fancy-title title-dotted-border">
+                <h3>시공사례입력</h3> <small> *는 필수입력 입니다.</small>
             </div>
-          </div>
 
-          <div class="clear"></div>
+            <div class="contact-widget">
 
-          <!--공사지 주소-->
-          <div>
-            <label for="postcode">공사지주소</label>
-            <div>
-              <div class="col_one_fourth">
-                <input type="text" #buildPostCode class="sm-form-control postcodify_postcode5" id="postcode" placeholder="우편번호" readonly>
-              </div>
+                <div class="contact-form-result"></div>
 
-              <div class="col_one_fourth">
-                <button class="button button-border button-rounded button-amber" type="button" name="search" id="postcodify_search_button" value="검색">검색</button><br />
-              </div>
+                <!-- Contact Form
+                            ============================================= -->
+                <form (submit)="addBuildCase($event, title.value, buildType.value,
+                buildPlace.value, buildPostCode.value, buildPlaceDetail.value, buildPlaceExtra.value,
+                buildTotalArea.value, buildTotalPrice.value, previewImage, VRImage)"
+                      class="nobottommargin" id="buildcase-inputform" name="buildcase-inputform" method="post" enctype="multipart/form-data">
 
-              <div class="clear"></div>
-              <div class="col_half">
-                <input class="sm-form-control postcodify_address required" type="text" #buildPlace id="address" placeholder="주소" required readonly>
-              </div>
-              <div class="col_half col_last">
-                <input class="sm-form-control postcodify_details" type="text" #buildPlaceDetail id="details" placeholder="상세주소">
-              </div>
-              <div class="col_half col_last">
-                <input class="sm-form-control postcodify_extra_info" type="text" #buildPlaceExtra id="extraInfo" placeholder="참고항목">
-              </div>
+                    <!-- 공사명 -->
+                    <div class="col_full">
+                        <label for="template-contactform-name">공사명<small>*</small></label>
+                        <input type="text" #title id="template-contactform-name" placeholder="공사명" value="" name="title" class="sm-form-control required" required/>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!-- 공사구분 -->
+                    <div class="col_half col_last">
+                        <label for="template-contactform-service">공사구분</label>
+                        <select #buildType id="template-contactform-service" name="buildType" class="sm-form-control required" required>
+                            <option *ngFor="let item of buildTypes | keys" [value]="item.value.number">{{item.value.name}}</option>
+                        </select>
+                    </div>
+
+                    <div class="clear"></div>
+
+
+                    <div class="col_half">
+                        <label for="template-contactform-phone">총 공사면적</label>
+                        <div class="input-group">
+                            <input type="number" #buildTotalArea value="" id="template-contactform-phone" name="buildTotalArea" class="sm-form-control">
+                            <span class="input-group-addon">평</span>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!--공사지 주소-->
+                    <div>
+                        <label for="postcode">공사지주소</label>
+                        <div>
+                            <div class="col_one_fourth">
+                                <input type="text" #buildPostCode class="sm-form-control postcodify_postcode5" id="postcode" placeholder="우편번호" readonly>
+                            </div>
+
+                            <div class="col_one_fourth">
+                                <button class="button button-border button-rounded button-amber" type="button" name="search" id="postcodify_search_button" value="검색">검색</button><br />
+                            </div>
+
+                            <div class="clear"></div>
+                            <div class="col_half">
+                                <input class="sm-form-control postcodify_address required" type="text" #buildPlace id="address" placeholder="주소" required readonly>
+                            </div>
+                            <div class="col_half col_last">
+                                <input class="sm-form-control postcodify_details" type="text" #buildPlaceDetail id="details" placeholder="상세주소">
+                            </div>
+                            <div class="col_half col_last">
+                                <input class="sm-form-control postcodify_extra_info" type="text" #buildPlaceExtra id="extraInfo" placeholder="참고항목">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div class="col_half">
+                        <label for="buildcase-price">총 시공비용<small>*</small></label>
+                        <div class="input-group">
+                            <input type="number" #buildTotalPrice value="" id="buildcase-price" name="buildTotalPrice" placeholder="총 시공비용" class="required sm-form-control" />
+                            <span class="input-group-addon">만원</span>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div class="col_full">
+                        <label>시공내용<small>*</small></label>
+                        <div class="summernote-theme-1" rows="6" cols="30">
+                            <div #HTMLText class="summernote"></div>
+                        </div>
+                        <!--<textarea class="required sm-form-control" id="template-contactform-message" name="template-contactform-message" rows="6" cols="30"></textarea>-->
+                    </div>
+
+                    <div class="col_full">
+                        <label for="buildcase-previewImage">대표 이미지<small>*</small></label>
+                        <input type="file" #previewImage id="buildcase-previewImage" name="buildcase-previewImage" value="" class="required sm-form-control" required/><br/>
+
+                        <label for="buildcase-vrimage">VR 이미지<small>*</small></label>
+                        <input type="file" #VRImage id="buildcase-vrimage" name="buildcase-vrImage" value="" class="required sm-form-control" multiple required/><br/>
+                    </div>
+
+                    <div class="col_full">
+                        <recaptcha required (resolved)="resolvedCaptcha($event)" siteKey="6LcLPwsUAAAAAOqysXiEPmdSpjwTDUUCmL6LiJez"></recaptcha>
+                    </div>
+
+                    <div class="col_full">
+                        <button class="button button-3d nomargin" type="submit" id="buildcase-submit" name="buildcase-submit" value="button">확인</button>
+                        <button type="reset" class="button button-3d nomargin">취소</button>
+                    </div>
+
+                </form>
+
             </div>
-          </div>
 
-          <div class="clear"></div>
+        </div><!-- Contact Form Overlay End -->
 
-          <div class="col_half">
-            <label for="buildcase-price">총 시공비용<small>*</small></label>
-            <div class="input-group">
-              <input type="number" #buildTotalPrice id="buildcase-price" name="buildTotalPrice" placeholder="총 시공비용" class="required sm-form-control" />
-              <span class="input-group-addon">만원</span>
-            </div>
-          </div>
+    </div>
 
-          <div class="clear"></div>
-
-          <div class="col_full">
-            <label>시공내용<small>*</small></label>
-            <div class="summernote-theme-1" rows="6" cols="30">
-              <div #HTMLText class="summernote"></div>
-            </div>
-            <!--<textarea class="required sm-form-control" id="template-contactform-message" name="template-contactform-message" rows="6" cols="30"></textarea>-->
-          </div>
-
-          <div class="col_full">
-            <label for="buildcase-previewImage">대표 이미지<small>*</small></label>
-            <input type="file" id="buildcase-image" id="buildcase-previewImage" class="required sm-form-control" name="previewImage" (change)="selectPreviewImage($event)" required/><br/>
-
-            <label for="buildcase-vrimage">VR 이미지<small>*</small></label>
-            <input type="file" id="buildcase-vrimage" class="required sm-form-control" id="buildcase-vrImage" name="vrImage" (change)="selectVRImage($event)"  multiple required/><br/>
-          </div>
-
-          <div class="col_full">
-            <recaptcha required (resolved)="resolvedCaptcha($event)" siteKey="6LcLPwsUAAAAAOqysXiEPmdSpjwTDUUCmL6LiJez"></recaptcha>
-          </div>
-
-          <div class="col_full">
-            <button class="button button-3d nomargin" type="submit" id="buildcase-submit" name="buildcase-submit" value="submit">확인</button>
-            <button type="reset" class="button button-3d nomargin">취소</button>
-          </div>
-
-        </form>
-
-      </div>
-
-
-    </div><!-- Contact Form Overlay End -->
-
-  </div>
 </section>
