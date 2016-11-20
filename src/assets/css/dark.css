@@ -935,7 +935,7 @@ body.top-search-open .dark #header-wrap:not(.not-dark) #top-search a,
 	background-color: rgba(0,0,0,0.5);
 }
 
-.dark label { color: #BBB; }
+.dark label { color: #EEEEEE; }
 
 .dark label.label-muted { color: #777; }
 

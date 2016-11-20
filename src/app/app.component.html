@@ -11,12 +11,12 @@
       <div class="top-links">
         <ul>
           <li *ngIf="!logined"><a routerLink="/login"><strong>로그인/회원가입</strong></a></li>
-          <li *ngIf="logined"><a routerLink="/change">내 정보수정</a></li>
-          <li *ngIf="logined"><a routerLink="/buildcaselately">최근 본 사례 조회</a></li>
-          <li *ngIf="logined"><a routerLink="/buildcaseselected">찜한 사례 조회</a></li>
-          <li *ngIf="logined"><a routerLink="/consultingMyListInfo">내 컨설팅 정보</a></li>
-          <li *ngIf="logined"><a routerLink="/list/room">방 정보 목록 조회</a></li>
-          <li *ngIf="logined"><a (click)="logout()">로그아웃</a></li>
+          <li *ngIf="logined"><a routerLink="/change"><strong>내 정보수정</strong></a></li>
+          <li *ngIf="logined"><a routerLink="/buildcaselately"><strong>최근 본 사례 조회</strong></a></li>
+          <li *ngIf="logined"><a routerLink="/buildcaseselected"><strong>찜한 사례 조회</strong></a></li>
+          <li *ngIf="logined"><a routerLink="/consultingMyListInfo"><strong>내 컨설팅 정보</strong></a></li>
+          <li *ngIf="logined"><a routerLink="/list/room"><strong>방 정보 목록 조회</strong></a></li>
+          <li *ngIf="logined"><a (click)="logout()"><strong>로그아웃</strong></a></li>
         </ul>
       </div><!-- .top-links end -->
 
