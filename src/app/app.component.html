@@ -10,7 +10,7 @@
                 ============================================= -->
       <div class="top-links">
         <ul>
-          <li *ngIf="!logined"><a routerLink="/login">로그인/회원가입</a></li>
+          <li *ngIf="!logined"><a routerLink="/login"><strong>로그인/회원가입</strong></a></li>
           <li *ngIf="logined"><a routerLink="/change">내 정보수정</a></li>
           <li *ngIf="logined"><a routerLink="/buildcaselately">최근 본 사례 조회</a></li>
           <li *ngIf="logined"><a routerLink="/buildcaseselected">찜한 사례 조회</a></li>
