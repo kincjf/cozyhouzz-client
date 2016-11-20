@@ -1,48 +1,105 @@
-<section id="slider" class="slider-parallax swiper_wrapper clearfix" style="height: 550px;" data-loop="true">
-    <!-- banner
-          ============================================= -->
-    <div class="swiper-container swiper-parent">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"
-                 style="background-image: url('../../../assets/construction/images/slider/1.jpg'); background-position: center bottom;">
-                <div class="container clearfix">
-                    <div class="slider-caption">
-                        <h2>Premium Interior</h2>
-                        <p>인테리어의 시작, 어려우신가요? Cozyhouzz에서 시작부터 끝까지 전문가와 함께 꼼꼼히 챙겨드립니다!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="container clearfix">
-                    <div class="slider-caption slider-caption-right">
-                        <h2>Beautifully interior design</h2>
-                        <p>인테리어를 어떻게 해야 될지 고민이신가요? 주거공간부터 상업공간까지 다양한 우수 인테리어 사례를 무료로 감상하세요!</p>
-                    </div>
-                </div>
-                <div class="video-wrap">
-                    <video id="slide-video" poster="../../../assets/construction/images/videos/1.jpg" preload="auto"
-                           loop autoplay muted>
-                        <source src='../../../assets/construction/images/videos/1.webm' type='video/webm'/>
-                        <source src='../../../assets/construction/images/videos/1.mp4' type='video/mp4'/>
-                    </video>
-                    <div class="video-overlay" style="background-color: rgba(0,0,0,0.1);"></div>
-                </div>
-            </div>
-            <div class="swiper-slide"
-                 style="background-image: url('../../../assets/construction/images/slider/2.jpg'); background-position: center top;">
-                <div class="container clearfix">
-                    <div class="slider-caption">
-                        <h2>Welcome to cozyhouzz</h2>
-                        <p>전국 건축 인테리어 업체들의 시공 실적을 VR&3D 포트폴리오로 보고 결정하세요!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="slider-arrow-left"><i class="icon-angle-left"></i></div>
-        <div id="slider-arrow-right"><i class="icon-angle-right"></i></div>
-    </div>
+<!--<section id="slider" class="slider-parallax swiper_wrapper clearfix" style="height: 550px;" data-loop="true">-->
+    <!--&lt;!&ndash; banner-->
+          <!--============================================= &ndash;&gt;-->
+    <!--<div class="swiper-container swiper-parent">-->
+        <!--<div class="swiper-wrapper">-->
+            <!--<div class="swiper-slide"-->
+                 <!--style="background-image: url('../../../assets/construction/images/slider/1.jpg'); background-position: center bottom;">-->
+                <!--<div class="container clearfix">-->
+                    <!--<div class="slider-caption">-->
+                        <!--<h2>Premium Interior</h2>-->
+                        <!--<p>인테리어의 시작, 어려우신가요? Cozyhouzz에서 시작부터 끝까지 전문가와 함께 꼼꼼히 챙겨드립니다!</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="swiper-slide">-->
+                <!--<div class="container clearfix">-->
+                    <!--<div class="slider-caption slider-caption-right">-->
+                        <!--<h2>Beautifully interior design</h2>-->
+                        <!--<p>인테리어를 어떻게 해야 될지 고민이신가요? 주거공간부터 상업공간까지 다양한 우수 인테리어 사례를 무료로 감상하세요!</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="video-wrap">-->
+                    <!--<video id="slide-video" poster="../../../assets/construction/images/videos/1.jpg" preload="auto"-->
+                           <!--loop autoplay muted>-->
+                        <!--<source src='../../../assets/construction/images/videos/1.webm' type='video/webm'/>-->
+                        <!--<source src='../../../assets/construction/images/videos/1.mp4' type='video/mp4'/>-->
+                    <!--</video>-->
+                    <!--<div class="video-overlay" style="background-color: rgba(0,0,0,0.1);"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="swiper-slide"-->
+                 <!--style="background-image: url('../../../assets/construction/images/slider/2.jpg'); background-position: center top;">-->
+                <!--<div class="container clearfix">-->
+                    <!--<div class="slider-caption">-->
+                        <!--<h2>Welcome to cozyhouzz</h2>-->
+                        <!--<p>전국 건축 인테리어 업체들의 시공 실적을 VR&3D 포트폴리오로 보고 결정하세요!</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div id="slider-arrow-left"><i class="icon-angle-left"></i></div>-->
+        <!--<div id="slider-arrow-right"><i class="icon-angle-right"></i></div>-->
+    <!--</div>-->
 
+<!--</section>-->
+
+<!--<section id="portfolio-roominfo">-->
+    <!--<div class="section nobottommargin">-->
+        <!--<h2 class="center nobottommargin ls1">이달의 best 시공사례 </h2>-->
+    <!--</div>-->
+    <!--<div class="portfolio grid-container portfolio-full clearfix">-->
+
+        <!--<article class="portfolio-item pf-media pf-icons" *ngFor="let buildCaseInfo of returnedDatas">-->
+            <!--<div class="portfolio-image">-->
+                <!--<a routerLink="/buildcasedetail/{{buildCaseInfo.idx}}"><img-->
+                        <!--src="{{serverHost}}/{{buildCaseInfo.mainPreviewImage}}" alt></a>-->
+            <!--</div>-->
+            <!--<div class="portfolio-desc">-->
+                <!--<h3><a style="color: #9d270b" routerLink="/buildcasedetail/{{buildCaseInfo.idx}}">{{buildCaseInfo.title}}</a>-->
+                <!--</h3>-->
+                <!--<ul class="entry-meta clearfix">-->
+                    <!--<li><span class="label label-warning">{{buildCaseInfo.buildTotalArea}}평</span></li>-->
+                    <!--<li><a href="#"><i class="icon-time"></i>{{buildCaseInfo.buildType}}</a></li>-->
+                    <!--<li><a href="#"><i class="icon-map-marker2"></i>{{buildCaseInfo.buildTotalPrice}}만원</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="entry-content">-->
+                <!--<p>{{buildCaseInfo.buildPlace}} {{buildCaseInfo.buildPlaceDetail}}</p>-->
+            <!--</div>-->
+        <!--</article>-->
+
+    <!--</div>-->
+<!--</section>-->
+
+<section id="portfolio-buildcase">
+    <div class="section nobottommargin">
+        <h2 class="center nobottommargin ls1">이달의 Best 시공사례 </h2>
+    </div>
+    <div class="portfolio grid-container portfolio-full clearfix">
+
+        <article class="portfolio-item pf-media pf-icons" *ngFor="let buildCaseInfo of buildCaseDatas">
+            <div class="portfolio-image">
+                <a routerLink="/buildcasedetail/{{buildCaseInfo.idx}}"><img
+                        src="{{serverHost}}/{{buildCaseInfo.mainPreviewImage}}" alt></a>
+            </div>
+            <div class="portfolio-desc">
+                <h3><a style="color: #9d270b" routerLink="/buildcasedetail/{{buildCaseInfo.idx}}">{{buildCaseInfo.title}}</a>
+                </h3>
+                <ul class="entry-meta clearfix">
+                    <li><span class="label label-warning">{{buildCaseInfo.buildType}}</span></li>
+                    <li><a href="#"><i class="icon-time"></i>}{{buildCaseInfo.buildTotalArea}}평</a></li>
+                    <li><a href="#"><i class="icon-map-marker2"></i>{{buildCaseInfo.buildTotalPrice}}만원</a></li>
+                </ul>
+            </div>
+            <div class="entry-content">
+                <p>{{buildCaseInfo.buildPlace}}</p>
+            </div>
+        </article>
+
+    </div>
 </section>
+
 <!-- Content
       ============================================= -->
 <section id="content">
@@ -50,13 +107,40 @@
 
     <div class="content-wrap">
 
-        <div class="promo promo-light promo-full uppercase bottommargin-lg header-stick">
+        <div class="promo promo-light promo-full uppercase header-stick">
             <div class="container clearfix">
                 <h3 style="letter-spacing: 2px;">지금 바로! 원하는 인테리어를 찾고 견적을 신청하세요</h3>
                 <span>1. 마음에 드는 인테리어 컨셉을 고르기</span>
                 <span>2. "견적 신청"을 클릭하고 간단한 정보 입력하기</span>
                 <a routerLink="/consultingCounsel" class="button button-large button-border button-rounded">무료 견적 신청</a>
             </div>
+        </div>
+
+
+        <div class="section nobottommargin">
+            <h2 class="center nobottommargin ls1">이달의 Best 방정보 </h2>
+        </div>
+        <div id="portfolio" class="portfolio grid-container portfolio-full clearfix">
+
+            <article class="portfolio-item pf-media pf-icons" *ngFor="let roomInfo of roomInfoDatas">
+                <div class="portfolio-image">
+                    <a routerLink="/detail/room/{{roomInfo.idx}}"><img
+                            src="{{serverHost}}/{{roomInfo.mainPreviewImage}}" alt></a>
+                </div>
+                <div class="portfolio-desc">
+                    <h3><a style="color: #9d270b" routerLink="/detail/room/{{roomInfo.idx}}">{{roomInfo.title}}</a>
+                    </h3>
+                    <ul class="entry-meta clearfix">
+                        <li><span class="label label-warning">{{roomInfo.roomType}}</span></li>
+                        <li><a href="#"><i class="icon-time"></i>{{roomInfo.areaSize}}평</a></li>
+                        <li><a href="#"><i class="icon-map-marker2"></i>{{roomInfo.monthlyRentFee}}만원</a></li>
+                    </ul>
+                </div>
+                <div class="entry-content">
+                    <p>{{roomInfo.address}}</p>
+                </div>
+            </article>
+
         </div>
 
 
@@ -137,87 +221,22 @@
         </div>
 
 
-        <div class="section nobottommargin">
-            <h2 class="center nobottommargin ls1">이달의 best 시공사례 </h2>
-        </div>
-        <div id="portfolio" class="portfolio grid-container portfolio-full clearfix">
-
-            <article class="portfolio-item pf-media pf-icons" *ngFor="let buildCaseInfo of returnedDatas">
-                <div class="portfolio-image">
-                    <a routerLink="/buildcasedetail/{{buildCaseInfo.idx}}"><img
-                            src="{{serverHost}}/{{buildCaseInfo.mainPreviewImage}}" alt></a>
-                </div>
-                <div class="portfolio-desc">
-                    <h3><a style="color: #9d270b" routerLink="/buildcasedetail/{{buildCaseInfo.idx}}">{{buildCaseInfo.title}}</a>
-                    </h3>
-                    <ul class="entry-meta clearfix">
-                        <li><span class="label label-warning">{{buildCaseInfo.buildTotalArea}}평</span></li>
-                        <li><a href="#"><i class="icon-time"></i>{{buildCaseInfo.buildType}}</a></li>
-                        <li><a href="#"><i class="icon-map-marker2"></i>{{buildCaseInfo.buildTotalPrice}}만원</a></li>
-                    </ul>
-                </div>
-                <div class="entry-content">
-                    <p>{{buildCaseInfo.buildPlace}} {{buildCaseInfo.buildPlaceDetail}}</p>
-                </div>
-            </article>
-
-        </div>
-
-
-        <div class="clear"></div>
-        <div class="line"></div>
-
         <h3 class="center">What <span>Clients</span> Say</h3>
 
         <div class="fslider testimonial testimonial-full noshadow noborder nopadding divcenter"
              data-animation="fade" data-arrows="false" style="max-width: 700px;">
             <div class="flexslider">
                 <div class="slider-wrap">
-                    <div class="slide">
+
+                    <div class="slide" *ngFor="let client of clientComment">
                         <div class="testi-content">
-                            <p></p>
+                            <p>{{client.comment}}</p>
                             <div class="testi-meta">
-                                Steve Jobs
-                                <span>Apple Inc.</span>
+                                {{client.name}}
                             </div>
                         </div>
                     </div>
-                    <div class="slide">
-                        <div class="testi-content">
-                            <p></p>
-                            <div class="testi-meta">
-                                Collis Ta'eed
-                                <span>Envato Inc.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="testi-content">
-                            <p></p>
-                            <div class="testi-meta">
-                                John Doe
-                                <span>XYZ Inc.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="testi-content">
-                            <p></p>
-                            <div class="testi-meta">
-                                John Doe
-                                <span>XYZ Inc.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="testi-content">
-                            <p></p>
-                            <div class="testi-meta">
-                                John Doe
-                                <span>XYZ Inc.</span>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -226,32 +245,105 @@
         <div class="clear"></div>
         <div class="line"></div>
 
-
+        <!-- 원룸등 방 -->
         <div id="oc-clients" class="owl-carousel image-carousel carousel-widget" data-margin="100"
              data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xxs="2"
              data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6">
 
-            <div class="oc-item">
+            <div class="oc-item" *ngFor="let house of partnersInfo.HOUSE">
+
                 <div class="feature-box fbox-plain fbox-dark fbox-small">
                     <div class="fbox-icon">
-                        <a href="#"><img src="../../../assets/construction/images/icons/building.png"
-                                         alt="Concrete Developments"></a>
+                        <a href="#"><img src="../../../assets/images/icon/house.png"
+                                         alt="Partners - House"></a>
                     </div>
-                    <h3>100% Original</h3>
+                    <h3>{{house}}</h3>
                 </div>
-            </div>
-            <div class="oc-item"><a href="#"><img src="images/clients/2.png" alt="Clients"></a></div>
-            <div class="oc-item"><a href="#"><img src="images/clients/3.png" alt="Clients"></a></div>
-            <div class="oc-item"><a href="#"><img src="images/clients/4.png" alt="Clients"></a></div>
-            <div class="oc-item"><a href="#"><img src="images/clients/5.png" alt="Clients"></a></div>
-            <div class="oc-item"><a href="#"><img src="images/clients/6.png" alt="Clients"></a></div>
-            <div class="oc-item"><a href="#"><img src="images/clients/7.png" alt="Clients"></a></div>
-            <div class="oc-item"><a href="#"><img src="images/clients/8.png" alt="Clients"></a></div>
-            <div class="oc-item"><a href="#"><img src="images/clients/9.png" alt="Clients"></a></div>
-            <div class="oc-item"><a href="#"><img src="images/clients/10.png" alt="Clients"></a></div>
 
+            </div>
 
         </div>
+
+
+        <!-- 인테리어, 임대업 -->
+        <div id="oc-clients-house" class="owl-carousel image-carousel carousel-widget" data-margin="100"
+             data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xxs="2"
+             data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6">
+
+            <div class="oc-item" *ngFor="let estate of partnersInfo.ESTATE">
+
+                <div class="feature-box fbox-plain fbox-dark fbox-small">
+                    <div class="fbox-icon">
+                        <a href="#"><img src="../../../assets/images/icon/hotel.png"
+                                         alt="Partners - Estate"></a>
+                    </div>
+                    <h3>{{estate}}</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 매장 홍보 -->
+        <div id="oc-clients-estate" class="owl-carousel image-carousel carousel-widget" data-margin="100"
+             data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xxs="2"
+             data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6">
+
+            <div class="oc-item" *ngFor="let shop of partnersInfo.SHOP">
+
+                <div class="feature-box fbox-plain fbox-dark fbox-small">
+                    <div class="fbox-icon">
+                        <a href="#"><img src="../../../assets/images/icon/cart.png"
+                                         alt="Partners - Estate"></a>
+                    </div>
+                    <h3>{{shop}}</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 홈페이지, 마케팅 홍보 개발 -->
+        <div id="oc-clients-shop" class="owl-carousel image-carousel carousel-widget" data-margin="100"
+             data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xxs="2"
+             data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6">
+
+            <div class="oc-item" *ngFor="let marketing of partnersInfo.MARKETING">
+
+                <div class="feature-box fbox-plain fbox-dark fbox-small">
+                    <div class="fbox-icon">
+                        <a href="#"><img src="../../../assets/images/icon/browser.png"
+                                         alt="Partners - Marketing"></a>
+                    </div>
+                    <h3>{{marketing}}</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 기타 콘텐츠 활용, 마케팅 업체 -->
+        <div id="oc-clients-marketing" class="owl-carousel image-carousel carousel-widget" data-margin="100"
+             data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xxs="2"
+             data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6">
+
+            <div class="oc-item" *ngFor="let contents of partnersInfo.CONTENTS">
+
+                <div class="feature-box fbox-plain fbox-dark fbox-small">
+                    <div class="fbox-icon">
+                        <a href="#"><img src="../../../assets/images/icon/video-play.png"
+                                         alt="Partners - Share"></a>
+                    </div>
+                    <h3>{{contents}}</h3>
+                </div>
+
+            </div>
+
+        </div>
+
 
         <div class="clear"></div>
         <div class="line notopmargin"></div>
@@ -335,27 +427,27 @@
                 <div class="tabs tabs-justify nobottommargin clearfix" id="construction-tabs">
 
                     <ul class="tab-nav clearfix">
-                        <li><a href="#construction-tab-1">Why Us?</a></li>
-                        <li><a href="#construction-tab-2">Work Ethic</a></li>
-                        <li><a href="#construction-tab-4">Locations</a></li>
+                        <li><a href="#construction-tab-1">아늑한집 현황</a></li>
+                        <li><a href="#construction-tab-2">보유 역량</a></li>
+                        <li><a href="#construction-tab-4">상담 방문 위치</a></li>
                     </ul>
 
                     <div class="tab-container">
 
                         <div class="tab-content clearfix" id="construction-tab-1">
-                            <p><strong>눈으로 보며 내게 맞는 업체를 선택하고 상담 받을 수 있습니다.</strong></p>
+                            <p><strong>눈으로 보며 내게 맞는 방, 시공업체를 선택하고 상담 받을 수 있습니다.</strong></p>
                             <div class="col_one_fourth nobottommargin center">
-                                <div class="counter ls1 t600" style="color: #D2D2D2;"><span data-from="100"
-                                                                                            data-to="964"
+                                <div class="counter ls1 t600" style="color: #D2D2D2;"><span data-from="5"
+                                                                                            data-to="120"
                                                                                             data-refresh-interval="50"
                                                                                             data-speed="2000"></span>
                                 </div>
-                                <h5>업체선정</h5>
+                                <h5>협력업체</h5>
                             </div>
 
                             <div class="col_one_fourth nobottommargin center">
-                                <div class="counter ls1 t600" style="color: #D2D2D2;"><span data-from="100"
-                                                                                            data-to="8514"
+                                <div class="counter ls1 t600" style="color: #D2D2D2;"><span data-from="5"
+                                                                                            data-to="91"
                                                                                             data-refresh-interval="50"
                                                                                             data-speed="2500"></span>
                                 </div>
@@ -363,49 +455,50 @@
                             </div>
 
                             <div class="col_one_fourth nobottommargin center">
-                                <div class="counter ls1 t600" style="color: #D2D2D2;"><span data-from="100"
-                                                                                            data-to="458"
+                                <div class="counter ls1 t600" style="color: #D2D2D2;"><span data-from="5"
+                                                                                            data-to="222"
                                                                                             data-refresh-interval="50"
-                                                                                            data-speed="3500"></span>
+                                                                                            data-speed="3000"></span>
                                 </div>
-                                <h5>세입자 증가</h5>
+                                <h5>등록정보</h5>
                             </div>
 
                             <div class="col_one_fourth nobottommargin center col_last">
-                                <div class="counter ls1 t600" style="color: #D2D2D2;"><span data-from="14" data-to="159"
-                                                                                            data-refresh-interval="15"
-                                                                                            data-speed="2700"></span>
+                                <div class="counter ls1 t600" style="color: #D2D2D2;"><span data-from="14" data-to="359"
+                                                                                            data-refresh-interval="100"
+                                                                                            data-speed="3300"></span>
                                 </div>
-                                <h5>다양한 부가가치</h5>
+                                <h5>가입자 수</h5>
                             </div>
                         </div>
                         <div class="tab-content clearfix" id="construction-tab-2">
                             <img src="../../../assets/images/magazine/13.jpg" width="260" alt="Image"
                                  class="img-thumbnail alignleft">
-                            <p><strong>저희 아늑한 집은 다양한 지원사업과 수상경력을 보유하고 있으며, 고객분들의 요구를 수용할 수 있는 능력을 갖춘 전문가들을 보유하고
-                                있습니다</strong>.</p>
+                            <p><strong>바쁜 일상속에서 내 집, 내 가게 알아보기 힘드셨죠? 이제 발품팔지 마세요!</strong></p>
+                            <p><strong>360도 공간정보로 체험하고, 선택만 하세요! 계약까지 맞춤 전문 컨설턴트와의 상담으로
+                                처음부터 끝까지 "아늑한 집"의 고객만족 서비스로 내집, 내 가게를 믿고 맡기세요!</strong></p>
                         </div>
                         <div class="tab-content clearfix" id="construction-tab-4">
 
                             <div class="clear-bottommargin-sm">
                                 <div class="row clearfix">
                                     <div class="col-sm-7 bottommargin-sm">
-                                        <p><strong>대표 김창민</strong></p>
+                                        <p><strong>팀장 김창민</strong></p>
                                         <div class="clear-bottommargin-sm">
                                             <div class="row clearfix">
                                                 <div class="col-sm-6 bottommargin-sm">
                                                     <address>
-                                                        <strong>아담한 친구들(cozyhouzz)</strong><br>
-                                                        전라북도 전주시 덕진구 금암1동<br>
-                                                        전북대학교 아담한친구들<br>
+                                                        <strong>"아늑한집" 방문상담 위치</strong><br>
+                                                        전라북도 전주시 덕진구 백제대로 567<br>
+                                                        전북대학교 코앞 2층 아늑한집<br>
                                                     </address>
                                                 </div>
                                                 <div class="col-sm-6 bottommargin-sm">
-                                                    <abbr title="Phone Number"><strong>Phone:</strong></abbr> (010) 6310
-                                                    2751 <br>
+                                                    <abbr title="Phone Number"><strong>연락처: </strong></abbr>
+                                                    (010) 6310 2751 <br>
                                                     <abbr title="Fax"><strong>Fax:</strong></abbr> (0303) 3441 2109 <br>
                                                     <abbr title="Email Address"><strong>Email:</strong></abbr>
-                                                    kcmin@naver.com
+                                                    helpdesk@cozyhouzz.co.kr
                                                 </div>
                                             </div>
                                         </div>
