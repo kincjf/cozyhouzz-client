@@ -45,7 +45,6 @@
                             <li>공사구분 : {{buildType}}</li>
                             <li>시공가격 : {{buildTotalPrice}}만원</li>
                             <li><a><i class="icon-comments"></i> 43 Comments</a></li>
-                            <li><a><i class="icon-camera-retro"></i></a></li>
                         </ul><!-- .entry-meta end -->
 
                         <!-- Entry Image
@@ -55,27 +54,30 @@
                             <!--<img src="{{serverHost}}/{{companyIntroImage}}" style="width: 100%;">-->
                         </div><!-- .entry-image end -->
 
-                        <div class="divider"><i class="icon-circle"></i></div>
-
                         <div class="entry-content notopmargin">
-
-                            <h4 class="col-xs-2">공사면적</h4>
-                            <p class="col-xs-10">{{buildTotalArea}}</p>
-                            <div class="divider"><i class="icon-circle"></i></div>
-
-                            <h4 class="col-xs-2">공사구분</h4>
-                            <p class="col-xs-10">{{buildType}}</p>
-                            <div class="divider"><i class="icon-circle"></i></div>
-
-                            <h4 class="col-xs-2">시공가격</h4>
-                            <p class="col-xs-10">{{buildTotalPrice}}만원</p>
-                            <div class="divider"><i class="icon-circle"></i></div>
-
-                            <h4 class="col-xs-2">공사장소</h4>
-                            <p class="col-xs-10">{{buildPlace}}</p>
-                            <div class="divider"><i class="icon-circle"></i></div>
-
-                            <h4>시공 내용</h4>
+                            <div style="border-top-style:solid; border-bottom-style: solid; border-top-color:lightgray; border-bottom-color: lightgray;">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <td class="col-xs-6"><strong>공사면적</strong></td>
+                                        <td class="col-xs-6">{{buildTotalArea}}평</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-6"><strong>공사구분</strong></td>
+                                        <td class="col-xs-6">{{buildType}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-6" style="font-weight:bold">시공가격</td>
+                                        <td class="col-xs-6">{{buildTotalPrice}}만원</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-xs-6"><strong>공사장소</strong></td>
+                                        <td class="col-xs-6">{{buildPlace}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
                             <div role="tabpanel" class="tab-pane fade in active" style="word-break: break-all" [innerHTML]="HTMLText">
                             </div><!--.tab-pane-->
 
@@ -84,6 +86,8 @@
 
                         </div>
                     </div><!-- .entry end -->
+
+
 
 
                     <div style="text-align: center">

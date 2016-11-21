@@ -145,6 +145,7 @@ export class BuildCaseDetail implements OnInit {
                     this.buildType = response.buildCaseInfo.buildType;
                     // this.buildTypeFuntion(this.buildType);
                     this.buildPlace = JSON.parse(response.buildCaseInfo.buildPlace);
+                    this.buildPlace = this.buildPlace[1] + '' + this.buildPlace[2];
                     this.buildTotalArea = response.buildCaseInfo.buildTotalArea;
                     this.mainPreviewImage = response.buildCaseInfo.mainPreviewImage;
                     this.buildTotalPrice = response.buildCaseInfo.buildTotalPrice;
@@ -181,6 +182,7 @@ export class BuildCaseDetail implements OnInit {
                     this.mainWorkField = this.data.bizUserInfo.mainWorkField;
                     this.mainWorkArea = this.data.bizUserInfo.mainWorkArea;
                     this.workPlace = JSON.parse(this.data.bizUserInfo.workPlace);
+                    this.workPlace = this.workPlace[1] + '' + this.workPlace[2];
                     this.contact = this.data.bizUserInfo.contact;
                     this.companyIntroImage = this.data.bizUserInfo.companyIntroImage;     // conmpanyIntroImage
 
