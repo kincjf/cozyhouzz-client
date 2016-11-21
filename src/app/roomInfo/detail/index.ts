@@ -5,14 +5,14 @@ import {Component, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Http} from '@angular/http';
 import {contentHeaders} from '../../common/headers';
-import {config} from '../../common/config/index';
+import {config} from '../../common/config';
 import {DomSanitizer} from "@angular/platform-browser";
 import * as _ from "lodash";
 import {STATIC_VALUE} from '../../common/config/staticValue';
 
 const template = require('./index.html');
 const jwt_decode = require('jwt-decode');
-// const embedpano = require('assets/js/lib/krpano-1.19-pr6-viewer/embedpano.js');
+const embedpano = require('assets/js/lib/krpano-1.19-pr6-viewer/embedpano.js');
 
 // const moment = require('moment');
 

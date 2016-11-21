@@ -2,7 +2,7 @@ import {Component, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Http} from '@angular/http';
 import {contentHeaders} from '../../common/headers';
-import {config} from '../../common/config/index';
+import {config} from '../../common/config';
 import * as moment from 'moment';
 import {OnInit} from "@angular/core";
 import 'rxjs/add/operator/toPromise';
@@ -15,7 +15,7 @@ import * as _ from "lodash";
 declare var jQuery: JQueryStatic;
 const template = require('./detail.html');
 const jwt_decode = require('jwt-decode');
-// const embedpano = require('assets/js/lib/krpano-1.19-pr6-viewer/embedpano.js');
+const embedpano = require('assets/js/lib/krpano-1.19-pr6-viewer/embedpano.js');
 
 @Component({
     selector: 'buildCaseDetail',
