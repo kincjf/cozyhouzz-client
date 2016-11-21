@@ -74,14 +74,12 @@ export class BuildCaseDetail implements OnInit {
         let URL = [config.serverHost, config.path.buildCase, this.selectedId].join('/');
 
         // 통신속도가 로딩 속도보다 느리고, 연결된 데이터 때문에, observable가 아닌 promise를 이용하여 sync로 처리함.
-        this.getBuilcCaseInfo(URL).then(() => {
+        this.getBuildCaseInfo(URL).then(() => {
             let URL = [config.serverHost, config.path.bizStore, this.memberIdx].join('/');
             return this.getBizUserInfo(URL);
         }).then(() => {
-
-
             this.makePano();
-        }).catch(err => {
+        }, err => {
             console.error(err.text());
         });
 
@@ -136,7 +134,7 @@ export class BuildCaseDetail implements OnInit {
         }
     }
 
-    getBuilcCaseInfo(URL: string) {
+    getBuildCaseInfo(URL: string) {
         return this.http.get(URL, {headers: contentHeaders}) //서버로부터 필요한 값 받아오기
             .map(res => res.json())//받아온 값을 json형식으로 변경
             .toPromise()
