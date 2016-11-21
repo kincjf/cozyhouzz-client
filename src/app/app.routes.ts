@@ -5,9 +5,6 @@ import { Login } from './login';
 import { Signup } from './member/signup';
 import { Change } from './member/change';
 
-import { NormalSignupChange } from './member/normalSignupchange';
-import { BusinessSignupChange } from './member/businessSignupchange';
-
 import { BizList } from './businessList/bizList/bizList';
 import { BizListDetail } from './businessList/bizListDetail/bizListDetail';
 
@@ -41,10 +38,6 @@ export const ROUTES: Routes = [
 
   { path: 'signup', component: Signup },  // URL/signup : 일반과 사업주 회원가입
   { path: 'change', component: Change },  // URL/change : 사업주 회원정보변경시 일반과 사업주정보선택화면
-
-  { path: 'normalsignupchange', component: NormalSignupChange },  // URL/normalsignupchange : 일반회원정보변경
-
-  { path: 'businesssignupchange', component: BusinessSignupChange },  // URL/businesssignupchange : 사업주 회원정보변경
 
   { path: 'businesslist', component: BizList },  // URL/businesslist : 사업주 목록 조회
   { path: 'businessdetail', component: BizListDetail },  // URL/businessdetail : 사업주 상세보기

@@ -17,39 +17,30 @@
           <form class="nobottommargin" #f="ngForm" (ngSubmit)="signupchange($event, username.value, password.value, password_ok.value, telephone.value, companyName.value, ownerName.value, bizRegNo.value, contact.value, workPlace.value, mainWorkField.value, mainWorkArea.value)">
 
             <div class="col_one_third">
-              <label for="member-change-email">Email Address <small>*</small></label>
+              <label for="member-change-email">이메일 주소 <small>*</small></label>
               <input type="text" required #username id="member-change-email" name="member-change-email" value="{{email}}" class="email sm-form-control required" />
             </div>
 
             <div class="col_one_third">
-              <label for="member-change-password">Choose Password <small>*</small></label>
+              <label for="member-change-password">비밀번호 <small>*</small></label>
               <input type="password" required #password id="member-change-password" name="member-change-password" value="" class="required sm-form-control" />
             </div>
 
             <div class="col_one_third col_last">
-              <label for="member-change-password-ok">Re-enter Password <small>*</small></label>
+              <label for="member-change-password-ok">비밀번호 확인 <small>*</small></label>
               <input type="password" required #password_ok id="member-change-password-ok" name="member-change-password-ok" value="" class="required sm-form-control" />
             </div>
 
             <div class="clear"></div>
 
-            <div class="col_two_third">
-              <label for="member-change-subject">Telephone</label>
+            <div class="col_two_third col_last">
+              <label for="member-change-subject">휴대전화</label>
               <input type="text" #telephone id="member-change-subject" name="member-change-subject" value="{{telephones}}" class="sm-form-control" placeholder="012-3456-7890" />
             </div>
+            
+            <div class="clear"></div>
 
-            <div class="col_one_third col_last">
-              <label for="member-change-service">Services</label>
-              <select id="member-change-service" name="member-change-service" class="sm-form-control">
-                <option value="">-- Select One --</option>
-                <option value="Wordpress">Wordpress</option>
-                <option value="PHP / MySQL">PHP / MySQL</option>
-                <option value="HTML5 / CSS3">HTML5 / CSS3</option>
-                <option value="Graphic Design">Graphic Design</option>
-              </select>
-            </div>
-
-            <section [ngClass]="{'hidden': memberType == 1}">
+            <section [ngClass]="{'hidden': memberType != 2}">
             
               <h4>사업주 정보</h4>
 
