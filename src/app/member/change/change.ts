@@ -169,7 +169,6 @@ export class Change {
       
       // 사업주 정보 수정
       if (memberType == 2) {
-        console.log(contentHeaders);
         let body = JSON.stringify({ contact, companyName, ownerName, bizRegNo, workPlace, mainWorkField, mainWorkArea, memberType });
         //html받은 값들을 json형식으로 저장
 

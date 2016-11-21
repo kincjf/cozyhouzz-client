@@ -17,9 +17,6 @@ import { Login } from './login';
 import { Signup } from './member/signup';
 import { Change } from './member/change';
 
-import { NormalSignupChange } from './member/normalSignupchange';
-import { BusinessSignupChange } from './member/businessSignupchange';
-
 import { BizList } from './businessList/bizList/bizList';
 import { BizListDetail } from './businessList/bizListDetail/bizListDetail';
 
@@ -58,7 +55,6 @@ import {InfoTypeConvertPipe} from "./common/InfoTypeConvertPipe";
   declarations: [
     AppComponent,
     Login, Signup, Change,
-    NormalSignupChange, BusinessSignupChange,
     BizList, BizListDetail,
     MainPage,
     BuildCaseInput, BuildCaseUpdate, BuildCaseLately, BuildCaseList, BuildCaseDetail,
