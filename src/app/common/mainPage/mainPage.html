@@ -1,78 +1,51 @@
-<!--<section id="slider" class="slider-parallax swiper_wrapper clearfix" style="height: 550px;" data-loop="true">-->
-    <!--&lt;!&ndash; banner-->
-          <!--============================================= &ndash;&gt;-->
-    <!--<div class="swiper-container swiper-parent">-->
-        <!--<div class="swiper-wrapper">-->
-            <!--<div class="swiper-slide"-->
-                 <!--style="background-image: url('../../../assets/construction/images/slider/1.jpg'); background-position: center bottom;">-->
-                <!--<div class="container clearfix">-->
-                    <!--<div class="slider-caption">-->
-                        <!--<h2>Premium Interior</h2>-->
-                        <!--<p>인테리어의 시작, 어려우신가요? Cozyhouzz에서 시작부터 끝까지 전문가와 함께 꼼꼼히 챙겨드립니다!</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="swiper-slide">-->
-                <!--<div class="container clearfix">-->
-                    <!--<div class="slider-caption slider-caption-right">-->
-                        <!--<h2>Beautifully interior design</h2>-->
-                        <!--<p>인테리어를 어떻게 해야 될지 고민이신가요? 주거공간부터 상업공간까지 다양한 우수 인테리어 사례를 무료로 감상하세요!</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="video-wrap">-->
-                    <!--<video id="slide-video" poster="../../../assets/construction/images/videos/1.jpg" preload="auto"-->
-                           <!--loop autoplay muted>-->
-                        <!--<source src='../../../assets/construction/images/videos/1.webm' type='video/webm'/>-->
-                        <!--<source src='../../../assets/construction/images/videos/1.mp4' type='video/mp4'/>-->
-                    <!--</video>-->
-                    <!--<div class="video-overlay" style="background-color: rgba(0,0,0,0.1);"></div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="swiper-slide"-->
-                 <!--style="background-image: url('../../../assets/construction/images/slider/2.jpg'); background-position: center top;">-->
-                <!--<div class="container clearfix">-->
-                    <!--<div class="slider-caption">-->
-                        <!--<h2>Welcome to cozyhouzz</h2>-->
-                        <!--<p>전국 건축 인테리어 업체들의 시공 실적을 VR&3D 포트폴리오로 보고 결정하세요!</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div id="slider-arrow-left"><i class="icon-angle-left"></i></div>-->
-        <!--<div id="slider-arrow-right"><i class="icon-angle-right"></i></div>-->
-    <!--</div>-->
+<section id="slider" class="slider-parallax swiper_wrapper clearfix" style="height: 550px;" data-loop="true">
+    <!-- banner
+          ============================================= -->
+    <div class="swiper-container swiper-parent">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"
+                 style="background-image: url('../../../assets/construction/images/slider/1.jpg'); background-position: center bottom;">
+                <div class="container clearfix">
+                    <div class="slider-caption">
+                        <h2>Premium Service</h2>
+                        <p>인테리어의 시작, 어려우신가요? Cozyhouzz에서 시작부터 끝까지 전문가와 함께 꼼꼼히 챙겨드립니다!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container clearfix">
+                    <div class="slider-caption slider-caption-right">
+                        <h2>Beautifully design</h2>
+                        <p>인테리어를 어떻게 해야 될지 고민이신가요? 내방 / 우리집을 어디서 찾아야 될지 고민이신가요?</p>
+                            <p>우주거공간부터 상업공간까지 다양한 우수 인테리어 사례를 무료로 감상하세요!</p>
+                    </div>
+                </div>
+                <div class="video-wrap">
+                    <video id="slide-video" poster="../../../assets/construction/images/videos/1.jpg" preload="auto"
+                           loop autoplay muted>
+                        <source src='../../../assets/construction/images/videos/1.webm' type='video/webm'/>
+                        <source src='../../../assets/construction/images/videos/1.mp4' type='video/mp4'/>
+                    </video>
+                    <div class="video-overlay" style="background-color: rgba(0,0,0,0.1);"></div>
+                </div>
+            </div>
+            <div class="swiper-slide"
+                 style="background-image: url('../../../assets/construction/images/slider/2.jpg'); background-position: center top;">
+                <div class="container clearfix">
+                    <div class="slider-caption">
+                        <h2>Welcome to Cozyhouzz</h2>
+                        <p>전국 실내 건축 디자인을 VR & 3D 포트폴리오로 보고 결정하세요!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="slider-arrow-left"><i class="icon-angle-left"></i></div>
+        <div id="slider-arrow-right"><i class="icon-angle-right"></i></div>
+    </div>
 
-<!--</section>-->
+</section>
 
-<!--<section id="portfolio-roominfo">-->
-    <!--<div class="section nobottommargin">-->
-        <!--<h2 class="center nobottommargin ls1">이달의 best 시공사례 </h2>-->
-    <!--</div>-->
-    <!--<div class="portfolio grid-container portfolio-full clearfix">-->
-
-        <!--<article class="portfolio-item pf-media pf-icons" *ngFor="let buildCaseInfo of returnedDatas">-->
-            <!--<div class="portfolio-image">-->
-                <!--<a routerLink="/buildcasedetail/{{buildCaseInfo.idx}}"><img-->
-                        <!--src="{{serverHost}}/{{buildCaseInfo.mainPreviewImage}}" alt></a>-->
-            <!--</div>-->
-            <!--<div class="portfolio-desc">-->
-                <!--<h3><a style="color: #9d270b" routerLink="/buildcasedetail/{{buildCaseInfo.idx}}">{{buildCaseInfo.title}}</a>-->
-                <!--</h3>-->
-                <!--<ul class="entry-meta clearfix">-->
-                    <!--<li><span class="label label-warning">{{buildCaseInfo.buildTotalArea}}평</span></li>-->
-                    <!--<li><a href="#"><i class="icon-time"></i>{{buildCaseInfo.buildType}}</a></li>-->
-                    <!--<li><a href="#"><i class="icon-map-marker2"></i>{{buildCaseInfo.buildTotalPrice}}만원</a></li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="entry-content">-->
-                <!--<p>{{buildCaseInfo.buildPlace}} {{buildCaseInfo.buildPlaceDetail}}</p>-->
-            <!--</div>-->
-        <!--</article>-->
-
-    <!--</div>-->
-<!--</section>-->
-
-<section id="portfolio-buildcase">
+<section>
     <div class="section nobottommargin">
         <h2 class="center nobottommargin ls1">이달의 Best 시공사례 </h2>
     </div>
@@ -104,7 +77,6 @@
       ============================================= -->
 <section id="content">
 
-
     <div class="content-wrap">
 
         <div class="promo promo-light promo-full uppercase header-stick">
@@ -117,7 +89,7 @@
         </div>
 
 
-        <div class="section nobottommargin">
+        <div class="section nomargin">
             <h2 class="center nobottommargin ls1">이달의 Best 방정보 </h2>
         </div>
         <div id="portfolio" class="portfolio grid-container portfolio-full clearfix">
@@ -245,105 +217,26 @@
         <div class="clear"></div>
         <div class="line"></div>
 
-        <!-- 원룸등 방 -->
+        <!-- 협력업체 목록 -->
+        <h3 class="center"><span>Our Partners</span></h3>
         <div id="oc-clients" class="owl-carousel image-carousel carousel-widget" data-margin="100"
              data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xxs="2"
-             data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6">
+             data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6"
+             *ngFor="let partner of partnersInfo | values">
 
-            <div class="oc-item" *ngFor="let house of partnersInfo.HOUSE">
+            <div class="oc-item" *ngFor="let item of partner">
 
                 <div class="feature-box fbox-plain fbox-dark fbox-small">
-                    <div class="fbox-icon">
-                        <a href="#"><img src="../../../assets/images/icon/house.png"
-                                         alt="Partners - House"></a>
-                    </div>
-                    <h3>{{house}}</h3>
+                    <!--<div class="fbox-icon">-->
+                        <!--<a href="#"><img src="../../../assets/images/icon/house.png"-->
+                                         <!--alt="Partners - House"></a>-->
+                    <!--</div>-->
+                    <h3>{{item}}</h3>
                 </div>
 
             </div>
 
         </div>
-
-
-        <!-- 인테리어, 임대업 -->
-        <div id="oc-clients-house" class="owl-carousel image-carousel carousel-widget" data-margin="100"
-             data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xxs="2"
-             data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6">
-
-            <div class="oc-item" *ngFor="let estate of partnersInfo.ESTATE">
-
-                <div class="feature-box fbox-plain fbox-dark fbox-small">
-                    <div class="fbox-icon">
-                        <a href="#"><img src="../../../assets/images/icon/hotel.png"
-                                         alt="Partners - Estate"></a>
-                    </div>
-                    <h3>{{estate}}</h3>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 매장 홍보 -->
-        <div id="oc-clients-estate" class="owl-carousel image-carousel carousel-widget" data-margin="100"
-             data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xxs="2"
-             data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6">
-
-            <div class="oc-item" *ngFor="let shop of partnersInfo.SHOP">
-
-                <div class="feature-box fbox-plain fbox-dark fbox-small">
-                    <div class="fbox-icon">
-                        <a href="#"><img src="../../../assets/images/icon/cart.png"
-                                         alt="Partners - Estate"></a>
-                    </div>
-                    <h3>{{shop}}</h3>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 홈페이지, 마케팅 홍보 개발 -->
-        <div id="oc-clients-shop" class="owl-carousel image-carousel carousel-widget" data-margin="100"
-             data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xxs="2"
-             data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6">
-
-            <div class="oc-item" *ngFor="let marketing of partnersInfo.MARKETING">
-
-                <div class="feature-box fbox-plain fbox-dark fbox-small">
-                    <div class="fbox-icon">
-                        <a href="#"><img src="../../../assets/images/icon/browser.png"
-                                         alt="Partners - Marketing"></a>
-                    </div>
-                    <h3>{{marketing}}</h3>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 기타 콘텐츠 활용, 마케팅 업체 -->
-        <div id="oc-clients-marketing" class="owl-carousel image-carousel carousel-widget" data-margin="100"
-             data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xxs="2"
-             data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6">
-
-            <div class="oc-item" *ngFor="let contents of partnersInfo.CONTENTS">
-
-                <div class="feature-box fbox-plain fbox-dark fbox-small">
-                    <div class="fbox-icon">
-                        <a href="#"><img src="../../../assets/images/icon/video-play.png"
-                                         alt="Partners - Share"></a>
-                    </div>
-                    <h3>{{contents}}</h3>
-                </div>
-
-            </div>
-
-        </div>
-
 
         <div class="clear"></div>
         <div class="line notopmargin"></div>

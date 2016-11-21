@@ -44,7 +44,7 @@ import { RoomInfoList } from './roomInfo/list';
 import { RoomInfoDetail } from './roomInfo/detail';
 import { RoomInfoLately } from './roomInfo/lately';
 import {EnumKeysPipe} from "./common/EnumKeysPipe";
-import {KeysPipe} from "./common/KeysPipe";
+import {KeysPipe, ValuesPipe} from "./common/KeysPipe";
 import {CanDeactivateGuard} from "./common/can-deactivate-guard.service";
 import {MomentModule} from "angular2-moment";
 import {SanitizeHtml, SanitizeScript, SanitizeStyle, SanitizeUrl, SanitizeResourceUrl} from "./common/sanitizePipe";
@@ -65,7 +65,7 @@ import {InfoTypeConvertPipe} from "./common/InfoTypeConvertPipe";
     ConsultingCounsel, ConsultingDetail, ConsultingListInfo, ConsultingMyListInfo, ConsultingChange,
     RoomInfoInput, RoomInfoUpdate, RoomInfoList, RoomInfoDetail, RoomInfoLately,
 
-    KeysPipe, EnumKeysPipe, InfoTypeConvertPipe,
+    KeysPipe, ValuesPipe, EnumKeysPipe, InfoTypeConvertPipe,
     SanitizeHtml, SanitizeScript, SanitizeStyle, SanitizeUrl, SanitizeResourceUrl
   ],
   imports: [ // import Angular's modules
