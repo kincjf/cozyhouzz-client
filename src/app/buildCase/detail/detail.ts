@@ -15,7 +15,7 @@ import * as _ from "lodash";
 declare var jQuery: JQueryStatic;
 const template = require('./detail.html');
 const jwt_decode = require('jwt-decode');
-const embedpano = require('assets/js/lib/krpano-1.19-pr6-viewer/embedpano.js');
+// const embedpano = require('assets/js/lib/krpano-1.19-pr6-viewer/embedpano.js');
 
 @Component({
     selector: 'buildCaseDetail',
@@ -80,7 +80,7 @@ export class BuildCaseDetail implements OnInit {
         }).then(() => {
             this.makePano();
         }, err => {
-            console.error(err.text());
+            console.error(err);
         });
 
         // 삭제, 수정을 위한 Auth 값 할당
@@ -264,6 +264,4 @@ export class BuildCaseDetail implements OnInit {
     get HTMLText() {
         return this._sanitizer.bypassSecurityTrustHtml(this.htmlText);
     }
-
-
 }

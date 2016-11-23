@@ -12,7 +12,7 @@ import {STATIC_VALUE} from '../../common/config/staticValue';
 
 const template = require('./index.html');
 const jwt_decode = require('jwt-decode');
-const embedpano = require('assets/js/lib/krpano-1.19-pr6-viewer/embedpano.js');
+// const embedpano = require('assets/js/lib/krpano-1.19-pr6-viewer/embedpano.js');
 
 // const moment = require('moment');
 
