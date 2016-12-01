@@ -3320,7 +3320,7 @@ body:not(.stretched) .slider-parallax .slider-parallax-inner { left: auto; }
 #page-title {
 	position: relative;
 	padding: 50px 0;
-	background-color: #F5F5F5;
+	background-color: #F9F9F9;
 	border-bottom: 1px solid #EEE;
 }
 
@@ -11871,7 +11871,7 @@ button.toast-close-button {
 
 #footer .footer-widgets-wrap {
 	position: relative;
-	padding: 80px 0;
+	padding: 20px 0;
 }
 
 .footer-widgets-wrap .col_full,

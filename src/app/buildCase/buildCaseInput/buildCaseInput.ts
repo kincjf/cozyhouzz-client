@@ -184,4 +184,3 @@ export class BuildCaseInput implements CanDeactivate<BuildCaseInput> {
         }
     }
 }
-

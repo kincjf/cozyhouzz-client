@@ -5,7 +5,7 @@
 
     <!-- Page Title
     ============================================= -->
-    <section id="page-title">
+    <section id="page-title" class="page-title-mini">
 
         <div class="container clearfix">
             <h1>업체목록 조회</h1>
@@ -28,8 +28,11 @@
 
                 <!-- Posts
                 ============================================= -->
-                <div id="posts" class="post-grid grid-container clearfix" data-layout="fitRows">
-
+                <div id="posts" class="post-grid grid-container clearfix" data-layout="fitRows"
+                     infinite-scroll
+                     [infiniteScrollDistance]="4"
+                     [infiniteScrollThrottle]="50"
+                     (scrolled)="onScroll()">
                     <div class="entry clearfix" *ngFor="let bizUserInfo of returnedDatas">
                         <div class="portfolio-image">
                             <a routerLink="/bizListDetail/{{bizUserInfo.memberIdx}}"><img src="{{serverHost}}/{{bizUserInfo.companyLogo}}" alt="Open Imagination"></a>
@@ -42,27 +45,6 @@
                             <a routerLink="/bizListDetail/{{bizUserInfo.memberIdx}}" class="more-link">Read More</a>
                         </div>
                     </div>
-
-                </div><!-- #posts end -->
-
-                <!-- Pagination
-               ============================================= -->
-                <!--페이지 1~10 까지 확인 가능 disable이나 현재 들어와 있는 페이지 active같은 기능을 추가해주어야함-->
-                <div id="pagination">
-                    <ul class="pagination nobottommargin">
-                        <li (click)="beforePageButton()"><a>&laquo;</a></li>
-                        <li (click)="pageNumberButton(1)" [ngClass]="{'active': currentPageNumber == 1}"><a>1</a></li>
-                        <li (click)="pageNumberButton(2)" [ngClass]="{'active': currentPageNumber == 2}"><a>2</a></li>
-                        <li (click)="pageNumberButton(3)" [ngClass]="{'active': currentPageNumber == 3}"><a>3</a></li>
-                        <li (click)="pageNumberButton(4)" [ngClass]="{'active': currentPageNumber == 4}"><a>4</a></li>
-                        <li (click)="pageNumberButton(5)" [ngClass]="{'active': currentPageNumber == 5}"><a>5</a></li>
-                        <li (click)="pageNumberButton(6)" [ngClass]="{'active': currentPageNumber == 6}"><a>6</a></li>
-                        <li (click)="pageNumberButton(7)" [ngClass]="{'active': currentPageNumber == 7}"><a>7</a></li>
-                        <li (click)="pageNumberButton(8)" [ngClass]="{'active': currentPageNumber == 8}"><a>8</a></li>
-                        <li (click)="pageNumberButton(9)" [ngClass]="{'active': currentPageNumber == 9}"><a>9</a></li>
-                        <li (click)="pageNumberButton(10)" [ngClass]="{'active': currentPageNumber == 10}"><a>10</a></li>
-                        <li (click)="nextPageButton()"><a>&raquo;</a></li>
-                    </ul>
                 </div>
 
             </div>

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { RecaptchaModule } from 'ng2-recaptcha';
+import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -70,7 +71,8 @@ import {InfoTypeConvertPipe} from "./common/InfoTypeConvertPipe";
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     RecaptchaModule.forRoot(),
-      MomentModule
+    MomentModule,
+    InfiniteScrollModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
