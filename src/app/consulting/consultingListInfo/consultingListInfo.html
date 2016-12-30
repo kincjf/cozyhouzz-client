@@ -24,54 +24,45 @@
 
       <div class="table-responsive">
 
-        <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+          <table id="datatable1" class="table table-bordered" cellspacing="0" width="100%">
 
-          <!--table분류-->
-          <thead>
-          <tr>
-            <th class="col-xs-1">번호</th>
-            <th class="col-xs-4">제목</th>
-            <th class="col-xs-1">작성일</th>
-            <th class="col-xs-1">작성자</th>
-            <th class="col-xs-1">시공종류</th>
-            <th class="col-xs-1">접수현황</th>
-          </tr>
-          </thead>
+            <!--table분류-->
+            <thead>
+            <tr>
+              <th class="col-xs-1">번호</th>
+              <th class="col-xs-4">제목</th>
+              <th class="col-xs-1">작성일</th>
+              <th class="col-xs-1">작성자</th>
+              <th class="col-xs-1">시공종류</th>
+              <th class="col-xs-1">접수현황</th>
+            </tr>
+            </thead>
 
-          <!--table내용-->
-          <tbody>
-          <tr *ngFor="let consultInfo of returnedDatas">
-            <td class="col-xs-1">{{consultInfo.idx}}</td>
-            <td class="col-xs-4"><a routerLink="/consultingDetail/{{consultInfo.idx}}" >{{consultInfo.title}}</a></td>
-            <td class="col-xs-1">{{consultInfo.initWriteDate}}</td>
-            <td class="col-xs-1">{{consultInfo.userName}}</td>
-            <td class="col-xs-1">{{consultInfo.buildType}}</td>
-            <td class="col-xs-1">접수중</td>
-          </tr>
+            <!--table내용-->
+            <tbody
+                    infinite-scroll
+                    [infiniteScrollDistance]="4"
+                    [infiniteScrollThrottle]="500"
+                    (scrolled)="onScroll()">
+            <tr *ngFor="let consultInfo of returnedDatas">
+              <td class="col-xs-1">{{consultInfo.idx}}</td>
+              <td class="col-xs-4"><a routerLink="/consultingDetail/{{consultInfo.idx}}" >{{consultInfo.title}}</a></td>
+              <td class="col-xs-1">{{consultInfo.initWriteDate}}</td>
+              <td class="col-xs-1">{{consultInfo.userName}}</td>
+              <td class="col-xs-1">{{consultInfo.buildType}}</td>
+              <td class="col-xs-1">접수중</td>
+            </tr>
+          <!--<tr *ngFor="let consultInfo of returnedDatas">-->
+            <!--<td class="col-xs-1">{{consultInfo.idx}}</td>-->
+            <!--<td class="col-xs-4"><a routerLink="/consultingDetail/{{consultInfo.idx}}" >{{consultInfo.title}}</a></td>-->
+            <!--<td class="col-xs-1">{{consultInfo.initWriteDate}}</td>-->
+            <!--<td class="col-xs-1">{{consultInfo.userName}}</td>-->
+            <!--<td class="col-xs-1">{{consultInfo.buildType}}</td>-->
+            <!--<td class="col-xs-1">접수중</td>-->
+          <!--</tr>-->
           </tbody>
         </table>
 
-
-
-        <!-- Pagination
-               ============================================= -->
-        <!--페이지 1~10 까지 확인 가능 disable이나 현재 들어와 있는 페이지 active같은 기능을 추가해주어야함-->
-        <div id="pagination">
-          <ul class="pagination nobottommargin">
-            <li (click)="beforePageButton()"><a>&laquo;</a></li>
-            <li (click)="pageNumberButton(1)" [ngClass]="{'active': currentPageNumber == 1}"><a>1</a></li>
-            <li (click)="pageNumberButton(2)" [ngClass]="{'active': currentPageNumber == 2}"><a>2</a></li>
-            <li (click)="pageNumberButton(3)" [ngClass]="{'active': currentPageNumber == 3}"><a>3</a></li>
-            <li (click)="pageNumberButton(4)" [ngClass]="{'active': currentPageNumber == 4}"><a>4</a></li>
-            <li (click)="pageNumberButton(5)" [ngClass]="{'active': currentPageNumber == 5}"><a>5</a></li>
-            <li (click)="pageNumberButton(6)" [ngClass]="{'active': currentPageNumber == 6}"><a>6</a></li>
-            <li (click)="pageNumberButton(7)" [ngClass]="{'active': currentPageNumber == 7}"><a>7</a></li>
-            <li (click)="pageNumberButton(8)" [ngClass]="{'active': currentPageNumber == 8}"><a>8</a></li>
-            <li (click)="pageNumberButton(9)" [ngClass]="{'active': currentPageNumber == 9}"><a>9</a></li>
-            <li (click)="pageNumberButton(10)" [ngClass]="{'active': currentPageNumber == 10}"><a>10</a></li>
-            <li (click)="nextPageButton()"><a>&raquo;</a></li>
-          </ul>
-        </div>
       </div>
 
     </div>

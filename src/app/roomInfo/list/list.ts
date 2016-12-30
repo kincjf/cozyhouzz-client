@@ -9,13 +9,15 @@ import {MultipartItem} from "../../common/multipart-upload/multipart-item";
 import {MultipartUploader} from "../../common/multipart-upload/multipart-uploader";
 import { config } from '../../common/config';
 import {STATIC_VALUE} from "../../common/config/staticValue";
+import { DaumMapService } from '../../service/daumMap.service'
 import * as _ from "lodash";
 
 const template = require('./list.html');
 
 @Component({
     selector: 'roomInfoList',
-    template: template
+    template: template,
+    providers: [DaumMapService]
 })
 
 /**
@@ -39,9 +41,10 @@ export class RoomInfoList {
      * 차후 개선방안 :
      - UI개선
      */
-    constructor(public router: Router, public http: Http) {
+
+    constructor(public router: Router, public http: Http, private daumMap: DaumMapService) {
         this.currentPageNumber = 1;
-        this.pageSize = 5;
+        this.pageSize = 2;
         this.pageStartIndex = 0;
 
         let URL = [config.serverHost, config.path.roomInfo + "?pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
@@ -79,36 +82,49 @@ export class RoomInfoList {
                 });
     }
 
+    ngAfterContentInit() {    // 로딩때 한번만 뜨는데, life cycle을
+        // this.loadDaumMap();
+        //this.loadDaumMapScript();
+    }
+
     jumpPage(index, oldIndex) {
         this.pageStartIndex = index;
         let URL = [config.serverHost, config.path.roomInfo + "?pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
-        this.http.get(URL, {headers: contentHeaders})
-            .map(res => res.json())//받아온값을 json형식으로 변경
-            .subscribe(
-                response => {
-                    this.data = response;
-                    if(this.data.RoomInfo.length == 0){ //데이터가 비어있을 때 막아주기
-                        this.pageStartIndex = oldIndex;
-                        alert("더이상 페이지를 넘길수 없습니다.");
-                    }
-                    else {
-                        this.returnedDatas = []; //데이터를 초기화
-                        this.currentPageNumber = index/this.pageSize + 1;
-                        //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
-                        for(var roomData of response.roomInfo) {
-                            //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
-                            this.returnedDatas.push({
-                                idx: roomData.idx,
-                                memberIdx: roomData.memberIdx,
-                                title: roomData.title,
-                                address: roomData.address,
-                                deposit: roomData.deposit,
-                                monthlyRentFee: roomData.monthlyRentFee,
-                                floor: roomData.floor
-                            });
-                        }
-                    }
+                    this.http.get(URL, {headers: contentHeaders})
+                        .map(res => res.json())//받아온값을 json형식으로 변경
+                        .subscribe(
+                            response => {
+                                this.data = response;
+                                if(response.roomInfo.length == 0){ //데이터가 비어있을 때 막아주기
+                                    this.pageStartIndex = oldIndex;
+                                    alert("더이상 페이지를 넘길수 없습니다.");
+                                }
+                                else {
+                                    this.returnedDatas = []; //데이터를 초기화
+                                    this.currentPageNumber = index/this.pageSize + 1;
+                                    //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
+                                    for(var roomData of response.roomInfo) {
+                                        let addressArr = JSON.parse(roomData.address);
+                                        let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", roomData.roomType]);
+
+                                        //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
+                                        this.returnedDatas.push({
+                                            idx: roomData.idx,
+                                            memberIdx: roomData.memberIdx,
+                                            title: roomData.title,
+                                            roomType : STATIC_VALUE.PLACE_TYPE[key].name,
+                                            mainPreviewImage: roomData.mainPreviewImage,
+                                            addressPostcode: addressArr[0],
+                                            addressAddress: addressArr[1],
+                                            addressDetail: addressArr[2],
+                                            deposit: roomData.deposit,
+                                            monthlyRentFee: roomData.monthlyRentFee,
+                                            floor: roomData.floor
+                                        });
+                                    }
+                                }
+                                console.log("Jump page | this.data.RoomInfo.length :" + this.data.RoomInfo.length);
                 },
                 error=> {
                     alert(error.text());
@@ -136,6 +152,7 @@ export class RoomInfoList {
     }
 
     pageNumberButton(value) {//특정 페이지로 이동하는 함수
+        console.log("pageNumberButton" + value);
         const index = (value-1)*(this.pageSize); // 변할페이지
         const oldIndex = this.pageStartIndex;
         //alert("this.pageStartIndex = " + this.pageStartIndex + ", value =" + value);

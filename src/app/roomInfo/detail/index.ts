@@ -1,7 +1,7 @@
 /**
  * Created by Kimseongbok on 2016-11-06.
  */
-import {Component, ElementRef} from '@angular/core';
+import {Component,NgZone,OnInit, ElementRef} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Http} from '@angular/http';
 import {contentHeaders} from '../../common/headers';
@@ -9,6 +9,7 @@ import {config} from '../../common/config';
 import {DomSanitizer} from "@angular/platform-browser";
 import * as _ from "lodash";
 import {STATIC_VALUE} from '../../common/config/staticValue';
+import {DaumMapService} from '../../service/daumMap.service'
 
 const template = require('./index.html');
 const jwt_decode = require('jwt-decode');
@@ -18,7 +19,8 @@ const jwt_decode = require('jwt-decode');
 
 @Component({
     selector: 'roomInfoDetail',
-    template: template
+    template: template,
+    providers: [DaumMapService]
 })
 export class RoomInfoDetail {
 
@@ -67,8 +69,152 @@ export class RoomInfoDetail {
     private addressInfo;
     private addressDetail;
 
+
     constructor(public router: Router, public http: Http, private route: ActivatedRoute, private el: ElementRef,
-                private _sanitizer: DomSanitizer) {
+                private _sanitizer: DomSanitizer, private _ngZone:NgZone, private daumMapService: DaumMapService) {
+        // this._ngZone.run(() => {
+        //     this._increaseProgress(() => {
+        //         console.log('ng Zone test oust');
+        //     })
+        // });
+    }
+
+    daumMap(address): void {
+        console.log("다음 api 실행 중");
+        console.log(address);
+        this.daumMapService.loadDaumMap(address);
+   }
+
+    ngOnInit(): void {
+        // URL 주소 뒤에 오는 param 값을 저장
+        this.route.params.forEach((params: Params) => {
+            let roomListIdx = +params['roomListIdx'];
+            this.selectedId = roomListIdx;
+        });
+
+        // let URL = [config.serverHost, config.path.roomInfo, this.selectedId].join('/');
+        //
+        // //시공사례조회에서 클릭한 시공사례글에 대한 정보를 가져와서 각 항목별 변수에 저장함
+        // this.http.get(URL, {headers:contentHeaders}) //서버로부터 필요한 값 받아오기
+        //     .map(res => res.json())//받아온 값을 json형식으로 변경
+        //     .subscribe(
+        //         response => {
+        //             this.memberIdx = response.roomInfo.memberIdx;
+        //
+        //             this.title = response.roomInfo.title;
+        //             this.roomType = response.roomInfo.roomType;
+        //             this.address = JSON.parse(response.roomInfo.address);        // [우편번호, 일반주소, 상세주소, 참고사항]
+        //             this.addressInfo = this.address[1];
+        //             this.addressDetail = this.address[2];
+        //             this.mainPreviewImage = response.roomInfo.mainPreviewImage;
+        //
+        //             this.deposit = response.roomInfo.deposit;
+        //             this.monthlyRentFee = response.roomInfo.monthlyRentFee;
+        //             this.floor = response.roomInfo.floor;
+        //             this.manageExpense = response.roomInfo.manageExpense;
+        //             this.manageService = response.roomInfo.manageService;
+        //             this.areaSize = response.roomInfo.areaSize;
+        //             this.actualSize = response.roomInfo.actualSize;
+        //             this.parking = response.roomInfo.parking;
+        //             this.elevator = response.roomInfo.elevator;
+        //             this.supplyOption = response.roomInfo.supplyOption;
+        //             this.availableDate = response.roomInfo.availableDate;       // Date
+        //
+        //             this.htmlText = response.roomInfo.HTMLText;
+        //             this.locationInfo = response.roomInfo.locationInfo;
+        //             this.VRImages = JSON.parse(response.roomInfo.VRImages);
+        //             this.coordinate = JSON.parse(response.roomInfo.coordinate);     // object
+        //             this.regionCategory = response.roomInfo.regionCategory;
+        //             this.initWriteDate = response.roomInfo.initWriteDate;       // Timestamp
+        //
+        //             // roomType의 번호에 해당하는 key를 찾은 후, name을 render함
+        //             let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", this.roomType]);
+        //             this.roomType = STATIC_VALUE.PLACE_TYPE[key].name;
+        //
+        //             this.onBizUserInfo();
+        //
+        //             this.daumMap(this.addressInfo);
+        //             // 비동기라서 통신이 완료 된 후에 해야지 member변수 값에 할당이 됨.
+        //             // 일단 index.html에 짱박아놓음. 나중에 module로 빼자
+        //             // proxy 이용
+        //             embedpano({swf:"assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.swf",
+        //                 xml: ['/' + this.VRImages.baseDir, this.VRImages.vtourDir, this.VRImages.xmlName].join('/'),
+        //                 target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
+        //         },
+        //         error => {
+        //             console.error(error.text());
+        //             //서버로 부터 응답 실패시 경고창
+        //         }
+        //     );
+
+
+        // 삭제, 수정을 위한 Auth 값 할당
+        this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
+        if(this.jwt){ //jwt 값이 null 인지 즉, 로그인을 하지 않는 상태인지 확인
+            this.decodedJwt = this.jwt && jwt_decode(this.jwt);//jwt값 decoding
+            this.loginMemberIdx = this.decodedJwt.idx; //현재 로그인한 memberIdx 저장
+        } else {
+            this.loginMemberIdx = null; //로그인 하지 않는 상태일때는 null값
+        }
+        contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
+    }
+
+    ngAfterViewInit() {
+        let URL = [config.serverHost, config.path.roomInfo, this.selectedId].join('/');
+
+        //시공사례조회에서 클릭한 시공사례글에 대한 정보를 가져와서 각 항목별 변수에 저장함
+        this.http.get(URL, {headers:contentHeaders}) //서버로부터 필요한 값 받아오기
+            .map(res => res.json())//받아온 값을 json형식으로 변경
+            .subscribe(
+                response => {
+                    this.memberIdx = response.roomInfo.memberIdx;
+
+                    this.title = response.roomInfo.title;
+                    this.roomType = response.roomInfo.roomType;
+                    this.address = JSON.parse(response.roomInfo.address);        // [우편번호, 일반주소, 상세주소, 참고사항]
+                    this.addressInfo = this.address[1];
+                    this.addressDetail = this.address[2];
+                    this.mainPreviewImage = response.roomInfo.mainPreviewImage;
+
+                    this.deposit = response.roomInfo.deposit;
+                    this.monthlyRentFee = response.roomInfo.monthlyRentFee;
+                    this.floor = response.roomInfo.floor;
+                    this.manageExpense = response.roomInfo.manageExpense;
+                    this.manageService = response.roomInfo.manageService;
+                    this.areaSize = response.roomInfo.areaSize;
+                    this.actualSize = response.roomInfo.actualSize;
+                    this.parking = response.roomInfo.parking;
+                    this.elevator = response.roomInfo.elevator;
+                    this.supplyOption = response.roomInfo.supplyOption;
+                    this.availableDate = response.roomInfo.availableDate;       // Date
+
+                    this.htmlText = response.roomInfo.HTMLText;
+                    this.locationInfo = response.roomInfo.locationInfo;
+                    this.VRImages = JSON.parse(response.roomInfo.VRImages);
+                    this.coordinate = JSON.parse(response.roomInfo.coordinate);     // object
+                    this.regionCategory = response.roomInfo.regionCategory;
+                    this.initWriteDate = response.roomInfo.initWriteDate;       // Timestamp
+
+                    // roomType의 번호에 해당하는 key를 찾은 후, name을 render함
+                    let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", this.roomType]);
+                    this.roomType = STATIC_VALUE.PLACE_TYPE[key].name;
+
+                    this.onBizUserInfo();
+
+                    this.daumMap(this.addressInfo);
+                    // 비동기라서 통신이 완료 된 후에 해야지 member변수 값에 할당이 됨.
+                    // 일단 index.html에 짱박아놓음. 나중에 module로 빼자
+                    // proxy 이용
+                    embedpano({swf:"assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.swf",
+                        xml: ['/' + this.VRImages.baseDir, this.VRImages.vtourDir, this.VRImages.xmlName].join('/'),
+                        target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
+                },
+                error => {
+                    console.error(error.text());
+                    //서버로 부터 응답 실패시 경고창
+                }
+            );
+
     }
 
     /*
@@ -151,78 +297,6 @@ export class RoomInfoDetail {
      */
     onListBuildCase() {
         this.router.navigate(['list/room']); // 목록버튼을 누르면 목록 조회로 이동
-    }
-
-    ngAfterViewInit() {
-        // URL 주소 뒤에 오는 param 값을 저장
-        this.route.params.forEach((params: Params) => {
-            let roomListIdx = +params['roomListIdx'];
-            this.selectedId = roomListIdx;
-        });
-
-        let URL = [config.serverHost, config.path.roomInfo, this.selectedId].join('/');
-
-        //시공사례조회에서 클릭한 시공사례글에 대한 정보를 가져와서 각 항목별 변수에 저장함
-        this.http.get(URL, {headers:contentHeaders}) //서버로부터 필요한 값 받아오기
-            .map(res => res.json())//받아온 값을 json형식으로 변경
-            .subscribe(
-                response => {
-                    this.memberIdx = response.roomInfo.memberIdx;
-
-                    this.title = response.roomInfo.title;
-                    this.roomType = response.roomInfo.roomType;
-                    this.address = JSON.parse(response.roomInfo.address);        // [우편번호, 일반주소, 상세주소, 참고사항]
-                    this.addressInfo = this.address[1];
-                    this.addressDetail = this.address[2];
-                    this.mainPreviewImage = response.roomInfo.mainPreviewImage;
-
-                    this.deposit = response.roomInfo.deposit;
-                    this.monthlyRentFee = response.roomInfo.monthlyRentFee;
-                    this.floor = response.roomInfo.floor;
-                    this.manageExpense = response.roomInfo.manageExpense;
-                    this.manageService = response.roomInfo.manageService;
-                    this.areaSize = response.roomInfo.areaSize;
-                    this.actualSize = response.roomInfo.actualSize;
-                    this.parking = response.roomInfo.parking;
-                    this.elevator = response.roomInfo.elevator;
-                    this.supplyOption = response.roomInfo.supplyOption;
-                    this.availableDate = response.roomInfo.availableDate;       // Date
-
-                    this.htmlText = response.roomInfo.HTMLText;
-                    this.locationInfo = response.roomInfo.locationInfo;
-                    this.VRImages = JSON.parse(response.roomInfo.VRImages);
-                    this.coordinate = JSON.parse(response.roomInfo.coordinate);     // object
-                    this.regionCategory = response.roomInfo.regionCategory;
-                    this.initWriteDate = response.roomInfo.initWriteDate;       // Timestamp
-
-                    // roomType의 번호에 해당하는 key를 찾은 후, name을 render함
-                    let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", this.roomType]);
-                    this.roomType = STATIC_VALUE.PLACE_TYPE[key].name;
-
-                    this.onBizUserInfo();
-
-                    // 비동기라서 통신이 완료 된 후에 해야지 member변수 값에 할당이 됨.
-                    // 일단 index.html에 짱박아놓음. 나중에 module로 빼자
-                    // proxy 이용
-                    embedpano({swf:"assets/js/lib/krpano-1.19-pr6-viewer/krpano-tour.swf",
-                        xml: ['/' + this.VRImages.baseDir, this.VRImages.vtourDir, this.VRImages.xmlName].join('/'),
-                        target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
-                },
-                error => {
-                    console.error(error.text());
-                    //서버로 부터 응답 실패시 경고창
-                }
-            );
-
-        // 삭제, 수정을 위한 Auth 값 할당
-        this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
-        if(this.jwt){ //jwt 값이 null 인지 즉, 로그인을 하지 않는 상태인지 확인
-            this.decodedJwt = this.jwt && jwt_decode(this.jwt);//jwt값 decoding
-            this.loginMemberIdx = this.decodedJwt.idx; //현재 로그인한 memberIdx 저장
-        } else {
-            this.loginMemberIdx = null; //로그인 하지 않는 상태일때는 null값
-        }
-        contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
     }
 
     get HTMLText() {

@@ -25,9 +25,11 @@
             ============================================= -->
             <div id="posts" class="post-grid grid-container post-masonry grid-2 clearfix">
 
+
+
                 <div class="entry clearfix" *ngFor="let roomInfo of returnedDatas">
                     <div class="entry-image">
-                        <a routerLink="/detail/room/{{roomInfo.idx}}"><img class="image_fade" src="{{serverHost}}/{{roomInfo.mainPreviewImage}}" alt="Standard Post with Image"></a>
+                        <a routerLink="/detail/room/{{roomInfo.idx}}" onclick="clickLoad()"><img class="image_fade" src="{{serverHost}}/{{roomInfo.mainPreviewImage}}" alt="Standard Post with Image"></a>
                     </div>
                     <div class="entry-title">
                         <h2><a routerLink="/detail/room/{{roomInfo.idx}}">{{roomInfo.title}}</a></h2>
@@ -69,5 +71,6 @@
 
 
     </div>
+
 
 </section><!-- #content end -->
