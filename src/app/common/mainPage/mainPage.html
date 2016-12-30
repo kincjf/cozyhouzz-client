@@ -1,440 +1,161 @@
-<section id="slider" class="slider-parallax swiper_wrapper clearfix" style="height: 550px;" data-loop="true">
-    <!-- banner
-          ============================================= -->
-    <div class="swiper-container swiper-parent">
+
+<section id="slider" class="slider-parallax swiper_wrapper clearfix" style="height: 600px;">
+    <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide"
-                 style="background-image: url('../../../assets/construction/images/slider/1.jpg'); background-position: center bottom;">
-                <div class="container clearfix">
-                    <div class="slider-caption">
-                        <h2>Premium Service</h2>
-                        <p>인테리어의 시작, 어려우신가요? Cozyhouzz에서 시작부터 끝까지 전문가와 함께 꼼꼼히 챙겨드립니다!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="container clearfix">
-                    <div class="slider-caption slider-caption-right">
-                        <h2>Beautifully design</h2>
-                        <p>인테리어를 어떻게 해야 될지 고민이신가요? 내방 / 우리집을 어디서 찾아야 될지 고민이신가요?</p>
-                            <p>우주거공간부터 상업공간까지 다양한 우수 인테리어 사례를 무료로 감상하세요!</p>
-                    </div>
-                </div>
-                <div class="video-wrap">
-                    <video id="slide-video" poster="../../../assets/construction/images/videos/1.jpg" preload="auto"
-                           loop autoplay muted>
-                        <source src='../../../assets/construction/images/videos/1.webm' type='video/webm'/>
-                        <source src='../../../assets/construction/images/videos/1.mp4' type='video/mp4'/>
-                    </video>
-                    <div class="video-overlay" style="background-color: rgba(0,0,0,0.1);"></div>
-                </div>
-            </div>
-            <div class="swiper-slide"
-                 style="background-image: url('../../../assets/construction/images/slider/2.jpg'); background-position: center top;">
-                <div class="container clearfix">
-                    <div class="slider-caption">
-                        <h2>Welcome to Cozyhouzz</h2>
-                        <p>전국 실내 건축 디자인을 VR & 3D 포트폴리오로 보고 결정하세요!</p>
-                    </div>
-                </div>
-            </div>
+                style="background-image: url('../../../assets/construction/images/slider/111.png');">
         </div>
-        <div id="slider-arrow-left"><i class="icon-angle-left"></i></div>
-        <div id="slider-arrow-right"><i class="icon-angle-right"></i></div>
-    </div>
+        Second Slide
+        <div class="swiper-slide">
+            Any HTML content of the second slide goes here
+        </div>
 
-</section>
+        Third Slide
+        <div class="swiper-slide">
+            Any HTML content of the third slide goes here
+        </div>
 
-<section>
-    <div class="section nomargin">
-        <h2 class="center nobottommargin ls1">이달의 Best 시공사례 </h2>
-    </div>
-    <div class="portfolio grid-container portfolio-full clearfix">
-
-        <article class="portfolio-item pf-media pf-icons" *ngFor="let buildCaseInfo of buildCaseDatas">
-            <div class="portfolio-image">
-                <a routerLink="/buildcasedetail/{{buildCaseInfo.idx}}"><img
-                        src="{{serverHost}}/{{buildCaseInfo.mainPreviewImage}}" alt></a>
-            </div>
-            <div class="portfolio-desc">
-                <h3><a style="color: #9d270b" routerLink="/buildcasedetail/{{buildCaseInfo.idx}}">{{buildCaseInfo.title}}</a>
-                </h3>
-                <ul class="entry-meta clearfix">
-                    <li><span class="label label-warning">{{buildCaseInfo.buildType}}</span></li>
-                    <li><a href="#"><i class="icon-time"></i>}{{buildCaseInfo.buildTotalArea}}평</a></li>
-                    <li><a href="#"><i class="icon-map-marker2"></i>{{buildCaseInfo.buildTotalPrice}}만원</a></li>
-                </ul>
-            </div>
-            <div class="entry-content">
-                <p>{{buildCaseInfo.buildPlace}}</p>
-            </div>
-        </article>
-
+        </div>
     </div>
 </section>
 
-<!-- Content
-      ============================================= -->
+
+
+
+
+
+
+
+
 <section id="content">
 
     <div class="content-wrap">
-
-        <div class="promo promo-light promo-full uppercase header-stick">
-            <div class="container clearfix">
-                <h3 style="letter-spacing: 2px;">지금 바로! 원하는 인테리어를 찾고 견적을 신청하세요</h3>
-                <span>1. 마음에 드는 인테리어 컨셉을 고르기</span>
-                <span>2. "견적 신청"을 클릭하고 간단한 정보 입력하기</span>
-                <a routerLink="/consultingCounsel" class="button button-large button-border button-rounded">무료 견적 신청</a>
-            </div>
-        </div>
+<div class="promo parallax promo-full bottommargin-lg" style="background-image: url('images/parallax/3.jpg');" data-stellar-background-ratio="0.4">
+    <div class="container clearfix">
+        <h3>여러분의 <span>일상과 안식처</span>를 위해 노력하겠습니다. <span>아늑한집(cozyhouzz)</span></h3>
+        <span>여러분의 일상과 안식처를 위한 모든 과정 아늑한 집이 파트너로서 함께 합니다. </span>
+        <a routerLink="/consultingCounsel"  class="button button-3d button-xlarge button-rounded button-amber">무료상담 바로가기</a>
+    </div>
+</div>
 
 
-        <div class="section nomargin">
-            <h2 class="center nobottommargin ls1">이달의 Best 방정보 </h2>
-        </div>
-        <div id="portfolio" class="portfolio grid-container portfolio-full clearfix">
 
-            <article class="portfolio-item pf-media pf-icons" *ngFor="let roomInfo of roomInfoDatas">
-                <div class="portfolio-image">
-                    <a routerLink="/detail/room/{{roomInfo.idx}}"><img
-                            src="{{serverHost}}/{{roomInfo.mainPreviewImage}}" alt></a>
+
+
+
+<div class="clear"></div>
+
+    <div class="container clearfix">
+
+        <div class="col_one_third bottommargin-lg">
+            <div class="feature-box center media-box fbox-bg">
+                <div class="fbox-media">
+                    <img src="images/shop/banners/10.jpg" alt="Image">
                 </div>
-                <div class="portfolio-desc">
-                    <h3><a style="color: #9d270b" routerLink="/detail/room/{{roomInfo.idx}}">{{roomInfo.title}}</a>
-                    </h3>
-                    <ul class="entry-meta clearfix">
-                        <li><span class="label label-warning">{{roomInfo.roomType}}</span></li>
-                        <li><a href="#"><i class="icon-time"></i>{{roomInfo.areaSize}}평</a></li>
-                        <li><a href="#"><i class="icon-map-marker2"></i>{{roomInfo.monthlyRentFee}}만원</a></li>
-                    </ul>
-                </div>
-                <div class="entry-content">
-                    <p>{{roomInfo.address}}</p>
-                </div>
-            </article>
-
-        </div>
-
-
-        <div class="section nopadding common-height dark topmargin-sm">
-            <div class="col-md-5" data-height-lg="597" data-height-md="614" data-height-sm="400" data-height-xs="300"
-                 data-height-xxs="200"
-                 style="background: url('../../../assets/images/blog/full/12.jpg') center center no-repeat; background-size: cover;">
-                <div>&nbsp;</div>
-            </div>
-            <div id="booking-appointment-form" class="col-md-7 nopadding">
-                <div class="bgcolor col-padding">
-                    <h2>빠른 무료상담 신청하기</h2>
-                    <div id="medical-form-result" data-notify-type="success"
-                         data-notify-msg="<i class=icon-ok-sign></i> Message Sent Successfully!"></div>
-                    <form class="nobottommargin" id="template-medical-form" name="template-medical-form"
-                          action="demos/medical/include/appointment.php" method="post">
-                        <div class="col_two_third">
-                            <label for="template-medical-name">이름:</label>
-                            <input type="text" id="template-medical-name" name="template-medical-name"
-                                   class="form-control not-dark required" value="">
-                        </div>
-                        <div class="col_one_third col_last">
-                            <label for="template-medical-phone">연락처:</label>
-                            <input type="text" id="template-medical-phone" name="template-medical-phone"
-                                   class="form-control not-dark required" value="">
-                        </div>
-                        <div class="clear"></div>
-                        <div class="col_two_third">
-                            <label for="template-medical-email">이메일:</label>
-                            <input type="email" id="template-medical-email" name="template-medical-email"
-                                   class="form-control not-dark required" value="">
-                        </div>
-                        <div class="col_one_third col_last">
-                            <label for="template-medical-dob">사업체 구분:</label>
-                            <input type="text" id="template-medical-dob" name="template-medical-dob"
-                                   class="form-control not-dark required" value="">
-                        </div>
-                        <div class="clear"></div>
-                        <div class="col_two_fifth nobottommargin">
-                            <div class="col_full">
-                                <label for="template-medical-appoint-date">거주지역:</label>
-                                <input type="text" id="template-medical-appoint-date"
-                                       name="template-medical-appoint-date" class="form-control not-dark required"
-                                       value="">
-                            </div>
-                            <div class="col_full nobottommargin">
-                                <label for="template-medical-second-booking">SNS 수신 동의</label><br>
-                                <label class="rightmargin-sm">
-                                    <input type="radio" id="template-medical-second-booking"
-                                           name="template-medical-second-booking" value="yes">
-                                    예
-                                </label>
-                                <label>
-                                    <input type="radio" name="template-medical-second-booking" value="no" checked>
-                                    아니요
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col_three_fifth nobottommargin col_last">
-                            <label for="template-medical-message">상담내용:</label>
-                            <textarea id="template-medical-message" name="template-medical-message"
-                                      class="form-control not-dark required" cols="30" rows="5"></textarea>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="col_full hidden">
-                            <input type="text" name="template-medical-botcheck" value=""/>
-                        </div>
-                        <div class="col_full topmargin-sm nobottommargin">
-                            <button class="button button-rounded button-white button-light nomargin" type="submit"
-                                    value="submit">빠른 상담 신청
-                            </button>
-                        </div>
-                        <div class="clear"></div>
-                    </form>
-
+                <div class="fbox-desc">
+                    <h3>군산지역</h3>
+                    <p>	<a routerLink="/roomInfoList" class="button button-3d button-rounded button-amber"><i class="icon-ok"></i>방 구하기</a></p>
                 </div>
             </div>
         </div>
 
-
-        <h3 class="center">What <span>Clients</span> Say</h3>
-
-        <div class="fslider testimonial testimonial-full noshadow noborder nopadding divcenter"
-             data-animation="fade" data-arrows="false" style="max-width: 700px;">
-            <div class="flexslider">
-                <div class="slider-wrap">
-
-                    <div class="slide" *ngFor="let client of clientComment">
-                        <div class="testi-content">
-                            <p>{{client.comment}}</p>
-                            <div class="testi-meta">
-                                {{client.name}}
-                            </div>
-                        </div>
-                    </div>
-
+        <div class="col_one_third bottommargin-lg">
+            <div class="feature-box center media-box fbox-bg">
+                <div class="fbox-media">
+                    <img src="images/shop/banners/11.jpg" alt="Image">
+                </div>
+                <div class="fbox-desc">
+                    <h3>전주지역</h3>
+                    <p><a routerLink="/roomInfoList" class="button button-3d button-rounded button-amber"><i class="icon-ok"></i>방 구하기</a></p>
                 </div>
             </div>
         </div>
 
-
-        <div class="clear"></div>
-        <div class="line"></div>
-
-        <!-- 협력업체 목록 -->
-        <h3 class="center"><span>Our Partners</span></h3>
-        <div id="oc-clients" class="owl-carousel image-carousel carousel-widget" data-margin="100"
-             data-loop="true" data-nav="false" data-autoplay="5000" data-pagi="false" data-items-xxs="2"
-             data-items-xs="3" data-items-sm="4" data-items-md="5" data-items-lg="6"
-             *ngFor="let partner of partnersInfo | values">
-
-            <div class="oc-item" *ngFor="let item of partner">
-
-                <div class="feature-box fbox-plain fbox-dark fbox-small">
-                    <!--<div class="fbox-icon">-->
-                        <!--<a href="#"><img src="../../../assets/images/icon/house.png"-->
-                                         <!--alt="Partners - House"></a>-->
-                    <!--</div>-->
-                    <h3>{{item}}</h3>
+        <div class="col_one_third bottommargin-lg col_last">
+            <div class="feature-box center media-box fbox-bg">
+                <div class="fbox-media">
+                    <img src="images/shop/banners/12.jpg" alt="Image">
                 </div>
-
+                <div class="fbox-desc">
+                    <h3>익산지역</h3>
+                    <p><a routerLink="/roomInfoList" class="button button-3d button-rounded button-amber"><i class="icon-ok"></i>방 구하기</a></p>
+                </div>
             </div>
-
+        </div>
         </div>
 
-        <div class="clear"></div>
-        <div class="line notopmargin"></div>
+
+
+
 
 
         <div class="container clearfix">
-            <div class="clear-bottommargin">
-                <div class="row common-height clearfix">
-                    <div class="col-md-4 col-sm-6 bottommargin">
-                        <div class="feature-box fbox-plain">
-                            <div class="fbox-icon">
-                                <a href="#"><img src="../../../assets/construction/images/icons/building.png"
-                                                 alt="Concrete Developments"></a>
-                            </div>
-                            <h3>인테리어 디자인 컨설팅</h3>
-                            <p>비전문가(건물주,건축주)와 전문가(인테리어업자,건축/설계업자)의 생각을 눈으로 보며 공유합니다.</p>
+
+            <div class="col_two_third nobottommargin">
+
+                <div class="fancy-title title-border">
+                    <h4>최근 이슈</h4>
+                </div>
+
+                <div class="col_half nobottommargin">
+                    <div class="ipost clearfix">
+                        <div class="entry-image">
+                            <a href="#"><img class="image_fade" src="images/magazine/thumb/11.jpg" alt="Image"></a>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 bottommargin">
-                        <div class="feature-box fbox-plain">
-                            <div class="fbox-icon">
-                                <a href="#"><img src="../../../assets/construction/images/icons/bank.png"
-                                                 alt="Finance Assistance"></a>
-                            </div>
-                            <h3>업체선정</h3>
-                            <p>업체별, VR포트폴리오로 내게 맞는 스타일의 업체(인테리어 업자,건축/설계업자)를 선택합니다.</p>
+                        <div class="entry-title">
+                            <h3><a href="blog-single.html">군산,전주,익산지역 분들을 위한 맞춤 서비스 진행중입니다.</a></h3>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 bottommargin">
-                        <div class="feature-box fbox-plain">
-                            <div class="fbox-icon">
-                                <a href="#"><img src="../../../assets/construction/images/icons/drawer.png"
-                                                 alt="Interiorly Designed"></a>
-                            </div>
-                            <h3>실시간 도면수정, 견적산출</h3>
-                            <p>실시간으로 도면을 수정하여 건물주/건축주의 마음에 꼭 맞는 설계도면을 완성하고 그에 맞는 견적을 산출합니다.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 bottommargin">
-                        <div class="feature-box fbox-plain">
-                            <div class="fbox-icon">
-                                <a href="#"><img src="../../../assets/construction/images/icons/paper-money.png"
-                                                 alt="Cost Effective Solutions"></a>
-                            </div>
-                            <h3>VR 홍보</h3>
-                            <p>공사 완료 후 VR 홍보 진행</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 bottommargin">
-                        <div class="feature-box fbox-plain">
-                            <div class="fbox-icon">
-                                <a href="#"><img src="../../../assets/construction/images/icons/traffic-cone.png"
-                                                 alt="Smart Builders"></a>
-                            </div>
-                            <h3>뛰어난 유지보수</h3>
-                            <p>믿고 맡겨주신 분들을 위해 A/S서비스를 제공해드립니다.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 bottommargin">
-                        <div class="feature-box fbox-plain">
-                            <div class="fbox-icon">
-                                <a href="#"><img src="../../../assets/construction/images/icons/paint-brush.png"
-                                                 alt="Quality Infrastructure"></a>
-                            </div>
-                            <h3>감각적인 디자인</h3>
-                            <p>젋은 감각과 열정으로 세입자/건물주 분들을 동시에 만족시켜드립니다.</p>
+                        <ul class="entry-meta clearfix">
+                            <li><i class="icon-calendar3"></i> 2017년1월8일 </li>
+                            <li><a href="blog-single.html#comments"><i class="icon-comments"></i></a></li>
+                        </ul>
+                        <div class="entry-content">
+                            <p>더 좋은 서비스를 위하여 맞춤지역 서비스 데모버전을 진행중입니다. </p>
                         </div>
                     </div>
                 </div>
+
+                <div class="col_half col_last nobottommargin">
+                    <div class="ipost clearfix">
+                        <div class="entry-image">
+                            <a href="#"><img class="image_fade" src="images/magazine/thumb/14.jpg" alt="Image"></a>
+                        </div>
+                        <div class="entry-title">
+                            <h3><a href="blog-single.html">더 나은 서비스를 진행하기 위하여 회사를 이전하였습니다.</a></h3>
+                        </div>
+                        <ul class="entry-meta clearfix">
+                            <li><i class="icon-calendar3"></i> 2017년1월6일</li>
+                            <li><a href="blog-single.html#comments"><i class="icon-comments"></i></a></li>
+                        </ul>
+                        <div class="entry-content">
+                            <p>전라북도 전주시 덕진구 금암동 코앞빌딩 </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+
             </div>
 
-        </div>
-        <div class="clear"></div>
-        <div class="line notopmargin"></div>
+            <div class="col_one_third nobottommargin col_last">
 
+                <div class="fancy-title title-border">
+                    <h4>고객 서비스</h4>
+                </div>
+                <div class="clear"></div>
 
-        <div class="container topmargin-lg cleafix">
-
-            <div class="col_three_fourth">
-
-                <div class="tabs tabs-justify nobottommargin clearfix" id="construction-tabs">
-
-                    <ul class="tab-nav clearfix">
-                        <li><a href="#construction-tab-1">아늑한집 현황</a></li>
-                        <li><a href="#construction-tab-2">보유 역량</a></li>
-                        <li><a href="#construction-tab-4">상담 방문 위치</a></li>
+                <div class="well topmargin ohidden">
+                    <h5>서비스 FAQs 운영시간</h5>
+                    <ul class="iconlist nobottommargin">
+                        <li><i class="icon-time color"></i> <strong>월요일~금요일:</strong> 10AM to 6PM</li>
+                        <li><i class="icon-time text-danger"></i> <strong>주말:</strong> Closed</li>
                     </ul>
 
-                    <div class="tab-container">
+                    <i class="icon-time bgicon"></i>
 
-                        <div class="tab-content clearfix" id="construction-tab-1">
-                            <p><strong>눈으로 보며 내게 맞는 방, 시공업체를 선택하고 상담 받을 수 있습니다.</strong></p>
-                            <div class="col_one_fourth nobottommargin center">
-                                <div class="counter ls1 t600" style="color: #D2D2D2;"><span data-from="5"
-                                                                                            data-to="120"
-                                                                                            data-refresh-interval="50"
-                                                                                            data-speed="2000"></span>
-                                </div>
-                                <h5>협력업체</h5>
-                            </div>
-
-                            <div class="col_one_fourth nobottommargin center">
-                                <div class="counter ls1 t600" style="color: #D2D2D2;"><span data-from="5"
-                                                                                            data-to="91"
-                                                                                            data-refresh-interval="50"
-                                                                                            data-speed="2500"></span>
-                                </div>
-                                <h5>홍보효과</h5>
-                            </div>
-
-                            <div class="col_one_fourth nobottommargin center">
-                                <div class="counter ls1 t600" style="color: #D2D2D2;"><span data-from="5"
-                                                                                            data-to="222"
-                                                                                            data-refresh-interval="50"
-                                                                                            data-speed="3000"></span>
-                                </div>
-                                <h5>등록정보</h5>
-                            </div>
-
-                            <div class="col_one_fourth nobottommargin center col_last">
-                                <div class="counter ls1 t600" style="color: #D2D2D2;"><span data-from="14" data-to="359"
-                                                                                            data-refresh-interval="100"
-                                                                                            data-speed="3300"></span>
-                                </div>
-                                <h5>가입자 수</h5>
-                            </div>
-                        </div>
-                        <div class="tab-content clearfix" id="construction-tab-2">
-                            <img src="../../../assets/images/magazine/13.jpg" width="260" alt="Image"
-                                 class="img-thumbnail alignleft">
-                            <p><strong>바쁜 일상속에서 내 집, 내 가게 알아보기 힘드셨죠? 이제 발품팔지 마세요!</strong></p>
-                            <p><strong>360도 공간정보로 체험하고, 선택만 하세요! 계약까지 맞춤 전문 컨설턴트와의 상담으로
-                                처음부터 끝까지 "아늑한 집"의 고객만족 서비스로 내집, 내 가게를 믿고 맡기세요!</strong></p>
-                        </div>
-                        <div class="tab-content clearfix" id="construction-tab-4">
-
-                            <div class="clear-bottommargin-sm">
-                                <div class="row clearfix">
-                                    <div class="col-sm-7 bottommargin-sm">
-                                        <p><strong>팀장 김창민</strong></p>
-                                        <div class="clear-bottommargin-sm">
-                                            <div class="row clearfix">
-                                                <div class="col-sm-6 bottommargin-sm">
-                                                    <address>
-                                                        <strong>"아늑한집" 방문상담 위치</strong><br>
-                                                        전라북도 전주시 덕진구 백제대로 567<br>
-                                                        전북대학교 코앞 2층 아늑한집<br>
-                                                    </address>
-                                                </div>
-                                                <div class="col-sm-6 bottommargin-sm">
-                                                    <abbr title="Phone Number"><strong>연락처: </strong></abbr>
-                                                    (010) 6310 2751 <br>
-                                                    <abbr title="Fax"><strong>Fax:</strong></abbr> (0303) 3441 2109 <br>
-                                                    <abbr title="Email Address"><strong>Email:</strong></abbr>
-                                                    helpdesk@cozyhouzz.co.kr
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5 bottommargin-sm">
-                                        <img src="https://maps.googleapis.com/maps/api/staticmap?center=35.846770, 127.129437&zoom=15&markers=35.846770, 127.129437&size=300x180"
-                                             alt="Google Map" class="img-thumbnail">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-
-
-            <div class="col_one_fourth col_last">
-
-                <div class="widget quick-contact-widget clearfix">
-                    <h4>빠른 상담 보내기</h4>
-                    <div class="quick-contact-form-result"></div>
-                    <form id="quick-contact-form" name="quick-contact-form" action="assets/include/quickcontact.php"
-                          method="post" class="quick-contact-form nobottommargin">
-                        <div class="form-process"></div>
-                        <input type="text" class="required sm-form-control input-block-level"
-                               id="quick-contact-form-name" name="quick-contact-form-name" value=""
-                               placeholder="Full Name"/>
-                        <input type="text" class="required sm-form-control email input-block-level"
-                               id="quick-contact-form-email" name="quick-contact-form-email" value=""
-                               placeholder="Email Address"/>
-                        <textarea class="required sm-form-control input-block-level short-textarea"
-                                  id="quick-contact-form-message" name="quick-contact-form-message" rows="4" cols="30"
-                                  placeholder="Message"></textarea>
-                        <input type="text" class="hidden" id="quick-contact-form-botcheck"
-                               name="quick-contact-form-botcheck" value=""/>
-                        <button type="submit" id="quick-contact-form-submit" name="quick-contact-form-submit"
-                                class="button button-small button-3d nomargin" value="submit">Send Email
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-
+            <div class="clear"></div>
         </div>
     </div>
-</section><!-- #content end -->
+</section>
