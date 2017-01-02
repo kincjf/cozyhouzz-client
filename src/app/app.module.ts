@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Ng2PaginationModule } from 'ng2-pagination';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
@@ -74,7 +73,6 @@ import {InfoTypeConvertPipe} from "./common/InfoTypeConvertPipe";
     RecaptchaModule.forRoot(),
     MomentModule,
     InfiniteScrollModule,
-    Ng2PaginationModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
