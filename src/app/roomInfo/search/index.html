@@ -1,0 +1,76 @@
+<!-- Page Title
+		============================================= -->
+<section id="page-title" class="page-title-mini">
+
+    <div class="container clearfix">
+        <h1>방정보 조회</h1>
+        <span>여러가지 방정보를 한눈에 확인할수 있습니다.</span>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active">방정보 조회</li>
+        </ol>
+    </div>
+
+</section><!-- #page-title end -->
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <!-- Posts
+            ============================================= -->
+            <div id="posts" class="post-grid grid-container post-masonry grid-2 clearfix">
+
+
+
+                <div class="entry clearfix" *ngFor="let roomInfo of returnedDatas">
+                    <div class="entry-image">
+                        <a routerLink="/detail/room/{{roomInfo.idx}}" onclick="clickLoad()"><img class="image_fade" src="{{serverHost}}/{{roomInfo.mainPreviewImage}}" alt="Standard Post with Image"></a>
+                    </div>
+                    <div class="entry-title">
+                        <h2><a routerLink="/detail/room/{{roomInfo.idx}}">{{roomInfo.title}}</a></h2>
+                    </div>
+                    <div class="entry-content">
+                        <p><strong>주소 :</strong>{{roomInfo.addressAddress}} {{roomInfo.addressDetail}}</p>
+                        <div class="tagcloud clearfix bottommargin">
+                            <a>{{roomInfo.roomType}}</a>
+                            <a>보증금 {{roomInfo.deposit}}만원</a>
+                            <a>월세 {{roomInfo.monthlyRentFee}}만원</a>
+                            <a>방 {{roomInfo.floor}}개</a>
+                        </div>
+                        <a routerLink="/detail/room/{{roomInfo.idx}}" class="more-link">Read More</a>
+                    </div>
+                </div>
+
+            </div><!-- #posts end -->
+            <!-- Pagination
+                           ============================================= -->
+            <!--페이지 1~10 까지 확인 가능 disable이나 현재 들어와 있는 페이지 active같은 기능을 추가해주어야함-->
+            <div id="pagination" class="center">
+                <ul class="pagination nobottommargin">
+                    <li (click)="beforePageButton()"><a>&laquo;</a></li>
+                    <li (click)="pageNumberButton(1)" [ngClass]="{'active': currentPageNumber == 1}"><a>1</a></li>
+                    <li (click)="pageNumberButton(2)" [ngClass]="{'active': currentPageNumber == 2}"><a>2</a></li>
+                    <li (click)="pageNumberButton(3)" [ngClass]="{'active': currentPageNumber == 3}"><a>3</a></li>
+                    <li (click)="pageNumberButton(4)" [ngClass]="{'active': currentPageNumber == 4}"><a>4</a></li>
+                    <li (click)="pageNumberButton(5)" [ngClass]="{'active': currentPageNumber == 5}"><a>5</a></li>
+                    <li (click)="pageNumberButton(6)" [ngClass]="{'active': currentPageNumber == 6}"><a>6</a></li>
+                    <li (click)="pageNumberButton(7)" [ngClass]="{'active': currentPageNumber == 7}"><a>7</a></li>
+                    <li (click)="pageNumberButton(8)" [ngClass]="{'active': currentPageNumber == 8}"><a>8</a></li>
+                    <li (click)="pageNumberButton(9)" [ngClass]="{'active': currentPageNumber == 9}"><a>9</a></li>
+                    <li (click)="pageNumberButton(10)" [ngClass]="{'active': currentPageNumber == 10}"><a>10</a></li>
+                    <li (click)="nextPageButton()"><a>&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</section><!-- #content end -->

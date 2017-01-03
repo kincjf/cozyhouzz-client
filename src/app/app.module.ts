@@ -41,6 +41,7 @@ import { RoomInfoUpdate } from './roomInfo/update';
 import { RoomInfoList } from './roomInfo/list';
 import { RoomInfoDetail } from './roomInfo/detail';
 import { RoomInfoLately } from './roomInfo/lately';
+import { RoomInfoSearch } from './roomInfo/search';
 import {EnumKeysPipe} from "./common/EnumKeysPipe";
 import {KeysPipe, ValuesPipe} from "./common/KeysPipe";
 import {CanDeactivateGuard} from "./common/can-deactivate-guard.service";
@@ -60,7 +61,7 @@ import {InfoTypeConvertPipe} from "./common/InfoTypeConvertPipe";
     MainPage,
     BuildCaseInput, BuildCaseUpdate, BuildCaseLately, BuildCaseList, BuildCaseDetail,
     ConsultingCounsel, ConsultingDetail, ConsultingListInfo, ConsultingMyListInfo, ConsultingChange,
-    RoomInfoInput, RoomInfoUpdate, RoomInfoList, RoomInfoDetail, RoomInfoLately,
+    RoomInfoInput, RoomInfoUpdate, RoomInfoList, RoomInfoDetail, RoomInfoLately,RoomInfoSearch,
 
     KeysPipe, ValuesPipe, EnumKeysPipe, InfoTypeConvertPipe,
     SanitizeHtml, SanitizeScript, SanitizeStyle, SanitizeUrl, SanitizeResourceUrl

@@ -2,8 +2,8 @@
  * Created by KIMSEONHO on 2016-09-19.
  */
 
-// const env = "development";    // 이 부분을 바꿔주자, 대충 쓰자 ^^
-const env = "production";    // 이 부분을 바꿔주자, 대충 쓰자 ^^
+const env = "development";    // 이 부분을 바꿔주자, 대충 쓰자 ^^
+//const env = "production";    // 이 부분을 바꿔주자, 대충 쓰자 ^^
 
 export const config = {
     "development": {
@@ -18,6 +18,7 @@ export const config = {
             consulting: "api/consult",
             buildCase: "api/build-case",
             roomInfo: "api/room",
+            roomSearch: "api/room/search",
             bizStore: "api/biz-store"
         }
     },
@@ -32,6 +33,7 @@ export const config = {
             consulting: "api/consult",
             buildCase: "api/build-case",
             roomInfo: "api/room",
+            roomSearch: "api/room/search",
             bizStore: "api/biz-store"
         }
     }

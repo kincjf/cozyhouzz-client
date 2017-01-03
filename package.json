@@ -84,7 +84,6 @@
     "jwt-decode": "^2.1.0",
     "lodash": "^4.16.4",
     "moment": "^2.16.0",
-    "angular2-infinite-scroll": "2.0.0",
     "ng2-pagination": "^1.0.1",
     "ng2-recaptcha": "^1.4.0",
     "rxjs": "^5.0.0-rc.1",

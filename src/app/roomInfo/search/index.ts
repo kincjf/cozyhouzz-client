@@ -1,4 +1,7 @@
 /**
+ * Created by InSuJeong on 2017-01-03.
+ */
+/**
  * Created by insu on 2016-09-02.
  */
 import { Component } from '@angular/core';
@@ -11,20 +14,22 @@ import { config } from '../../common/config';
 import {STATIC_VALUE} from "../../common/config/staticValue";
 import * as _ from "lodash";
 
-const template = require('./list.html');
+const template = require('./index.html');
 
 @Component({
-    selector: 'roomInfoList',
+    selector: 'roomInfoSearch',
     template: template
 })
 
 /**
  *
  */
-export class RoomInfoList {
+export class RoomInfoSearch {
     jwt: string;
     public data;
 
+    searchWord : string;
+    city: number;
     currentPageNumber: number ;
     pageSize: number;
     pageStartIndex: number;
@@ -41,11 +46,17 @@ export class RoomInfoList {
      */
 
     constructor(public router: Router, public http: Http) {
-        this.currentPageNumber = 1;
-        this.pageSize = 2;
-        this.pageStartIndex = 0;
+        // this.searchWord = "asdf";
+        // this.city = 1;
+        // this.currentPageNumber = 1;
+        // this.pageSize = 2;
+        // this.pageStartIndex = 0;
 
-        let URL = [config.serverHost, config.path.roomInfo + "?pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+        let URL = [config.serverHost, config.path.roomSearch + "?query=" + this.searchWord + "&city=" + this.city + "&pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+
+        console.log(URL);
+        console.log("city number : " + this.city);
+        console.log("search : " + this.searchWord);
 
         this.http.get(URL, {headers:contentHeaders}) //서버로부터 필요한 값 받아오기
             .map(res => res.json())//받아온 값을 json형식으로 변경
@@ -53,7 +64,7 @@ export class RoomInfoList {
                 response => {
                     this.serverHost = config.serverHost;
                     //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
-                    for(var roomData of response.roomInfo) {
+                    for(var roomData of response.RoomInfo) {
                         let addressArr = JSON.parse(roomData.address);
                         let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", roomData.roomType]);
 
@@ -81,48 +92,46 @@ export class RoomInfoList {
     }
 
     ngAfterContentInit() {    // 로딩때 한번만 뜨는데, life cycle을
-        // this.loadDaumMap();
-        //this.loadDaumMapScript();
     }
 
     jumpPage(index, oldIndex) {
         this.pageStartIndex = index;
-        let URL = [config.serverHost, config.path.roomInfo + "?pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+        let URL = [config.serverHost, config.path.roomSearch + "?query=" + this.searchWord + "&city=" + this.city + "&pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
-                    this.http.get(URL, {headers: contentHeaders})
-                        .map(res => res.json())//받아온값을 json형식으로 변경
-                        .subscribe(
-                            response => {
-                                this.data = response;
-                                if(response.roomInfo.length == 0){ //데이터가 비어있을 때 막아주기
-                                    this.pageStartIndex = oldIndex;
-                                    alert("더이상 페이지를 넘길수 없습니다.");
-                                }
-                                else {
-                                    this.returnedDatas = []; //데이터를 초기화
-                                    this.currentPageNumber = index/this.pageSize + 1;
-                                    //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
-                                    for(var roomData of response.roomInfo) {
-                                        let addressArr = JSON.parse(roomData.address);
-                                        let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", roomData.roomType]);
+        this.http.get(URL, {headers: contentHeaders})
+            .map(res => res.json())//받아온값을 json형식으로 변경
+            .subscribe(
+                response => {
+                    this.data = response;
+                    if(response.RoomInfo.length == 0){ //데이터가 비어있을 때 막아주기
+                        this.pageStartIndex = oldIndex;
+                        alert("더이상 페이지를 넘길수 없습니다.");
+                    }
+                    else {
+                        this.returnedDatas = []; //데이터를 초기화
+                        this.currentPageNumber = index/this.pageSize + 1;
+                        //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
+                        for(var roomData of response.roomInfo) {
+                            let addressArr = JSON.parse(roomData.address);
+                            let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", roomData.roomType]);
 
-                                        //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
-                                        this.returnedDatas.push({
-                                            idx: roomData.idx,
-                                            memberIdx: roomData.memberIdx,
-                                            title: roomData.title,
-                                            roomType : STATIC_VALUE.PLACE_TYPE[key].name,
-                                            mainPreviewImage: roomData.mainPreviewImage,
-                                            addressPostcode: addressArr[0],
-                                            addressAddress: addressArr[1],
-                                            addressDetail: addressArr[2],
-                                            deposit: roomData.deposit,
-                                            monthlyRentFee: roomData.monthlyRentFee,
-                                            floor: roomData.floor
-                                        });
-                                    }
-                                }
-                                console.log("Jump page | this.data.RoomInfo.length :" + this.data.RoomInfo.length);
+                            //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
+                            this.returnedDatas.push({
+                                idx: roomData.idx,
+                                memberIdx: roomData.memberIdx,
+                                title: roomData.title,
+                                roomType : STATIC_VALUE.PLACE_TYPE[key].name,
+                                mainPreviewImage: roomData.mainPreviewImage,
+                                addressPostcode: addressArr[0],
+                                addressAddress: addressArr[1],
+                                addressDetail: addressArr[2],
+                                deposit: roomData.deposit,
+                                monthlyRentFee: roomData.monthlyRentFee,
+                                floor: roomData.floor
+                            });
+                        }
+                    }
+                    console.log("Jump page | this.data.RoomInfo.length :" + this.data.RoomInfo.length);
                 },
                 error=> {
                     alert(error.text());

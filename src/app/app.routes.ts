@@ -22,6 +22,7 @@ import { RoomInfoUpdate } from './roomInfo/update';
 import { RoomInfoList } from './roomInfo/list';
 import { RoomInfoDetail } from './roomInfo/detail';
 import { RoomInfoLately } from './roomInfo/lately';
+import { RoomInfoSearch } from './roomInfo/search';
 
 import { ConsultingCounsel } from './consulting/consultingCounsel/consultingCounsel';
 import { ConsultingDetail } from './consulting/consultingDetail/consultingDetail';
@@ -53,6 +54,7 @@ export const ROUTES: Routes = [
   { path: 'lately/room', component: RoomInfoLately },  // 최근 본 방 정보
   { path: 'list/room', component: RoomInfoList },  // 방 정보 목록 조회
   { path: 'detail/room/:roomListIdx', component: RoomInfoDetail },  // 방 정보 상세보기
+  { path: 'search/room', component: RoomInfoSearch },
 
   { path: 'bizList',   component: BizList },  // URL/bizList : 업체목록조회하기
   { path: 'bizListDetail/:bizUserIdx',   component: BizListDetail },  // URL/bizListDetail : 업체목록 상세보기
