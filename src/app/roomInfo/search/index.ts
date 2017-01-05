@@ -5,7 +5,7 @@
  * Created by insu on 2016-09-02.
  */
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http'
 import { contentHeaders } from '../../common/headers';
 import {MultipartItem} from "../../common/multipart-upload/multipart-item";
@@ -27,6 +27,7 @@ const template = require('./index.html');
 export class RoomInfoSearch {
     jwt: string;
     public data;
+    public cityNumber:number;
 
     searchWord : string;
     city: number;
@@ -45,9 +46,20 @@ export class RoomInfoSearch {
      - UI개선
      */
 
-    constructor(public router: Router, public http: Http) {
+    constructor(public router: Router, public http: Http,  private route: ActivatedRoute) {
+
+    }
+
+    ngOnInit() {
+        this.route.params.forEach((params: Params) => {
+            let cityNum = params['city'];
+            this.cityNumber = params['city'];
+        });
+
+        console.log("cityNumber : " + this.cityNumber);
+
         this.searchWord = "asdf";
-        this.city = 1;
+        this.city = this.cityNumber;
         this.currentPageNumber = 1;
         this.pageSize = 2;
         this.pageStartIndex = 0;

@@ -14,6 +14,10 @@ const template = require('./mainPage.html');
   template: template,
 })
 
+// @RouteConfig {
+//   {path: '/search',   name: 'Search', component: SearchCmp}
+// }
+
 export class MainPage implements OnInit {
   jwt: string;
   public data;
@@ -99,4 +103,11 @@ export class MainPage implements OnInit {
               //서버로 부터 응답 실패시 경고창
             });
   }
+
+  gotCity(city) {
+    let cityNum = city;
+    //angular는 ? 나 & param에서 읽지 못함 ;로 구분해야함
+    this.router.navigate(['/search/room', { city: cityNum}]);
+  }
+
 }
