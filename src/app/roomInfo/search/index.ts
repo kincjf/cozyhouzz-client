@@ -46,11 +46,11 @@ export class RoomInfoSearch {
      */
 
     constructor(public router: Router, public http: Http) {
-        // this.searchWord = "asdf";
-        // this.city = 1;
-        // this.currentPageNumber = 1;
-        // this.pageSize = 2;
-        // this.pageStartIndex = 0;
+        this.searchWord = "asdf";
+        this.city = 1;
+        this.currentPageNumber = 1;
+        this.pageSize = 2;
+        this.pageStartIndex = 0;
 
         let URL = [config.serverHost, config.path.roomSearch + "?query=" + this.searchWord + "&city=" + this.city + "&pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 

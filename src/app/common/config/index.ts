@@ -18,7 +18,7 @@ export const config = {
             consulting: "api/consult",
             buildCase: "api/build-case",
             roomInfo: "api/room",
-            roomSearch: "api/room/search",
+            roomSearch: "api/search/room",
             bizStore: "api/biz-store"
         }
     },
@@ -33,7 +33,7 @@ export const config = {
             consulting: "api/consult",
             buildCase: "api/build-case",
             roomInfo: "api/room",
-            roomSearch: "api/room/search",
+            roomSearch: "api/search/room",
             bizStore: "api/biz-store"
         }
     }
