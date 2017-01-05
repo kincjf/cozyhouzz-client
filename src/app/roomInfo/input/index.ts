@@ -58,10 +58,14 @@ export class RoomInfoInput implements CanDeactivate<RoomInfoInput> {
     addRoomInfo($event, title, deposit, roomType, monthlyRentFee,
                 previewImage, VRImage,
                 floor, manageExpense, manageService, areaSize, actualSize, parking, elevator,
-        supplyOption, HTMLText, addressPostCode, address, addressDetail, addressExtraInfo, locationInfo, regionCategory) {
+        supplyOption, HTMLText, addressPostCode, address, addressDetail, addressExtraInfo, locationInfo, regionCategory, city) {
         var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
         var arrRoomPlace = [addressPostCode, address, addressDetail, addressExtraInfo]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
+
+        if(addressPostCode>=55000 && addressPostCode<55300){city = 1;} // 전주
+        else if(addressPostCode>=54500 && addressPostCode<54800){city=2;} // 익산
+        else if(addressPostCode>=54000 && addressPostCode<54300){city=3;} // 군산
 
         if (HTMLTextLen < 10) { //시공사례 내용이 100자 이상 인지 확인
             alert("방정보 내용을 10자 이상 작성 해야 합니다.");
@@ -99,6 +103,7 @@ export class RoomInfoInput implements CanDeactivate<RoomInfoInput> {
             this.multipartItem.formData.append("HTMLText", HTMLText);//상세설명
             this.multipartItem.formData.append("address", JSON.stringify(arrRoomPlace));//주소
             this.multipartItem.formData.append("locationInfo", locationInfo);//건물정보
+            this.multipartItem.formData.append("city", city);
 
             this.insertFile(previewImage, "previewImage");
             this.insertFile(VRImage, "vrImage");

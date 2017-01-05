@@ -123,7 +123,7 @@ export class RoomInfoSearch {
                         this.returnedDatas = []; //데이터를 초기화
                         this.currentPageNumber = index/this.pageSize + 1;
                         //for of문으로 for–of 루프 구문은 배열의 요소들, 즉 data를 순회하기 위한 구문입니다.
-                        for(var roomData of response.roomInfo) {
+                        for(var roomData of response.RoomInfo) {
                             let addressArr = JSON.parse(roomData.address);
                             let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", roomData.roomType]);
 
