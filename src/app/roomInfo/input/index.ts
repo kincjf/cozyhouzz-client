@@ -56,14 +56,13 @@ export class RoomInfoInput implements CanDeactivate<RoomInfoInput> {
      차후 개선방안 : 없음
      */
     addRoomInfo($event, title, deposit, roomType, monthlyRentFee,
-                previewImage, VRImage,
-                floor, manageExpense, manageService, areaSize, actualSize, parking, elevator,
-        supplyOption, HTMLText, addressPostCode, address, addressDetail, addressExtraInfo, locationInfo, regionCategory, city) {
+                previewImage, VRImage, areaSize, HTMLText, addressPostCode, address, addressDetail, addressExtraInfo) {
         var HTMLText = jQuery(this.el.nativeElement).find('.summernote').summernote('code');// 섬머노트 이미지 업로드는 추후에 변경예정
         var HTMLTextLen = jQuery(this.el.nativeElement).find('.summernote').summernote('code').length;
         var arrRoomPlace = [addressPostCode, address, addressDetail, addressExtraInfo]; // 입력받은 우편번호, 주소, 상세주소를 배열에 저장함
+        var city, EMPTY_STRING = "", EMPTY_NUMBER = 0;
 
-        if(addressPostCode>=55000 && addressPostCode<55300){city = 1;} // 전주
+        if(addressPostCode>=54800 && addressPostCode<55300){city = 1;} // 전주
         else if(addressPostCode>=54500 && addressPostCode<54800){city=2;} // 익산
         else if(addressPostCode>=54000 && addressPostCode<54300){city=3;} // 군산
 
@@ -92,25 +91,25 @@ export class RoomInfoInput implements CanDeactivate<RoomInfoInput> {
             this.multipartItem.formData.append("deposit", deposit);//보증금
             this.multipartItem.formData.append("roomType", roomType);//방구조
             this.multipartItem.formData.append("monthlyRentFee", monthlyRentFee);//월세
-            this.multipartItem.formData.append("floor", floor);//층/건물층수
-            this.multipartItem.formData.append("manageExpense", manageExpense);//관리비
-            this.multipartItem.formData.append("manageService", manageService);//관리비 포함목록
+            this.multipartItem.formData.append("floor", EMPTY_NUMBER);//층/건물층수
+            this.multipartItem.formData.append("manageExpense", EMPTY_NUMBER);//관리비
+            this.multipartItem.formData.append("manageService", EMPTY_NUMBER);//관리비 포함목록
             this.multipartItem.formData.append("areaSize", areaSize);//크기
-            this.multipartItem.formData.append("actualSize", actualSize);//실재크기
-            this.multipartItem.formData.append("parking", parking);//주차공간
-            this.multipartItem.formData.append("elevator", elevator);//엘레베이터
-            this.multipartItem.formData.append("supplyOption", supplyOption);//엘레베이터
+            this.multipartItem.formData.append("actualSize", EMPTY_NUMBER);//실재크기
+            this.multipartItem.formData.append("parking", EMPTY_NUMBER);//주차공간
+            this.multipartItem.formData.append("elevator", EMPTY_NUMBER);//엘레베이터
+            this.multipartItem.formData.append("supplyOption", EMPTY_STRING);//옵션
             this.multipartItem.formData.append("HTMLText", HTMLText);//상세설명
             this.multipartItem.formData.append("address", JSON.stringify(arrRoomPlace));//주소
-            this.multipartItem.formData.append("locationInfo", locationInfo);//건물정보
+            this.multipartItem.formData.append("locationInfo", EMPTY_STRING);//건물정보
             this.multipartItem.formData.append("city", city);
 
             this.insertFile(previewImage, "previewImage");
             this.insertFile(VRImage, "vrImage");
-            this.multipartItem.formData.append("regionCategory", regionCategory);//지역 카테고리 ??????
+            // this.multipartItem.formData.append("regionCategory", regionCategory);//지역 카테고리 ??????
 
-            this.multipartItem.callback = (data) => {
-                if (data) {
+            this.multipartItem.callback = (data, status) => {
+                if (status == 200 || status == 201) {
                     console.debug("roominfo/input & uploadCallback() upload file success.");
                     alert("방정보가 입력 되었습니다.");
 
@@ -119,6 +118,7 @@ export class RoomInfoInput implements CanDeactivate<RoomInfoInput> {
                     // this.router.navigate(['detail/room/:roomListIdx']);
                 } else {
                     console.error("roominfo/input & uploadCallback() upload file false.");
+                    alert("방정보가 입력이 실패하였습니다. 다시 입력해주세요");
                 }
             }
 

@@ -62,7 +62,7 @@ export class MultipartItem {
   }
 
   public onComplete(response:any, status:any, headers:any) {
-    this.callback(response);
+    this.callback(response, status);
     this.init();
   }
 

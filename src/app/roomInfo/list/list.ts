@@ -42,7 +42,7 @@ export class RoomInfoList {
 
     constructor(public router: Router, public http: Http) {
         this.currentPageNumber = 1;
-        this.pageSize = 2;
+        this.pageSize = 10;     // 10개씩 가져온다.
         this.pageStartIndex = 0;
 
         let URL = [config.serverHost, config.path.roomInfo + "?pageSize=" + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');

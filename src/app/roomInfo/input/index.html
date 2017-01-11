@@ -33,9 +33,7 @@
                 <!-- Contact Form
                 ============================================= -->
                 <form (submit)="addRoomInfo($event, title.value, deposit.value, roomType.value, monthlyRentFee.value,
-                previewImage, VRImage,
-                 floor.value, manageExpense.value, manageService.value, areaSize.value, actualSize.value, parking.value, elevator.value,
-                      supplyOption.value, HTMLText.value, addressPostCode.value, address.value, addressDetail.value, addressExtraInfo.value, locationInfo.value, regionCategory.value)"
+                previewImage, VRImage, areaSize.value, HTMLText.value, addressPostCode.value, address.value, addressDetail.value, addressExtraInfo.value)"
                       class="nobottommargin" id="roominfo-inputform" name="roominfo-inputform" method="post" enctype="multipart/form-data">
 
                     <!--제목-->
@@ -69,7 +67,7 @@
                                 <input class="sm-form-control postcodify_details" type="text" #addressDetail id="details" placeholder="상세주소">
                             </div>
                             <div class="col_half col_last">
-                                <input class="sm-form-control postcodify_extra_info" type="text" #addressExtraInfo id="extraInfo" placeholder="참고항목">
+                                <input class="sm-form-control postcodify_extra_info" type="text" #addressExtraInfo id="extraInfo" placeholder="주소 참고항목">
                             </div>
                         </div>
                     </div>
@@ -121,24 +119,24 @@
                     <div class="clear"></div>
 
                     <!--관리비-->
-                    <div class="col_half">
-                        <label for="template-contactform-manageExpense">관리비</label>
-                        <div class="input-group">
-                            <input type="number" #manageExpense id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />
-                            <span class="input-group-addon">만원</span>
-                        </div>
-                    </div>
+                    <!--<div class="col_half">-->
+                        <!--<label for="template-contactform-manageExpense">관리비</label>-->
+                        <!--<div class="input-group">-->
+                            <!--<input type="number" #manageExpense id="template-contactform-manageExpense" name="template-contactform-manageExpense" value="" placeholder="만원" class="sm-form-control" />-->
+                            <!--<span class="input-group-addon">만원</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
-                    <div class="clear"></div>
+                    <!--<div class="clear"></div>-->
 
                     <!--관리비 포함항목-->
 
-                    <div class="col_full">
-                        <label for="template-contactform-manageService">관리비 포함항목</label>
-                        <input type="text" #manageService id="template-contactform-manageService" name="template-contactform-manageService" value="" class="sm-form-control" />
-                    </div>
+                    <!--<div class="col_full">-->
+                        <!--<label for="template-contactform-manageService">관리비 포함항목</label>-->
+                        <!--<input type="text" #manageService id="template-contactform-manageService" name="template-contactform-manageService" value="" class="sm-form-control" />-->
+                    <!--</div>-->
 
-                    <div class="clear"></div>
+                    <!--<div class="clear"></div>-->
 
                     <!--크기-->
 
@@ -151,75 +149,75 @@
                     </div>
 
                     <!--실제 크기-->
-                    <div class="col_half col_last">
-                        <label for="template-contactform-actualSize">실제 크기</label>
-                        <div class="input-group">
-                            <input type="number" #actualSize id="template-contactform-actualSize" name="template-contactform-actualSize" value="" class="sm-form-control" />
-                            <span class="input-group-addon">평</span>
-                        </div>
-                    </div>
+                    <!--<div class="col_half col_last">-->
+                        <!--<label for="template-contactform-actualSize">실제 크기</label>-->
+                        <!--<div class="input-group">-->
+                            <!--<input type="number" #actualSize id="template-contactform-actualSize" name="template-contactform-actualSize" value="" class="sm-form-control" />-->
+                            <!--<span class="input-group-addon">평</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
-                    <div class="clear"></div>
+                    <!--<div class="clear"></div>-->
 
                     <!--주차-->
-                    <div class="col_half">
-                        <label for="template-contactform-service">주차장 여부</label>
-                        <select #parking id="template-contactform-service" name="buildType" class="sm-form-control">
-                            <option *ngFor="let item of existed | enumKeys" [value]="item.key">{{item.value}}</option>
-                        </select>
-                    </div>
+                    <!--<div class="col_half">-->
+                        <!--<label for="template-contactform-service">주차장 여부</label>-->
+                        <!--<select #parking id="template-contactform-service" name="buildType" class="sm-form-control">-->
+                            <!--<option *ngFor="let item of existed | enumKeys" [value]="item.key">{{item.value}}</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
 
                     <!--엘레베이터-->
-                    <div class="col_half col_last">
-                        <label for="template-contactform-service">엘리베이터 여부</label>
-                        <select #elevator id="template-contactform-service" name="buildType" class="sm-form-control">
-                            <option *ngFor="let item of existed | enumKeys" [value]="item.key">{{item.value}}</option>
-                        </select>
-                    </div>
+                    <!--<div class="col_half col_last">-->
+                        <!--<label for="template-contactform-service">엘리베이터 여부</label>-->
+                        <!--<select #elevator id="template-contactform-service" name="buildType" class="sm-form-control">-->
+                            <!--<option *ngFor="let item of existed | enumKeys" [value]="item.key">{{item.value}}</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
 
-                    <div class="clear"></div>
+                    <!--<div class="clear"></div>-->
 
                     <!--층수-->
-                    <div class="col_half">
-                        <label for="template-contactform-floor">층수</label>
-                        <input type="number" #floor id="template-contactform-floor" name="template-contactform-floor" value="{{currentFloor}}" class="sm-form-control" />
-                    </div>
+                    <!--<div class="col_half">-->
+                        <!--<label for="template-contactform-floor">층수</label>-->
+                        <!--<input type="number" #floor id="template-contactform-floor" name="template-contactform-floor" value="{{currentFloor}}" class="sm-form-control" />-->
+                    <!--</div>-->
 
                     <!--지역 태그-->
-                    <div class="col_half col_last">
-                        <label for="template-contactform-tag">지역 태그</label>
-                        <input type="text" #regionCategory id="template-contactform-tag" name="template-contactform-tag" class="sm-form-control" />
-                    </div>
+                    <!--<div class="col_half col_last">-->
+                        <!--<label for="template-contactform-tag">지역 태그</label>-->
+                        <!--<input type="text" #regionCategory id="template-contactform-tag" name="template-contactform-tag" class="sm-form-control" />-->
+                    <!--</div>-->
 
-                    <div class="clear"></div>
+                    <!--<div class="clear"></div>-->
 
                     <!--옵션-->
 
-                    <div class="col_full">
-                        <label for="template-contactform-supplyOption">옵션</label>
-                        <input type="text" #supplyOption id="template-contactform-supplyOption" name="template-contactform-supplyOption" placeholder="ex. 에어컨, 침대" value="" class="sm-form-control" />
-                    </div>
+                    <!--<div class="col_full">-->
+                        <!--<label for="template-contactform-supplyOption">옵션</label>-->
+                        <!--<input type="text" #supplyOption id="template-contactform-supplyOption" name="template-contactform-supplyOption" placeholder="ex. 에어컨, 침대" value="" class="sm-form-control" />-->
+                    <!--</div>-->
 
-                    <div class="clear"></div>
+                    <!--<div class="clear"></div>-->
 
 
                     <!--건물정보-->
 
-                    <div class="col_full">
-                        <label for="template-contactform-locationInfo">건물정보<small>*</small></label>
-                        <input type="text" #locationInfo id="template-contactform-locationInfo" name="template-contactform-locationInfo" value="" class="required sm-form-control" />
-                    </div>
+                    <!--<div class="col_full">-->
+                        <!--<label for="template-contactform-locationInfo">건물정보<small>*</small></label>-->
+                        <!--<input type="text" #locationInfo id="template-contactform-locationInfo" name="template-contactform-locationInfo" value="" class="required sm-form-control" />-->
+                    <!--</div>-->
 
-                    <div class="clear"></div>
+                    <!--<div class="clear"></div>-->
 
                     <!--입주 가능일-->
 
-                    <div class="col_half">
-                        <label for="template-contactform-availableDate">입주 가능일</label>
-                        <input type="date" #availableDate id="template-contactform-availableDate" name="template-contactform-availableDate" value="" class="sm-form-control" />
-                    </div>
+                    <!--<div class="col_half">-->
+                        <!--<label for="template-contactform-availableDate">입주 가능일</label>-->
+                        <!--<input type="date" #availableDate id="template-contactform-availableDate" name="template-contactform-availableDate" value="" class="sm-form-control" />-->
+                    <!--</div>-->
 
-                    <div class="clear"></div>
+                    <!--<div class="clear"></div>-->
 
                     <!--상세설명-->
 

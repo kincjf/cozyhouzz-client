@@ -7,7 +7,6 @@ interface FormData {
     delete(name: any): void;
 }
 
-// declare var FormData: {
-//     prototype: FormData;
-//     new (form?: HTMLFormElement): FormData;
-// }
+declare var daum: {
+    maps: any;
+}
